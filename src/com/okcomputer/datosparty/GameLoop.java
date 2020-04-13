@@ -1,6 +1,11 @@
 package com.okcomputer.datosparty;
 
 import com.okcomputer.datosparty.display.Display;
+import com.okcomputer.datosparty.gfx.ImageLoader;
+
+import java.awt.*;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 public class GameLoop implements Runnable{
 
@@ -9,6 +14,10 @@ public class GameLoop implements Runnable{
     public int width, height;
     private Thread thread;
     private boolean running = false;
+    private BufferStrategy bs;
+    private Graphics g;
+    private BufferedImage titleImage;
+
 
     public GameLoop(String title, int width, int height){
         this.width = width;
@@ -19,10 +28,27 @@ public class GameLoop implements Runnable{
 
     private void init(){
         display = new Display(title,width,height);
+        titleImage = ImageLoader.loadImage("/textures/Datos-Party.png");
 
     }
 
     private void render() {
+        bs = display.getCanvas().getBufferStrategy();
+
+        if(bs == null){
+            display.getCanvas().createBufferStrategy(3);
+            return;
+        }
+        g = bs.getDrawGraphics();
+        g.clearRect(0,0,width,height);
+        // Begin Rendering
+
+        g.drawImage(titleImage,82,100,null);
+
+
+        // End Rendering
+        bs.show();
+        g.dispose();
     }
 
     private void tick() {
