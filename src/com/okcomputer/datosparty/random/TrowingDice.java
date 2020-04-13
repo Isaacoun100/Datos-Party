@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class TrowingDice {
 
-    public int NumberSpace(){
+    public static int NumberSpace(){
 
         Random tileNumber;
         int randomNumber;
