@@ -109,7 +109,7 @@ public class DoublyLinkedList<T> {
      * Recursively traverse this list and print the node value
      *
      */
-    public void printList() {
+    public void print() {
         DoublyLinkedListNode<T> currentNode = this.head;
 
         System.out.print("\n[[");
