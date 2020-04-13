@@ -1,4 +1,4 @@
-package com.okcomputer.datosparty.datastructures;
+package com.okcomputer.datosparty.dataStructures;
 
 public abstract class LinkedListNode<T> {
 

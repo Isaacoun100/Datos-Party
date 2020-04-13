@@ -1,4 +1,4 @@
-package com.okcomputer.datosparty.datastructures;
+package com.okcomputer.datosparty.dataStructures;
 
 public class DoublyLinkedListNode<T> extends LinkedListNode<T>{
 

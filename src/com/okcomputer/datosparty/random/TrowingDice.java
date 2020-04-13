@@ -11,7 +11,7 @@ public class TrowingDice {
 
         tileNumber = new Random();
 
-        randomNumber = tileNumber.nextInt(6);
+        randomNumber = tileNumber.nextInt(5)+1;
 
         return randomNumber;
 
