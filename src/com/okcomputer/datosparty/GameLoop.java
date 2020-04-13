@@ -17,6 +17,7 @@ public class GameLoop implements Runnable{
     private BufferStrategy bs;
     private Graphics g;
     private BufferedImage titleImage;
+    private BufferedImage pressEnterImage;
 
 
     public GameLoop(String title, int width, int height){
@@ -29,10 +30,12 @@ public class GameLoop implements Runnable{
     private void init(){
         display = new Display(title,width,height);
         titleImage = ImageLoader.loadImage("/textures/Datos-Party.png");
+        pressEnterImage = ImageLoader.loadImage("/textures/Press-Enter.png");
 
     }
 
     private void render() {
+
         bs = display.getCanvas().getBufferStrategy();
 
         if(bs == null){
@@ -44,6 +47,7 @@ public class GameLoop implements Runnable{
         // Begin Rendering
 
         g.drawImage(titleImage,82,100,null);
+        g.drawImage(pressEnterImage,256,400,null);
 
 
         // End Rendering
