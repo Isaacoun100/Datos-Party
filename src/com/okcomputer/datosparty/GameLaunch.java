@@ -4,6 +4,6 @@ import com.okcomputer.datosparty.display.Display;
 
 public class GameLaunch {
     public static void main(String[] args){
-        new Display("Main Title",800,600);
+        new GameLoop("Datos Party",800,600);
     }
 }
