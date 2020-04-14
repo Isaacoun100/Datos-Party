@@ -2,7 +2,7 @@ package com.okcomputer.datosparty.random;
 
 import java.util.Random;
 
-public class TrowingDice {
+public class Dice {
 
     public static int NumberSpace(){
 
