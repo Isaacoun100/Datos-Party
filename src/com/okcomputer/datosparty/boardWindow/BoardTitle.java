@@ -5,6 +5,7 @@ import javax.swing.*;
 public class BoardTitle extends JFrame {
 
     public BoardTitle(){
+
         setTitle("Datos Party");
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
