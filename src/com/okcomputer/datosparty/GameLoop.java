@@ -10,8 +10,14 @@ import com.okcomputer.datosparty.states.TitleScreenState;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
+/**
+ *
+ */
 public class GameLoop implements Runnable{
 
+    /**
+     * General Variable Initialization
+     */
     private Display display;
     public String title;
     public int width, height;
@@ -20,9 +26,17 @@ public class GameLoop implements Runnable{
     private BufferStrategy bs;
     private Graphics g;
 
-    //States
+    /**
+     * State Initialization
+     */
     private State gameState, mainMenuState, titleScreenState;
 
+    /**
+     * Main Game Loop, runs the entire program, it can handle multiple states, for different options
+     * @param title the title displayed on the screen
+     * @param width the width of the screen
+     * @param height the height of the screen
+     */
     public GameLoop(String title, int width, int height){
         this.width = width;
         this.height = height;
@@ -30,6 +44,9 @@ public class GameLoop implements Runnable{
 
     }
 
+    /**
+     * Initialization method, this runs variables that are used in the game
+     */
     private void init(){
         display = new Display(title,width,height);
         Assets.init();
@@ -37,7 +54,7 @@ public class GameLoop implements Runnable{
         gameState = new GameState();
         titleScreenState = new TitleScreenState();
 
-        State.setState(titleScreenState);
+        State.setState(mainMenuState);
 
     }
 
