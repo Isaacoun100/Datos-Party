@@ -10,7 +10,9 @@ public class BoardTitle extends JFrame {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+
         setContentPane(new BoardPanel());
+
         setResizable(false);
 
         pack();
