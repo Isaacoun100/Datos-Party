@@ -21,4 +21,10 @@ public class BoardTitle extends JFrame {
 
     }
 
+    public static void main(String[] args) {
+
+        BoardTitle BT = new BoardTitle();
+
+    }
+
 }

@@ -15,11 +15,13 @@ public class BoardPanel extends JPanel {
     public BoardPanel(){
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        g = (Graphics2D) img.getGraphics();
-        g.setColor(new Color(89, 172, 124));
 
         screenHeight = screenSize.height;
         screenWidth = screenSize.width;
+
+        BufferedImage img = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
+        g = (Graphics2D) img.getGraphics();
+        g.setColor(new Color(89, 172, 124));
 
         g.fillRect(0,0,screenWidth,screenHeight);
 
