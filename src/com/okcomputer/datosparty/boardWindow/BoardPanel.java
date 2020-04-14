@@ -15,7 +15,6 @@ public class BoardPanel extends JPanel {
     public BoardPanel(){
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
         screenHeight = screenSize.height;
         screenWidth = screenSize.width;
 
