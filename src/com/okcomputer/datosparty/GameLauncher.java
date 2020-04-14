@@ -1,11 +1,18 @@
 package com.okcomputer.datosparty;
 
-import com.okcomputer.datosparty.display.Display;
+import com.okcomputer.datosparty.boardWindow.BoardTitle;
 
 public class GameLauncher {
+
+    public GameLauncher(){
+
+        new BoardTitle();
+
+    }
+
     public static void main(String[] args){
-        GameLoop gameLoop = new GameLoop("Datos Party",800,600);
-        gameLoop.start();
+
+        new GameLauncher();
 
     }
 }

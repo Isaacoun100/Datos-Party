@@ -9,19 +9,30 @@ public class BoardPanel extends JPanel {
 
     private Graphics2D g;
     private BufferedImage img;
-    int screenHeight;
-    int screenWidth;
+    public static int width;
+    public static int height;
+    //int screenHeight;
+    //int screenWidth;
 
-    public BoardPanel(){
+    public BoardPanel(int width, int height){
 
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.width = width;
+        this.height = height;
 
-        screenHeight = screenSize.height;
-        screenWidth = screenSize.width;
+        //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-        setBackground(new Color(108, 172, 155));
+        BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
-        setPreferredSize(new Dimension(screenWidth,screenHeight));
+        g = (Graphics2D) img.getGraphics();
+        g.setColor(new Color(89, 172, 124));
+
+
+        //screenHeight = screenSize.height;
+        //screenWidth = screenSize.width;
+
+        g.fillRect(0,0,width,height);
+
+        setPreferredSize(new Dimension(width,height));
         setFocusable(true);
 
         requestFocus();
