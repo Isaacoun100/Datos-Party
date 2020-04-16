@@ -1,11 +1,14 @@
 package com.okcomputer.datosparty.states;
 
+import com.okcomputer.datosparty.GameLoop;
+import com.okcomputer.datosparty.Handler;
+
 import java.awt.*;
 
 public class GameState extends State{
 
-    public GameState(){
-
+    public GameState(Handler handler){
+        super(handler);
     }
 
     @Override

@@ -1,13 +1,15 @@
 package com.okcomputer.datosparty.states;
 
+import com.okcomputer.datosparty.GameLoop;
+import com.okcomputer.datosparty.Handler;
 import com.okcomputer.datosparty.gfx.Assets;
 
 import java.awt.*;
 
 public class TitleScreenState extends State{
 
-    public TitleScreenState(){
-
+    public TitleScreenState(Handler handler){
+        super(handler);
     }
 
     @Override

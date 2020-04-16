@@ -1,10 +1,14 @@
 package com.okcomputer.datosparty.states;
 
+import com.okcomputer.datosparty.GameLoop;
+import com.okcomputer.datosparty.Handler;
+
 import java.awt.*;
 
 public class SettingsState extends State{
 
-    public SettingsState(){
+    public SettingsState(Handler handler){
+        super(handler);
 
     }
 

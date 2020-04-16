@@ -2,12 +2,12 @@ package com.okcomputer.datosparty;
 
 import com.okcomputer.datosparty.display.Display;
 import com.okcomputer.datosparty.gfx.Assets;
-import com.okcomputer.datosparty.states.GameState;
-import com.okcomputer.datosparty.states.MainMenuState;
-import com.okcomputer.datosparty.states.State;
-import com.okcomputer.datosparty.states.TitleScreenState;
+import com.okcomputer.datosparty.input.KeyManager;
+import com.okcomputer.datosparty.input.MouseManager;
+import com.okcomputer.datosparty.states.*;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
 
 /**
@@ -29,7 +29,18 @@ public class GameLoop implements Runnable{
     /**
      * State Initialization
      */
-    private State gameState, mainMenuState, titleScreenState;
+    public State gameState, mainMenuState, titleScreenState, creditsState, settingsState;
+
+    /**
+     * Input Initialization
+     */
+    private KeyManager keyManager;
+    private MouseManager mouseManager;
+
+    /**
+     * Handler
+     */
+    private Handler handler;
 
     /**
      * Main Game Loop, runs the entire program, it can handle multiple states, for different options
@@ -41,6 +52,8 @@ public class GameLoop implements Runnable{
         this.width = width;
         this.height = height;
         this.title = title;
+        keyManager = new KeyManager();
+        mouseManager = new MouseManager();
 
     }
 
@@ -49,16 +62,28 @@ public class GameLoop implements Runnable{
      */
     private void init(){
         display = new Display(title,width,height);
+        display.getFrame().addKeyListener(keyManager);
+        display.getFrame().addMouseListener(mouseManager);
+        display.getFrame().addMouseMotionListener(mouseManager);
+        display.getCanvas().addMouseListener(mouseManager);
+        display.getCanvas().addMouseMotionListener(mouseManager);
         Assets.init();
-        mainMenuState = new MainMenuState();
-        gameState = new GameState();
-        titleScreenState = new TitleScreenState();
+
+        handler = new Handler(this);
+
+        mainMenuState = new MainMenuState(handler);
+        gameState = new GameState(handler);
+        titleScreenState = new TitleScreenState(handler);
+        creditsState = new CreditsState(handler);
+        settingsState = new SettingsState(handler);
 
         State.setState(mainMenuState);
 
     }
 
     private void tick() {
+
+        keyManager.tick();
         if(State.getState() != null)
             State.getState().tick();
     }
@@ -85,6 +110,7 @@ public class GameLoop implements Runnable{
 
     @Override
     public void run() {
+
         init();
 
         int fps = 60;
@@ -117,6 +143,14 @@ public class GameLoop implements Runnable{
         }
 
         stop();
+    }
+
+    public KeyManager getKeyManager(){
+        return keyManager;
+    }
+
+    public MouseManager getMouseManager(){
+        return mouseManager;
     }
 
     public synchronized void start(){

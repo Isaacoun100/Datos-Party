@@ -1,8 +1,15 @@
 package com.okcomputer.datosparty.states;
 
+import com.okcomputer.datosparty.GameLoop;
+import com.okcomputer.datosparty.Handler;
+
 import java.awt.*;
 
 public class GenericMiniGameState extends State{
+
+    public GenericMiniGameState(Handler handler) {
+        super(handler);
+    }
 
     @Override
     public void tick() {
