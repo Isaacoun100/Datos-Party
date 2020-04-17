@@ -6,9 +6,12 @@ import com.okcomputer.datosparty.random.Dice;
 public class Player {
 
     private SinglyLinkedListNode<Box> position;
+    private String name;
+    private int turn;
 
-    public Player(SinglyLinkedListNode<Box> position) {
+    public Player(SinglyLinkedListNode<Box> position, String name) {
         this.position = position;
+        this.name = name;
     }
 
     public void move() {
@@ -21,4 +24,15 @@ public class Player {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public void setTurn() {
+        this.turn = Dice.NumberSpace();
+    }
 }

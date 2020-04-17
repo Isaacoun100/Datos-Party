@@ -11,7 +11,7 @@ public class Dice {
 
         tileNumber = new Random();
 
-        randomNumber = tileNumber.nextInt(5)+1;
+        randomNumber = tileNumber.nextInt(6)+1;
 
         return randomNumber;
 
