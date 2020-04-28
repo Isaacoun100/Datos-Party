@@ -7,23 +7,36 @@ import java.awt.image.BufferedImage;
 
 public class BoardPanel extends JPanel {
 
+    private Image background;
     private Graphics2D g;
+
     private BufferedImage img;
     int screenHeight;
     int screenWidth;
 
-    public BoardPanel(){
+    public void init(){
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         screenHeight = screenSize.height;
         screenWidth = screenSize.width;
-
-        setBackground(new Color(108, 172, 155));
-
         setPreferredSize(new Dimension(screenWidth,screenHeight));
-        setFocusable(true);
+        setBackground("res/bg/BoardTemplate.png");
 
-        requestFocus();
     }
 
+    public void setBackground(String imagePath) {
+
+        this.setOpaque(false);
+        this.background = new ImageIcon(imagePath).getImage();
+        repaint();
+    }
+
+    public BoardPanel(){
+
+        init();
+
+
+        setFocusable(true);
+        requestFocus();
+    }
 }
