@@ -15,7 +15,7 @@ public class Player {
     }
 
     public void move() {
-        int movement = Dice.NumberSpace();
+        int movement = Dice.roll();
         while (movement > 0) {
             this.position.getData().setPlayerNull();
             this.position.getNext().getData().setOnBoard(this);
@@ -33,6 +33,6 @@ public class Player {
     }
 
     public void setTurn() {
-        this.turn = Dice.NumberSpace();
+        this.turn = Dice.roll();
     }
 }
