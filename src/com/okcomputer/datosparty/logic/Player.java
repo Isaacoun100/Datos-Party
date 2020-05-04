@@ -5,11 +5,11 @@ import com.okcomputer.datosparty.random.Dice;
 
 public class Player {
 
-    private SinglyLinkedListNode<Box> position;
+    private Node<Box> position;
     private String name;
     private int turn;
 
-    public Player(SinglyLinkedListNode<Box> position, String name) {
+    public Player(Node<Box> position, String name) {
         this.position = position;
         this.name = name;
     }

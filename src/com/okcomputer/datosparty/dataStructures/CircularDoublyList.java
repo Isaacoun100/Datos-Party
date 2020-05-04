@@ -1,6 +1,6 @@
 package com.okcomputer.datosparty.dataStructures;
 
-public class CircularDoublyList<T> extends DoublyLinkedList<T>{
+public class CircularDoublyList<T> extends DoublyList<T> {
 
     /**
      *
@@ -9,7 +9,7 @@ public class CircularDoublyList<T> extends DoublyLinkedList<T>{
     public int getLength() {
 
         int length = 0;
-        DoublyLinkedListNode<T> currentNode = this.head;
+        Node<T> currentNode = this.head;
 
         if (currentNode != null) {
             currentNode = currentNode.getNext();
@@ -22,15 +22,39 @@ public class CircularDoublyList<T> extends DoublyLinkedList<T>{
         return length;
     }
 
+
+    public void addNode(Node<T> newNode) {
+        // If the Linked List is empty, then make the new node as head
+        insert(newNode);
+    }
+
     /**
      *
      * @param data
      */
-    public void insert(T data) {
+    public void addNode(T data) {
         // Create a new node with given data
-        DoublyLinkedListNode<T> newNode = new DoublyLinkedListNode<>(data);
+        Node<T> newNode = new Node<>(data);
 
         // If the Linked List is empty, then make the new node as head
+        insert(newNode);
+    }
+
+    public void addNode(Node<T> newNode, int index) {
+        insert(newNode, index);
+    }
+
+    /**
+     *
+     * @param data
+     * @param index
+     */
+    public void addNode(T data, int index) {
+        Node<T> newNode = new Node<>(data);
+        insert(newNode, index);
+    }
+
+    protected void insert(Node<T> newNode) {
         if (this.head == null) {
             newNode.setPrevious(newNode);
             newNode.setNext(newNode);
@@ -41,7 +65,7 @@ public class CircularDoublyList<T> extends DoublyLinkedList<T>{
             this.head.setPrevious(newNode);
             this.head.setNext(newNode);
         } else {
-            DoublyLinkedListNode<T> lastNode = this.head.getNext();
+            Node<T> lastNode = this.head.getNext();
             // Else traverse till the lastNode node and insert the newNode there
             while (lastNode.getNext() != this.head) {
                 lastNode = lastNode.getNext();
@@ -54,13 +78,7 @@ public class CircularDoublyList<T> extends DoublyLinkedList<T>{
         }
     }
 
-    /**
-     *
-     * @param data
-     * @param index
-     */
-    public void insert(T data, int index) {
-        DoublyLinkedListNode<T> newNode = new DoublyLinkedListNode<>(data);
+    protected void insert(Node<T> newNode, int index) {
         if (index >= getLength()) {
             System.out.println("Index out of range");
         } else if (this.head == null && index == 0) {
@@ -68,8 +86,8 @@ public class CircularDoublyList<T> extends DoublyLinkedList<T>{
             newNode.setNext(newNode);
             this.head = newNode;
         } else {
-            DoublyLinkedListNode<T> nodeNext = getNodeByIndex(index);
-            DoublyLinkedListNode<T> nodePrevious = getNodeByIndex(index).getPrevious();
+            Node<T> nodeNext = getNodeByIndex(index);
+            Node<T> nodePrevious = getNodeByIndex(index).getPrevious();
             newNode.setNext(nodeNext);
             newNode.setPrevious(nodePrevious);
             nodePrevious.setNext(newNode);
@@ -87,14 +105,14 @@ public class CircularDoublyList<T> extends DoublyLinkedList<T>{
         if (index >= getLength()) {
             System.out.println("Index out of range");
         } else if (index == 0) {
-            DoublyLinkedListNode<T> nodePrevious = head.getPrevious();
-            DoublyLinkedListNode<T> nodeNext = head.getNext();
+            Node<T> nodePrevious = head.getPrevious();
+            Node<T> nodeNext = head.getNext();
             nodePrevious.setNext(nodeNext);
             nodeNext.setPrevious(nodePrevious);
         } else {
-            DoublyLinkedListNode<T> nodeIndex = getNodeByIndex(index);
-            DoublyLinkedListNode<T> nodePrevious = nodeIndex.getPrevious();
-            DoublyLinkedListNode<T> nodeNext = nodeIndex.getNext();
+            Node<T> nodeIndex = getNodeByIndex(index);
+            Node<T> nodePrevious = nodeIndex.getPrevious();
+            Node<T> nodeNext = nodeIndex.getNext();
             nodePrevious.setNext(nodeNext);
             nodeNext.setPrevious(nodePrevious);
         }
@@ -105,7 +123,7 @@ public class CircularDoublyList<T> extends DoublyLinkedList<T>{
      *
      */
     public void print() {
-        DoublyLinkedListNode<T> currentNode = this.head;
+        Node<T> currentNode = this.head;
 
         System.out.print("\n]]");
         System.out.print(currentNode.getData() + ", ");
