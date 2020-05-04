@@ -2,6 +2,12 @@ package com.okcomputer.datosparty.dataStructures;
 
 public abstract class LinkedList<T> {
 
+    private Node<T> head;
+
+    public Node<T> getHead() {
+        return head;
+    }
+
     public abstract int getLength();
 
     public abstract Node<T> getNodeByIndex(int index);
