@@ -4,15 +4,20 @@ package com.okcomputer.datosparty.dataStructures;
  *
  * @param <T>
  */
+
 public class SinglyList<T> extends LinkedList<T>{
 
-    private SinglyNode<T> head;
+    private Node<T> head;
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getLength() {
 
         int length = 0;
-        SinglyNode<T> currentNode = this.head;
+        Node<T> currentNode = this.head;
 
         while (currentNode != null) {
             length++;
@@ -21,55 +26,90 @@ public class SinglyList<T> extends LinkedList<T>{
         return length;
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     @Override
-    public SinglyNode<T> getNodeByIndex(int index) {
-        if (index >= getLength() || index < 0) {
+    public Node<T> getNodeByIndex(int index) {
+        int listLenght = getLength();
+        if (index >= listLenght || index < 0) {
             System.out.println("Index out of range");
-            return null;
         } else {
-            SinglyNode<T> currentNode = this.head;
+            Node<T> currentNode = this.head;
             for (int i = 0; i < index; i++) {
                 currentNode = currentNode.getNext();
             }
             return currentNode;
         }
+        return null;
+    }
+    @Override
+    public void addNode(Node<T> newNode) {
+        // If the Linked List is empty, then make the new node as head
+        insert(newNode);
     }
 
+    /**
+     *
+     * @param data
+     */
     @Override
-    public SinglyNode<T> getLast() {
-        SinglyNode<T> lastNode = this.head;
-        while (lastNode.getNext() != null) {
-            lastNode = lastNode.getNext();
-        }
-        return lastNode;
-    }
+    public void addNode(T data) {
 
-    @Override
-    public void add(T data) {
         // Create a new node with given data
-        SinglyNode<T> newNode = new SinglyNode<>(data);
+        Node<T> newNode = new SinglyNode<>(data);
+        // If the Linked List is empty, then make the new node as head
+        insert(newNode);
+    }
+
+    /**
+     *
+     * @param newNode
+     * @param index
+     */
+    @Override
+    public void addNode(Node<T> newNode, int index) {
+        insert(newNode, index);
+    }
+
+    /**
+     *
+     * @param data
+     * @param index
+     */
+    @Override
+    public void addNode(T data, int index) {
+        Node<T> newNode = new SinglyNode<>(data);
+        insert(newNode, index);
+    }
+
+    @Override
+    protected void insert(Node<T> newNode) {
         if (this.head == null) {
             this.head = newNode;
         } else {
             // Else traverse till the last node and insert the newNode there
-            SinglyNode<T> lastNode = getLast();
+            Node<T> last = this.head;
+            while (last.getNext() != null) {
+                last = last.getNext();
+            }
+
             // Insert the newNode at last node
-            lastNode.setNext(newNode);
+            last.setNext(newNode);
         }
     }
 
     @Override
-    public void add(T data, int index) {
-        SinglyNode<T> newNode = new SinglyNode<>(data);
-        if (index >= getLength()) {
-            System.out.println("Index out of range");
-        } else if (this.head == null) {
+    protected void insert(Node<T> newNode, int index) {
+        if (this.head == null) {
             this.head = newNode;
         } else {
-            SinglyNode<T> nodeNext = getNodeByIndex(index);
+            Node<T> nodeNext = getNodeByIndex(index);
             newNode.setNext(nodeNext);
-            if (index > 0) {
-                SinglyNode<T> nodePrevious = getNodeByIndex(--index);
+            if (index != 0) {
+                Node<T> nodePrevious = getNodeByIndex(--index);
                 nodePrevious.setNext(newNode);
             } else {
                 this.head = newNode;
@@ -77,25 +117,30 @@ public class SinglyList<T> extends LinkedList<T>{
         }
     }
 
+    /**
+     *
+     */
     @Override
     public void remove(int index) {
         if (index >= getLength()) {
             System.out.println("Index out of range");
         } else if (index == 0) {
-            this.head = this.head.getNext();
-        } else if (getNodeByIndex(index).getNext() == null) {
-            getNodeByIndex(--index).setNext(null);
+            head = head.getNext();
         } else {
-            SinglyNode<T> nodeIndex = getNodeByIndex(index);
-            SinglyNode<T> nodePrevious = getNodeByIndex(--index);
+            Node<T> nodeIndex = getNodeByIndex(index);
+            Node<T> nodePrevious = getNodeByIndex(--index);
             nodePrevious.setNext(nodeIndex.getNext());
         }
 
     }
 
+    /**
+     * Recursively traverse this list and print the node value
+     *
+     */
     @Override
     public void print() {
-        SinglyNode<T> currentNode = this.head;
+        Node<T> currentNode = this.head;
 
         System.out.print("\n[");
 

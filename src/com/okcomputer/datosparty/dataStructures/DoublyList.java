@@ -49,7 +49,7 @@ public class DoublyList<T> extends LinkedList<T>{
      */
     public void addNode(T data) {
         // Create a new node with given data
-        Node<T> newNode = new Node<>(data);
+        Node<T> newNode = new DoublyNode<>(data);
         // If the Linked List is empty, then make the new node as head
         insert(newNode);
 
@@ -66,7 +66,7 @@ public class DoublyList<T> extends LinkedList<T>{
      * @param index
      */
     public void addNode(T data, int index) {
-        Node<T> newNode = new Node<>(data);
+        Node<T> newNode = new DoublyNode<>(data);
         insert(newNode, index);
 
     }

@@ -2,26 +2,35 @@ package com.okcomputer.datosparty.dataStructures;
 
 public  class DoublyNode<T> extends Node<T>{
 
-    protected DoublyNode<T> previous;
-    protected DoublyNode<T> next;
+    private T data;
+    private Node<T> previous;
+    private Node<T> next;
 
     public DoublyNode(T data) {
         super(data);
     }
 
-    public DoublyNode<T> getPrevious() {
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public Node<T> getPrevious() {
         return previous;
     }
 
-    public void setPrevious(DoublyNode<T> previous) {
+    public void setPrevious(Node<T> previous) {
         this.previous = previous;
     }
 
-    public DoublyNode<T> getNext () {
+    public Node<T> getNext() {
         return next;
     }
 
-    public void setNext(DoublyNode<T> next) {
+    public void setNext(Node<T> next) {
         this.next = next;
     }
 }
