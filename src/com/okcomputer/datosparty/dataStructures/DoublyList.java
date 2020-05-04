@@ -4,10 +4,6 @@ public class DoublyList<T> extends LinkedList<T>{
 
     public Node<T> head;
 
-    /**
-     *
-     * @return
-     */
     public int getLength() {
 
         int length = 0;
@@ -20,11 +16,6 @@ public class DoublyList<T> extends LinkedList<T>{
         return length;
     }
 
-    /**
-     *
-     * @param index
-     * @return
-     */
     public Node<T> getNodeByIndex(int index) {
         if (index < 0 || index >= getLength()) {
             System.out.println("Index out of range");
@@ -39,14 +30,41 @@ public class DoublyList<T> extends LinkedList<T>{
     }
 
     @Override
-    public void addNode(Node<T> newNode) {
-        insert(newNode);
+    public Node<T> getLast() {
+        return null;
     }
 
-    /**
-     *
-     * @param data
-     */
+    @Override
+    public void add(T data) {
+
+    }
+
+    @Override
+    public void add(Node<T> node) {
+
+    }
+
+    @Override
+    public void add(LinkedList<T> list) {
+
+    }
+
+    @Override
+    public void add(T data, int index) {
+
+    }
+
+    @Override
+    public void add(Node<T> node, int index) {
+
+    }
+
+    @Override
+    public void add(LinkedList<T> list, int index) {
+
+    }
+
+
     public void addNode(T data) {
         // Create a new node with given data
         Node<T> newNode = new DoublyNode<>(data);
@@ -55,16 +73,6 @@ public class DoublyList<T> extends LinkedList<T>{
 
     }
 
-    @Override
-    public void addNode(Node<T> newNode, int index) {
-        insert(newNode, index);
-    }
-
-    /**
-     *
-     * @param data
-     * @param index
-     */
     public void addNode(T data, int index) {
         Node<T> newNode = new DoublyNode<>(data);
         insert(newNode, index);
@@ -111,9 +119,6 @@ public class DoublyList<T> extends LinkedList<T>{
 
     }
 
-    /**
-     *
-     */
     public void remove(int index) {
         if (index >= getLength()) {
             System.out.println("Index out of range");
@@ -130,10 +135,6 @@ public class DoublyList<T> extends LinkedList<T>{
 
     }
 
-    /**
-     * Recursively traverse this list and print the node value
-     *
-     */
     public void print() {
         Node<T> currentNode = this.head;
 

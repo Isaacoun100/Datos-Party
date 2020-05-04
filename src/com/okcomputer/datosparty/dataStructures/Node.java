@@ -2,10 +2,15 @@ package com.okcomputer.datosparty.dataStructures;
 
 public  abstract class Node<T> {
 
-    private T data;
+    protected String id;
+    protected T data;
 
     public Node(T data) {
         this.data = data;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public T getData() {

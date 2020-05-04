@@ -11,7 +11,7 @@ public class Board {
         int cont = 0;
 
         while (cont < length) {
-            this.board.addNode(new Box());
+            this.board.add(new Box());
             Node<Box> currentNode = this.board.getNodeByIndex(cont);
             currentNode.getData().boxNode(currentNode);
             cont++;
