@@ -1,13 +1,13 @@
 package com.okcomputer.datosparty.logic;
 
-import com.okcomputer.datosparty.dataStructures.SinglyLinkedListNode;
+import com.okcomputer.datosparty.dataStructures.Node;
 
 public class Box {
 
     private Player onBoard;
-    private SinglyLinkedListNode<Box> location;
+    private Node<Box> location;
 
-    public void boxNode(SinglyLinkedListNode<Box> location) {
+    public void boxNode(Node<Box> location) {
         this.location = location;
     }
 

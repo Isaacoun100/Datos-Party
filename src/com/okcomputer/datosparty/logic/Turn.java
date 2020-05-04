@@ -1,19 +1,18 @@
 package com.okcomputer.datosparty.logic;
 
 import com.okcomputer.datosparty.algorithms.BubbleSort;
-import com.okcomputer.datosparty.dataStructures.DoublyLinkedList;
-import com.okcomputer.datosparty.dataStructures.SinglyLinkedList;
+import com.okcomputer.datosparty.dataStructures.DoublyList;
 
 public class Turn {
 
-    private static DoublyLinkedList<Player> playerOrder;
+    private static DoublyList<Player> playerOrder;
     private static int numPlayers = 0;
 
     public static void addPlayer(Player player) {
         if (numPlayers == 4) {
             System.out.println("No more than 4 players can join");
         } else {
-            playerOrder.insert(player);
+            playerOrder.addNode(player);
             numPlayers++;
         }
     }
@@ -33,11 +32,11 @@ public class Turn {
 
     }
 
-    public static DoublyLinkedList<Player> getPlayerOrder() {
+    public static DoublyList<Player> getPlayerOrder() {
         return playerOrder;
     }
 
-    public static void setPlayerOrder(DoublyLinkedList<Player> playerOrder) {
+    public static void setPlayerOrder(DoublyList<Player> playerOrder) {
         Turn.playerOrder = playerOrder;
     }
 
