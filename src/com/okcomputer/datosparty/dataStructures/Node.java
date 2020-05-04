@@ -1,10 +1,8 @@
 package com.okcomputer.datosparty.dataStructures;
 
-public  class Node<T> {
+public  abstract class Node<T> {
 
     private T data;
-    private Node<T> previous;
-    private Node<T> next;
 
     public Node(T data) {
         this.data = data;
@@ -18,19 +16,11 @@ public  class Node<T> {
         this.data = data;
     }
 
-    public Node<T> getPrevious() {
-        return previous;
-    }
+    public abstract Node<T> getPrevious();
 
-    public void setPrevious(Node<T> previous) {
-        this.previous = previous;
-    }
+    public abstract void setPrevious(Node<T> previous);
 
-    public Node<T> getNext() {
-        return next;
-    }
+    public abstract Node<T> getNext();
 
-    public void setNext(Node<T> next) {
-        this.next = next;
-    }
+    public abstract void setNext(Node<T> next);
 }
