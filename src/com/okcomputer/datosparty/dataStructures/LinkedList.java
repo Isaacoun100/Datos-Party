@@ -2,46 +2,23 @@ package com.okcomputer.datosparty.dataStructures;
 
 public abstract class LinkedList<T> {
 
-    /**
-     *
-     * @return
-     */
     public abstract int getLength();
 
-    /**
-     *
-     * @param index
-     * @return
-     */
     public abstract Node<T> getNodeByIndex(int index);
 
-    /**
-     *
-     * @return
-     */
-    public abstract Node<T> getLast();
+    public abstract void addNode(Node<T> newNode);
 
-    /**
-     *
-     * @param data
-     */
-    public abstract void add(T data);
+    public abstract void addNode(T data);
 
-    /**
-     *
-     * @param data
-     * @param index
-     */
-    public abstract void add(T data, int index);
+    public abstract void addNode(Node<T> newNode, int index);
 
-    /**
-     *
-     * @param index
-     */
+    public abstract void addNode(T data, int index);
+
+    protected abstract void insert(Node<T> newNode);
+
+    protected abstract void insert(Node<T> newNode, int index);
+
     public abstract void remove(int index);
 
-    /**
-     * Recursively traverse the list and print the node value
-     */
     public abstract void print();
 }

@@ -5,21 +5,21 @@ import com.okcomputer.datosparty.random.Dice;
 
 public class Player {
 
-    private SinglyNode<Box> position;
+    private Node<Box> position;
     private String name;
     private int turn;
 
-    public Player(SinglyNode<Box> position, String name) {
+    public Player(Node<Box> position, String name) {
         this.position = position;
         this.name = name;
     }
 
     public void move() {
-        int movement = Dice.roll();
+        int movement = Dice.NumberSpace();
         while (movement > 0) {
             this.position.getData().setPlayerNull();
             this.position.getNext().getData().setOnBoard(this);
-            this.position = (SinglyNode<Box>) this.position.getNext();
+            this.position = this.position.getNext();
             movement--;
         }
     }
@@ -33,6 +33,6 @@ public class Player {
     }
 
     public void setTurn() {
-        this.turn = Dice.roll();
+        this.turn = Dice.NumberSpace();
     }
 }

@@ -1,17 +1,17 @@
 package com.okcomputer.datosparty.dataStructures;
 
-/**
- *
- * @param <T>
- */
 public class DoublyList<T> extends LinkedList<T>{
 
-    protected DoublyNode<T> head;
+    public Node<T> head;
 
+    /**
+     *
+     * @return
+     */
     public int getLength() {
 
         int length = 0;
-        DoublyNode<T> currentNode = this.head;
+        Node<T> currentNode = this.head;
 
         while (currentNode != null) {
             length++;
@@ -20,88 +20,122 @@ public class DoublyList<T> extends LinkedList<T>{
         return length;
     }
 
-    @Override
-    public DoublyNode<T> getNodeByIndex(int index) {
-        if (index >= getLength() || index < 0) {
+    /**
+     *
+     * @param index
+     * @return
+     */
+    public Node<T> getNodeByIndex(int index) {
+        if (index < 0 || index >= getLength()) {
             System.out.println("Index out of range");
-            return null;
         } else {
-            DoublyNode<T> currentNode = this.head;
+            Node<T> currentNode = this.head;
             for (int i = 0; i < index; i++) {
                 currentNode = currentNode.getNext();
             }
             return currentNode;
         }
-    }
-
-    public DoublyNode<T> getLast() {
-        DoublyNode<T> lastNode = this.head;
-        while (lastNode.getNext() != null) {
-            lastNode = lastNode.getNext();
-        }
-        return lastNode;
+        return null;
     }
 
     @Override
-    public void add(T data) {
+    public void addNode(Node<T> newNode) {
+        insert(newNode);
+    }
+
+    /**
+     *
+     * @param data
+     */
+    public void addNode(T data) {
         // Create a new node with given data
-        DoublyNode<T> newNode = new DoublyNode<>(data);
+        Node<T> newNode = new Node<>(data);
+        // If the Linked List is empty, then make the new node as head
+        insert(newNode);
+
+    }
+
+    @Override
+    public void addNode(Node<T> newNode, int index) {
+        insert(newNode, index);
+    }
+
+    /**
+     *
+     * @param data
+     * @param index
+     */
+    public void addNode(T data, int index) {
+        Node<T> newNode = new Node<>(data);
+        insert(newNode, index);
+
+    }
+
+    @Override
+    protected void insert(Node<T> newNode) {
+
         if (this.head == null) {
             this.head = newNode;
         } else {
-            // Else traverse till the last node and insert the newNode there
-            DoublyNode<T> lastNode = getLast();
-            // Insert the newNode at last node
+            // Else traverse till the lastNode node and insert the newNode there
+            Node<T> lastNode = this.head;
+            while (lastNode.getNext() != null) {
+                lastNode = lastNode.getNext();
+            }
+
+            // Insert the newNode at lastNode node
             lastNode.setNext(newNode);
             newNode.setPrevious(lastNode);
         }
+
     }
 
     @Override
-    public void add(T data, int index) {
-        DoublyNode<T> newNode = new DoublyNode<>(data);
+    protected void insert(Node<T> newNode, int index) {
+
         if (index >= getLength()) {
             System.out.println("Index out of range");
-        } else if (this.head == null) {
+        } else if (this.head == null  && index == 0) {
             this.head = newNode;
         } else {
-            DoublyNode<T> nodeNext = getNodeByIndex(index);
-            DoublyNode<T> nodePrevious = nodeNext.getPrevious();
+            Node<T> nodeNext = getNodeByIndex(index);
+            Node<T> nodePrevious = nodeNext.getPrevious();
             newNode.setNext(nodeNext);
             newNode.setPrevious(nodePrevious);
             nodeNext.setPrevious(newNode);
             if (index > 0) {
                 nodePrevious.setNext(newNode);
-            } else {
-                this.head = newNode;
             }
 
         }
+
     }
 
-    @Override
+    /**
+     *
+     */
     public void remove(int index) {
         if (index >= getLength()) {
             System.out.println("Index out of range");
         } else if (index == 0) {
-            this.head = this.head.getNext();
-            this.head.setPrevious(null);
-        } else if (getNodeByIndex(index).getNext() == null) {
-            getNodeByIndex(index).setPrevious(null);
-            getNodeByIndex(--index).setNext(null);
+            head = head.getNext();
+            head.setPrevious(null);
         } else {
-            DoublyNode<T> nodeIndex = getNodeByIndex(index);
-            DoublyNode<T> nodePrevious = nodeIndex.getPrevious();
-            DoublyNode<T> nodeNext = nodeIndex.getNext();
+            Node<T> nodeIndex = getNodeByIndex(index);
+            Node<T> nodePrevious = nodeIndex.getPrevious();
+            Node<T> nodeNext = nodeIndex.getNext();
             nodePrevious.setNext(nodeNext);
             nodeNext.setPrevious(nodePrevious);
         }
 
     }
 
-    @Override
+    /**
+     * Recursively traverse this list and print the node value
+     *
+     */
     public void print() {
-        DoublyNode<T> currentNode = this.head;
+        Node<T> currentNode = this.head;
 
         System.out.print("\n[[");
 
