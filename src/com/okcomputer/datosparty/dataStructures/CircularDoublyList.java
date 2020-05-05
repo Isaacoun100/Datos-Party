@@ -4,10 +4,6 @@ public class CircularDoublyList<T> extends LinkedList<T> {
 
     private Node<T> head;
 
-    /**
-     *
-     * @return
-     */
     @Override
     public int getLength() {
 

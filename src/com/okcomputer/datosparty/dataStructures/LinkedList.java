@@ -71,8 +71,6 @@ public abstract class LinkedList<T> {
 
     protected abstract void insert(Node<T> newNode);
 
-    protected abstract void insert(Node<T> newNode, int index);
-
     public abstract void remove(int index);
 
     /**
