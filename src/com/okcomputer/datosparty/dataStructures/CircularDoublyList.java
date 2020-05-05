@@ -1,11 +1,14 @@
 package com.okcomputer.datosparty.dataStructures;
 
-public class CircularDoublyList<T> extends DoublyList<T> {
+public class CircularDoublyList<T> extends LinkedList<T> {
+
+    private Node<T> head;
 
     /**
      *
      * @return
      */
+    @Override
     public int getLength() {
 
         int length = 0;
@@ -20,6 +23,36 @@ public class CircularDoublyList<T> extends DoublyList<T> {
             }
         }
         return length;
+    }
+
+    @Override
+    public void add(T data) {
+
+    }
+
+    @Override
+    public void add(Node<T> node) {
+
+    }
+
+    @Override
+    public void add(LinkedList<T> list) {
+
+    }
+
+    @Override
+    public void add(T data, int index) {
+
+    }
+
+    @Override
+    public void add(Node<T> node, int index) {
+
+    }
+
+    @Override
+    public void add(LinkedList<T> list, int index) {
+
     }
 
 
