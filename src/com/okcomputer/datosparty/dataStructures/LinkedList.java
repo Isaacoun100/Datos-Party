@@ -8,11 +8,42 @@ public abstract class LinkedList<T> {
         return head;
     }
 
-    public abstract int getLength();
+    public int getLength() {
 
-    public abstract Node<T> getNodeByIndex(int index);
+        int length = 0;
+        Node<T> currentNode = this.head;
 
-    public abstract Node<T> getLast();
+        while (currentNode != null) {
+            length++;
+            currentNode = currentNode.getNext();
+        }
+        return length;
+    }
+
+    public Node<T> getNodeByIndex(int index) {
+        if (index >= getLength() || index < 0) {
+            System.out.println("Index out of range");
+        } else {
+            Node<T> currentNode = this.head;
+            for (int i = 0; i < index; i++) {
+                currentNode = currentNode.getNext();
+            }
+            return currentNode;
+        }
+        return null;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Node<T> getLast() {
+        Node<T> lastNode = this.head;
+        while (lastNode.getNext() != null) {
+            lastNode = lastNode.getNext();
+        }
+        return lastNode;
+    }
 
     /**
      *
