@@ -10,7 +10,7 @@ public class SpriteSheet {
         this.sheet = sheet;
     }
 
-    public BufferedImage crop(int x, int y, int width, int height){
-        return sheet.getSubimage(x, y, width, height);
+    public BufferedImage crop(int gridX, int gridY, int width, int height){
+        return sheet.getSubimage(gridX*16, gridY*16, width*16, height*16);
     }
 }
