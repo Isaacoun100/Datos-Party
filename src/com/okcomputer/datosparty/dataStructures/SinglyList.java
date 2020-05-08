@@ -4,19 +4,15 @@ package com.okcomputer.datosparty.dataStructures;
  *
  * @param <T>
  */
+public class SinglyList<T> extends LinkedList<T>{
 
-public class SinglyLinkedList<T> {
+    private SinglyNode<T> head;
 
-    private SinglyLinkedListNode<T> head;
-
-    /**
-     *
-     * @return
-     */
+    @Override
     public int getLength() {
 
         int length = 0;
-        SinglyLinkedListNode<T> currentNode = this.head;
+        SinglyNode<T> currentNode = this.head;
 
         while (currentNode != null) {
             length++;
@@ -25,63 +21,55 @@ public class SinglyLinkedList<T> {
         return length;
     }
 
-    /**
-     *
-     * @param index
-     * @return
-     */
-    public SinglyLinkedListNode<T> getNodeByIndex(int index) {
-        int listLenght = getLength();
-        if (index >= listLenght || index < 0) {
+    @Override
+    public SinglyNode<T> getNodeByIndex(int index) {
+        if (index >= getLength() || index < 0) {
             System.out.println("Index out of range");
+            return null;
         } else {
-            SinglyLinkedListNode<T> currentNode = this.head;
+            SinglyNode<T> currentNode = this.head;
             for (int i = 0; i < index; i++) {
                 currentNode = currentNode.getNext();
             }
             return currentNode;
         }
-        return null;
     }
 
-    /**
-     *
-     * @param data
-     */
-    public void insert(T data) {
-        // Create a new node with given data
-        SinglyLinkedListNode<T> newNode = new SinglyLinkedListNode<>(data);
+    @Override
+    public SinglyNode<T> getLast() {
+        SinglyNode<T> lastNode = this.head;
+        while (lastNode.getNext() != null) {
+            lastNode = lastNode.getNext();
+        }
+        return lastNode;
+    }
 
-        // If the Linked List is empty, then make the new node as head
+    @Override
+    public void add(T data) {
+        // Create a new node with given data
+        SinglyNode<T> newNode = new SinglyNode<>(data);
         if (this.head == null) {
             this.head = newNode;
         } else {
             // Else traverse till the last node and insert the newNode there
-            SinglyLinkedListNode<T> last = this.head;
-            while (last.getNext() != null) {
-                last = last.getNext();
-            }
-
+            SinglyNode<T> lastNode = getLast();
             // Insert the newNode at last node
-            last.setNext(newNode);
+            lastNode.setNext(newNode);
         }
     }
 
-    /**
-     *
-     * @param data
-     * @param index
-     */
-    public void insert(T data, int index) {
-        SinglyLinkedListNode<T> newNode = new SinglyLinkedListNode<>(data);
-
-        if (this.head == null) {
+    @Override
+    public void add(T data, int index) {
+        SinglyNode<T> newNode = new SinglyNode<>(data);
+        if (index >= getLength()) {
+            System.out.println("Index out of range");
+        } else if (this.head == null) {
             this.head = newNode;
         } else {
-            SinglyLinkedListNode<T> nodeNext = getNodeByIndex(index);
+            SinglyNode<T> nodeNext = getNodeByIndex(index);
             newNode.setNext(nodeNext);
-            if (index != 0) {
-                SinglyLinkedListNode<T> nodePrevious = getNodeByIndex(--index);
+            if (index > 0) {
+                SinglyNode<T> nodePrevious = getNodeByIndex(--index);
                 nodePrevious.setNext(newNode);
             } else {
                 this.head = newNode;
@@ -89,28 +77,25 @@ public class SinglyLinkedList<T> {
         }
     }
 
-    /**
-     *
-     */
+    @Override
     public void remove(int index) {
         if (index >= getLength()) {
             System.out.println("Index out of range");
         } else if (index == 0) {
-            head = head.getNext();
+            this.head = this.head.getNext();
+        } else if (getNodeByIndex(index).getNext() == null) {
+            getNodeByIndex(--index).setNext(null);
         } else {
-            SinglyLinkedListNode<T> nodeIndex = getNodeByIndex(index);
-            SinglyLinkedListNode<T> nodePrevious = getNodeByIndex(--index);
+            SinglyNode<T> nodeIndex = getNodeByIndex(index);
+            SinglyNode<T> nodePrevious = getNodeByIndex(--index);
             nodePrevious.setNext(nodeIndex.getNext());
         }
 
     }
 
-    /**
-     * Recursively traverse this list and print the node value
-     *
-     */
+    @Override
     public void print() {
-        SinglyLinkedListNode<T> currentNode = this.head;
+        SinglyNode<T> currentNode = this.head;
 
         System.out.print("\n[");
 

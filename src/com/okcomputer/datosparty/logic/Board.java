@@ -1,24 +1,24 @@
 package com.okcomputer.datosparty.logic;
 
-import com.okcomputer.datosparty.dataStructures.SinglyLinkedList;
-import com.okcomputer.datosparty.dataStructures.SinglyLinkedListNode;
+import com.okcomputer.datosparty.dataStructures.Node;
+import com.okcomputer.datosparty.dataStructures.SinglyList;
 
 public class Board {
 
-    private SinglyLinkedList<Box> board = new SinglyLinkedList<>();
+    private SinglyList<Box> board = new SinglyList<>();
 
     public Board(int length) {
         int cont = 0;
 
         while (cont < length) {
-            this.board.insert(new Box());
-            SinglyLinkedListNode<Box> currentNode = this.board.getNodeByIndex(cont);
+            this.board.add(new Box());
+            Node<Box> currentNode = this.board.getNodeByIndex(cont);
             currentNode.getData().boxNode(currentNode);
             cont++;
         }
     }
 
-    public SinglyLinkedList<Box> getBoard() {
+    public SinglyList<Box> getBoard() {
         return board;
     }
 }

@@ -5,11 +5,11 @@ import com.okcomputer.datosparty.random.Dice;
 
 public class Player {
 
-    private SinglyLinkedListNode<Box> position;
+    private SinglyNode<Box> position;
     private String name;
     private int turn;
 
-    public Player(SinglyLinkedListNode<Box> position, String name) {
+    public Player(SinglyNode<Box> position, String name) {
         this.position = position;
         this.name = name;
     }
@@ -19,7 +19,7 @@ public class Player {
         while (movement > 0) {
             this.position.getData().setPlayerNull();
             this.position.getNext().getData().setOnBoard(this);
-            this.position = this.position.getNext();
+            this.position = (SinglyNode<Box>) this.position.getNext();
             movement--;
         }
     }

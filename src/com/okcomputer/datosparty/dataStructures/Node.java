@@ -1,10 +1,10 @@
 package com.okcomputer.datosparty.dataStructures;
 
-public abstract class LinkedListNode<T> {
+public  abstract class Node<T> {
 
-    private T data;
+    protected T data;
 
-    public LinkedListNode(T data) {
+    public Node(T data) {
         this.data = data;
     }
 

@@ -1,19 +1,19 @@
 package com.okcomputer.datosparty.algorithms;
 
-import com.okcomputer.datosparty.dataStructures.DoublyLinkedList;
-import com.okcomputer.datosparty.dataStructures.DoublyLinkedListNode;
+import com.okcomputer.datosparty.dataStructures.DoublyList;
+import com.okcomputer.datosparty.dataStructures.Node;
 import com.okcomputer.datosparty.logic.Player;
 
 public class BubbleSort {
 
-    public static <T extends Comparable<T>> void swap(DoublyLinkedListNode<Player> node1, DoublyLinkedListNode<Player> node2) {
+    public static <T extends Comparable<T>> void swap(Node<Player> node1, Node<Player> node2) {
         Player data1 = node1.getData();
         Player data2 =  node2.getData();
         node1.setData(data2);
         node2.setData(data1);
     }
 
-    public static void sort (DoublyLinkedList<Player> lista)  {
+    public static void sort (DoublyList<Player> lista)  {
         int i, j;
         for (i = 0; i < lista.getLength() - 1; i++) {
             for (j = 0; j < lista.getLength() - 1 - i; j++) {
