@@ -8,6 +8,40 @@ public class DoublyList<T> extends LinkedList<T>{
 
     protected DoublyNode<T> head;
 
+    public int getLength() {
+
+        int length = 0;
+        DoublyNode<T> currentNode = this.head;
+
+        while (currentNode != null) {
+            length++;
+            currentNode = currentNode.getNext();
+        }
+        return length;
+    }
+
+    @Override
+    public DoublyNode<T> getNodeByIndex(int index) {
+        if (index >= getLength() || index < 0) {
+            System.out.println("Index out of range");
+            return null;
+        } else {
+            DoublyNode<T> currentNode = this.head;
+            for (int i = 0; i < index; i++) {
+                currentNode = currentNode.getNext();
+            }
+            return currentNode;
+        }
+    }
+
+    public DoublyNode<T> getLast() {
+        DoublyNode<T> lastNode = this.head;
+        while (lastNode.getNext() != null) {
+            lastNode = lastNode.getNext();
+        }
+        return lastNode;
+    }
+
     @Override
     public void add(T data) {
         // Create a new node with given data
@@ -16,21 +50,11 @@ public class DoublyList<T> extends LinkedList<T>{
             this.head = newNode;
         } else {
             // Else traverse till the last node and insert the newNode there
-            Node<T> lastNode = getLast();
+            DoublyNode<T> lastNode = getLast();
             // Insert the newNode at last node
             lastNode.setNext(newNode);
             newNode.setPrevious(lastNode);
         }
-    }
-
-    @Override
-    public void add(Node<T> node) {
-        insert(node);
-    }
-
-    @Override
-    public void add(LinkedList<T> list) {
-        insert(list.getHead());
     }
 
     @Override
@@ -41,8 +65,8 @@ public class DoublyList<T> extends LinkedList<T>{
         } else if (this.head == null) {
             this.head = newNode;
         } else {
-            Node<T> nodeNext = getNodeByIndex(index);
-            Node<T> nodePrevious = nodeNext.getPrevious();
+            DoublyNode<T> nodeNext = getNodeByIndex(index);
+            DoublyNode<T> nodePrevious = nodeNext.getPrevious();
             newNode.setNext(nodeNext);
             newNode.setPrevious(nodePrevious);
             nodeNext.setPrevious(newNode);
@@ -56,91 +80,19 @@ public class DoublyList<T> extends LinkedList<T>{
     }
 
     @Override
-    public void add(Node<T> node, int index) {
-        if (index >= getLength()) {
-            System.out.println("Index out of range");
-        } else if (this.head == null) {
-            if (node.getId().equals("Doubly")) {
-                this.head = (DoublyNode<T>) node;
-            } else {
-                System.out.println("For list to remain doubly, a doubly node or list should be added");
-            }
-        } else {
-            Node<T> nodeNext = getNodeByIndex(index);
-            Node<T> nodePrevious = nodeNext.getPrevious();
-            node.setNext(nodeNext);
-            node.setPrevious(nodePrevious);
-            nodeNext.setPrevious(node);
-            if (index > 0) {
-                nodePrevious.setNext(node);
-            } else {
-                System.out.println("please add a class other than Node or List to the head");
-            }
-
-        }
-    }
-
-    @Override
-    public void add(LinkedList<T> list, int index) {
-        Node<T> listHead = list.getHead();
-        if (index >= getLength()) {
-            System.out.println("Index out of range");
-        } else if (this.head == null) {
-            if (listHead.getId().equals("Doubly")) {
-                this.head = (DoublyNode<T>) listHead;
-            } else {
-                System.out.println("For list to remain doubly, a doubly node or list should be added");
-            }
-        } else {
-            Node<T> nodeNext = getNodeByIndex(index);
-            Node<T> nodePrevious = nodeNext.getPrevious();
-            Node<T> lastListNode = list.getLast();
-            listHead.setNext(nodeNext);
-            listHead.setPrevious(nodePrevious);
-            nodeNext.setPrevious(lastListNode);
-            lastListNode.setNext(nodeNext);
-            if (index > 0) {
-                nodePrevious.setNext(listHead);
-            } else {
-                System.out.println("please add a class other than Node or List to the head");
-            }
-
-        }
-    }
-
-    @Override
-    protected void insert(Node<T> newNode) {
-        if (this.head == null) {
-            if (newNode.getId().equals("Doubly")) {
-                this.head = (DoublyNode<T>) newNode;
-            } else {
-                System.out.println("For list to remain doubly, a doubly node or list should be added");
-            }
-        } else {
-            // Else traverse till the lastNode node and insert the newNode there
-            Node<T> lastNode = getLast();
-            // Insert the newNode at lastNode node
-            lastNode.setNext(newNode);
-            newNode.setPrevious(lastNode);
-        }
-
-    }
-
-    @Override
     public void remove(int index) {
         if (index >= getLength()) {
             System.out.println("Index out of range");
         } else if (index == 0) {
-            if (this.head.getNext().getId().equals("Doubly")) {
-                this.head = (DoublyNode<T>) this.head.getNext();
-                this.head.setPrevious(null);
-            } else {
-                System.out.println("For list to remain doubly, first node of the list should be doubly");
-            }
+            this.head = this.head.getNext();
+            this.head.setPrevious(null);
+        } else if (getNodeByIndex(index).getNext() == null) {
+            getNodeByIndex(index).setPrevious(null);
+            getNodeByIndex(--index).setNext(null);
         } else {
-            Node<T> nodeIndex = getNodeByIndex(index);
-            Node<T> nodePrevious = nodeIndex.getPrevious();
-            Node<T> nodeNext = nodeIndex.getNext();
+            DoublyNode<T> nodeIndex = getNodeByIndex(index);
+            DoublyNode<T> nodePrevious = nodeIndex.getPrevious();
+            DoublyNode<T> nodeNext = nodeIndex.getNext();
             nodePrevious.setNext(nodeNext);
             nodeNext.setPrevious(nodePrevious);
         }
@@ -149,7 +101,7 @@ public class DoublyList<T> extends LinkedList<T>{
 
     @Override
     public void print() {
-        Node<T> currentNode = this.head;
+        DoublyNode<T> currentNode = this.head;
 
         System.out.print("\n[[");
 
