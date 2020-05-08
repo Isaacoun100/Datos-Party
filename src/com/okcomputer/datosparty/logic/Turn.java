@@ -12,7 +12,7 @@ public class Turn {
         if (numPlayers == 4) {
             System.out.println("No more than 4 players can join");
         } else {
-            playerOrder.addNode(player);
+            playerOrder.add(player);
             numPlayers++;
         }
     }
