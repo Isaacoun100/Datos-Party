@@ -12,48 +12,48 @@ import java.awt.*;
 
 public class MainMenuState extends State{
 
-    public UIManager uiManager;
+    private UIManager uiManager;
 
     public MainMenuState(Handler handler){
 
         super(handler);
-        uiManager = new UIManager(handler);
-        handler.getMouseManager().setUiManager(uiManager);
+        /*
+            uiManager = handler.getUIManager();
+            handler.getMouseManager().setUiManager(uiManager);
 
-        uiManager.addObject(new UIImage(82,100,2*20,2*3,Assets.titleImage));
+            uiManager.addObject(new UIImage(82,100,2*20,2*3,Assets.titleImage));
 
-        uiManager.addObject(new UIImageButton(328, 400, 3*3, 3, Assets.playButton, new ClickListener() {
-            @Override
-            public void onClick() {
-                State.setState(handler.getGameLoop().gameState);
-            }
-        }));
+            uiManager.addObject(new UIImageButton(328, 400, 3*3, 3, Assets.playButton, new ClickListener() {
+                @Override
+                public void onClick() {
+                    State.setState(handler.getGameLoop().gameState);
+                }
+            }));
 
-        uiManager.addObject(new UIImageButton(280, 432, 3*5, 3, Assets.settingsButton, new ClickListener() {
-            @Override
-            public void onClick() {
-                State.setState(handler.getGameLoop().settingsState);
-            }
-        }));
+            uiManager.addObject(new UIImageButton(280, 432, 3*5, 3, Assets.settingsButton, new ClickListener() {
+                @Override
+                public void onClick() {
+                    State.setState(handler.getGameLoop().settingsState);
+                }
+            }));
 
-        uiManager.addObject(new UIImageButton(280, 464, 3*5, 3, Assets.creditsButton, new ClickListener() {
-            @Override
-            public void onClick() {
-                State.setState(handler.getGameLoop().creditsState);
-            }
-        }));
-
-
+            uiManager.addObject(new UIImageButton(280, 464, 3*5, 3, Assets.creditsButton, new ClickListener() {
+                @Override
+                public void onClick() {
+                    State.setState(handler.getGameLoop().creditsState);
+                }
+            }));
+            */
     }
 
     @Override
     public void tick() {
-        uiManager.tick();
-    }
+            //uiManager.tick();
+        }
 
     @Override
     public void render(Graphics g) {
-        uiManager.render(g);
+            //uiManager.render(g);
+        }
 
-    }
 }

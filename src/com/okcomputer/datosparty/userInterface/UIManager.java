@@ -9,11 +9,9 @@ import java.util.ArrayList;
 
 public class UIManager {
 
-    private Handler handler;
     private ArrayList<UIObject> objects;
 
-    public UIManager(Handler handler){
-        this.handler = handler;
+    public UIManager(){
         objects =  new ArrayList<UIObject>();
     }
 
@@ -31,14 +29,6 @@ public class UIManager {
     public void onMouseMove(MouseEvent e){
         for(UIObject o : objects)
             o.onMouseMove(e);
-    }
-
-    public Handler getHandler() {
-        return handler;
-    }
-
-    public void setHandler(Handler handler) {
-        this.handler = handler;
     }
 
     public ArrayList<UIObject> getObjects() {
