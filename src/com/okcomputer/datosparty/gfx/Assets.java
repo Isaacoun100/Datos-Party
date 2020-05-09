@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-    public static BufferedImage[] settingsButton, playButton, creditsButton,backButton, titleImage,pressEnterImage, notOKComputer, notOKComputerIcon, nothingHereMessage;
+    public static BufferedImage[] settingsButton, playButton, creditsButton,backButton, titleImage,pressEnterImage, notOKComputer, notOKComputerIcon, nothingHereMessage, boton1;
 
     /**
      * This Method initializes all assets that are used in the game, for them to load properly
@@ -49,6 +49,10 @@ public class Assets {
         nothingHereMessage = new BufferedImage[2];
         nothingHereMessage[0] = sheet.crop(5,4,9,1);
         nothingHereMessage[1] = sheet.crop(5,4,9,1);
+
+        boton1 = new BufferedImage[2];
+        boton1[0] = sheet.crop(14,4,5,1);
+        boton1[1] = sheet.crop(34,4,5,1);
 
 
 

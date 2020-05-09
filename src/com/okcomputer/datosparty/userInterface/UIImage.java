@@ -17,12 +17,13 @@ public class UIImage extends UIObject{
      * @param images this uses an Array List from java, remember to change it for one of the data structures Gabo created
      */
     public UIImage(float x, float y, int width, int height, BufferedImage[] images) {
-        super(x, y, width*16, height*16);
+        super(x*16, y*16, width*16, height*16);
         this.images = images;
     }
 
     @Override
     public void tick() {
+
 
     }
 
