@@ -25,7 +25,7 @@ public class EndGameState extends State {
         uiManager = handler.getUIManager();
         handler.getMouseManager().setUiManager(uiManager);
 
-        uiManager.addObject(new UIImageButton(328, 400, 3*3, 3, Assets.playButton, new ClickListener() {
+        uiManager.addObject(new UIImageButton(328, 400, 3*3, 3*3, Assets.notOKComputerIcon, new ClickListener() {
             @Override
             public void onClick() {
                 System.out.println("hola mundo");
