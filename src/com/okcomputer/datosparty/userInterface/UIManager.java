@@ -7,11 +7,11 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 
-public abstract class UIManager {
+public class UIManager {
 
     private ArrayList<UIObject> objects;
 
-    public UIManager(Handler handler){
+    public UIManager(){
         objects =  new ArrayList<UIObject>();
     }
 
