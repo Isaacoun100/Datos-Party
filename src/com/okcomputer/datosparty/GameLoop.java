@@ -5,6 +5,7 @@ import com.okcomputer.datosparty.gfx.Assets;
 import com.okcomputer.datosparty.input.KeyManager;
 import com.okcomputer.datosparty.input.MouseManager;
 import com.okcomputer.datosparty.states.*;
+import com.okcomputer.datosparty.userInterface.UIManager;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -29,13 +30,14 @@ public class GameLoop implements Runnable{
     /**
      * State Initialization
      */
-    public State gameState, mainMenuState, titleScreenState, creditsState, settingsState;
+    public State gameState, mainMenuState, titleScreenState, creditsState, settingsState, endGameState;
 
     /**
      * Input Initialization
      */
     private KeyManager keyManager;
     private MouseManager mouseManager;
+    private UIManager uiManager;
 
     /**
      * Handler
@@ -54,6 +56,7 @@ public class GameLoop implements Runnable{
         this.title = title;
         keyManager = new KeyManager();
         mouseManager = new MouseManager();
+        uiManager = new UIManager();
 
     }
 
@@ -78,8 +81,9 @@ public class GameLoop implements Runnable{
         titleScreenState = new TitleScreenState(handler);
         creditsState = new CreditsState(handler);
         settingsState = new SettingsState(handler);
+        endGameState = new EndGameState(handler);
 
-        State.setState(mainMenuState);
+        State.setState(endGameState);
 
     }
 
@@ -153,6 +157,10 @@ public class GameLoop implements Runnable{
 
     public MouseManager getMouseManager(){
         return mouseManager;
+    }
+
+    public UIManager getUIManager() {
+        return uiManager;
     }
 
     public synchronized void start(){

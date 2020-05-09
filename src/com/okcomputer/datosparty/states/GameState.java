@@ -38,6 +38,7 @@ public class GameState extends State{
 
     @Override
     public void render(Graphics g) {
-      //  uiManager.render(g);
+        g.drawImage(Assets.notOKComputer[0],82, 100, null);
+        //  uiManager.render(g);
     }
 }
