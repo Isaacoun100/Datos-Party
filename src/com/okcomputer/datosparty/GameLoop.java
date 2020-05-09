@@ -61,6 +61,7 @@ public class GameLoop implements Runnable{
      * Initialization method, this runs variables that are used in the game
      */
     private void init(){
+
         display = new Display(title,width,height);
         display.getFrame().addKeyListener(keyManager);
         display.getFrame().addMouseListener(mouseManager);
@@ -70,6 +71,7 @@ public class GameLoop implements Runnable{
         Assets.init();
 
         handler = new Handler(this);
+
 
         mainMenuState = new MainMenuState(handler);
         gameState = new GameState(handler);
