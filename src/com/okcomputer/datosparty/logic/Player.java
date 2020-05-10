@@ -1,38 +1,25 @@
 package com.okcomputer.datosparty.logic;
 
-import com.okcomputer.datosparty.dataStructures.*;
 import com.okcomputer.datosparty.random.Dice;
 
 public class Player {
 
-    private SinglyNode<Box> position;
     private String name;
-    private int turn;
+    private int movement;
 
-    public Player(SinglyNode<Box> position, String name) {
-        this.position = position;
+    public Player(String name) {
         this.name = name;
-    }
-
-    public void move() {
-        int movement = Dice.roll();
-        while (movement > 0) {
-            this.position.getData().setPlayerNull();
-            this.position.getNext().getData().setOnBoard(this);
-            this.position = (SinglyNode<Box>) this.position.getNext();
-            movement--;
-        }
     }
 
     public String getName() {
         return name;
     }
 
-    public int getTurn() {
-        return turn;
+    public int getMovement() {
+        return movement;
     }
 
-    public void setTurn() {
-        this.turn = Dice.roll();
+    public void setMovement() {
+        this.movement = Dice.roll();
     }
 }
