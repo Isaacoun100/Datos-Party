@@ -9,11 +9,14 @@ public class Turn {
     public static void nextPlayer() {
         if (Round.getNumRound() == 0) {
             playersTurn = Round.getPlayerOrder().getHead();
+            Round.setNumRound(1);
         } else if (playersTurn.getNext() == null) {
             //Minigame state
+            //Minigame ends
             playersTurn = Round.getPlayerOrder().getHead();
             Round.setNumRound(Round.getNumRound() + 1);
+        } else {
+            playersTurn = playersTurn.getNext();
         }
     }
-
 }
