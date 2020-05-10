@@ -84,7 +84,7 @@ public class GameLoop implements Runnable{
         endGameState = new EndgameState(handler);
         boardState = new BoardState(handler);
 
-        State.setState(endGameState);
+        State.setState(titleScreenState);
 
     }
 

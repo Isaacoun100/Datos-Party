@@ -52,8 +52,8 @@ public class Assets {
         nothingHereMessage[1] = sheet.crop(5,4,9,1);
 
         diceButton = new BufferedImage[2];
-        diceButton[0] = buttonSheet.crop(0,0,3,3);
-        diceButton[0] = buttonSheet.crop(19,0,3,3);
+        diceButton[0] = buttonSheet.crop(0,0,4,4);
+        diceButton[1] = buttonSheet.crop(19,0,4,4);
 
         boton1 = new BufferedImage[2];
         boton1[0] = sheet.crop(14,4,5,1);
