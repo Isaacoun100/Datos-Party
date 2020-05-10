@@ -2,17 +2,14 @@ package com.okcomputer.datosparty.states;
 
 import com.okcomputer.datosparty.Handler;
 import com.okcomputer.datosparty.gfx.Assets;
-import com.okcomputer.datosparty.userInterface.UIManager;
-import com.okcomputer.datosparty.userInterface.ClickListener;
-import com.okcomputer.datosparty.userInterface.UIImage;
-import com.okcomputer.datosparty.userInterface.UIImageButton;
+import com.okcomputer.datosparty.userInterface.*;
 
 import java.awt.*;
 
 public class EndGameState extends State {
 
 
-    private UIManager uiManager;
+    private final UIManager uiManager;
 
     /**
      * Main Constructor for the State
@@ -22,8 +19,7 @@ public class EndGameState extends State {
     public EndGameState(Handler handler) {
         super(handler);
 
-        uiManager = handler.getUIManager();
-        handler.getMouseManager().setUiManager(uiManager);
+        uiManager = new EndGameUI(handler);
 
         uiManager.addObject(new UIImageButton(20, 25, 3*3, 3*3, Assets.notOKComputerIcon, new ClickListener() {
             @Override
@@ -45,6 +41,7 @@ public class EndGameState extends State {
 
     @Override
     public void tick() {
+        handler.getMouseManager().setUiManager(uiManager);
         uiManager.tick();
 
     }
