@@ -81,10 +81,10 @@ public class GameLoop implements Runnable{
         titleScreenState = new TitleScreenState(handler);
         creditsState = new CreditsState(handler);
         settingsState = new SettingsState(handler);
-        endGameState = new EndGameState(handler);
+        endGameState = new EndgameState(handler);
         boardState = new BoardState(handler);
 
-        State.setState(boardState);
+        State.setState(endGameState);
 
     }
 

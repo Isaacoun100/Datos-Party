@@ -1,10 +1,14 @@
 package com.okcomputer.datosparty.states;
 
 import com.okcomputer.datosparty.Handler;
+import com.okcomputer.datosparty.userInterface.UIManager;
 
 import java.awt.*;
 
 public class BoardState extends State {
+
+    private UIManager uiManager;
+
     /**
      * Main Constructor for the State
      *
@@ -16,7 +20,7 @@ public class BoardState extends State {
 
     @Override
     public void tick() {
-
+        uiManager.tick();
     }
 
     @Override
