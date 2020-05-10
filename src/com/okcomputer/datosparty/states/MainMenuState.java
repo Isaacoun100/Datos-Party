@@ -1,25 +1,20 @@
 package com.okcomputer.datosparty.states;
 
-import com.okcomputer.datosparty.GameLoop;
 import com.okcomputer.datosparty.Handler;
 import com.okcomputer.datosparty.gfx.Assets;
-import com.okcomputer.datosparty.userInterface.ClickListener;
-import com.okcomputer.datosparty.userInterface.UIImage;
-import com.okcomputer.datosparty.userInterface.UIImageButton;
-import com.okcomputer.datosparty.userInterface.UIManager;
+import com.okcomputer.datosparty.userInterface.*;
 
 import java.awt.*;
 
 public class MainMenuState extends State{
 
-    private UIManager uiManager;
+    private final UIManager uiManager;
 
     public MainMenuState(Handler handler){
 
         super(handler);
-            /*
-            uiManager = handler.getUIManager();
-            handler.getMouseManager().setUiManager(uiManager);
+
+            uiManager = new MainMenuUI(handler);
 
             uiManager.addObject(new UIImage(6,6,2*20,2*3,Assets.titleImage));
 
@@ -43,17 +38,18 @@ public class MainMenuState extends State{
                     State.setState(handler.getGameLoop().creditsState);
                 }
             }));
-*/
+
     }
 
     @Override
     public void tick() {
-            //uiManager.tick();
+        handler.getMouseManager().setUiManager(uiManager);
+        uiManager.tick();
         }
 
     @Override
     public void render(Graphics g) {
-            //uiManager.render(g);
+            uiManager.render(g);
         }
 
 }

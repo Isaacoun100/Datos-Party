@@ -27,7 +27,4 @@ public class Handler {
         return gameLoop.getMouseManager();
     }
 
-    public UIManager getUIManager(){
-        return gameLoop.getUIManager();
-    }
 }
