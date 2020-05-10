@@ -22,8 +22,17 @@ public class EndgameState extends State {
         super(handler);
 
         uiManager = handler.getUIManager();
-    }
+/*
+        uiManager.addObject(new UIImageButton(17, 29, 3*5, 3, Assets.creditsButton, new ClickListener() {
+            @Override
+            public void onClick() {
+                State.setState(handler.getGameLoop().creditsState);
+            }
+        }));
 
+
+ */
+    }
     @Override
     public void tick() {
         uiManager.tick();
@@ -33,8 +42,5 @@ public class EndgameState extends State {
     @Override
     public void render(Graphics g) {
         uiManager.render(g);
-        g.drawImage(Assets.notOKComputerIcon[0] , 82,100,null);
-        g.drawImage(Assets.notOKComputer[0] , 40,130,null);
-
     }
 }

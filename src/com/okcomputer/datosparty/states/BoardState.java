@@ -22,15 +22,16 @@ public class BoardState extends State {
         super(handler);
 
         uiManager = handler.getUIManager();
+/*
         handler.getMouseManager().setUiManager(uiManager);
 
-        uiManager.addObject(new UIImageButton(20, 25, 4*2, 4*2, Assets.diceButton, new ClickListener() {
+        uiManager.addObject(new UIImageButton(20, 25, 4, 4, Assets.diceButton, new ClickListener() {
             @Override
             public void onClick() {
                 System.out.println(Dice.roll());
             }
         }));
-
+*/
     }
 
     @Override
@@ -40,6 +41,6 @@ public class BoardState extends State {
 
     @Override
     public void render(Graphics g) {
-
+        uiManager.render(g);
     }
 }
