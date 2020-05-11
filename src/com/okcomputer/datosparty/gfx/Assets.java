@@ -5,7 +5,8 @@ import java.awt.image.BufferedImage;
 public class Assets {
 
     public static BufferedImage[] settingsButton, playButton, creditsButton,backButton, titleImage,pressEnterImage,
-            notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton;
+            notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, player1Button, player2Button,
+            player3Button, player4Button, returnButton;
 
     /**
      * This Method initializes all assets that are used in the game, for them to load properly
@@ -54,6 +55,26 @@ public class Assets {
         diceButton = new BufferedImage[2];
         diceButton[0] = buttonSheet.crop(0,0,4,4);
         diceButton[1] = buttonSheet.crop(19,0,4,4);
+
+        creditsButton= new BufferedImage[2];
+        creditsButton[0] = buttonSheet.crop(0,17,7,2);
+        creditsButton[1] = buttonSheet.crop(19,17,7,2);
+
+        player4Button= new BufferedImage[2];
+        player4Button[0] = buttonSheet.crop(0,14,7,2);
+        player4Button[1] = buttonSheet.crop(19,14,7,2);
+
+        player3Button= new BufferedImage[2];
+        player3Button[0] = buttonSheet.crop(0,11,7,2);
+        player3Button[1] = buttonSheet.crop(19,11,7,2);
+
+        player2Button= new BufferedImage[2];
+        player2Button[0] = buttonSheet.crop(0,8,7,2);
+        player2Button[1] = buttonSheet.crop(19,8,7,2);
+
+        player1Button= new BufferedImage[2];
+        player1Button[0] = buttonSheet.crop(0,5,7,2);
+        player1Button[1] = buttonSheet.crop(19,5,7,2);
 
         boton1 = new BufferedImage[2];
         boton1[0] = sheet.crop(14,4,5,1);
