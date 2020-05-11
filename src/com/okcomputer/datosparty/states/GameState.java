@@ -1,44 +1,41 @@
 package com.okcomputer.datosparty.states;
 
-import com.okcomputer.datosparty.GameLoop;
 import com.okcomputer.datosparty.Handler;
 import com.okcomputer.datosparty.gfx.Assets;
-import com.okcomputer.datosparty.userInterface.ClickListener;
-import com.okcomputer.datosparty.userInterface.UIImage;
-import com.okcomputer.datosparty.userInterface.UIImageButton;
-import com.okcomputer.datosparty.userInterface.UIManager;
+import com.okcomputer.datosparty.userInterface.*;
 
 import java.awt.*;
 
 public class GameState extends State{
 
-
+    private final UIManager uiManager;
 
     public GameState(Handler handler){
 
         super(handler);
-        /*
-        handler.getMouseManager().setUiManager(uiManager);
 
-        uiManager.addObject(new UIImage(82,100,2*20,2*3, Assets.notOKComputerIcon));
+        uiManager = new GameUI(handler);
 
-        uiManager.addObject(new UIImageButton(328, 400, 3*3, 3, Assets.backButton, new ClickListener() {
+        uiManager.addObject(new UIImage(6,6,2*20,2*3,Assets.titleImage));
+
+        uiManager.addObject(new UIImageButton(20, 25, 3*3, 3, Assets.backButton, new ClickListener() {
             @Override
             public void onClick() {
                 State.setState(handler.getGameLoop().mainMenuState);
             }
         }));
-         */
+
     }
 
     @Override
     public void tick() {
-       // uiManager.tick();
+        handler.getMouseManager().setUiManager(uiManager);
+        uiManager.tick();
     }
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.notOKComputer[0],82, 100, null);
-        //  uiManager.render(g);
+        uiManager.render(g);
     }
+
 }
