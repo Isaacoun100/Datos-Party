@@ -7,13 +7,12 @@ import com.okcomputer.datosparty.input.MouseManager;
 import com.okcomputer.datosparty.states.*;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
 
 /**
  *
  */
-public class GameLoop implements Runnable{
+public class GameLoop implements Runnable {
 
     /**
      * General Variable Initialization
@@ -29,7 +28,7 @@ public class GameLoop implements Runnable{
     /**
      * State Initialization
      */
-    public State gameState, mainMenuState, titleScreenState, creditsState, settingsState;
+    public State gameState, mainMenuState, titleScreenState, creditsState, optionsState, endGameState;
 
     /**
      * Input Initialization
@@ -44,24 +43,25 @@ public class GameLoop implements Runnable{
 
     /**
      * Main Game Loop, runs the entire program, it can handle multiple states, for different options
-     * @param title the title displayed on the screen
-     * @param width the width of the screen
+     *
+     * @param title  the title displayed on the screen
+     * @param width  the width of the screen
      * @param height the height of the screen
      */
-    public GameLoop(String title, int width, int height){
+    public GameLoop(String title, int width, int height) {
         this.width = width;
         this.height = height;
         this.title = title;
         keyManager = new KeyManager();
         mouseManager = new MouseManager();
-
     }
 
     /**
      * Initialization method, this runs variables that are used in the game
      */
-    private void init(){
-        display = new Display(title,width,height);
+    private void init() {
+
+        display = new Display(title, width, height);
         display.getFrame().addKeyListener(keyManager);
         display.getFrame().addMouseListener(mouseManager);
         display.getFrame().addMouseMotionListener(mouseManager);
@@ -71,11 +71,13 @@ public class GameLoop implements Runnable{
 
         handler = new Handler(this);
 
+
         mainMenuState = new MainMenuState(handler);
         gameState = new GameState(handler);
         titleScreenState = new TitleScreenState(handler);
         creditsState = new CreditsState(handler);
-        settingsState = new SettingsState(handler);
+        optionsState = new OptionsState(handler);
+        endGameState = new EndGameState(handler);
 
         State.setState(mainMenuState);
 
@@ -84,7 +86,7 @@ public class GameLoop implements Runnable{
     private void tick() {
 
         keyManager.tick();
-        if(State.getState() != null)
+        if (State.getState() != null)
             State.getState().tick();
     }
 
@@ -92,15 +94,15 @@ public class GameLoop implements Runnable{
 
         bs = display.getCanvas().getBufferStrategy();
 
-        if(bs == null){
+        if (bs == null) {
             display.getCanvas().createBufferStrategy(3);
             return;
         }
         g = bs.getDrawGraphics();
-        g.clearRect(0,0,width,height);
+        g.clearRect(0, 0, width, height);
         // Begin Rendering
 
-        if(State.getState() != null)
+        if (State.getState() != null)
             State.getState().render(g);
 
         // End Rendering
@@ -121,21 +123,21 @@ public class GameLoop implements Runnable{
         long timer = 0;
         int ticks = 0;
 
-        while(running){
+        while (running) {
 
             now = System.nanoTime();
             delta += (now - lastTime) / timePerTick;
             timer += now - lastTime;
             lastTime = now;
 
-            if(delta >= 1){
+            if (delta >= 1) {
                 tick();
                 render();
                 ticks++;
                 delta--;
             }
 
-            if(timer >= 1000000000){
+            if (timer >= 1000000000) {
                 System.out.println("Ticks and Frames: " + ticks);
                 ticks = 0;
                 timer = 0;
@@ -145,13 +147,14 @@ public class GameLoop implements Runnable{
         stop();
     }
 
-    public KeyManager getKeyManager(){
+    public KeyManager getKeyManager() {
         return keyManager;
     }
 
-    public MouseManager getMouseManager(){
+    public MouseManager getMouseManager() {
         return mouseManager;
     }
+
 
     public synchronized void start(){
         if(running)

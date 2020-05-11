@@ -20,8 +20,8 @@ public class TitleScreenState extends State{
     @Override
     public void render(Graphics g) {
 
-        g.drawImage(Assets.titleImage,82,100,null);
-        g.drawImage(Assets.pressEnterImage, 256, 400, null);
+        //g.drawImage(Assets.titleImage,82,100,null);
+        //g.drawImage(Assets.pressEnterImage, 256, 400, null);
 
     }
 }

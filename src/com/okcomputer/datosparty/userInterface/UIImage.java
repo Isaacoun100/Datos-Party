@@ -3,7 +3,7 @@ package com.okcomputer.datosparty.userInterface;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class UIImageButton extends UIObject{
+public class UIImage extends UIObject{
 
     private BufferedImage[] images;
     private ClickListener clicker;
@@ -15,16 +15,15 @@ public class UIImageButton extends UIObject{
      * @param width
      * @param height
      * @param images this uses an Array List from java, remember to change it for one of the data structures Gabo created
-     * @param clicker
      */
-    public UIImageButton(float x, float y, int width, int height, BufferedImage[] images, ClickListener clicker) {
+    public UIImage(float x, float y, int width, int height, BufferedImage[] images) {
         super(x*16, y*16, width*16, height*16);
         this.images = images;
-        this.clicker = clicker;
     }
 
     @Override
     public void tick() {
+
 
     }
 
@@ -38,6 +37,5 @@ public class UIImageButton extends UIObject{
 
     @Override
     public void onClick() {
-        clicker.onClick();
     }
 }

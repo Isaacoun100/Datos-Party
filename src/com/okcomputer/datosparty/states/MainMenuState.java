@@ -1,55 +1,43 @@
 package com.okcomputer.datosparty.states;
 
-import com.okcomputer.datosparty.GameLoop;
 import com.okcomputer.datosparty.Handler;
 import com.okcomputer.datosparty.gfx.Assets;
-import com.okcomputer.datosparty.userInterface.ClickListener;
-import com.okcomputer.datosparty.userInterface.UIImageButton;
-import com.okcomputer.datosparty.userInterface.UIManager;
+import com.okcomputer.datosparty.userInterface.*;
 
 import java.awt.*;
 
 public class MainMenuState extends State{
 
-    private UIManager uiManager;
+    private final UIManager uiManager;
 
     public MainMenuState(Handler handler){
+
         super(handler);
-        uiManager = new UIManager(handler);
-        handler.getMouseManager().setUiManager(uiManager);
 
-        uiManager.addObject(new UIImageButton(360, 400, 103, 23, Assets.playButton, new ClickListener() {
-            @Override
-            public void onClick() {
-                State.setState(handler.getGameLoop().gameState);
-            }
-        }));
+            uiManager = new MainMenuUI(handler);
 
-        uiManager.addObject(new UIImageButton(336, 432, 103, 23, Assets.settingsButton, new ClickListener() {
-            @Override
-            public void onClick() {
-                State.setState(handler.getGameLoop().settingsState);
-            }
-        }));
+            uiManager.addObject(new UIImage(6,6,2*20,2*3,Assets.titleImage));
 
-        uiManager.addObject(new UIImageButton(344, 464, 103, 23, Assets.creditsButton, new ClickListener() {
-            @Override
-            public void onClick() {
-                State.setState(handler.getGameLoop().creditsState);
-            }
-        }));
+            uiManager.addObject(new UIImageButton(20, 25, 3*3, 3, Assets.playButton,
+                    () -> State.setState(handler.getGameLoop().gameState)));
+
+            uiManager.addObject(new UIImageButton(17, 27, 3*5, 3, Assets.settingsButton,
+                    () -> State.setState(handler.getGameLoop().optionsState)));
+
+            uiManager.addObject(new UIImageButton(17, 29, 3*5, 3, Assets.creditsButton,
+                    () -> State.setState(handler.getGameLoop().creditsState)));
+
     }
 
     @Override
     public void tick() {
+        handler.getMouseManager().setUiManager(uiManager);
         uiManager.tick();
-    }
+        }
 
     @Override
     public void render(Graphics g) {
-        uiManager.render(g);
+            uiManager.render(g);
+        }
 
-        g.drawImage(Assets.titleImage,82,100,null);
-
-    }
 }
