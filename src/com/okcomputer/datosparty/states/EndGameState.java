@@ -49,8 +49,6 @@ public class EndGameState extends State {
     @Override
     public void render(Graphics g) {
         uiManager.render(g);
-
-
         g.drawImage(Assets.notOKComputerIcon[0] , 82,100,null);
         g.drawImage(Assets.notOKComputer[0] , 40,130,null);
 
