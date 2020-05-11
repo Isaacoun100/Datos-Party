@@ -2,34 +2,25 @@ package com.okcomputer.datosparty.states;
 
 import com.okcomputer.datosparty.Handler;
 import com.okcomputer.datosparty.gfx.Assets;
-import com.okcomputer.datosparty.userInterface.ClickListener;
-import com.okcomputer.datosparty.userInterface.UIImageButton;
-import com.okcomputer.datosparty.userInterface.UIManager;
-import com.okcomputer.datosparty.userInterface.WinnerUI;
+import com.okcomputer.datosparty.userInterface.*;
 
 import java.awt.*;
 
-public class WinnerState extends State {
+public class SelectPlayerState extends State {
 
     private final UIManager uiManager;
 
-
-    public WinnerState(Handler handler) {
+    public SelectPlayerState(Handler handler) {
         super(handler);
 
-        uiManager = new WinnerUI(handler);
+        uiManager = new SelectPlayerUI(handler);
 
-        uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player1Button, new ClickListener() {
-            @Override
-            public void onClick() {
-                System.out.println("1");
-            }
-        }));
 
-        uiManager.addObject(new UIImageButton(1, 30, 7*2, 2*2, Assets.player2Button, new ClickListener() {
+        uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player2Button, new ClickListener() {
             @Override
             public void onClick() {
                 System.out.println("2");
+                State.setState(handler.getGameLoop().boardState);
             }
         }));
 
@@ -37,17 +28,20 @@ public class WinnerState extends State {
             @Override
             public void onClick() {
                 System.out.println("3");
+                State.setState(handler.getGameLoop().boardState);
             }
         }));
 
-        uiManager.addObject(new UIImageButton(35, 30, 7*2, 2*2, Assets.player4Button, new ClickListener() {
+        uiManager.addObject(new UIImageButton(20, 30, 7*2, 2*2, Assets.player4Button, new ClickListener() {
             @Override
             public void onClick() {
                 System.out.println("4");
+                State.setState(handler.getGameLoop().boardState);
             }
         }));
 
     }
+
     @Override
     public void tick() {
         handler.getMouseManager().setUiManager(uiManager);
@@ -58,4 +52,5 @@ public class WinnerState extends State {
     public void render(Graphics g) {
         uiManager.render(g);
     }
+
 }

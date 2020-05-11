@@ -28,7 +28,8 @@ public class GameLoop implements Runnable {
     /**
      * State Initialization
      */
-    public State gameState, mainMenuState, titleScreenState, creditsState, optionsState, endGameState, boardState;
+    public State gameState, mainMenuState, titleScreenState, creditsState, optionsState, endGameState, boardState,
+                            winnerState, selectPlayerState;
 
     /**
      * Input Initialization
@@ -79,8 +80,10 @@ public class GameLoop implements Runnable {
         optionsState = new OptionsState(handler);
         endGameState = new EndgameState(handler);
         boardState = new BoardState(handler);
+        winnerState = new WinnerState(handler);
+        selectPlayerState = new SelectPlayerState(handler);
 
-        State.setState(boardState);
+        State.setState(selectPlayerState);
 
     }
 
