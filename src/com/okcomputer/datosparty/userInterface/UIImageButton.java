@@ -5,17 +5,17 @@ import java.awt.image.BufferedImage;
 
 public class UIImageButton extends UIObject{
 
-    private BufferedImage[] images;
-    private ClickListener clicker;
+    private final BufferedImage[] images;
+    private final ClickListener clicker;
 
     /**
      *
-     * @param x
-     * @param y
-     * @param width
-     * @param height
+     * @param x position x on the screen multiplied by 16
+     * @param y position y on the screen multiplied by 16
+     * @param width of the image multiplied by bitmap
+     * @param height of the image multiplied by bitmap
      * @param images this uses an Array List from java, remember to change it for one of the data structures Gabo created
-     * @param clicker
+     * @param clicker clicker interface to define what the button does when clicked
      */
     public UIImageButton(float x, float y, int width, int height, BufferedImage[] images, ClickListener clicker) {
         super(x*16, y*16, width*16, height*16);

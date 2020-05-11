@@ -18,12 +18,8 @@ public class GameState extends State{
 
         uiManager.addObject(new UIImage(6,6,2*20,2*3,Assets.titleImage));
 
-        uiManager.addObject(new UIImageButton(20, 25, 3*3, 3, Assets.backButton, new ClickListener() {
-            @Override
-            public void onClick() {
-                State.setState(handler.getGameLoop().mainMenuState);
-            }
-        }));
+        uiManager.addObject(new UIImageButton(20, 25, 3*3, 3, Assets.backButton,
+                () -> State.setState(handler.getGameLoop().mainMenuState)));
 
     }
 

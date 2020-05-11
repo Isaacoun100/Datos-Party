@@ -18,13 +18,13 @@ public class MainMenuState extends State{
 
             uiManager.addObject(new UIImage(6,6,2*20,2*3,Assets.titleImage));
 
-            uiManager.addObject(new UIImageButton(20, 25, 3*3, 3, Assets.playButton,
+            uiManager.addObject(new UIImageButton(20, 24, 3*3, 3, Assets.playButton,
                     () -> State.setState(handler.getGameLoop().gameState)));
 
-            uiManager.addObject(new UIImageButton(17, 27, 3*5, 3, Assets.settingsButton,
+            uiManager.addObject(new UIImageButton(17, 28, 3*5, 3, Assets.settingsButton,
                     () -> State.setState(handler.getGameLoop().optionsState)));
 
-            uiManager.addObject(new UIImageButton(17, 29, 3*5, 3, Assets.creditsButton,
+            uiManager.addObject(new UIImageButton(17, 32, 3*5, 3, Assets.creditsButton,
                     () -> State.setState(handler.getGameLoop().creditsState)));
 
     }
