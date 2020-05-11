@@ -16,11 +16,11 @@ public class OptionsState extends State{
         super(handler);
         uiManager = new OptionsUI(handler);
 
-        uiManager.addObject(new UIImage(4,20,2*9, 2, Assets.notOKComputer));
-        uiManager.addObject(new UIImage(12,10,5*2,5*2, Assets.notOKComputerIcon));
-        uiManager.addObject(new UIImage(6,14,9*2, 2, Assets.nothingHereMessage));
+        uiManager.addObject(new UIImage(20,10,5*2,5*2, Assets.notOKComputerIcon));
+        uiManager.addObject(new UIImage(16,19,2*9, 2, Assets.notOKComputer));
+        uiManager.addObject(new UIImage(7,26,9*4, 4, Assets.nothingHereMessage));
 
-        uiManager.addObject(new UIImageButton(20, 25, 3*3, 3, Assets.backButton,
+        uiManager.addObject(new UIImageButton(20, 30, 3*3, 3, Assets.backButton,
                 () -> State.setState(handler.getGameLoop().mainMenuState)));
     }
 

@@ -44,7 +44,7 @@ public class Assets {
 
         notOKComputerIcon = new BufferedImage[2];
         notOKComputerIcon[0] = sheet.crop(3,4,2,2);
-        notOKComputerIcon[1] = sheet.crop(3,4,2,2);
+        notOKComputerIcon[1] = sheet.crop(23,4,2,2);
 
         nothingHereMessage = new BufferedImage[2];
         nothingHereMessage[0] = sheet.crop(5,4,9,1);
