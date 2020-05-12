@@ -39,6 +39,26 @@ public class SinglyList<T> extends LinkedList<T>{
         }
     }
 
+    /**
+     * Returns index where the data is located
+     * @param data first node on list that contains it
+     * @return index where data is located
+     */
+    public int getIndexByData(T data) {
+        SinglyNode<T> currentNode = this.head;
+        for (int i =0; currentNode != null; i++) {
+            if (currentNode.getData() == data) {
+                return i;
+            } else if (currentNode.getNext() == null) {
+                System.out.println("Not found");
+                return 404;
+            } else {
+                currentNode = currentNode.getNext();
+            }
+        }
+        return 404;
+    }
+
     @Override
     public SinglyNode<T> getLast() {
         SinglyNode<T> lastNode = this.head;

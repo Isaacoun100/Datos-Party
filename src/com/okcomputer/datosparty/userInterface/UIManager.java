@@ -1,54 +1,71 @@
 package com.okcomputer.datosparty.userInterface;
 
 import com.okcomputer.datosparty.Handler;
+import com.okcomputer.datosparty.dataStructures.SinglyList;
+import com.okcomputer.datosparty.dataStructures.SinglyNode;
+
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 
 public abstract class UIManager {
 
-    private ArrayList<UIObject> objects;
+    private SinglyList<UIObject> objects;
+    private SinglyNode<UIObject> current;
 
     public UIManager(Handler handler){
-        objects =  new ArrayList<UIObject>();
+        objects =  new SinglyList<>();
     }
 
     public void tick(){
-        for(UIObject o : objects)
-            o.tick();
+        current = objects.getHead();
+        while (current != null) {
+            current.getData().tick();
+            current = current.getNext();
+        }
+
 
     }
 
     public void render(Graphics g){
-        for(UIObject o : objects)
-            o.render(g);
+        current = objects.getHead();
+        while (current != null) {
+            current.getData().render(g);
+            current = current.getNext();
+        }
     }
 
     public void onMouseMove(MouseEvent e){
-        for(UIObject o : objects)
-            o.onMouseMove(e);
+        current = objects.getHead();
+        while (current != null) {
+            current.getData().onMouseMove(e);
+            current = current.getNext();
+        }
     }
 
-    public ArrayList<UIObject> getObjects() {
+    public SinglyList<UIObject> getObjects() {
         return objects;
     }
 
-    public void setObjects(ArrayList<UIObject> objects) {
+    public void setObjects(SinglyList<UIObject> objects) {
         this.objects = objects;
     }
 
     public void onMouseRelease(MouseEvent e){
-        for(UIObject o : objects)
-            o.onMouseRelease(e);
+        current = objects.getHead();
+        while (current != null) {
+            current.getData().onMouseRelease(e);
+            current = current.getNext();
+        }
     }
 
     public void addObject(UIObject o){
         objects.add(o);
     }
 
+    // SinglyList int method remove(data)
     public void removeObject(UIObject o){
-        objects.remove(o);
+        objects.getIndexByData(o);
     }
 }
