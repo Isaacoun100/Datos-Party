@@ -8,6 +8,10 @@ public class SinglyList<T> extends LinkedList<T>{
 
     private SinglyNode<T> head;
 
+    public SinglyNode<T> getHead() {
+        return head;
+    }
+
     @Override
     public int getLength() {
 

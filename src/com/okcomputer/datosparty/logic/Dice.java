@@ -1,4 +1,4 @@
-package com.okcomputer.datosparty.random;
+package com.okcomputer.datosparty.logic;
 
 import java.util.Random;
 

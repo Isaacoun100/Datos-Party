@@ -8,6 +8,10 @@ public class DoublyList<T> extends LinkedList<T>{
 
     protected DoublyNode<T> head;
 
+    public DoublyNode<T> getHead() {
+        return head;
+    }
+
     public int getLength() {
 
         int length = 0;

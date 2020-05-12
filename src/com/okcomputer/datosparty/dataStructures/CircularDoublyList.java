@@ -6,8 +6,6 @@ package com.okcomputer.datosparty.dataStructures;
  */
 public class CircularDoublyList<T> extends DoublyList<T> {
 
-    private DoublyNode<T> head;
-
     //WIP
     @Override
     public int getLength() {

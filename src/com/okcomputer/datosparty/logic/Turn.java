@@ -1,46 +1,22 @@
 package com.okcomputer.datosparty.logic;
 
-import com.okcomputer.datosparty.algorithms.BubbleSort;
-import com.okcomputer.datosparty.dataStructures.DoublyList;
+import com.okcomputer.datosparty.dataStructures.SinglyNode;
 
 public class Turn {
 
-    private static DoublyList<Player> playerOrder;
-    private static int numPlayers = 0;
+    private static SinglyNode<Player> playersTurn;
 
-    public static void addPlayer(Player player) {
-        if (numPlayers == 4) {
-            System.out.println("No more than 4 players can join");
+    public static void nextPlayer() {
+        if (Round.getNumRound() == 0) {
+            playersTurn = Round.getPlayerOrder().getHead();
+            Round.setNumRound(1);
+        } else if (playersTurn.getNext() == null) {
+            //Minigame state
+            //Minigame ends
+            playersTurn = Round.getPlayerOrder().getHead();
+            Round.setNumRound(Round.getNumRound() + 1);
         } else {
-            playerOrder.add(player);
-            numPlayers++;
+            playersTurn = playersTurn.getNext();
         }
-    }
-
-    public static void defineOrder() {
-        playerOrder.getNodeByIndex(0).getData().setTurn();
-        if (numPlayers >= 2) {
-            playerOrder.getNodeByIndex(1).getData().setTurn();
-        }
-        if (numPlayers >= 3) {
-            playerOrder.getNodeByIndex(2).getData().setTurn();
-        }
-        if (numPlayers == 4) {
-            playerOrder.getNodeByIndex(3).getData().setTurn();
-        }
-        BubbleSort.sort(playerOrder);
-
-    }
-
-    public static DoublyList<Player> getPlayerOrder() {
-        return playerOrder;
-    }
-
-    public static void setPlayerOrder(DoublyList<Player> playerOrder) {
-        Turn.playerOrder = playerOrder;
-    }
-
-    public int getNumPlayers() {
-        return numPlayers;
     }
 }

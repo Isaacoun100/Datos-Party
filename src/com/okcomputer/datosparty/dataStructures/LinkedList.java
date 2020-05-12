@@ -3,40 +3,40 @@ package com.okcomputer.datosparty.dataStructures;
 public abstract class LinkedList<T> {
 
     /**
-     *
-     * @return
+     * Returns length of list
+     * @return int length
      */
     public abstract int getLength();
 
     /**
-     *
-     * @param index
-     * @return
+     * Returns Node on given position on index
+     * @param index of node
+     * @return Node indexed
      */
     public abstract Node<T> getNodeByIndex(int index);
 
     /**
-     *
-     * @return
+     * Returns last Node of List
+     * @return last Node of list
      */
     public abstract Node<T> getLast();
 
     /**
-     *
-     * @param data
+     * Adds a Node to the List
+     * @param data given to the Node to be added to List
      */
     public abstract void add(T data);
 
     /**
-     *
-     * @param data
-     * @param index
+     * Adds a Node to list on given index
+     * @param data given to the Node to be added to List
+     * @param index where the Node will be added
      */
     public abstract void add(T data, int index);
 
     /**
-     *
-     * @param index
+     * Remove a Node on the List on given index
+     * @param index of the Node to be removed
      */
     public abstract void remove(int index);
 

@@ -2,7 +2,7 @@ package com.okcomputer.datosparty.states;
 
 import com.okcomputer.datosparty.Handler;
 import com.okcomputer.datosparty.gfx.Assets;
-import com.okcomputer.datosparty.random.Dice;
+import com.okcomputer.datosparty.logic.Dice;
 import com.okcomputer.datosparty.userInterface.*;
 
 import java.awt.*;
