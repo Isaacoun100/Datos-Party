@@ -64,7 +64,6 @@ public abstract class UIManager {
         objects.add(o);
     }
 
-    // SinglyList int method remove(data)
     public void removeObject(UIObject o){
         objects.getIndexByData(o);
     }
