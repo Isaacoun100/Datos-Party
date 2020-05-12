@@ -6,7 +6,7 @@ public class Assets {
 
     public static BufferedImage[] settingsButton, playButton, creditsButton,backButton, titleImage,pressEnterImage,
             notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, player1Button, player2Button,
-            player3Button, player4Button, returnButton;
+            player3Button, player4Button, returnButton, creditsButtonMenu;
 
     /**
      * This Method initializes all assets that are used in the game, for them to load properly
@@ -32,9 +32,9 @@ public class Assets {
         settingsButton[0] = sheet.crop(10,3,5,1);
         settingsButton[1] = sheet.crop(30,3,5,1);
 
-        creditsButton = new BufferedImage[2];
-        creditsButton[0] = sheet.crop(15,3,5,1);
-        creditsButton[1] = sheet.crop(35,3,5,1);
+        creditsButtonMenu = new BufferedImage[2];
+        creditsButtonMenu[0] = sheet.crop(15,3,5,1);
+        creditsButtonMenu[1] = sheet.crop(35,3,5,1);
 
         backButton = new BufferedImage[2];
         backButton[0] = sheet.crop(0,4,3,1);
