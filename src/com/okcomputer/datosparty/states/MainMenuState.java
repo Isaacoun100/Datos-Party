@@ -28,7 +28,7 @@ public class MainMenuState extends State{
             uiManager.addObject(new UIImageButton(17, 27, 3*5, 3, Assets.settingsButton, new ClickListener() {
                 @Override
                 public void onClick() {
-                    State.setState(handler.getGameLoop().settingsState);
+                    State.setState(handler.getGameLoop().optionsState);
                 }
             }));
 

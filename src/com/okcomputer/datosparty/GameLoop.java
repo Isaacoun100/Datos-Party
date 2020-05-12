@@ -72,7 +72,6 @@ public class GameLoop implements Runnable {
 
         handler = new Handler(this);
 
-
         mainMenuState = new MainMenuState(handler);
         gameState = new GameState(handler);
         titleScreenState = new TitleScreenState(handler);
@@ -83,7 +82,7 @@ public class GameLoop implements Runnable {
         winnerState = new WinnerState(handler);
         selectPlayerState = new SelectPlayerState(handler);
 
-        State.setState(selectPlayerState);
+        State.setState(endGameState);
 
     }
 

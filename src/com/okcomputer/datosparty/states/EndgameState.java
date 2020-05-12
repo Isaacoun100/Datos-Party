@@ -14,7 +14,7 @@ public class EndgameState extends State {
     public EndgameState(Handler handler) {
         super(handler);
 
-        uiManager = new MainMenuUI(handler);
+        uiManager = new EndGameUI(handler);
 
         uiManager.addObject(new UIImageButton(18, 32, 7*2, 2*2, Assets.creditsButton,
                 () -> State.setState(handler.getGameLoop().creditsState)));
