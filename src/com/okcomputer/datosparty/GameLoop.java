@@ -5,10 +5,8 @@ import com.okcomputer.datosparty.gfx.Assets;
 import com.okcomputer.datosparty.input.KeyManager;
 import com.okcomputer.datosparty.input.MouseManager;
 import com.okcomputer.datosparty.states.*;
-import com.okcomputer.datosparty.userInterface.UIManager;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
 
 /**
@@ -30,7 +28,8 @@ public class GameLoop implements Runnable {
     /**
      * State Initialization
      */
-    public State gameState, mainMenuState, titleScreenState, creditsState, settingsState, endGameState;
+    public State gameState, mainMenuState, titleScreenState, creditsState, optionsState, endGameState, boardState,
+                            winnerState, selectPlayerState;
 
     /**
      * Input Initialization
@@ -78,10 +77,13 @@ public class GameLoop implements Runnable {
         gameState = new GameState(handler);
         titleScreenState = new TitleScreenState(handler);
         creditsState = new CreditsState(handler);
-        settingsState = new SettingsState(handler);
-        endGameState = new EndGameState(handler);
+        optionsState = new OptionsState(handler);
+        endGameState = new EndgameState(handler);
+        boardState = new BoardState(handler);
+        winnerState = new WinnerState(handler);
+        selectPlayerState = new SelectPlayerState(handler);
 
-        State.setState(mainMenuState);
+        State.setState(selectPlayerState);
 
     }
 
