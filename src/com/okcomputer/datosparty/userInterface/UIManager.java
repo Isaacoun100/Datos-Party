@@ -12,13 +12,13 @@ import java.awt.event.MouseEvent;
 public abstract class UIManager {
 
     private SinglyList<UIObject> objects;
-    private SinglyNode<UIObject> current;
 
     public UIManager(Handler handler){
         objects =  new SinglyList<>();
     }
 
     public void tick(){
+        SinglyNode<UIObject> current = objects.getHead();
         current = objects.getHead();
         while (current != null) {
             current.getData().tick();
@@ -29,6 +29,7 @@ public abstract class UIManager {
     }
 
     public void render(Graphics g){
+        SinglyNode<UIObject> current = objects.getHead();
         current = objects.getHead();
         while (current != null) {
             current.getData().render(g);
@@ -37,6 +38,7 @@ public abstract class UIManager {
     }
 
     public void onMouseMove(MouseEvent e){
+        SinglyNode<UIObject> current = objects.getHead();
         current = objects.getHead();
         while (current != null) {
             current.getData().onMouseMove(e);
@@ -53,6 +55,7 @@ public abstract class UIManager {
     }
 
     public void onMouseRelease(MouseEvent e){
+        SinglyNode<UIObject> current = objects.getHead();
         current = objects.getHead();
         while (current != null) {
             current.getData().onMouseRelease(e);
