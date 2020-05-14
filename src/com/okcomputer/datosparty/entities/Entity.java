@@ -1,4 +1,4 @@
-package com.okcomputer.entities;
+package com.okcomputer.datosparty.entities;
 
 public abstract class Entity {
     protected float x,y;

@@ -1,7 +1,5 @@
 package com.okcomputer.datosparty;
 
-import com.okcomputer.datosparty.display.Display;
-
 import java.awt.*;
 
 public class GameLauncher {

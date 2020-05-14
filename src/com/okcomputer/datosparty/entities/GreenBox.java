@@ -1,4 +1,4 @@
-package com.okcomputer.entities;
+package com.okcomputer.datosparty.entities;
 
 public class GreenBox extends Box{
     public GreenBox(float x, float y, int width, int height) {

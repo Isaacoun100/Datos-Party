@@ -1,6 +1,7 @@
 package com.okcomputer.datosparty.logic;
 
 import com.okcomputer.datosparty.dataStructures.SinglyNode;
+import com.okcomputer.datosparty.entities.Player;
 
 public class Turn {
 

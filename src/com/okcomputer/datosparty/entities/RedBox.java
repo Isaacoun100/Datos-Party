@@ -1,7 +1,7 @@
-package com.okcomputer.entities;
+package com.okcomputer.datosparty.entities;
 
-public class BlueBox extends Box{
-    public BlueBox(float x, float y, int width, int height) {
+public class RedBox extends Box{
+    public RedBox(float x, float y, int width, int height) {
         super(x, y, width, height);
     }
 
