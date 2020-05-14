@@ -2,6 +2,7 @@ package com.okcomputer.datosparty.states;
 
 import com.okcomputer.datosparty.Handler;
 import com.okcomputer.datosparty.gfx.Assets;
+import com.okcomputer.datosparty.music.MusicPlayer;
 import com.okcomputer.datosparty.userInterface.*;
 
 import java.awt.*;
@@ -14,7 +15,10 @@ public class MainMenuState extends State{
 
         super(handler);
 
-            uiManager = new MainMenuUI(handler);
+        MusicPlayer.playSong("res/audio/Nintendo Wii - Mii Channel Theme.wav", "Plaza Mii");
+
+
+        uiManager = new MainMenuUI(handler);
 
             uiManager.addObject(new UIImage(6,6,2*20,2*3,Assets.titleImage));
 
