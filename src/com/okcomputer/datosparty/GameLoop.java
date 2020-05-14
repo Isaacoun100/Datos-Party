@@ -74,7 +74,6 @@ public class GameLoop implements Runnable {
 
         mainMenuState = new MainMenuState(handler);
         gameState = new GameState(handler);
-        titleScreenState = new TitleScreenState(handler);
         creditsState = new CreditsState(handler);
         optionsState = new OptionsState(handler);
         endGameState = new EndgameState(handler);

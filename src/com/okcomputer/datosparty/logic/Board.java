@@ -6,6 +6,11 @@ import com.okcomputer.datosparty.dataStructures.SinglyList;
 public class Board {
 
     private SinglyList<Box> board = new SinglyList<>();
+    private Phase phase;
+
+    public Board(SinglyList<Box> board) {
+        this.board = board;
+    }
 
     public Board(int length) {
         int cont = 0;

@@ -2,6 +2,7 @@ package com.okcomputer.datosparty.states;
 
 import com.okcomputer.datosparty.Handler;
 import com.okcomputer.datosparty.gfx.Assets;
+import com.okcomputer.datosparty.logic.GameStart;
 import com.okcomputer.datosparty.music.MusicPlayer;
 import com.okcomputer.datosparty.userInterface.*;
 
@@ -10,6 +11,7 @@ import java.awt.*;
 public class MainMenuState extends State{
 
     private final UIManager uiManager;
+    private final GameStart gameStart;
 
     public MainMenuState(Handler handler){
 
@@ -19,11 +21,13 @@ public class MainMenuState extends State{
 
 
         uiManager = new MainMenuUI(handler);
+        gameStart = new GameStart();
 
             uiManager.addObject(new UIImage(6,6,2*20,2*3,Assets.titleImage));
 
             uiManager.addObject(new UIImageButton(20, 25, 3*3, 3, Assets.playButton,
-                    () -> State.setState(handler.getGameLoop().gameState)));
+                    () ->{ State.setState(handler.getGameLoop().gameState);
+                            gameStart.test();}));
 
 
 

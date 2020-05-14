@@ -2,7 +2,6 @@ package com.okcomputer.datosparty.logic;
 
 import com.okcomputer.datosparty.dataStructures.SinglyList;
 import com.okcomputer.datosparty.dataStructures.SinglyNode;
-import com.okcomputer.datosparty.entities.Player;
 
 public class Round {
 
@@ -15,7 +14,7 @@ public class Round {
             numPlayers = playerNames.getLength();
             playerOrder = new SinglyList<>();
             for (int i = 0; i < 4; i++) {
-                playerOrder.add(new Player(playerNames.getNodeByIndex(i).getData(),20,20,20,20));
+                playerOrder.add(new Player(playerNames.getNodeByIndex(i).getData()));
                 if (playerNames.getNodeByIndex(i).getNext() == null) {
                     break;
                 }

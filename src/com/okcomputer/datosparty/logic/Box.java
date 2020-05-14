@@ -1,7 +1,6 @@
 package com.okcomputer.datosparty.logic;
 
 import com.okcomputer.datosparty.dataStructures.Node;
-import com.okcomputer.datosparty.entities.Player;
 
 public class Box {
 
