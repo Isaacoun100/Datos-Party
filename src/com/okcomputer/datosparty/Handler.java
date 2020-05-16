@@ -1,7 +1,6 @@
 package com.okcomputer.datosparty;
 
 import com.okcomputer.datosparty.input.*;
-import com.okcomputer.datosparty.userInterface.UIManager;
 
 public class Handler {
 

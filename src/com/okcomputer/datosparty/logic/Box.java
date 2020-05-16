@@ -1,26 +1,16 @@
 package com.okcomputer.datosparty.logic;
 
-import com.okcomputer.datosparty.dataStructures.Node;
+import com.okcomputer.datosparty.dataStructures.SinglyList;
+import com.okcomputer.datosparty.entities.Entity;
+import com.okcomputer.datosparty.entities.Player;
 
-public class Box {
+public abstract class Box extends Entity {
 
-    private Player onBoard;
-    private Node<Box> location;
+    public SinglyList<Player> playerList = new SinglyList<>();
 
-    public void boxNode(Node<Box> location) {
-        this.location = location;
+    public Box(float x, float y, int width, int height) {
+        super(x, y, width, height);
     }
 
-    public void setPlayerNull(){
-        this.onBoard = null;
-    }
-
-    public Player getOnBoard() {
-        return onBoard;
-    }
-
-    public void setOnBoard(Player onBoard) {
-        this.onBoard = onBoard;
-    }
 
 }

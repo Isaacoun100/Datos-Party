@@ -2,9 +2,9 @@ package com.okcomputer.datosparty.logic;
 
 import com.okcomputer.datosparty.dataStructures.SinglyNode;
 
-public class Player {
+public class Player{
 
-    private String name;
+    private final String name;
     private int movement;
     private int coins;
     private int stars;

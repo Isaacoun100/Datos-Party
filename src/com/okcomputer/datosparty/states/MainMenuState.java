@@ -15,7 +15,6 @@ public class MainMenuState extends State{
         super(handler);
 
         uiManager = new MainMenuUI(handler);
-
             uiManager.addObject(new UIImage(6,6,2*20,2*3,Assets.titleImage));
 
             uiManager.addObject(new UIImageButton(20, 25, 3*3, 3, Assets.playButton,
