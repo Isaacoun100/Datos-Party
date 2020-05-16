@@ -1,11 +1,9 @@
 package com.okcomputer.datosparty.states;
 
 import com.okcomputer.datosparty.Handler;
-import com.okcomputer.datosparty.dataStructures.SinglyList;
 import com.okcomputer.datosparty.dataStructures.SinglyNode;
 import com.okcomputer.datosparty.logic.Box;
 import com.okcomputer.datosparty.gfx.Assets;
-import com.okcomputer.datosparty.logic.GameStart;
 import com.okcomputer.datosparty.userInterface.*;
 
 import java.awt.*;
@@ -42,6 +40,7 @@ public class GameState extends State{
             current.getData().render(g);
             current = current.getNext();
         }
+        handler.getGameLoop().testPlayer.render(g);
     }
 
 }

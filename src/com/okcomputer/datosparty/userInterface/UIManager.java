@@ -24,8 +24,7 @@ public abstract class UIManager {
             current.getData().tick();
             current = current.getNext();
         }
-
-
+        
     }
 
     public void render(Graphics g){

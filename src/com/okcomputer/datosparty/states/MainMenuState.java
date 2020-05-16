@@ -1,10 +1,7 @@
 package com.okcomputer.datosparty.states;
 
 import com.okcomputer.datosparty.Handler;
-import com.okcomputer.datosparty.dataStructures.SinglyList;
 import com.okcomputer.datosparty.gfx.Assets;
-import com.okcomputer.datosparty.logic.GameStart;
-import com.okcomputer.datosparty.logic.Player;
 import com.okcomputer.datosparty.music.MusicPlayer;
 import com.okcomputer.datosparty.userInterface.*;
 

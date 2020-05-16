@@ -1,7 +1,6 @@
 package com.okcomputer.datosparty.logic;
 
 import com.okcomputer.datosparty.gfx.Assets;
-import com.okcomputer.datosparty.logic.Box;
 
 import java.awt.*;
 

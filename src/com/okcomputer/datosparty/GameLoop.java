@@ -1,6 +1,7 @@
 package com.okcomputer.datosparty;
 
 import com.okcomputer.datosparty.display.Display;
+import com.okcomputer.datosparty.entities.Player;
 import com.okcomputer.datosparty.gfx.Assets;
 import com.okcomputer.datosparty.input.KeyManager;
 import com.okcomputer.datosparty.input.MouseManager;
@@ -25,7 +26,6 @@ public class GameLoop implements Runnable {
     private boolean running = false;
     private BufferStrategy bs;
     private Graphics g;
-
     /**
      * State Initialization
      */
@@ -43,7 +43,9 @@ public class GameLoop implements Runnable {
      */
     private Handler handler;
 
+//
     public Board board;
+    public Player testPlayer; // this will later be a list and we will add players to it, depending on selection
 
     /**
      * Main Game Loop, runs the entire program, it can handle multiple states, for different options
@@ -74,6 +76,8 @@ public class GameLoop implements Runnable {
         Assets.init();
 
         board = new Board();
+
+        testPlayer = new Player(handler);
 
         handler = new Handler(this);
 
