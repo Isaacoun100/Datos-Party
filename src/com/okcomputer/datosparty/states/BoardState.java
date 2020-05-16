@@ -3,6 +3,7 @@ package com.okcomputer.datosparty.states;
 import com.okcomputer.datosparty.Handler;
 import com.okcomputer.datosparty.gfx.Assets;
 import com.okcomputer.datosparty.logic.Dice;
+import com.okcomputer.datosparty.music.SoundEffect;
 import com.okcomputer.datosparty.userInterface.*;
 
 import java.awt.*;
@@ -19,9 +20,13 @@ public class BoardState extends State {
         uiManager.addObject(new UIImageButton(1, 1, 4, 4, Assets.diceButton, new ClickListener() {
             @Override
             public void onClick() {
+
+                SoundEffect.DiceRoll();
                 System.out.println(Dice.roll());
+
                 }
             }));
+
 
         }
 
