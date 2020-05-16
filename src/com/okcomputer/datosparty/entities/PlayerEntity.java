@@ -2,9 +2,13 @@ package com.okcomputer.datosparty.entities;
 
 import com.okcomputer.datosparty.GameLoop;
 
+import java.awt.*;
+
 public class PlayerEntity extends Entity{
 
     protected float xMove, yMove;
+    private int coins;
+    private int stars;
 
     public PlayerEntity(float x, float y, int width, int height) {
         super(x, y, width, height);
@@ -16,7 +20,7 @@ public class PlayerEntity extends Entity{
     }
 
     @Override
-    public void render() {
+    public void render(Graphics g) {
 
     }
 
@@ -40,4 +44,5 @@ public class PlayerEntity extends Entity{
         x += xMove;
         y += yMove;
     }
+
 }

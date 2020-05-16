@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
+    public static BufferedImage blueBox, greenBox, yellowBox, redBox;
     public static BufferedImage[] settingsButton, playButton, creditsButton,backButton, titleImage,pressEnterImage,
             notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, player1Button, player2Button,
             player3Button, player4Button, returnButton, creditsButtonMenu;
@@ -79,6 +80,12 @@ public class Assets {
         boton1 = new BufferedImage[2];
         boton1[0] = sheet.crop(14,4,5,1);
         boton1[1] = sheet.crop(34,4,5,1);
+
+        blueBox = sheet.crop(3,6,1,1);
+        greenBox = sheet.crop(3,7,1,1);
+        yellowBox = sheet.crop(4,6,1,1);
+        redBox = sheet.crop(4,7,1,1);
+
 
     }
 }

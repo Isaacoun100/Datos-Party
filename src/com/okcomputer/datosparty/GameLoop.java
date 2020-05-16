@@ -4,6 +4,7 @@ import com.okcomputer.datosparty.display.Display;
 import com.okcomputer.datosparty.gfx.Assets;
 import com.okcomputer.datosparty.input.KeyManager;
 import com.okcomputer.datosparty.input.MouseManager;
+import com.okcomputer.datosparty.logic.Board;
 import com.okcomputer.datosparty.states.*;
 
 import java.awt.*;
@@ -42,6 +43,8 @@ public class GameLoop implements Runnable {
      */
     private Handler handler;
 
+    public Board board;
+
     /**
      * Main Game Loop, runs the entire program, it can handle multiple states, for different options
      *
@@ -69,6 +72,8 @@ public class GameLoop implements Runnable {
         display.getCanvas().addMouseListener(mouseManager);
         display.getCanvas().addMouseMotionListener(mouseManager);
         Assets.init();
+
+        board = new Board();
 
         handler = new Handler(this);
 
