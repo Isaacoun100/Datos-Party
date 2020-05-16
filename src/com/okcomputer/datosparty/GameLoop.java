@@ -4,6 +4,8 @@ import com.okcomputer.datosparty.display.Display;
 import com.okcomputer.datosparty.gfx.Assets;
 import com.okcomputer.datosparty.input.KeyManager;
 import com.okcomputer.datosparty.input.MouseManager;
+import com.okcomputer.datosparty.music.LoopMusic;
+import com.okcomputer.datosparty.music.MusicPlayer;
 import com.okcomputer.datosparty.states.*;
 
 import java.awt.*;
@@ -60,7 +62,7 @@ public class GameLoop implements Runnable {
     /**
      * Initialization method, this runs variables that are used in the game
      */
-    private void init() {
+    private void init(){
 
         display = new Display(title, width, height);
         display.getFrame().addKeyListener(keyManager);
