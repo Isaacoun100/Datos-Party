@@ -6,7 +6,7 @@ public class Assets {
 
     public static BufferedImage[] settingsButton, playButton, creditsButton,backButton, titleImage,pressEnterImage,
             notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, player1Button, player2Button,
-            player3Button, player4Button, returnButton, creditsButtonMenu;
+            player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp, volumeDown, gameMusic, soundEffects;
 
     /**
      * This Method initializes all assets that are used in the game, for them to load properly
@@ -76,9 +76,23 @@ public class Assets {
         player1Button[0] = buttonSheet.crop(0,5,7,2);
         player1Button[1] = buttonSheet.crop(19,5,7,2);
 
+        volumeUp = new BufferedImage[2];
+        volumeUp[0] = buttonSheet.crop(5,0,3,3);
+        volumeUp[1] = buttonSheet.crop(24,0,3,3);
+
+        volumeDown = new BufferedImage[2];
+        volumeDown[0] = buttonSheet.crop(9,0,3,3);
+        volumeDown[1] = buttonSheet.crop(28,0,3,3);
+
         boton1 = new BufferedImage[2];
         boton1[0] = sheet.crop(14,4,5,1);
         boton1[1] = sheet.crop(34,4,5,1);
+
+        gameMusic= new BufferedImage[1];
+        gameMusic[0]= buttonSheet.crop(8,5,8,2);
+
+        soundEffects= new BufferedImage[1];
+        soundEffects[0]= buttonSheet.crop(7,8,9,2);
 
     }
 }
