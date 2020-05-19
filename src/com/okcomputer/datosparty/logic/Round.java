@@ -9,6 +9,18 @@ public class Round {
     private static int numPlayers;
     private static int numRound = 0;
 
+    public static void roundInit(){
+        playerOrder = new SinglyList<>();
+    }
+
+    public static void playerLoop(int player){
+
+        while(player>0){
+            Round.addPlayer("player "+player);
+            player--;
+        }
+    }
+
     public static void definePlayers(SinglyList<String> playerNames) {
         if (1 < playerNames.getLength() && playerNames.getLength() <= 4) {
             numPlayers = playerNames.getLength();
@@ -20,6 +32,14 @@ public class Round {
                 }
             }
         }
+    }
+
+    public static void addPlayer(String name){
+        playerOrder.add(new Player(name));
+    }
+
+    public static void returnPlayers(){
+        playerOrder.print();
     }
 
     public static void defineOrder() {
