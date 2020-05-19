@@ -40,7 +40,7 @@ public class GameState extends State{
             current.getData().render(g);
             current = current.getNext();
         }
-        handler.getGameLoop().testPlayer.render(g);
+        //handler.getGameLoop().testPlayer.render(g);
     }
 
 }
