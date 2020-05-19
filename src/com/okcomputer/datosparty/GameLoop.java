@@ -47,7 +47,7 @@ public class GameLoop implements Runnable {
 
 //
     public Board board;
-    public Player testPlayer; // this will later be a list and we will add players to it, depending on selection
+    //public Player testPlayer; // this will later be a list and we will add players to it, depending on selection
 
     /**
      * Main Game Loop, runs the entire program, it can handle multiple states, for different options
@@ -69,6 +69,8 @@ public class GameLoop implements Runnable {
      */
     private void init(){
 
+
+
         display = new Display(title, width, height);
         display.getFrame().addKeyListener(keyManager);
         display.getFrame().addMouseListener(mouseManager);
@@ -79,7 +81,7 @@ public class GameLoop implements Runnable {
 
         board = new Board();
 
-        testPlayer = new Player(handler);
+        //testPlayer = new Player(handler);
 
         handler = new Handler(this);
 
@@ -92,7 +94,7 @@ public class GameLoop implements Runnable {
         winnerState = new WinnerState(handler);
         selectPlayerState = new SelectPlayerState(handler);
 
-        State.setState(mainMenuState);
+        State.setState(selectPlayerState);
 
     }
 
