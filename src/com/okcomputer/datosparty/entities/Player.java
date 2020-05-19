@@ -13,11 +13,22 @@ public class Player extends Entity{
     private int coins;
     private int stars;
     private int movement;
-    private final Handler handler;
+    private String name;
+    //private final Handler handler;
 
-    public Player(Handler handler) {
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    public Player(/*Handler handler*/) {
         super(0, 0, 100, 200);
-        this.handler = handler;
+        //this.handler = handler;
     }
 
     @Override
