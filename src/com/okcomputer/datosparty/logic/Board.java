@@ -1,6 +1,7 @@
 package com.okcomputer.datosparty.logic;
 
 import com.okcomputer.datosparty.dataStructures.SinglyList;
+import com.okcomputer.datosparty.logic.boxes.*;
 
 public class Board {
 

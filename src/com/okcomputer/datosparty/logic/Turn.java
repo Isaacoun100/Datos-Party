@@ -7,16 +7,23 @@ public class Turn {
     private static SinglyNode<Player> playersTurn;
 
     public static void nextPlayer() {
-        if (Round.getNumRound() == 0) {
-            playersTurn = Round.getPlayerOrder().getHead();
-            Round.setNumRound(1);
-        } else if (playersTurn.getNext() == null) {
-            //Minigame state
-            //Minigame ends
-            playersTurn = Round.getPlayerOrder().getHead();
-            Round.setNumRound(Round.getNumRound() + 1);
+        if (playersTurn.getNext() == null) {
+            // Minigame
+            playersTurn =  Round.getPlayerOrder().getHead();
         } else {
             playersTurn = playersTurn.getNext();
         }
     }
+
+    public static void rollDice() {
+        playersTurn.getData().setMovement();
+        int boxesLeft =  playersTurn.getData().getMovement();
+        while (boxesLeft > 0) {
+            playersTurn.getData().setPosition(playersTurn.getData().getPosition().getNext());
+            //Check star
+            boxesLeft--;
+        }
+    }
+
+
 }
