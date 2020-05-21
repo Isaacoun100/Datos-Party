@@ -2,7 +2,7 @@ package com.okcomputer.datosparty.states;
 
 import com.okcomputer.datosparty.Handler;
 import com.okcomputer.datosparty.dataStructures.SinglyNode;
-import com.okcomputer.datosparty.logic.Box;
+import com.okcomputer.datosparty.logic.boxes.Box;
 import com.okcomputer.datosparty.gfx.Assets;
 import com.okcomputer.datosparty.userInterface.*;
 

@@ -1,10 +1,13 @@
 package com.okcomputer.datosparty.logic;
 
 import com.okcomputer.datosparty.dataStructures.SinglyList;
+import com.okcomputer.datosparty.logic.boxes.*;
+
+import java.util.Random;
 
 public class Board {
 
-    private final SinglyList<Box> phaseA = new SinglyList<>();
+    public static final SinglyList<Box> phaseA = new SinglyList<>();
 
     public Board() {
 
@@ -18,7 +21,10 @@ public class Board {
 
     }
 
-    public SinglyList<Box> getPhaseA() {
-        return phaseA;
+    public static void setStar() {
+        Random numRandom = new Random();
+        int starIndex = numRandom.nextInt(phaseA.getLength());
+        phaseA.getNodeByIndex(starIndex).getData().setStarBox(true);
     }
+
 }

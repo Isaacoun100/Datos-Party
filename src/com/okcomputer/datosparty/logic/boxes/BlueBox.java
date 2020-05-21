@@ -1,8 +1,9 @@
-package com.okcomputer.datosparty.logic;
+package com.okcomputer.datosparty.logic.boxes;
 
 import com.okcomputer.datosparty.dataStructures.SinglyList;
 import com.okcomputer.datosparty.entities.Player;
 import com.okcomputer.datosparty.gfx.Assets;
+import com.okcomputer.datosparty.logic.boxes.Box;
 
 import java.awt.*;
 

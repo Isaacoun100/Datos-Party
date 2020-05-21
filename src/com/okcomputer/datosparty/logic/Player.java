@@ -1,6 +1,8 @@
 package com.okcomputer.datosparty.logic;
 
+import com.okcomputer.datosparty.dataStructures.DoublyNode;
 import com.okcomputer.datosparty.dataStructures.SinglyNode;
+import com.okcomputer.datosparty.logic.boxes.Box;
 
 public class Player{
 
@@ -8,6 +10,7 @@ public class Player{
     private int movement;
     private int coins;
     private int stars;
+    private DoublyNode<Box> position;
 
     public Player(String name) {
         this.name = name;
@@ -43,5 +46,13 @@ public class Player{
 
     public void setStars(int stars) {
         this.stars = stars;
+    }
+
+    public DoublyNode<Box> getPosition() {
+        return position;
+    }
+
+    public void setPosition(DoublyNode<Box> position) {
+        this.position = position;
     }
 }
