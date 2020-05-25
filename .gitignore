@@ -1,6 +1,9 @@
 
-# Created by https://www.gitignore.io/api/java,linux,windows,intellij+all
-# Edit at https://www.gitignore.io/?templates=java,linux,windows,intellij+all
+# Created by https://www.gitignore.io/api/java,linux,windows,floobits,intellij+all
+# Edit at https://www.gitignore.io/?templates=java,linux,windows,floobits,intellij+all
+
+### floobits ###
+.floo
 
 ### Intellij+all ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
@@ -154,4 +157,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.gitignore.io/api/java,linux,windows,intellij+all
+# End of https://www.gitignore.io/api/java,linux,windows,floobits,intellij+all
