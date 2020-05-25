@@ -13,14 +13,6 @@ public class Round {
         playerOrder = new SinglyList<>();
     }
 
-    public static void playerLoop(int player){
-
-        while(player>0){
-            Round.addPlayer("player "+player);
-            player--;
-        }
-    }
-
     public static void definePlayers(SinglyList<String> playerNames) {
         if (1 < playerNames.getLength() && playerNames.getLength() <= 4) {
             numPlayers = playerNames.getLength();
@@ -34,63 +26,22 @@ public class Round {
         }
     }
 
+    public void translate(SinglyList<TemporalPlayer> sortedList){
+        SinglyNode<TemporalPlayer> temp = sortedList.getHead();
+
+        while(temp!=null){
+            this.addPlayer(temp.getData().getId());
+            temp=temp.getNext();
+        }
+
+    }
+
     public static void addPlayer(String name){
         playerOrder.add(new Player(name));
     }
 
     public static void returnPlayers(){
         playerOrder.print();
-    }
-
-    public static void defineOrder() {
-        playerOrder.getNodeByIndex(0).getData().setMovement();
-        playerOrder.getNodeByIndex(1).getData().setMovement();
-        if (numPlayers >= 3) {
-            playerOrder.getNodeByIndex(2).getData().setMovement();
-        }
-        if (numPlayers == 4) {
-            playerOrder.getNodeByIndex(3).getData().setMovement();
-        }
-        sort(playerOrder);
-    }
-
-    private static void sort(SinglyList<Player> list)  {
-        SinglyNode<Player> node1 = list.getHead();
-        while (node1.getNext() != null) {
-            SinglyNode<Player> node2 = node1.getNext();
-            int num1 = node1.getData().getMovement();
-            int num2 = node2.getData().getMovement();
-            while (num1 == num2) {
-                node2.getData().setMovement();
-                num2 = node2.getData().getMovement();
-            }
-            if (num1 < num2) {
-                swap(node1, node2);
-                node1 = node1.getNext();
-            } else {
-                node1 = node1.getNext();
-            }
-        }
-        isOrdered(list);
-    }
-
-    private static void swap(SinglyNode<Player> node1, SinglyNode<Player> node2) {
-        Player data1 = node1.getData();
-        Player data2 =  node2.getData();
-        node1.setData(data2);
-        node2.setData(data1);
-    }
-
-    private static void isOrdered(SinglyList<Player> list) {
-        SinglyNode<Player> node = list.getHead();
-        while (node.getNext() != null) {
-            int num1 = node.getData().getMovement();
-            int num2 = node.getNext().getData().getMovement();
-            if (num1 <= num2) {
-                sort(list);
-            }
-            node = node.getNext();
-        }
     }
 
     public static SinglyList<Player> getPlayerOrder() {

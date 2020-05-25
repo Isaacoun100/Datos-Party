@@ -5,32 +5,39 @@ import com.okcomputer.datosparty.dataStructures.SinglyNode;
 
 public class DefineOrder {
 
-    private static SinglyList<TemporalPlayer> diceTrowList;
+    private static SinglyList<TemporalPlayer> diceThrowList;
     TemporalPlayer newPlayer;
 
     public static void initTemporal(){
-        diceTrowList = new SinglyList<>();
+        diceThrowList = new SinglyList<>();
     }
 
     public void addNewTemporal(TemporalPlayer newTemporal){
-        diceTrowList.add(newTemporal);
+        diceThrowList.add(newTemporal);
     }
 
-    public SinglyList<TemporalPlayer> recursiveAdd(int cantPlayers){
+    public SinglyList<TemporalPlayer> recursiveAdd(int playerCount){
 
-        while(cantPlayers>0){
-            newPlayer = new TemporalPlayer(cantPlayers, Dice.roll());
+        while(playerCount>0){
+            newPlayer = new TemporalPlayer("Player " + playerCount, Dice.roll());
             System.out.println("[ "+ newPlayer.getId() +" , "+ newPlayer.getDiceValue() +" ]");
             this.addNewTemporal(newPlayer);
-            cantPlayers--;
+            playerCount--;
         }
-        return diceTrowList;
+        return diceThrowList;
 
+    }
+
+    private static void swap(SinglyNode<Player> node1, SinglyNode<Player> node2) {
+        Player data1 = node1.getData();
+        Player data2 =  node2.getData();
+        node1.setData(data2);
+        node2.setData(data1);
     }
 
     public SinglyList<TemporalPlayer> searchDraw(){
 
-        SinglyNode<TemporalPlayer> temp = diceTrowList.getHead();
+        SinglyNode<TemporalPlayer> temp = diceThrowList.getHead();
         SinglyNode<TemporalPlayer> search = temp;
         SinglyList<TemporalPlayer> drawPlayers = new SinglyList<>();
 
@@ -44,7 +51,7 @@ public class DefineOrder {
                 search=search.getNext();
             }
             temp=temp.getNext();
-            search=diceTrowList.getHead();
+            search= diceThrowList.getHead();
         }
 
         return drawPlayers;
