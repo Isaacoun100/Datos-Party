@@ -6,22 +6,24 @@ import com.okcomputer.datosparty.dataStructures.SinglyNode;
 public class DefineOrder {
 
     private static SinglyList<TemporalPlayer> diceTrowList;
-
     TemporalPlayer newPlayer;
+
+    public static void initTemporal(){
+        diceTrowList = new SinglyList<>();
+    }
 
     public void addNewTemporal(TemporalPlayer newTemporal){
         diceTrowList.add(newTemporal);
     }
 
     public SinglyList<TemporalPlayer> recursiveAdd(int cantPlayers){
-        int count=0;
 
-        while(count>=cantPlayers){
-            newPlayer = new TemporalPlayer(count);
+        while(cantPlayers>0){
+            newPlayer = new TemporalPlayer(cantPlayers, Dice.roll());
+            System.out.println("[ "+ newPlayer.getId() +" , "+ newPlayer.getDiceValue() +" ]");
             this.addNewTemporal(newPlayer);
-            count++;
+            cantPlayers--;
         }
-
         return diceTrowList;
 
     }
@@ -30,7 +32,7 @@ public class DefineOrder {
 
         SinglyNode<TemporalPlayer> temp = diceTrowList.getHead();
         SinglyNode<TemporalPlayer> search = temp;
-        SinglyList<TemporalPlayer> drawPlayers = null;
+        SinglyList<TemporalPlayer> drawPlayers = new SinglyList<>();
 
         while(temp!=null){
             while(search!=null){
