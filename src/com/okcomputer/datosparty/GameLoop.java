@@ -1,13 +1,10 @@
 package com.okcomputer.datosparty;
 
 import com.okcomputer.datosparty.display.Display;
-import com.okcomputer.datosparty.entities.Player;
 import com.okcomputer.datosparty.gfx.Assets;
 import com.okcomputer.datosparty.input.KeyManager;
 import com.okcomputer.datosparty.input.MouseManager;
 import com.okcomputer.datosparty.logic.Board;
-import com.okcomputer.datosparty.music.LoopMusic;
-import com.okcomputer.datosparty.music.MusicPlayer;
 import com.okcomputer.datosparty.states.*;
 
 import java.awt.*;
@@ -92,7 +89,7 @@ public class GameLoop implements Runnable {
         endGameState = new EndgameState(handler);
         boardState = new BoardState(handler);
         winnerState = new WinnerState(handler);
-        selectPlayerState = new SelectPlayerState(handler);
+        selectPlayerState = new PlayerSelectionState(handler);
 
         State.setState(selectPlayerState);
 
@@ -131,7 +128,7 @@ public class GameLoop implements Runnable {
         init();
 
         int fps = 60;
-        double timePerTick = 1000000000 / fps;
+        float timePerTick = 1000000000 / fps;
         double delta = 0;
         long now;
         long lastTime = System.nanoTime();

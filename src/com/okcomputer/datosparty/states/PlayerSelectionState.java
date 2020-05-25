@@ -3,18 +3,17 @@ package com.okcomputer.datosparty.states;
 import com.okcomputer.datosparty.Handler;
 import com.okcomputer.datosparty.gfx.Assets;
 import com.okcomputer.datosparty.logic.DefineOrder;
-import com.okcomputer.datosparty.logic.Round;
 import com.okcomputer.datosparty.userInterface.*;
 
 import java.awt.*;
 
 
-public class SelectPlayerState extends State {
+public class PlayerSelectionState extends State {
 
     private final UIManager uiManager;
     DefineOrder setOrder = new DefineOrder();
 
-    public SelectPlayerState(Handler handler) {
+    public PlayerSelectionState(Handler handler) {
         super(handler);
 
         uiManager = new SelectPlayerUI(handler);
