@@ -20,11 +20,14 @@ public class Turn {
     }
 
     public static void nextPlayer() {
-        if (playersTurn.getNext() == null) {
-            // Minigame
-            playersTurn =  Round.getPlayerOrder().getHead();
-        } else {
-            playersTurn = playersTurn.getNext();
-        }
+        playersTurn = playersTurn.getNext();
+    }
+
+    public static SinglyNode<Player> getPlayersTurn() {
+        return playersTurn;
+    }
+
+    public static void setPlayersTurn(SinglyNode<Player> playersTurn) {
+        Turn.playersTurn = playersTurn;
     }
 }

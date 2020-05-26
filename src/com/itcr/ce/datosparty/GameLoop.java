@@ -5,6 +5,7 @@ import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.input.KeyManager;
 import com.itcr.ce.datosparty.input.MouseManager;
 import com.itcr.ce.datosparty.logic.Board;
+import com.itcr.ce.datosparty.logic.Game;
 import com.itcr.ce.datosparty.states.*;
 
 import java.awt.*;
@@ -34,6 +35,8 @@ public class GameLoop implements Runnable {
     /**
      * Input Initialization
      */
+    public Game game;
+    
     private KeyManager keyManager;
     private MouseManager mouseManager;
 
@@ -67,7 +70,6 @@ public class GameLoop implements Runnable {
     private void init(){
 
 
-
         display = new Display(title, width, height);
         display.getFrame().addKeyListener(keyManager);
         display.getFrame().addMouseListener(mouseManager);
@@ -91,7 +93,10 @@ public class GameLoop implements Runnable {
         winnerState = new WinnerState(handler);
         selectPlayerState = new PlayerSelectionState(handler);
 
-        State.setState(selectPlayerState);
+        game = new Game(handler, 5);
+        game.start();
+
+        State.setState(boardState);
 
     }
 

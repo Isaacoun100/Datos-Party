@@ -1,6 +1,8 @@
 package com.itcr.ce.datosparty.states;
 
+import com.itcr.ce.datosparty.dataStructures.DoublyNode;
 import com.itcr.ce.datosparty.dataStructures.SinglyNode;
+import com.itcr.ce.datosparty.logic.Board;
 import com.itcr.ce.datosparty.logic.boxes.Box;
 import com.itcr.ce.datosparty.userInterface.GameUI;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
@@ -36,8 +38,8 @@ public class GameState extends State{
     public void render(Graphics g) {
         uiManager.render(g);
 
-        SinglyNode<Box> current;
-        current = handler.getGameLoop().board.getPhaseA().getHead();
+        DoublyNode<Box> current;
+        current = Board.phaseA.getHead();
         while (current != null) {
             current.getData().render(g);
             current = current.getNext();
