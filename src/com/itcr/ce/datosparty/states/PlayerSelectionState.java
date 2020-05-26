@@ -27,7 +27,9 @@ public class PlayerSelectionState extends State {
             public void onClick() {
 
                 setOrder.recursiveAdd(2);
-                setOrder.searchDraw().print();
+                System.out.println("The order is:");
+                setOrder.order();
+
             }
         }));
 
@@ -36,7 +38,8 @@ public class PlayerSelectionState extends State {
             public void onClick() {
 
                 setOrder.recursiveAdd(3);
-                setOrder.searchDraw().print();
+                System.out.println("The order is:");
+                setOrder.order();
 
             }
         }));
@@ -45,7 +48,8 @@ public class PlayerSelectionState extends State {
             @Override
             public void onClick() {
                 setOrder.recursiveAdd(4);
-                setOrder.searchDraw().print();
+                System.out.println("The order is:");
+                setOrder.order();
             }
         }));
 
