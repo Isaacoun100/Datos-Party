@@ -9,7 +9,7 @@ public class Round {
     private static int numPlayers;
     private static int numRound = 0;
 
-    public static void roundInit(){
+    public static void initRound() {
         playerOrder = new SinglyList<>();
     }
 
