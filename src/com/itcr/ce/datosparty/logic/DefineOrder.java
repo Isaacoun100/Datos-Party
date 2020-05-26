@@ -95,7 +95,7 @@ public class DefineOrder {
         }
 
         this.displayPlayer(TemporalPlayerList);
-        Round.roundInit();
+        Round.initRound();
         Round newRound = new Round();
         newRound.translate(TemporalPlayerList);
 
