@@ -34,9 +34,22 @@ public class Round {
             temp=temp.getNext();
         }
 
+        this.showList();
+
     }
 
-    public static void addPlayer(String name){
+    public void showList(){
+
+        SinglyNode<Player> showPlayer = playerOrder.getHead();
+
+        while (showPlayer!=null){
+            System.out.println(showPlayer.getData().getName());
+            showPlayer=showPlayer.getNext();
+        }
+
+    }
+
+    public void addPlayer(String name){
         playerOrder.add(new Player(name));
     }
 
