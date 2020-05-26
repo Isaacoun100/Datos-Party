@@ -30,7 +30,7 @@ public class Round {
         SinglyNode<TemporalPlayer> temp = sortedList.getHead();
 
         while(temp!=null){
-            this.addPlayer(temp.getData().getId());
+            addPlayer(temp.getData().getId());
             temp=temp.getNext();
         }
 
@@ -49,7 +49,7 @@ public class Round {
 
     }
 
-    public void addPlayer(String name){
+    public static void addPlayer(String name){
         playerOrder.add(new Player(name));
     }
 
