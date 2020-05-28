@@ -38,12 +38,12 @@ public class GameState extends State{
     public void render(Graphics g) {
         uiManager.render(g);
 
-        DoublyNode<Box> current;
-        current = Board.phaseA.getHead();
-        while (current != null) {
-            current.getData().render(g);
-            current = current.getNext();
-        }
+//        DoublyNode<Box> current;
+//        current = Board.phaseA.getHead();
+//        while (current != null) {
+//            current.getData().render(g);
+//            current = current.getNext();
+//        }
         //handler.getGameLoop().testPlayer.render(g);
     }
 

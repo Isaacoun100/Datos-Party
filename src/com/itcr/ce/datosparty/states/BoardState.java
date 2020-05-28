@@ -25,7 +25,7 @@ public class BoardState extends State {
             public void onClick() {
 
                 SoundEffect.DiceRoll();
-                System.out.println(Dice.roll());
+                System.out.println(Dice.roll(6,1));
 
                 }
             }));
