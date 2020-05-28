@@ -6,11 +6,11 @@ public class Game extends Thread {
 
     Handler handler;
 
-    int currentRound = 1,
-            roundMAX;
+    int currentRound = 1;
 
     public Game(Handler handler, int numRound) {
         this.handler = handler;
+
         Round.initRound();
         Round.addPlayer("Gabo");
         Round.addPlayer("Jose");
@@ -28,14 +28,16 @@ public class Game extends Thread {
 
         while (currentRound <= Round.getNumRound()) {
             Turn.setPlayersTurn(Round.getPlayerOrder().getHead());
+            if (currentRound == 2) {
+                System.out.println("Estrella");
+            }
             while (Turn.getPlayersTurn() != null) {
                 System.out.println(Turn.getPlayersTurn().getData().getName());
                 Turn.rollDice();
-                System.out.println(Turn.getPlayersTurn().getData().getMovement());
+                Turn.movePlayer();
+                System.out.println("Dice: " + Turn.getPlayersTurn().getData().getMovement());
+                System.out.print("\n");
                 Turn.nextPlayer();
-            }
-            if (currentRound == 2) {
-                System.out.println("Estrella");
             }
             currentRound++;
         }
