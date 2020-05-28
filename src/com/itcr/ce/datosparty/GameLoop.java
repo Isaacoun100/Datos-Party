@@ -78,7 +78,7 @@ public class GameLoop implements Runnable {
         display.getCanvas().addMouseMotionListener(mouseManager);
         Assets.init();
 
-        board = new Board();
+        //board = new Board();
 
         //testPlayer = new Player(handler);
 
@@ -92,11 +92,10 @@ public class GameLoop implements Runnable {
         boardState = new BoardState(handler);
         winnerState = new WinnerState(handler);
         selectPlayerState = new PlayerSelectionState(handler);
+        State.setState(mainMenuState);
 
         game = new Game(handler, 5);
         game.start();
-
-        State.setState(boardState);
 
     }
 
