@@ -19,8 +19,8 @@ public class Game extends Thread {
         Turn.setPlayersTurn(Round.getPlayerOrder().getHead());
 
         Round.getPlayerOrder().getNodeByIndex(0).getData().setPosition(Board.phaseA.getNodeByIndex(0));
-        Round.getPlayerOrder().getNodeByIndex(1).getData().setPosition(Board.phaseA.getNodeByIndex(10));
-        Round.getPlayerOrder().getNodeByIndex(2).getData().setPosition(Board.phaseA.getNodeByIndex(20));
+        Round.getPlayerOrder().getNodeByIndex(1).getData().setPosition(Board.phaseA.getNodeByIndex(0));
+        Round.getPlayerOrder().getNodeByIndex(2).getData().setPosition(Board.phaseA.getNodeByIndex(0));
     }
 
     @Override
@@ -30,8 +30,10 @@ public class Game extends Thread {
             Turn.setPlayersTurn(Round.getPlayerOrder().getHead());
             if (currentRound == 2) {
                 System.out.println("Estrella");
+                Board.setStar();
             }
             while (Turn.getPlayersTurn() != null) {
+                //Player
                 System.out.println(Turn.getPlayersTurn().getData().getName());
                 Turn.rollDice();
                 Turn.movePlayer();
@@ -40,6 +42,13 @@ public class Game extends Thread {
                 Turn.nextPlayer();
             }
             currentRound++;
+
+//            try {
+//                this.wait();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+
         }
     }
 }
