@@ -101,7 +101,7 @@ public class GameLoop implements Runnable {
         game = new Game(handler, 5);
         game.start();
 
-        State.setState(boardState);
+        State.setState(selectPlayerState);
 
     }
 

@@ -52,7 +52,7 @@ public class Player extends Entity {
     }
 
     public void setMovement() {
-        this.movement = Dice.roll();
+        this.movement = Dice.roll(6,1);
     }
 
     public int getCoins() {

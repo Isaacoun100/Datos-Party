@@ -2,7 +2,7 @@ package com.itcr.ce.datosparty.logic;
 
 import com.itcr.ce.datosparty.dataStructures.DoublyNode;
 import com.itcr.ce.datosparty.dataStructures.SinglyNode;
-import com.itcr.ce.datosparty.logic.boxes.Box;
+import com.itcr.ce.datosparty.entities.boxes.Box;
 
 public class Player{
 
