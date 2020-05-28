@@ -12,6 +12,10 @@ public class SinglyList<T> extends LinkedList<T>{
         return head;
     }
 
+    public void clear() {
+        this.head= null;
+    }
+
     @Override
     public int getLength() {
 
