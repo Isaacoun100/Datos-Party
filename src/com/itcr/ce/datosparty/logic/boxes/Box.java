@@ -10,7 +10,6 @@ public abstract class Box extends Entity {
     private SinglyList<Player> playerList = new SinglyList<>();
     private boolean starBox = false;
 
-
     public Box(float x, float y, int width, int height) {
         super(x, y, width, height);
     }
@@ -47,4 +46,6 @@ public abstract class Box extends Entity {
     public void setStarBox(boolean starBox) {
         this.starBox = starBox;
     }
+
+    public abstract void boxAction(Player player);
 }
