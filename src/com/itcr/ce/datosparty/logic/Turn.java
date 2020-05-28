@@ -8,15 +8,6 @@ public class Turn {
 
     public static void rollDice() {
         playersTurn.getData().setMovement();
-        int boxesLeft =  playersTurn.getData().getMovement();
-        while (boxesLeft > 0) {
-            // Goes to next Node<Box>
-            playersTurn.getData().setPosition(playersTurn.getData().getPosition().getNext());
-            // Checks if there is a star
-            playersTurn.getData().getPosition().getData().buyStar(playersTurn.getData());
-            // Subtracts from number given on dice
-            boxesLeft--;
-        }
     }
 
     public static void nextPlayer() {
@@ -27,7 +18,12 @@ public class Turn {
         return playersTurn;
     }
 
+    public static void movePlayer(){
+        playersTurn.getData().move();
+    }
+
     public static void setPlayersTurn(SinglyNode<Player> playersTurn) {
         Turn.playersTurn = playersTurn;
     }
+
 }
