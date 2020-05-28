@@ -1,6 +1,7 @@
 package com.itcr.ce.datosparty.logic;
 
 import com.itcr.ce.datosparty.dataStructures.SinglyNode;
+import com.itcr.ce.datosparty.entities.Player;
 
 public class Turn {
 
