@@ -1,7 +1,7 @@
 package com.itcr.ce.datosparty.logic;
 
 import com.itcr.ce.datosparty.dataStructures.CircularDoublyList;
-import com.itcr.ce.datosparty.logic.boxes.*;
+import com.itcr.ce.datosparty.entities.boxes.*;
 
 import java.util.Random;
 
@@ -41,7 +41,6 @@ public class Board {
         phaseA.add(new YellowBox(400-(80*2)+80,30+80*3,80,80));
         phaseA.add(new BlueBox(400,30+80,80,80));
         phaseA.add(new GreenBox(400,30+80*2,80,80));
-
 
     }
 
