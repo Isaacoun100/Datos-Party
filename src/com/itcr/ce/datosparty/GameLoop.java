@@ -29,7 +29,7 @@ public class GameLoop implements Runnable {
     /**
      * State Initialization
      */
-    public State gameState, mainMenuState, titleScreenState, creditsState, optionsState, endGameState, boardState,
+    public static State gameState, mainMenuState, titleScreenState, creditsState, optionsState, endGameState, boardState,
                             winnerState, selectPlayerState;
 
     /**
@@ -64,6 +64,10 @@ public class GameLoop implements Runnable {
         mouseManager = new MouseManager();
     }
 
+    public static void setState(State state){
+        State.setState(state);
+    }
+
     /**
      * Initialization method, this runs variables that are used in the game
      */
@@ -96,6 +100,8 @@ public class GameLoop implements Runnable {
 
         game = new Game(handler, 5);
         game.start();
+
+        State.setState(boardState);
 
     }
 
