@@ -18,7 +18,7 @@ public class Round {
             numPlayers = playerNames.getLength();
             playerOrder = new SinglyList<>();
             for (int i = 0; i < 4; i++) {
-                playerOrder.add(new Player(playerNames.getNodeByIndex(i).getData()));
+                playerOrder.add(new Player(playerNames.getNodeByIndex(i).getData(),0,0));
                 if (playerNames.getNodeByIndex(i).getNext() == null) {
                     break;
                 }
@@ -50,7 +50,7 @@ public class Round {
     }
 
     public static void addPlayer(String name){
-        playerOrder.add(new Player(name));
+        playerOrder.add(new Player(name,0,0));
     }
 
     public static void returnPlayers(){
