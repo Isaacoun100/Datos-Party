@@ -1,9 +1,9 @@
-package com.itcr.ce.datosparty.logic;
+package com.itcr.ce.datosparty.entities;
 
 import com.itcr.ce.datosparty.dataStructures.DoublyNode;
-import com.itcr.ce.datosparty.entities.Entity;
 import com.itcr.ce.datosparty.gfx.Assets;
-import com.itcr.ce.datosparty.logic.boxes.Box;
+import com.itcr.ce.datosparty.logic.Dice;
+import com.itcr.ce.datosparty.entities.boxes.Box;
 
 import java.awt.*;
 
@@ -31,7 +31,7 @@ public class Player extends Entity {
             // Goes to next Node<Box>
             setPosition(getPosition().getNext());
             // Checks if there is a star
-            getPosition().getData().buyStar(this);
+            getPosition().getData().checkStar(this);
             // Subtracts from number given on dice
             boxesLeft--;
             x = position.getData().getX();
@@ -68,7 +68,7 @@ public class Player extends Entity {
     }
 
     public void setStars(int stars) {
-        this.stars = stars;
+        this.stars += stars;
     }
 
     public DoublyNode<Box> getPosition() {
