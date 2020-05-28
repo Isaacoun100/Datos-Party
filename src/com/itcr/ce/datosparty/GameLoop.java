@@ -78,7 +78,7 @@ public class GameLoop implements Runnable {
         display.getCanvas().addMouseMotionListener(mouseManager);
         Assets.init();
 
-        //board = new Board();
+        board = new Board();
 
         //testPlayer = new Player(handler);
 
