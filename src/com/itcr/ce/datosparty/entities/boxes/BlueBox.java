@@ -1,8 +1,8 @@
-package com.itcr.ce.datosparty.logic.boxes;
+package com.itcr.ce.datosparty.entities.boxes;
 
 import com.itcr.ce.datosparty.dataStructures.SinglyList;
 import com.itcr.ce.datosparty.gfx.Assets;
-import com.itcr.ce.datosparty.logic.Player;
+import com.itcr.ce.datosparty.entities.Player;
 
 import java.awt.*;
 
@@ -29,7 +29,6 @@ public class BlueBox extends Box {
     @Override
     public void boxAction(Player player) {
         System.out.println("BlueBox");
-        System.out.println("blueBox");
         System.out.println("Current Coins: "+player.getCoins());
     }
 }

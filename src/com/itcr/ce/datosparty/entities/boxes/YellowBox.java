@@ -1,7 +1,7 @@
-package com.itcr.ce.datosparty.logic.boxes;
+package com.itcr.ce.datosparty.entities.boxes;
 
 import com.itcr.ce.datosparty.gfx.Assets;
-import com.itcr.ce.datosparty.logic.Player;
+import com.itcr.ce.datosparty.entities.Player;
 
 import java.awt.*;
 
