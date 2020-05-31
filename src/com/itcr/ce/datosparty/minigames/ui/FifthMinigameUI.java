@@ -1,4 +1,10 @@
 package com.itcr.ce.datosparty.minigames.ui;
 
-public class FifthMinigameUI {
+import com.itcr.ce.datosparty.Handler;
+import com.itcr.ce.datosparty.userInterface.UIManager;
+
+public class FifthMinigameUI extends UIManager {
+    public FifthMinigameUI(Handler handler) {
+        super(handler);
+    }
 }
