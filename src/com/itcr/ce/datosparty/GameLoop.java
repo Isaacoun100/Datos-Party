@@ -1,11 +1,12 @@
 package com.itcr.ce.datosparty;
 
 import com.itcr.ce.datosparty.dataStructures.SinglyList;
+import com.itcr.ce.datosparty.input.MouseManager;
 import com.itcr.ce.datosparty.display.Display;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.input.KeyManager;
-import com.itcr.ce.datosparty.input.MouseManager;
+
 import com.itcr.ce.datosparty.logic.Board;
 import com.itcr.ce.datosparty.states.*;
 
