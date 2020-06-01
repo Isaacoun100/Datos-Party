@@ -1,11 +1,12 @@
 package com.itcr.ce.datosparty;
 
+import com.itcr.ce.datosparty.dataStructures.SinglyList;
 import com.itcr.ce.datosparty.display.Display;
+import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.input.KeyManager;
 import com.itcr.ce.datosparty.input.MouseManager;
 import com.itcr.ce.datosparty.logic.Board;
-import com.itcr.ce.datosparty.logic.Game;
 import com.itcr.ce.datosparty.states.*;
 
 import java.awt.*;
@@ -35,8 +36,7 @@ public class GameLoop implements Runnable {
     /**
      * Input Initialization
      */
-    public Game game;
-    
+
     private KeyManager keyManager;
     private MouseManager mouseManager;
 
@@ -46,7 +46,7 @@ public class GameLoop implements Runnable {
     private Handler handler;
 
 //
-    public Board board;
+    private Board board;
     //public Player testPlayer; // this will later be a list and we will add players to it, depending on selection
 
     /**
@@ -66,6 +66,10 @@ public class GameLoop implements Runnable {
 
     public static void setState(State state){
         State.setState(state);
+    }
+
+    public Board getBoard() {
+        return board;
     }
 
     /**
@@ -98,10 +102,9 @@ public class GameLoop implements Runnable {
         selectPlayerState = new PlayerSelectionState(handler);
         State.setState(mainMenuState);
 
-        game = new Game(handler, 5);
-        game.start();
-
-        State.setState(selectPlayerState);
+        //game = new Game(handler, 5);
+        //game.start();
+        State.setState(mainMenuState);
 
     }
 
@@ -196,5 +199,4 @@ public class GameLoop implements Runnable {
         }
 
     }
-
 }
