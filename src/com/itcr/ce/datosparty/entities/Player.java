@@ -21,7 +21,7 @@ public class Player extends Entity {
     private DoublyNode<Box> position;
 
     public Player(String name, float x, float y) {
-        super(x, y, 8, 8);
+        super(x, y, 80, 120);
         this.name = name;
     }
 
@@ -29,9 +29,10 @@ public class Player extends Entity {
         int boxesLeft =  getMovement();
         while (boxesLeft > 0) {
             // Goes to next Node<Box>
-            setPosition(getPosition().getNext());
+            DoublyNode<Box> nextNode = getPosition().getNext();
+            setPosition(nextNode);
             // Checks if there is a star
-            getPosition().getData().checkStar(this);
+            //getPosition().getData().checkStar(this);
             // Subtracts from number given on dice
             boxesLeft--;
             x = position.getData().getX();

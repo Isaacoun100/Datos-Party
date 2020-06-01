@@ -1,6 +1,9 @@
 package com.itcr.ce.datosparty;
 
+import com.itcr.ce.datosparty.input.MouseManager;
+import com.itcr.ce.datosparty.input.KeyManager;
 import com.itcr.ce.datosparty.display.Display;
+import com.itcr.ce.datosparty.logic.Board;
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.input.KeyManager;
 import com.itcr.ce.datosparty.input.MouseManager;
@@ -8,9 +11,9 @@ import com.itcr.ce.datosparty.logic.Board;
 import com.itcr.ce.datosparty.logic.Game;
 import com.itcr.ce.datosparty.minigames.states.*;
 import com.itcr.ce.datosparty.states.*;
-
-import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.*;
+
 
 /**
  *
@@ -38,8 +41,7 @@ public class GameLoop implements Runnable {
     /**
      * Input Initialization
      */
-    public Game game;
-    
+
     private KeyManager keyManager;
     private MouseManager mouseManager;
 
@@ -49,7 +51,7 @@ public class GameLoop implements Runnable {
     private Handler handler;
 
 //
-    public Board board;
+    private Board board;
     //public Player testPlayer; // this will later be a list and we will add players to it, depending on selection
 
     /**
@@ -71,10 +73,15 @@ public class GameLoop implements Runnable {
         State.setState(state);
     }
 
+    public Board getBoard() {
+        return board;
+    }
+
     /**
      * Initialization method, this runs variables that are used in the game
      */
     private void init(){
+
 
         display = new Display(title, width, height);
         display.getFrame().addKeyListener(keyManager);
@@ -107,10 +114,9 @@ public class GameLoop implements Runnable {
         seventhMinigameState = new SeventhMinigameState(handler);
         eighthMinigameState = new EighthMinigameState(handler);
 
-        game = new Game(handler, 5);
-        game.start();
-
-        State.setState(selectPlayerState);
+        //game = new Game(handler, 5);
+        //game.start();
+        State.setState(mainMenuState);
 
     }
 

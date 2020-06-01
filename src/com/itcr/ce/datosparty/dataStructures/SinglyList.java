@@ -6,6 +6,8 @@ package com.itcr.ce.datosparty.dataStructures;
  */
 public class SinglyList<T> extends LinkedList<T>{
 
+    int length = 0;
+
     private SinglyNode<T> head;
 
     public SinglyNode<T> getHead() {
@@ -19,14 +21,14 @@ public class SinglyList<T> extends LinkedList<T>{
     @Override
     public int getLength() {
 
-        int length = 0;
-        SinglyNode<T> currentNode = this.head;
-
-        while (currentNode != null) {
-            length++;
-            currentNode = currentNode.getNext();
-        }
-        return length;
+//        int length = 0;
+//        SinglyNode<T> currentNode = this.head;
+//
+//        while (currentNode != null) {
+//            length++;
+//            currentNode = currentNode.getNext();
+//        }
+      return length;
     }
 
     @Override
@@ -84,6 +86,7 @@ public class SinglyList<T> extends LinkedList<T>{
             // Insert the newNode at last node
             lastNode.setNext(newNode);
         }
+        length++;
     }
 
     @Override
@@ -103,6 +106,7 @@ public class SinglyList<T> extends LinkedList<T>{
                 this.head = newNode;
             }
         }
+        length++;
     }
 
     @Override
@@ -111,12 +115,15 @@ public class SinglyList<T> extends LinkedList<T>{
             System.out.println("Index out of range");
         } else if (index == 0) {
             this.head = this.head.getNext();
+            length--;
         } else if (getNodeByIndex(index).getNext() == null) {
             getNodeByIndex(--index).setNext(null);
+            length--;
         } else {
             SinglyNode<T> nodeIndex = getNodeByIndex(index);
             SinglyNode<T> nodePrevious = getNodeByIndex(--index);
             nodePrevious.setNext(nodeIndex.getNext());
+            length--;
         }
 
     }

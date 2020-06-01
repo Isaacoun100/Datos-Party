@@ -2,6 +2,7 @@ package com.itcr.ce.datosparty;
 
 import com.itcr.ce.datosparty.input.KeyManager;
 import com.itcr.ce.datosparty.input.MouseManager;
+import com.itcr.ce.datosparty.logic.Board;
 
 public class Handler {
 
@@ -27,4 +28,7 @@ public class Handler {
         return gameLoop.getMouseManager();
     }
 
+    public Board getBoard() {
+        return gameLoop.getBoard();
+    }
 }
