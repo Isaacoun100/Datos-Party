@@ -12,7 +12,6 @@ import java.util.Random;
 public class Game extends Thread {
 
     Handler handler;
-
     int currentRound = 1;
 
     public Game(Handler handler, int numRound) {
@@ -36,16 +35,24 @@ public class Game extends Thread {
 
         while (currentRound <= Round.getNumRound()) {
             Turn.setPlayersTurn(Round.getPlayerOrder().getHead());
+            Player currentPlayer;
             if (currentRound == 2) {
                 System.out.println("Estrella");
-                Board.setStar();
+                setStar();
             }
             while (Turn.getPlayersTurn() != null) {
                 //Player
-                System.out.println(Turn.getPlayersTurn().getData().getName());
+                currentPlayer = Turn.getPlayersTurn().getData();
+                System.out.println(currentPlayer.getName());
                 Turn.rollDice();
                 Turn.movePlayer();
-                System.out.println("Dice: " + Turn.getPlayersTurn().getData().getMovement());
+                try {
+                    sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                checkStar(currentPlayer);
+                System.out.println("Dice: " + currentPlayer.getMovement());
                 System.out.print("\n");
                 Turn.nextPlayer();
             }
