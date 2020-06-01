@@ -13,7 +13,6 @@ public class Round {
         playerOrder = new SinglyList<>();
     }
 
-    public void translate(SinglyList<TemporalPlayer> sortedList){
     public static void translate(SinglyList<TemporalPlayer> sortedList){
         SinglyNode<TemporalPlayer> temp = sortedList.getHead();
 
