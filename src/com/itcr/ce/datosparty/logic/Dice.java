@@ -4,14 +4,14 @@ import java.util.Random;
 
 public class Dice {
 
-    public static int roll(int max, int min){
+    public static int roll(int min, int max){
 
         Random tileNumber;
         int randomNumber;
 
         tileNumber = new Random();
 
-        randomNumber = tileNumber.nextInt(max)+min;
+        randomNumber = tileNumber.nextInt(min)+max;
 
         return randomNumber;
 
