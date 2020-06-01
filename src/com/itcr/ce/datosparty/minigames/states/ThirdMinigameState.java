@@ -5,7 +5,6 @@ import com.itcr.ce.datosparty.userInterface.ClickListener;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
 import com.itcr.ce.datosparty.states.State;
-import com.itcr.ce.datosparty.logic.Round;
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.Handler;
 
