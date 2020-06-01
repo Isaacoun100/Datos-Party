@@ -6,6 +6,7 @@ import com.itcr.ce.datosparty.input.KeyManager;
 import com.itcr.ce.datosparty.input.MouseManager;
 import com.itcr.ce.datosparty.logic.Board;
 import com.itcr.ce.datosparty.logic.Game;
+import com.itcr.ce.datosparty.minigames.states.*;
 import com.itcr.ce.datosparty.states.*;
 
 import java.awt.*;
@@ -30,7 +31,9 @@ public class GameLoop implements Runnable {
      * State Initialization
      */
     public static State gameState, mainMenuState, titleScreenState, creditsState, optionsState, endGameState, boardState,
-                            winnerState, selectPlayerState;
+                        winnerState, selectPlayerState, firstMinigameState, secondMinigameState, thirdMinigameState,
+                        fourthMinigameState, fifthMinigameState, sixthMinigameState, seventhMinigameState,
+                        eighthMinigameState;
 
     /**
      * Input Initialization
@@ -73,7 +76,6 @@ public class GameLoop implements Runnable {
      */
     private void init(){
 
-
         display = new Display(title, width, height);
         display.getFrame().addKeyListener(keyManager);
         display.getFrame().addMouseListener(mouseManager);
@@ -96,7 +98,14 @@ public class GameLoop implements Runnable {
         boardState = new BoardState(handler);
         winnerState = new WinnerState(handler);
         selectPlayerState = new PlayerSelectionState(handler);
-        State.setState(mainMenuState);
+        firstMinigameState = new FirstMinigameState(handler);
+        secondMinigameState = new SecondMinigameState(handler);
+        thirdMinigameState = new ThirdMinigameState(handler);
+        fourthMinigameState = new FourthMinigameState(handler);
+        fifthMinigameState = new FifthMinigameState(handler);
+        sixthMinigameState = new SixthMinigameState(handler);
+        seventhMinigameState = new SeventhMinigameState(handler);
+        eighthMinigameState = new EighthMinigameState(handler);
 
         game = new Game(handler, 5);
         game.start();
