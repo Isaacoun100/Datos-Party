@@ -1,6 +1,5 @@
 package com.itcr.ce.datosparty.states;
 
-import com.itcr.ce.datosparty.minigames.minilogic.Minigame;
 import com.itcr.ce.datosparty.userInterface.ClickListener;
 import com.itcr.ce.datosparty.userInterface.SelectPlayerUI;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
