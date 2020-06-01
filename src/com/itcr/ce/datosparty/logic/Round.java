@@ -7,24 +7,11 @@ import com.itcr.ce.datosparty.entities.Player;
 public class Round {
 
     private static SinglyList<Player> playerOrder;
-    private static int numPlayers;
+    private static int numPlayers = 0;
     private static int numRound = 0;
 
     public static void initRound() {
         playerOrder = new SinglyList<>();
-    }
-
-    public static void definePlayers(SinglyList<String> playerNames) {
-        if (1 < playerNames.getLength() && playerNames.getLength() <= 4) {
-            numPlayers = playerNames.getLength();
-            playerOrder = new SinglyList<>();
-            for (int i = 0; i < 4; i++) {
-                playerOrder.add(new Player(playerNames.getNodeByIndex(i).getData(),0,0));
-                if (playerNames.getNodeByIndex(i).getNext() == null) {
-                    break;
-                }
-            }
-        }
     }
 
     public void translate(SinglyList<TemporalPlayer> sortedList){
@@ -33,6 +20,7 @@ public class Round {
         while(temp!=null){
             addPlayer(temp.getData().getId());
             temp=temp.getNext();
+            numPlayers++;
         }
 
         this.showList();
@@ -47,7 +35,6 @@ public class Round {
             System.out.println(showPlayer.getData().getName());
             showPlayer=showPlayer.getNext();
         }
-
     }
 
     public static void addPlayer(String name){
