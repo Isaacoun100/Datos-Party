@@ -23,25 +23,12 @@ public class Board {
         int boxColor;
 
         for(int i = 0; i < 40; i++){
-            boxColor = Dice.roll(1, 4);
-            System.out.println(boxColor);
-            switch (Dice.roll(4, 1)){
-
-                case 1:
-                    phaseA.add(new BlueBox(xPos, yPos, 80, 80));
-                    break;
-                case 2:
-                    phaseA.add(new GreenBox(xPos, yPos, 80, 80));
-                    break;
-                case 3:
-                    phaseA.add(new RedBox(xPos, yPos, 80, 80));
-                    break;
-                case 4:
-                    phaseA.add(new YellowBox(xPos, yPos, 80, 80));
-                    break;
-
-                default:
-                    System.out.println("Something went terribly wrong");
+            switch (Dice.roll(4, 1)) {
+                case 1 -> phaseA.add(new BlueBox(xPos, yPos, 80, 80));
+                case 2 -> phaseA.add(new GreenBox(xPos, yPos, 80, 80));
+                case 3 -> phaseA.add(new RedBox(xPos, yPos, 80, 80));
+                case 4 -> phaseA.add(new YellowBox(xPos, yPos, 80, 80));
+                default -> System.out.println("Something went terribly wrong");
             }
 
             if (i%5==0){
