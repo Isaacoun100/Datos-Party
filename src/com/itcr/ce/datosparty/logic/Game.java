@@ -1,6 +1,13 @@
 package com.itcr.ce.datosparty.logic;
 
 import com.itcr.ce.datosparty.Handler;
+import com.itcr.ce.datosparty.dataStructures.CircularDoublyList;
+import com.itcr.ce.datosparty.dataStructures.DoublyNode;
+import com.itcr.ce.datosparty.entities.Player;
+import com.itcr.ce.datosparty.entities.boxes.Box;
+import com.itcr.ce.datosparty.states.PlayerSelectionState;
+
+import java.util.Random;
 
 public class Game extends Thread {
 
@@ -10,17 +17,18 @@ public class Game extends Thread {
 
     public Game(Handler handler, int numRound) {
         this.handler = handler;
-
-        Round.initRound();
-        Round.addPlayer("Gabo");
-        Round.addPlayer("Jose");
-        Round.addPlayer("Isaac");
+        PlayerSelectionState pss = new PlayerSelectionState(handler);
         Round.setNumRound(numRound);
         Turn.setPlayersTurn(Round.getPlayerOrder().getHead());
+        Player currentPlayer;
+        DoublyNode<Box> startBox = handler.getBoard().getPhaseA().getNodeByIndex(0);
+        for(int i = 0; i < Round.getPlayerOrder().getLength(); i++){
 
-        Round.getPlayerOrder().getNodeByIndex(0).getData().setPosition(Board.phaseA.getNodeByIndex(0));
-        Round.getPlayerOrder().getNodeByIndex(1).getData().setPosition(Board.phaseA.getNodeByIndex(0));
-        Round.getPlayerOrder().getNodeByIndex(2).getData().setPosition(Board.phaseA.getNodeByIndex(0));
+            currentPlayer = Round.getPlayerOrder().getNodeByIndex(i).getData();
+            currentPlayer.setPosition(startBox);
+
+        }
+
     }
 
     @Override
