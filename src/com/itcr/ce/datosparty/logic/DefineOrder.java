@@ -2,12 +2,14 @@ package com.itcr.ce.datosparty.logic;
 
 import com.itcr.ce.datosparty.dataStructures.SinglyList;
 import com.itcr.ce.datosparty.dataStructures.SinglyNode;
+import javax.swing.JOptionPane;
 
 public class DefineOrder {
 
     private static SinglyList<TemporalPlayer> TemporalPlayerList;
     private static SinglyList<Integer> diceThrowList;
     TemporalPlayer newPlayer;
+    String playerName;
 
     public static void initTemporal(){
         TemporalPlayerList = new SinglyList<>();
@@ -25,7 +27,10 @@ public class DefineOrder {
         this.initDice();
 
         while(playerCount>0){
-            newPlayer = new TemporalPlayer("Player " + playerCount, lockDice());
+
+            playerName = JOptionPane.showInputDialog(null, "Player name");
+            if(playerName==null){ playerName="Player "+playerCount;}
+            newPlayer = new TemporalPlayer(playerName, lockDice());
             this.addNewTemporal(newPlayer);
             playerCount--;
         }
