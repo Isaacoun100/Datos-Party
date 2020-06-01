@@ -1,5 +1,6 @@
 package com.itcr.ce.datosparty.states;
 
+import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.userInterface.MainMenuUI;
 import com.itcr.ce.datosparty.userInterface.UIImage;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
@@ -21,13 +22,13 @@ public class MainMenuState extends State{
             uiManager.addObject(new UIImage(6,6,2*20,2*3,Assets.titleImage));
 
             uiManager.addObject(new UIImageButton(20, 25, 3*3, 3, Assets.playButton,
-                    () -> State.setState(handler.getGameLoop().gameState)));
+                    () -> State.setState(GameLoop.selectPlayerState)));
 
             uiManager.addObject(new UIImageButton(17, 27, 3*5, 3, Assets.settingsButton,
-                    () -> State.setState(handler.getGameLoop().optionsState)));
+                    () -> State.setState(GameLoop.optionsState)));
 
             uiManager.addObject(new UIImageButton(17, 29, 3*5, 3, Assets.creditsButtonMenu,
-                    () -> State.setState(handler.getGameLoop().creditsState)));
+                    () -> State.setState(GameLoop.creditsState)));
 
     }
 
