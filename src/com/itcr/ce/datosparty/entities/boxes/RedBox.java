@@ -26,10 +26,10 @@ public class RedBox extends Box {
     @Override
     public void boxAction(Player player) {
         if(player.getCoins() < 3){
-            player.setCoins(0);
+            player.addCoins(0);
         }
         else{
-            player.setCoins(-3);
+            player.addCoins(-3);
         }
         System.out.println("RedBox");
         System.out.println("Current Coins: "+player.getCoins());
