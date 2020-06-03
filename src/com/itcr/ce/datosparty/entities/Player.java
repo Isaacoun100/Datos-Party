@@ -38,7 +38,7 @@ public class Player extends Entity {
             // Subtracts from number given on dice
             boxesLeft--;
             x = position.getData().getX();
-            y = position.getData().getY();
+            y = position.getData().getY() - 45;
             System.out.println("Position: " + (int) x + ", "+ (int) y );
         }
         update(this.getPosition().getData());
