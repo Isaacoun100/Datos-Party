@@ -1,6 +1,7 @@
 package com.itcr.ce.datosparty.entities;
 
 import com.itcr.ce.datosparty.dataStructures.DoublyNode;
+import com.itcr.ce.datosparty.dataStructures.Node;
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.logic.Dice;
 import com.itcr.ce.datosparty.entities.boxes.Box;
@@ -30,8 +31,8 @@ public class Player extends Entity {
         int boxesLeft =  getMovement();
         while (boxesLeft > 0) {
             // Goes to next Node<Box>
-            DoublyNode<Box> nextNode = getPosition().getNext();
-            setPosition(nextNode);
+            Node<Box> nextNode = getPosition().getNext();
+            setPosition((DoublyNode<Box>) nextNode);
             game.sleep(500);
             // Checks if there is a star
             //getPosition().getData().checkStar(this);
