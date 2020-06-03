@@ -4,6 +4,7 @@ import com.itcr.ce.datosparty.dataStructures.DoublyNode;
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.logic.Dice;
 import com.itcr.ce.datosparty.entities.boxes.Box;
+import com.itcr.ce.datosparty.logic.Game;
 
 import java.awt.*;
 
@@ -25,12 +26,13 @@ public class Player extends Entity {
         this.name = name;
     }
 
-    public void move() {
+    public void move(Game game) throws InterruptedException {
         int boxesLeft =  getMovement();
         while (boxesLeft > 0) {
             // Goes to next Node<Box>
             DoublyNode<Box> nextNode = getPosition().getNext();
             setPosition(nextNode);
+            game.sleep(500);
             // Checks if there is a star
             //getPosition().getData().checkStar(this);
             // Subtracts from number given on dice
@@ -60,7 +62,7 @@ public class Player extends Entity {
         return coins;
     }
 
-    public void setCoins(int coins) {
+    public void addCoins(int coins) {
         this.coins += coins;
     }
 
