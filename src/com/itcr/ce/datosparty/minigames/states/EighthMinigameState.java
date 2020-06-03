@@ -1,5 +1,6 @@
 package com.itcr.ce.datosparty.minigames.states;
 
+import com.itcr.ce.datosparty.logic.Game;
 import com.itcr.ce.datosparty.minigames.ui.EighthMinigameUI;
 import com.itcr.ce.datosparty.userInterface.ClickListener;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
@@ -13,12 +14,11 @@ import java.awt.*;
 public class EighthMinigameState extends State {
     private UIManager uiManager;
 
-    public EighthMinigameState(Handler handler) {
+    public EighthMinigameState(Handler handler, int numPlayers, Game game) {
         super(handler);
         uiManager = new EighthMinigameUI(handler);
-        int numPlayers=4; //Round.getPlayerOrder().getLength();
 
-        if(numPlayers>=1){
+        if(numPlayers <= 1){
             uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player1Button, new ClickListener() {
                 @Override
                 public void onClick() {
@@ -27,7 +27,7 @@ public class EighthMinigameState extends State {
             }));
         }
 
-        if(numPlayers>=2){
+        if(numPlayers<=2){
             uiManager.addObject(new UIImageButton(30, 1, 7*2, 2*2, Assets.player2Button, new ClickListener() {
                 @Override
                 public void onClick() {
@@ -36,7 +36,7 @@ public class EighthMinigameState extends State {
             }));
         }
 
-        if(numPlayers>=3){
+        if(numPlayers<=3){
             uiManager.addObject(new UIImageButton(1, 30, 7*2, 2*2, Assets.player3Button, new ClickListener() {
                 @Override
                 public void onClick() {
@@ -45,7 +45,7 @@ public class EighthMinigameState extends State {
             }));
         }
 
-        if(numPlayers>=4){
+        if(numPlayers<=4){
             uiManager.addObject(new UIImageButton(30, 30, 7*2, 2*2, Assets.player4Button, new ClickListener() {
                 @Override
                 public void onClick() {
@@ -66,4 +66,5 @@ public class EighthMinigameState extends State {
     public void render(Graphics g) {
         uiManager.render(g);
     }
+
 }
