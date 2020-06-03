@@ -19,8 +19,8 @@ public class Turn {
         return playersTurn;
     }
 
-    public static void movePlayer(){
-        playersTurn.getData().move();
+    public static void movePlayer(Game game) throws InterruptedException {
+        playersTurn.getData().move(game);
     }
 
     public static void setPlayersTurn(SinglyNode<Player> playersTurn) {
