@@ -1,5 +1,9 @@
 package com.itcr.ce.datosparty.minigames.states;
 
+import com.itcr.ce.datosparty.GameLoop;
+import com.itcr.ce.datosparty.entities.Player;
+import com.itcr.ce.datosparty.logic.Game;
+import com.itcr.ce.datosparty.minigames.minilogic.FirstMiniGameLogic;
 import com.itcr.ce.datosparty.minigames.ui.FirstMinigameUI;
 import com.itcr.ce.datosparty.userInterface.ClickListener;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
@@ -13,27 +17,32 @@ import java.awt.*;
 
 public class FirstMinigameState extends State {
     private UIManager uiManager;
+    int numPlayers;
 
-    public FirstMinigameState(Handler handler) {
+    public FirstMinigameState(Handler handler, int numPlayers, Game game) {
         super(handler);
 
         uiManager = new FirstMinigameUI(handler);
-        int numPlayers=4; //Round.getPlayerOrder().getLength();
+        FirstMiniGameLogic currentGame = new FirstMiniGameLogic(game);
 
-        if(numPlayers>=1){
-            uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player1Button, new ClickListener() {
-                @Override
-                public void onClick() {
-                    System.out.println("1");
-                }
-            }));
-        }
+        uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player1Button, new ClickListener() {
+            @Override
+            public void onClick() {
+                System.out.println("1");
+                Player player1 = Round.getPlayerOrder().getNodeByIndex(0).getData();
+                currentGame.winGame(player1);
+                GameLoop.setState(GameLoop.gameState);
+            }
+        }));
 
         if(numPlayers>=2){
             uiManager.addObject(new UIImageButton(30, 1, 7*2, 2*2, Assets.player2Button, new ClickListener() {
                 @Override
                 public void onClick() {
                     System.out.println("2");
+                    Player player2 = Round.getPlayerOrder().getNodeByIndex(1).getData();
+                    currentGame.winGame(player2);
+                    GameLoop.setState(GameLoop.gameState);
                 }
             }));
         }
@@ -43,6 +52,9 @@ public class FirstMinigameState extends State {
                 @Override
                 public void onClick() {
                     System.out.println("3");
+                    Player player3 = Round.getPlayerOrder().getNodeByIndex(2).getData();
+                    currentGame.winGame(player3);
+                    GameLoop.setState(GameLoop.gameState);
                 }
             }));
         }
@@ -52,6 +64,9 @@ public class FirstMinigameState extends State {
                 @Override
                 public void onClick() {
                     System.out.println("4");
+                    Player player4 = Round.getPlayerOrder().getNodeByIndex(3).getData();
+                    currentGame.winGame(player4);
+                    GameLoop.setState(GameLoop.gameState);
                 }
             }));
         }
@@ -68,4 +83,5 @@ public class FirstMinigameState extends State {
     public void render(Graphics g) {
         uiManager.render(g);
     }
+
 }
