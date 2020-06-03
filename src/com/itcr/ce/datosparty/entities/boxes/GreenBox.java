@@ -23,7 +23,7 @@ public class GreenBox extends Box {
 
     @Override
     public void boxAction(Player player){
-        player.setCoins(+3);
+        player.addCoins(+3);
         System.out.println("GreenBox");
         System.out.println("Current Coins: "+player.getCoins());
     }
