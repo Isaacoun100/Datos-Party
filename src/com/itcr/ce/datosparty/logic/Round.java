@@ -7,7 +7,7 @@ import com.itcr.ce.datosparty.entities.Player;
 public class Round {
 
     private static SinglyList<Player> playerOrder;
-    private static int numRound = 0;
+    private static int maxRound;
 
     public static void initRound() {
         playerOrder = new SinglyList<>();
@@ -44,11 +44,40 @@ public class Round {
         return playerOrder;
     }
 
-    public static int getNumRound() {
-        return numRound;
+    public static int getMaxRound() {
+        return maxRound;
     }
 
-    public static void setNumRound(int numRound) {
-        Round.numRound = numRound;
+    public static void setMaxRound(int maxRound) {
+        Round.maxRound = maxRound;
+    }
+
+    public static void playRound(Game game) {
+        Turn.setPlayersTurn(Round.getPlayerOrder().getHead());
+        Player currentPlayer;
+        if (game.getCurrentRound() == 2) {
+            System.out.println("Estrella");
+            game.setStar();
+        }
+        while (Turn.getPlayersTurn() != null) {
+            //Player
+            currentPlayer = Turn.getPlayersTurn().getData();
+            System.out.println(currentPlayer.getName());
+            Turn.rollDice();
+            try {
+                Turn.movePlayer(game);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            try {
+                game.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            game.checkStar(currentPlayer);
+            System.out.println("Dice: " + currentPlayer.getMovement());
+            System.out.print("\n");
+            Turn.nextPlayer();
+        }
     }
 }
