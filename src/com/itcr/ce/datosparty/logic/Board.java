@@ -20,9 +20,9 @@ public class Board {
 
         int xPos = 10;
         int yPos = 10;
-        int boxColor;
 
-        for(int i = 0; i < 40; i++){
+        for(int i = 0; i <= 40; i++){
+
             switch (Dice.roll(4, 1)) {
                 case 1 -> phaseA.add(new BlueBox(xPos, yPos, 80, 80));
                 case 2 -> phaseA.add(new GreenBox(xPos, yPos, 80, 80));
@@ -31,11 +31,11 @@ public class Board {
                 default -> System.out.println("Something went terribly wrong");
             }
 
-            if (i%5==0){
-                xPos = xPos + 80;
+            if (i%5==0 && i!=0){
+                xPos += 80;
                 yPos = 10;
             }
-            yPos = yPos + 80;
+            yPos += 80;
         }
     }
 
