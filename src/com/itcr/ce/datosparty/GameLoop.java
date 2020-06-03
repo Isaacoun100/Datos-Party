@@ -1,5 +1,7 @@
 package com.itcr.ce.datosparty;
 
+import com.itcr.ce.datosparty.dataStructures.LinkedList;
+import com.itcr.ce.datosparty.dataStructures.SinglyList;
 import com.itcr.ce.datosparty.input.MouseManager;
 import com.itcr.ce.datosparty.input.KeyManager;
 import com.itcr.ce.datosparty.display.Display;
@@ -30,9 +32,8 @@ public class GameLoop implements Runnable {
      * State Initialization
      */
     public static State gameState, mainMenuState, titleScreenState, creditsState, optionsState, endGameState, boardState,
-                        winnerState, selectPlayerState, firstMinigameState, secondMinigameState, thirdMinigameState,
-                        fourthMinigameState, fifthMinigameState, sixthMinigameState, seventhMinigameState,
-                        eighthMinigameState;
+                        winnerState, selectPlayerState;
+    public static SinglyList<State> miniGameStates = new SinglyList<>();
 
     /**
      * Input Initialization
@@ -101,14 +102,7 @@ public class GameLoop implements Runnable {
         boardState = new BoardState(handler);
         winnerState = new WinnerState(handler);
         selectPlayerState = new PlayerSelectionState(handler);
-        firstMinigameState = new FirstMinigameState(handler);
-        secondMinigameState = new SecondMinigameState(handler);
-        thirdMinigameState = new ThirdMinigameState(handler);
-        fourthMinigameState = new FourthMinigameState(handler);
-        fifthMinigameState = new FifthMinigameState(handler);
-        sixthMinigameState = new SixthMinigameState(handler);
-        seventhMinigameState = new SeventhMinigameState(handler);
-        eighthMinigameState = new EighthMinigameState(handler);
+
 
         //game = new Game(handler, 5);
         //game.start();
