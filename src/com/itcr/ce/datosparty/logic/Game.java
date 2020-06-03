@@ -16,7 +16,7 @@ public class Game extends Thread {
 
     Handler handler;
     int currentRound = 1;
-    private SinglyList<Player> playerList;
+    private final SinglyList<Player> playerList;
 
     public SinglyList<Player> getPlayerList() {
         return playerList;
