@@ -53,6 +53,8 @@ public class Game extends Thread {
             }
             currentRound++;
         }
+        System.out.println("C'est fini");
+        Leaderboard.getLeaderboard();
     }
 
     void checkStar(Player player) {
