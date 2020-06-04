@@ -11,9 +11,9 @@ public class Leaderboard {
         leaderboard = new SinglyList<>();
     }
 
-    public static void updateLeaderBoard(){
-        SinglyList<Player> unsortedList = Round.getPlayerOrder();
-        SinglyNode<Player> temporal = unsortedList.getHead();
+    private static void updateLeaderBoard(){
+        SinglyNode<Player> temporal = Round.getPlayerOrder().getHead();
+        leaderboard.clear();
 
         while(temporal!=null){
             leaderboard.add(temporal.getData());
@@ -23,11 +23,48 @@ public class Leaderboard {
     }
 
     public static SinglyList<Player> getLeaderboard(){
+        updateLeaderBoard();
         setLeaderboard();
+        showLeaderboard();
         return leaderboard;
     }
 
+    private static void showLeaderboard(){
+        SinglyNode<Player> temporal = leaderboard.getHead();
+        int i =1;
+
+        while(temporal!=null){
+
+            System.out.println(i+ " place is to "+temporal.getData().getName());
+            System.out.println( " with "+temporal.getData().getStars()+ " stars and "+
+                                        temporal.getData().getCoins()+" coins");
+
+            temporal=temporal.getNext();
+            i++;
+        }
+
+    }
+
     private static void setLeaderboard(){
+        SinglyNode<Player> temporal, search;
+        temporal = leaderboard.getHead();
+
+        while (temporal!=null){
+            search=temporal;
+            while(search!=null){
+
+                if(temporal.getData().getStars()<search.getData().getStars()){
+                    leaderboard.swap(temporal,search);
+                }
+                else if(temporal.getData().getStars()==search.getData().getStars()){
+                    if(temporal.getData().getCoins()<search.getData().getCoins()){
+                        leaderboard.swap(temporal,search);
+                    }
+                }
+                search=search.getNext();
+            }
+            temporal = temporal.getNext();
+        }
 
     }
 
