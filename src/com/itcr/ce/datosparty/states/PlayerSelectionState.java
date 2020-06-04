@@ -2,7 +2,7 @@ package com.itcr.ce.datosparty.states;
 
 import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.logic.Game;
-import com.itcr.ce.datosparty.minigames.minilogic.Minigame;
+import com.itcr.ce.datosparty.logic.Leaderboard;
 import com.itcr.ce.datosparty.userInterface.ClickListener;
 import com.itcr.ce.datosparty.userInterface.SelectPlayerUI;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
@@ -32,6 +32,7 @@ public class PlayerSelectionState extends State {
                 setOrder.recursiveAdd(2);
                 System.out.println("The order is:");
                 setOrder.order();
+                Leaderboard.initLeaderBoard();
                 Game game = new Game(handler, 10);
                 game.start();
                 State.setState(GameLoop.gameState);
@@ -45,6 +46,7 @@ public class PlayerSelectionState extends State {
                 setOrder.recursiveAdd(3);
                 System.out.println("The order is:");
                 setOrder.order();
+                Leaderboard.initLeaderBoard();
                 Game game = new Game(handler, 10);
                 game.start();
                 State.setState(GameLoop.gameState);
@@ -59,6 +61,7 @@ public class PlayerSelectionState extends State {
                 setOrder.recursiveAdd(4);
                 System.out.println("The order is:");
                 setOrder.order();
+                Leaderboard.initLeaderBoard();
                 Game game = new Game(handler, 10);
                 game.start();
                 State.setState(GameLoop.gameState);
