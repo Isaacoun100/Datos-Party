@@ -150,4 +150,11 @@ public class SinglyList<T> extends LinkedList<T>{
         System.out.println("]\n");
     }
 
+    public void swap(Node<T> first, Node<T> second) {
+        T temporalFirst = first.getData();
+        first.setData(second.getData());
+        second.setData(temporalFirst);
+    }
+
+
 }
