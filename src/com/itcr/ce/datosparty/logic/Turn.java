@@ -1,6 +1,6 @@
 package com.itcr.ce.datosparty.logic;
 
-import com.itcr.ce.datosparty.dataStructures.SinglyNode;
+import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
 
 public class Turn {
@@ -8,7 +8,7 @@ public class Turn {
     private static SinglyNode<Player> playersTurn;
 
     public static void nextPlayer() {
-        playersTurn = playersTurn.getNext();
+        playersTurn = (SinglyNode<Player>) playersTurn.getNext();
     }
 
     public static SinglyNode<Player> getPlayersTurn() {

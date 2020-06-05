@@ -27,7 +27,7 @@ public class FirstMinigameState extends State {
 
         uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player1Button, () -> {
             System.out.println("1");
-            Player player1 = Round.getPlayerOrder().getNodeByIndex(0).getData();
+            Player player1 = Round.getPlayerOrder().get(0).getData();
             currentGame.winGame(player1);
             GameLoop.setState(GameLoop.gameState.getHead().getData());
         }));
@@ -35,7 +35,7 @@ public class FirstMinigameState extends State {
         if(numPlayers>=2){
             uiManager.addObject(new UIImageButton(30, 1, 7*2, 2*2, Assets.player2Button, () -> {
                 System.out.println("2");
-                Player player2 = Round.getPlayerOrder().getNodeByIndex(1).getData();
+                Player player2 = Round.getPlayerOrder().get(1).getData();
                 currentGame.winGame(player2);
                 GameLoop.setState(GameLoop.gameState.getHead().getData());
             }));
@@ -44,7 +44,7 @@ public class FirstMinigameState extends State {
         if(numPlayers>=3){
             uiManager.addObject(new UIImageButton(1, 30, 7*2, 2*2, Assets.player3Button, () -> {
                 System.out.println("3");
-                Player player3 = Round.getPlayerOrder().getNodeByIndex(2).getData();
+                Player player3 = Round.getPlayerOrder().get(2).getData();
                 currentGame.winGame(player3);
                 GameLoop.setState(GameLoop.gameState.getHead().getData());
             }));
@@ -53,7 +53,7 @@ public class FirstMinigameState extends State {
         if(numPlayers>=4){
             uiManager.addObject(new UIImageButton(30, 30, 7*2, 2*2, Assets.player4Button, () -> {
                 System.out.println("4");
-                Player player4 = Round.getPlayerOrder().getNodeByIndex(3).getData();
+                Player player4 = Round.getPlayerOrder().get(3).getData();
                 currentGame.winGame(player4);
                 GameLoop.setState(GameLoop.gameState.getHead().getData());
             }));

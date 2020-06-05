@@ -1,7 +1,7 @@
 package com.itcr.ce.datosparty.entities;
 
-import com.itcr.ce.datosparty.dataStructures.DoublyNode;
-import com.itcr.ce.datosparty.dataStructures.Node;
+import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
+import com.itcr.ce.datosparty.dataStructures.nodes.Node;
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.logic.Dice;
 import com.itcr.ce.datosparty.entities.boxes.Box;
@@ -22,7 +22,7 @@ public class Player extends Entity {
     private float y;
     BufferedImage image;
 
-    private DoublyNode<Box> position;
+    private Node<Box> position;
 
     public Player(String name, float x, float y, BufferedImage image) {
         super(x, y, 80, 120);
@@ -37,8 +37,8 @@ public class Player extends Entity {
         while (boxesLeft > 0) {
             // Goes to next Node<Box>
             Node<Box> nextNode = getPosition().getNext();
-            setPosition((DoublyNode<Box>) nextNode);
-            Thread.sleep(500);
+            setPosition(nextNode);
+            game.sleep(500);
             // Checks if there is a star
             game.checkStar(this);
             // Subtracts from number given on dice
@@ -80,11 +80,11 @@ public class Player extends Entity {
         this.stars += stars;
     }
 
-    public DoublyNode<Box> getPosition() {
+    public Node<Box> getPosition() {
         return position;
     }
 
-    public void setPosition(DoublyNode<Box> position) {
+    public void setPosition(Node<Box> position) {
         this.position = position;
     }
 

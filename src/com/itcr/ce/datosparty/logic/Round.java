@@ -1,7 +1,7 @@
 package com.itcr.ce.datosparty.logic;
 
-import com.itcr.ce.datosparty.dataStructures.SinglyList;
-import com.itcr.ce.datosparty.dataStructures.SinglyNode;
+import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
+import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.gfx.Assets;
 
@@ -30,9 +30,9 @@ public class Round {
         float y = 570;
         while(temp!=null){
             addPlayer(temp.getData().getId(), x, y,currentImage.getData());
+            temp = (SinglyNode<TemporalPlayer>) temp.getNext();
             x -=40;
             currentImage = currentImage.getNext();
-            temp=temp.getNext();
         }
 
         showList();
@@ -45,7 +45,7 @@ public class Round {
 
         while (showPlayer!=null){
             System.out.println(showPlayer.getData().getName());
-            showPlayer=showPlayer.getNext();
+            showPlayer = (SinglyNode<Player>) showPlayer.getNext();
         }
 
     }

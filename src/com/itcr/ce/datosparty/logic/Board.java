@@ -1,30 +1,30 @@
 package com.itcr.ce.datosparty.logic;
 
-import com.itcr.ce.datosparty.GameLauncher;
-import com.itcr.ce.datosparty.dataStructures.CircularDoublyList;
-import com.itcr.ce.datosparty.dataStructures.SinglyList;
-import com.itcr.ce.datosparty.dataStructures.SinglyNode;
+import com.itcr.ce.datosparty.dataStructures.lists.*;
+import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.boxes.*;
 import com.itcr.ce.datosparty.utilities.MapCoordinates;
 
+import java.util.List;
+
 public class Board {
 
-    public final CircularDoublyList<Box> mainCircuit = new CircularDoublyList<>();
-    public final CircularDoublyList<Box> phaseA = new CircularDoublyList<>();
-    public final CircularDoublyList<Box> phaseB = new CircularDoublyList<>();
-    public final CircularDoublyList<Box> phaseC = new CircularDoublyList<>();
+    public final CircularList<Box> mainCircuit = new CircularList<>();
+    public final SinglyList<Box> phaseA = new SinglyList<>();
+    public final SinglyList<Box> phaseB = new SinglyList<>();
+    public final DoublyList<Box> phaseC = new DoublyList<>();
     public final CircularDoublyList<Box> phaseD = new CircularDoublyList<>();
 
-    public CircularDoublyList<Box> getMainCircuit() {
+    public CircularList<Box> getMainCircuit() {
         return mainCircuit;
     }
-    public CircularDoublyList<Box> getPhaseA() {
+    public SinglyList<Box> getPhaseA() {
         return phaseA;
     }
-    public CircularDoublyList<Box> getPhaseB() {
+    public SinglyList<Box> getPhaseB() {
         return phaseB;
     }
-    public CircularDoublyList<Box> getPhaseC() {
+    public DoublyList<Box> getPhaseC() {
         return phaseC;
     }
     public CircularDoublyList<Box> getPhaseD() {
@@ -39,7 +39,7 @@ public class Board {
         phaseDBuilder();
     }
 
-    private void pickBox(int xPos, int yPos, CircularDoublyList<Box> mainCircuit) {
+    private void pickBox(int xPos, int yPos, LinkedList<Box> mainCircuit) {
         switch (Dice.roll(3, 1)) {
             case 1 -> mainCircuit.add(new BlueBox(xPos, yPos, 80, 80));
             case 2 -> mainCircuit.add(new GreenBox(xPos, yPos, 80, 80));
@@ -48,7 +48,7 @@ public class Board {
         }
     }
 
-    private void buildPath(SinglyList<SinglyList<Integer>> coordinateList, CircularDoublyList<Box> phase, boolean yellowRoad) {
+    private void buildPath(SinglyList<SinglyList<Integer>> coordinateList, LinkedList<Box> phase, boolean yellowRoad) {
         SinglyNode<SinglyList<Integer>> current = coordinateList.getHead();
         int firstYellow = Dice.roll(6,3);
         for(int i = 0; i < coordinateList.getLength(); i++){
@@ -63,7 +63,7 @@ public class Board {
             else {
                 pickBox(xPos, yPos, phase);
             }
-            current = current.getNext();
+            current = (SinglyNode<SinglyList<Integer>>) current.getNext();
         }
     }
 
