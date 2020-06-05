@@ -2,7 +2,6 @@ package com.itcr.ce.datosparty.states;
 
 import com.itcr.ce.datosparty.GameLauncher;
 import com.itcr.ce.datosparty.Handler;
-import com.itcr.ce.datosparty.dataStructures.*;
 import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
@@ -44,20 +43,20 @@ public class GameState extends State{
         g.drawImage(Assets.mapGuide, -10, 0, null);
         uiManager.render(g);
 
-        DoublyNode<Box> currentBoxMain = handler.getBoard().getMainCircuit().getHead();
+        SinglyNode<Box> currentBoxMain = handler.getBoard().getMainCircuit().getHead();
         for (int i = 0; i < handler.getBoard().getMainCircuit().getLength(); i++) {
             currentBoxMain.getData().render(g);
-            currentBoxMain = (DoublyNode<Box>) currentBoxMain.getNext();
+            currentBoxMain = (SinglyNode<Box>) currentBoxMain.getNext();
         }
-        DoublyNode<Box> currentBoxA = handler.getBoard().getPhaseA().getHead();
+        SinglyNode<Box> currentBoxA = handler.getBoard().getPhaseA().getHead();
         for (int i = 0; i < handler.getBoard().getPhaseA().getLength(); i++) {
             currentBoxA.getData().render(g);
-            currentBoxA = (DoublyNode<Box>) currentBoxA.getNext();
+            currentBoxA = (SinglyNode<Box>) currentBoxA.getNext();
         }
-        DoublyNode<Box> currentBoxB = handler.getBoard().getPhaseB().getHead();
+        SinglyNode<Box> currentBoxB = handler.getBoard().getPhaseB().getHead();
         for (int i = 0; i < handler.getBoard().getPhaseB().getLength(); i++) {
             currentBoxB.getData().render(g);
-            currentBoxB = (DoublyNode<Box>) currentBoxB.getNext();
+            currentBoxB = (SinglyNode<Box>) currentBoxB.getNext();
         }
         DoublyNode<Box> currentBoxC = handler.getBoard().getPhaseC().getHead();
         for (int i = 0; i < handler.getBoard().getPhaseC().getLength(); i++) {
