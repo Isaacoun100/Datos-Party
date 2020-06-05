@@ -38,9 +38,9 @@ public class Player extends Entity {
             // Goes to next Node<Box>
             Node<Box> nextNode = getPosition().getNext();
             setPosition((DoublyNode<Box>) nextNode);
-            game.sleep(500);
+            Thread.sleep(500);
             // Checks if there is a star
-            //getPosition().getData().checkStar(this);
+            game.checkStar(this);
             // Subtracts from number given on dice
             boxesLeft--;
             x = position.getData().getX();
