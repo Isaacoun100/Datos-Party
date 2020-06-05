@@ -1,7 +1,7 @@
 package com.itcr.ce.datosparty.logic;
 
-import com.itcr.ce.datosparty.dataStructures.SinglyList;
-import com.itcr.ce.datosparty.dataStructures.SinglyNode;
+import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
+import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import javax.swing.JOptionPane;
 
 public class DefineOrder {
@@ -45,7 +45,7 @@ public class DefineOrder {
 
         while(temporal!=null){
             System.out.println("[ "+ temporal.getData().getId() +" , "+ temporal.getData().getDiceValue() +" ]");
-            temporal=temporal.getNext();
+            temporal = (SinglyNode<TemporalPlayer>) temporal.getNext();
         }
 
     }
@@ -59,7 +59,7 @@ public class DefineOrder {
             if (dice == value.getData()) {
                 return true;
             }
-            value = value.getNext();
+            value = (SinglyNode<Integer>) value.getNext();
         }
 
         return false;
@@ -83,18 +83,18 @@ public class DefineOrder {
     public void order() {
         int count=0;
         SinglyNode<TemporalPlayer> before = TemporalPlayerList.getHead();
-        SinglyNode<TemporalPlayer> after = before;
+        SinglyNode<TemporalPlayer> after;
 
         while (count< TemporalPlayerList.getLength()){
             while(before!=null){
-                after=before.getNext();
+                after = (SinglyNode<TemporalPlayer>) before.getNext();
                 while (after!=null){
                     if (before.getData().getDiceValue()<after.getData().getDiceValue()){
                         this.swap(before,after);
                     }
-                    after=after.getNext();
+                    after = (SinglyNode<TemporalPlayer>) after.getNext();
                 }
-                before=before.getNext();
+                before = (SinglyNode<TemporalPlayer>) before.getNext();
             }
             count++;
         }

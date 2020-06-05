@@ -4,6 +4,7 @@ import com.itcr.ce.datosparty.GameLauncher;
 import com.itcr.ce.datosparty.dataStructures.CircularDoublyList;
 import com.itcr.ce.datosparty.dataStructures.SinglyList;
 import com.itcr.ce.datosparty.dataStructures.SinglyNode;
+import com.itcr.ce.datosparty.dataStructures.lists.CircularDoublyList;
 import com.itcr.ce.datosparty.entities.boxes.*;
 import com.itcr.ce.datosparty.utilities.MapCoordinates;
 

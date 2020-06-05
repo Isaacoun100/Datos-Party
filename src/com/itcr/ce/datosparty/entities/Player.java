@@ -1,7 +1,7 @@
 package com.itcr.ce.datosparty.entities;
 
-import com.itcr.ce.datosparty.dataStructures.DoublyNode;
-import com.itcr.ce.datosparty.dataStructures.Node;
+import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
+import com.itcr.ce.datosparty.dataStructures.nodes.Node;
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.logic.Dice;
 import com.itcr.ce.datosparty.entities.boxes.Box;

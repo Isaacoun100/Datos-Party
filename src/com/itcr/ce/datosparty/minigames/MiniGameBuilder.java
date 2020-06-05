@@ -1,7 +1,7 @@
 package com.itcr.ce.datosparty.minigames;
 
 import com.itcr.ce.datosparty.Handler;
-import com.itcr.ce.datosparty.dataStructures.LinkedList;
+import com.itcr.ce.datosparty.dataStructures.lists.LinkedList;
 import com.itcr.ce.datosparty.logic.Game;
 import com.itcr.ce.datosparty.minigames.states.*;
 import com.itcr.ce.datosparty.states.State;
