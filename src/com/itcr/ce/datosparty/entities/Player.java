@@ -8,6 +8,7 @@ import com.itcr.ce.datosparty.entities.boxes.Box;
 import com.itcr.ce.datosparty.logic.Game;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Player extends Entity {
 
@@ -19,11 +20,15 @@ public class Player extends Entity {
 
     private float x;
     private float y;
+    BufferedImage image;
 
     private DoublyNode<Box> position;
 
-    public Player(String name, float x, float y) {
+    public Player(String name, float x, float y, BufferedImage image) {
         super(x, y, 80, 120);
+        this.x = x;
+        this.y = y;
+        this.image = image;
         this.name = name;
     }
 
@@ -56,7 +61,7 @@ public class Player extends Entity {
     }
 
     public void setMovement() {
-        this.movement = Dice.roll(6,1);
+        this.movement = Dice.roll(6,1) + Dice.roll(6,1);
     }
 
     public int getCoins() {
@@ -94,6 +99,6 @@ public class Player extends Entity {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.playerStatic,(int) x,(int) y, width, height, null);
+        g.drawImage(image,(int) x,(int) y, width, height, null);
     }
 }
