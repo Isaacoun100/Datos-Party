@@ -55,8 +55,13 @@ public class MouseManager implements MouseListener, MouseMotionListener {
             leftPressed = false;
         else if(e.getButton() == MouseEvent.BUTTON3)
             rightPressed = false;
-        if(uiManager != null)
-            uiManager.onMouseRelease(e);
+        if(uiManager != null) {
+            try {
+                uiManager.onMouseRelease(e);
+            } catch (InterruptedException interruptedException) {
+                interruptedException.printStackTrace();
+            }
+        }
     }
 
     @Override

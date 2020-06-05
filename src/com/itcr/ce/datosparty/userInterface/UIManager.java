@@ -53,7 +53,7 @@ public abstract class UIManager {
         this.objects = objects;
     }
 
-    public void onMouseRelease(MouseEvent e){
+    public void onMouseRelease(MouseEvent e) throws InterruptedException {
         SinglyNode<UIObject> current;
         current = objects.getHead();
         while (current != null) {

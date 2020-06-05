@@ -37,7 +37,7 @@ public class UIImageButton extends UIObject{
     }
 
     @Override
-    public void onClick() {
+    public void onClick() throws InterruptedException {
         clicker.onClick();
     }
 }
