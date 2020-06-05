@@ -1,7 +1,7 @@
 package com.itcr.ce.datosparty.logic;
 
-import com.itcr.ce.datosparty.dataStructures.SinglyList;
-import com.itcr.ce.datosparty.dataStructures.SinglyNode;
+import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
+import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
 
 public class Round {
@@ -18,7 +18,7 @@ public class Round {
 
         while(temp!=null){
             addPlayer(temp.getData().getId());
-            temp=temp.getNext();
+            temp = (SinglyNode<TemporalPlayer>) temp.getNext();
         }
 
         showList();
@@ -31,7 +31,7 @@ public class Round {
 
         while (showPlayer!=null){
             System.out.println(showPlayer.getData().getName());
-            showPlayer=showPlayer.getNext();
+            showPlayer = (SinglyNode<Player>) showPlayer.getNext();
         }
 
     }

@@ -1,7 +1,7 @@
 package com.itcr.ce.datosparty.userInterface;
 
-import com.itcr.ce.datosparty.dataStructures.SinglyList;
-import com.itcr.ce.datosparty.dataStructures.SinglyNode;
+import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
+import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.Handler;
 
 
@@ -22,7 +22,7 @@ public abstract class UIManager {
         current = objects.getHead();
         while (current != null) {
             current.getData().tick();
-            current = current.getNext();
+            current = (SinglyNode<UIObject>) current.getNext();
         }
         
     }
@@ -32,7 +32,7 @@ public abstract class UIManager {
         current = objects.getHead();
         while (current != null) {
             current.getData().render(g);
-            current = current.getNext();
+            current = (SinglyNode<UIObject>) current.getNext();
         }
     }
 
@@ -41,7 +41,7 @@ public abstract class UIManager {
         current = objects.getHead();
         while (current != null) {
             current.getData().onMouseMove(e);
-            current = current.getNext();
+            current = (SinglyNode<UIObject>) current.getNext();
         }
     }
 
@@ -58,7 +58,7 @@ public abstract class UIManager {
         current = objects.getHead();
         while (current != null) {
             current.getData().onMouseRelease(e);
-            current = current.getNext();
+            current = (SinglyNode<UIObject>) current.getNext();
         }
     }
 

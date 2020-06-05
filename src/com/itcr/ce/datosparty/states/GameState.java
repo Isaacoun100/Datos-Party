@@ -1,8 +1,8 @@
 package com.itcr.ce.datosparty.states;
 
 import com.itcr.ce.datosparty.Handler;
-import com.itcr.ce.datosparty.dataStructures.DoublyNode;
-import com.itcr.ce.datosparty.dataStructures.SinglyNode;
+import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
+import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.entities.boxes.Box;
 import com.itcr.ce.datosparty.logic.Round;
@@ -41,12 +41,12 @@ public class GameState extends State{
         DoublyNode<Box> currentBox = handler.getBoard().getPhaseA().getHead();
         for (int i = 0; i < handler.getBoard().getPhaseA().getLength(); i++){
             currentBox.getData().render(g);
-            currentBox = currentBox.getNext();
+            currentBox = (DoublyNode<Box>) currentBox.getNext();
         }
         SinglyNode<Player> currentPlayer = Round.getPlayerOrder().getHead();
         for (int i = 0; i < Round.getPlayerOrder().getLength(); i++){
             currentPlayer.getData().render(g);
-            currentPlayer = currentPlayer.getNext();
+            currentPlayer = (SinglyNode<Player>) currentPlayer.getNext();
         }
     }
 }

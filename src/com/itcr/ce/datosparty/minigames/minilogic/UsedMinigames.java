@@ -1,9 +1,8 @@
 package com.itcr.ce.datosparty.minigames.minilogic;
 
-import com.itcr.ce.datosparty.dataStructures.SinglyList;
-import com.itcr.ce.datosparty.dataStructures.SinglyNode;
+import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
+import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.logic.Dice;
-import com.itcr.ce.datosparty.minigames.minilogic.Minigame;
 
 public class UsedMinigames {
 
@@ -43,11 +42,11 @@ public class UsedMinigames {
 
 
         while(temporal!=null){
-            if(temporal.getData().intValue()==dice){
+            if(temporal.getData() == dice){
                 return false;
             }
             else{
-                temporal=temporal.getNext();
+                temporal = (SinglyNode<Integer>) temporal.getNext();
             }
         }
 
