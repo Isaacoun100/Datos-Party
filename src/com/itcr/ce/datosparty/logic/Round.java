@@ -3,6 +3,9 @@ package com.itcr.ce.datosparty.logic;
 import com.itcr.ce.datosparty.dataStructures.SinglyList;
 import com.itcr.ce.datosparty.dataStructures.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
+import com.itcr.ce.datosparty.gfx.Assets;
+
+import java.awt.image.BufferedImage;
 
 public class Round {
 
@@ -15,9 +18,20 @@ public class Round {
 
     public static void translate(SinglyList<TemporalPlayer> sortedList){
         SinglyNode<TemporalPlayer> temp = sortedList.getHead();
+        SinglyList<BufferedImage> imageList = new SinglyList<>();
 
+        imageList.add(Assets.player1Static);
+        imageList.add(Assets.player2Static);
+        imageList.add(Assets.player3Static);
+        imageList.add(Assets.player4Static);
+
+        SinglyNode<BufferedImage> currentImage = imageList.getHead();
+        float x = 110;
+        float y = 570;
         while(temp!=null){
-            addPlayer(temp.getData().getId());
+            addPlayer(temp.getData().getId(), x, y,currentImage.getData());
+            x -=40;
+            currentImage = currentImage.getNext();
             temp=temp.getNext();
         }
 
@@ -36,8 +50,8 @@ public class Round {
 
     }
 
-    public static void addPlayer(String name){
-        playerOrder.add(new Player(name,0,0));
+    public static void addPlayer(String name, float x, float y, BufferedImage image){
+        playerOrder.add(new Player(name,x,y,image));
     }
 
     public static SinglyList<Player> getPlayerOrder() {
@@ -52,7 +66,7 @@ public class Round {
         Round.maxRound = maxRound;
     }
 
-    public static void playRound(Game game) {
+    public static void playRound(Game game) throws InterruptedException {
         Turn.setPlayersTurn(Round.getPlayerOrder().getHead());
         Player currentPlayer;
         if (game.getCurrentRound() == 2) {
@@ -63,14 +77,14 @@ public class Round {
             //Player
             currentPlayer = Turn.getPlayersTurn().getData();
             System.out.println(currentPlayer.getName());
-            Turn.rollDice();
+            game.pauseGame();
             try {
                 Turn.movePlayer(game);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             try {
-                game.sleep(1000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
