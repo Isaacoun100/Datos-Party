@@ -16,8 +16,13 @@ import java.awt.*;
 
 public class PlayerSelectionState extends State {
 
+    private static Game game;
     private final UIManager uiManager;
     DefineOrder setOrder = new DefineOrder();
+
+    public static Game getGame() {
+        return game;
+    }
 
     public PlayerSelectionState(Handler handler) {
         super(handler);
@@ -25,44 +30,31 @@ public class PlayerSelectionState extends State {
         uiManager = new SelectPlayerUI(handler);
         DefineOrder.initTemporal();
 
-        uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player2Button, new ClickListener() {
-            @Override
-            public void onClick() {
-
-                setOrder.recursiveAdd(2);
-                System.out.println("The order is:");
-                setOrder.order();
-                Game game = new Game(handler, 10);
-                game.start();
-                State.setState(GameLoop.gameState);
-            }
+        uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player2Button, () -> {
+            setOrder.recursiveAdd(2);
+            System.out.println("The order is:");
+            setOrder.order();
+            game = new Game(handler, 10);
+            game.start();
+            State.setState(GameLoop.gameState.getHead().getData());
         }));
 
-        uiManager.addObject(new UIImageButton(35, 1, 7*2, 2*2, Assets.player3Button, new ClickListener() {
-            @Override
-            public void onClick() {
-
-                setOrder.recursiveAdd(3);
-                System.out.println("The order is:");
-                setOrder.order();
-                Game game = new Game(handler, 10);
-                game.start();
-                State.setState(GameLoop.gameState);
-
-
-            }
+        uiManager.addObject(new UIImageButton(35, 1, 7*2, 2*2, Assets.player3Button, () -> {
+            setOrder.recursiveAdd(3);
+            System.out.println("The order is:");
+            setOrder.order();
+            game = new Game(handler, 10);
+            game.start();
+            State.setState(GameLoop.gameState.getHead().getData());
         }));
 
-        uiManager.addObject(new UIImageButton(20, 30, 7*2, 2*2, Assets.player4Button, new ClickListener() {
-            @Override
-            public void onClick() {
-                setOrder.recursiveAdd(4);
-                System.out.println("The order is:");
-                setOrder.order();
-                Game game = new Game(handler, 10);
-                game.start();
-                State.setState(GameLoop.gameState);
-            }
+        uiManager.addObject(new UIImageButton(20, 30, 7*2, 2*2, Assets.player4Button, () -> {
+            setOrder.recursiveAdd(4);
+            System.out.println("The order is:");
+            setOrder.order();
+            game = new Game(handler, 10);
+            game.start();
+            State.setState(GameLoop.gameState.getHead().getData());
         }));
 
     }
