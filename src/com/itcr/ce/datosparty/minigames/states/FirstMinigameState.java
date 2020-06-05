@@ -25,49 +25,37 @@ public class FirstMinigameState extends State {
         uiManager = new FirstMinigameUI(handler);
         FirstMiniGameLogic currentGame = new FirstMiniGameLogic(game);
 
-        uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player1Button, new ClickListener() {
-            @Override
-            public void onClick() {
-                System.out.println("1");
-                Player player1 = Round.getPlayerOrder().getNodeByIndex(0).getData();
-                currentGame.winGame(player1);
-                GameLoop.setState(GameLoop.gameState);
-            }
+        uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player1Button, () -> {
+            System.out.println("1");
+            Player player1 = Round.getPlayerOrder().getNodeByIndex(0).getData();
+            currentGame.winGame(player1);
+            GameLoop.setState(GameLoop.gameState.getHead().getData());
         }));
 
         if(numPlayers>=2){
-            uiManager.addObject(new UIImageButton(30, 1, 7*2, 2*2, Assets.player2Button, new ClickListener() {
-                @Override
-                public void onClick() {
-                    System.out.println("2");
-                    Player player2 = Round.getPlayerOrder().getNodeByIndex(1).getData();
-                    currentGame.winGame(player2);
-                    GameLoop.setState(GameLoop.gameState);
-                }
+            uiManager.addObject(new UIImageButton(30, 1, 7*2, 2*2, Assets.player2Button, () -> {
+                System.out.println("2");
+                Player player2 = Round.getPlayerOrder().getNodeByIndex(1).getData();
+                currentGame.winGame(player2);
+                GameLoop.setState(GameLoop.gameState.getHead().getData());
             }));
         }
 
         if(numPlayers>=3){
-            uiManager.addObject(new UIImageButton(1, 30, 7*2, 2*2, Assets.player3Button, new ClickListener() {
-                @Override
-                public void onClick() {
-                    System.out.println("3");
-                    Player player3 = Round.getPlayerOrder().getNodeByIndex(2).getData();
-                    currentGame.winGame(player3);
-                    GameLoop.setState(GameLoop.gameState);
-                }
+            uiManager.addObject(new UIImageButton(1, 30, 7*2, 2*2, Assets.player3Button, () -> {
+                System.out.println("3");
+                Player player3 = Round.getPlayerOrder().getNodeByIndex(2).getData();
+                currentGame.winGame(player3);
+                GameLoop.setState(GameLoop.gameState.getHead().getData());
             }));
         }
 
         if(numPlayers>=4){
-            uiManager.addObject(new UIImageButton(30, 30, 7*2, 2*2, Assets.player4Button, new ClickListener() {
-                @Override
-                public void onClick() {
-                    System.out.println("4");
-                    Player player4 = Round.getPlayerOrder().getNodeByIndex(3).getData();
-                    currentGame.winGame(player4);
-                    GameLoop.setState(GameLoop.gameState);
-                }
+            uiManager.addObject(new UIImageButton(30, 30, 7*2, 2*2, Assets.player4Button, () -> {
+                System.out.println("4");
+                Player player4 = Round.getPlayerOrder().getNodeByIndex(3).getData();
+                currentGame.winGame(player4);
+                GameLoop.setState(GameLoop.gameState.getHead().getData());
             }));
         }
 
