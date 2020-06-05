@@ -20,7 +20,7 @@ public class Player extends Entity {
     private float x;
     private float y;
 
-    private DoublyNode<Box> position;
+    private Node<Box> position;
 
     public Player(String name, float x, float y) {
         super(x, y, 80, 120);
@@ -32,7 +32,7 @@ public class Player extends Entity {
         while (boxesLeft > 0) {
             // Goes to next Node<Box>
             Node<Box> nextNode = getPosition().getNext();
-            setPosition((DoublyNode<Box>) nextNode);
+            setPosition(nextNode);
             game.sleep(500);
             // Checks if there is a star
             //getPosition().getData().checkStar(this);
@@ -75,11 +75,11 @@ public class Player extends Entity {
         this.stars += stars;
     }
 
-    public DoublyNode<Box> getPosition() {
+    public Node<Box> getPosition() {
         return position;
     }
 
-    public void setPosition(DoublyNode<Box> position) {
+    public void setPosition(Node<Box> position) {
         this.position = position;
     }
 
