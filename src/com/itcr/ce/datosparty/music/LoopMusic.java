@@ -1,6 +1,6 @@
 package com.itcr.ce.datosparty.music;
 
-import com.itcr.ce.datosparty.dataStructures.SinglyList;
+import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
 
 public class LoopMusic extends Thread{
 
@@ -16,7 +16,7 @@ public class LoopMusic extends Thread{
 
         while(i<=length){
 
-            String[] newSong = songList.getNodeByIndex(i).getData();
+            String[] newSong = songList.get(i).getData();
             MusicPlayer.playSong(newSong[0],newSong[1]);
             size=MusicPlayer.songLength();
 

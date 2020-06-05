@@ -29,7 +29,7 @@ public class FirstMinigameState extends State {
             @Override
             public void onClick() {
                 System.out.println("1");
-                Player player1 = Round.getPlayerOrder().getNodeByIndex(0).getData();
+                Player player1 = Round.getPlayerOrder().get(0).getData();
                 currentGame.winGame(player1);
                 GameLoop.setState(GameLoop.gameState);
             }
@@ -40,7 +40,7 @@ public class FirstMinigameState extends State {
                 @Override
                 public void onClick() {
                     System.out.println("2");
-                    Player player2 = Round.getPlayerOrder().getNodeByIndex(1).getData();
+                    Player player2 = Round.getPlayerOrder().get(1).getData();
                     currentGame.winGame(player2);
                     GameLoop.setState(GameLoop.gameState);
                 }
@@ -52,7 +52,7 @@ public class FirstMinigameState extends State {
                 @Override
                 public void onClick() {
                     System.out.println("3");
-                    Player player3 = Round.getPlayerOrder().getNodeByIndex(2).getData();
+                    Player player3 = Round.getPlayerOrder().get(2).getData();
                     currentGame.winGame(player3);
                     GameLoop.setState(GameLoop.gameState);
                 }
@@ -64,7 +64,7 @@ public class FirstMinigameState extends State {
                 @Override
                 public void onClick() {
                     System.out.println("4");
-                    Player player4 = Round.getPlayerOrder().getNodeByIndex(3).getData();
+                    Player player4 = Round.getPlayerOrder().get(3).getData();
                     currentGame.winGame(player4);
                     GameLoop.setState(GameLoop.gameState);
                 }

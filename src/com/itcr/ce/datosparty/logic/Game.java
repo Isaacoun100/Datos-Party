@@ -2,9 +2,9 @@ package com.itcr.ce.datosparty.logic;
 
 import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.Handler;
-import com.itcr.ce.datosparty.dataStructures.CircularDoublyList;
-import com.itcr.ce.datosparty.dataStructures.DoublyNode;
-import com.itcr.ce.datosparty.dataStructures.SinglyList;
+import com.itcr.ce.datosparty.dataStructures.lists.CircularDoublyList;
+import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
+import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.entities.boxes.Box;
 import com.itcr.ce.datosparty.minigames.MiniGameBuilder;
@@ -29,10 +29,10 @@ public class Game extends Thread {
         Turn.setPlayersTurn(playerList.getHead());
         int numberOfPlayers = Round.getPlayerOrder().getLength();
         Player currentPlayer;
-        DoublyNode<Box> startBox = handler.getBoard().getPhaseA().getNodeByIndex(0);
+        DoublyNode<Box> startBox = handler.getBoard().getPhaseA().get(0);
         for(int i = 0; i < Round.getPlayerOrder().getLength(); i++){
 
-            currentPlayer = Round.getPlayerOrder().getNodeByIndex(i).getData();
+            currentPlayer = Round.getPlayerOrder().get(i).getData();
             currentPlayer.setPosition(startBox);
 
         }
@@ -66,7 +66,7 @@ public class Game extends Thread {
         Random numRandom = new Random();
         CircularDoublyList<Box> phaseA =  handler.getBoard().getPhaseA();
         int starIndex = numRandom.nextInt(phaseA.getLength());
-        Box starBox = phaseA.getNodeByIndex(starIndex).getData();
+        Box starBox = phaseA.get(starIndex).getData();
         starBox.setStarBox(true);
         
     }
