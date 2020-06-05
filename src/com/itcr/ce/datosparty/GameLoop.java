@@ -30,9 +30,10 @@ public class GameLoop implements Runnable {
     /**
      * State Initialization
      */
-    public static State gameState, mainMenuState, titleScreenState, creditsState, optionsState, endGameState, boardState,
+    public static State mainMenuState, titleScreenState, creditsState, optionsState, endGameState, boardState,
                         winnerState, selectPlayerState;
     public static SinglyList<State> miniGameStates = new SinglyList<>();
+    public static SinglyList<State> gameState = new SinglyList<>();
 
     /**
      * Input Initialization
@@ -94,7 +95,6 @@ public class GameLoop implements Runnable {
         handler = new Handler(this);
 
         mainMenuState = new MainMenuState(handler);
-        gameState = new GameState(handler);
         creditsState = new CreditsState(handler);
         optionsState = new OptionsState(handler);
         endGameState = new EndgameState(handler);
