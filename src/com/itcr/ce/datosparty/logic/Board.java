@@ -1,6 +1,6 @@
 package com.itcr.ce.datosparty.logic;
 
-import com.itcr.ce.datosparty.dataStructures.CircularDoublyList;
+import com.itcr.ce.datosparty.dataStructures.lists.CircularDoublyList;
 import com.itcr.ce.datosparty.entities.boxes.*;
 
 public class Board {

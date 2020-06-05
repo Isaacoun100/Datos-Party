@@ -1,6 +1,6 @@
 package com.itcr.ce.datosparty.music;
 
-import com.itcr.ce.datosparty.dataStructures.SinglyList;
+import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
 
 public class Queue {
 

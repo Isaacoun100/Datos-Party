@@ -1,6 +1,6 @@
 package com.itcr.ce.datosparty.entities.boxes;
 
-import com.itcr.ce.datosparty.dataStructures.SinglyList;
+import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
 import com.itcr.ce.datosparty.entities.Entity;
 import com.itcr.ce.datosparty.entities.Player;
 
