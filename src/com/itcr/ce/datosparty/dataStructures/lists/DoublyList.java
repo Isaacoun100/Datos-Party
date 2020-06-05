@@ -1,38 +1,34 @@
-package com.itcr.ce.datosparty.dataStructures;
+package com.itcr.ce.datosparty.dataStructures.lists;
+
+import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
 
 /**
  *
  * @param <T>
  */
-public class DoublyList<T> extends LinkedList<T>{
+public class DoublyList<T> extends LinkedList<T> {
 
     protected DoublyNode<T> head;
+
+    @Override
+    public void clear() {
+        this.head = null;
+        length = 0;
+    }
 
     public DoublyNode<T> getHead() {
         return head;
     }
 
-    public int getLength() {
-
-        int length = 0;
-        DoublyNode<T> currentNode = this.head;
-
-        while (currentNode != null) {
-            length++;
-            currentNode = currentNode.getNext();
-        }
-        return length;
-    }
-
     @Override
-    public DoublyNode<T> getNodeByIndex(int index) {
+    public DoublyNode<T> get(int index) {
         if (index >= getLength() || index < 0) {
             System.out.println("Index out of range");
             return null;
         } else {
             DoublyNode<T> currentNode = this.head;
             for (int i = 0; i < index; i++) {
-                currentNode = currentNode.getNext();
+                currentNode = (DoublyNode<T>) currentNode.getNext();
             }
             return currentNode;
         }
@@ -41,7 +37,7 @@ public class DoublyList<T> extends LinkedList<T>{
     public DoublyNode<T> getLast() {
         DoublyNode<T> lastNode = this.head;
         while (lastNode.getNext() != null) {
-            lastNode = lastNode.getNext();
+            lastNode = (DoublyNode<T>) lastNode.getNext();
         }
         return lastNode;
     }
@@ -59,6 +55,7 @@ public class DoublyList<T> extends LinkedList<T>{
             lastNode.setNext(newNode);
             newNode.setPrevious(lastNode);
         }
+        length++;
     }
 
     @Override
@@ -66,11 +63,12 @@ public class DoublyList<T> extends LinkedList<T>{
         DoublyNode<T> newNode = new DoublyNode<>(data);
         if (index >= getLength()) {
             System.out.println("Index out of range");
+            return;
         } else if (this.head == null) {
             this.head = newNode;
         } else {
-            DoublyNode<T> nodeNext = getNodeByIndex(index);
-            DoublyNode<T> nodePrevious = nodeNext.getPrevious();
+            DoublyNode<T> nodeNext = get(index);
+            DoublyNode<T> nodePrevious = (DoublyNode<T>) nodeNext.getPrevious();
             newNode.setNext(nodeNext);
             newNode.setPrevious(nodePrevious);
             nodeNext.setPrevious(newNode);
@@ -79,27 +77,31 @@ public class DoublyList<T> extends LinkedList<T>{
             } else {
                 this.head = newNode;
             }
-
         }
+        length++;
     }
 
     @Override
     public void remove(int index) {
         if (index >= getLength()) {
             System.out.println("Index out of range");
+            return;
         } else if (index == 0) {
-            this.head = this.head.getNext();
+            this.head = (DoublyNode<T>) this.head.getNext();
             this.head.setPrevious(null);
-        } else if (getNodeByIndex(index).getNext() == null) {
-            getNodeByIndex(index).setPrevious(null);
-            getNodeByIndex(--index).setNext(null);
+        } else if (get(index).getNext() == null) {
+            get(index).setPrevious(null);
+            get(--index).setNext(null);
         } else {
-            DoublyNode<T> nodeIndex = getNodeByIndex(index);
-            DoublyNode<T> nodePrevious = nodeIndex.getPrevious();
-            DoublyNode<T> nodeNext = nodeIndex.getNext();
-            nodePrevious.setNext(nodeNext);
-            nodeNext.setPrevious(nodePrevious);
+            removeReferences(get(index));
         }
+        length--;
+    }
+    protected void removeReferences(DoublyNode<T> nodeIndex) {
+        DoublyNode<T> nodePrevious = (DoublyNode<T>) nodeIndex.getPrevious();
+        DoublyNode<T> nodeNext = (DoublyNode<T>) nodeIndex.getNext();
+        nodePrevious.setNext(nodeNext);
+        nodeNext.setPrevious(nodePrevious);
 
     }
 
@@ -120,7 +122,7 @@ public class DoublyList<T> extends LinkedList<T>{
             }
 
             // Go to next node
-            currentNode = currentNode.getNext();
+            currentNode = (DoublyNode<T>) currentNode.getNext();
         }
         System.out.println("]]\n");
     }

@@ -1,45 +1,33 @@
-package com.itcr.ce.datosparty.dataStructures;
+package com.itcr.ce.datosparty.dataStructures.lists;
+
+import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 
 /**
  *
  * @param <T>
  */
-public class SinglyList<T> extends LinkedList<T>{
+public class SinglyList<T> extends LinkedList<T> {
 
-    int length = 0;
-
-    private SinglyNode<T> head;
-
-    public SinglyNode<T> getHead() {
-        return head;
-    }
-
+    @Override
     public void clear() {
-        this.head= null;
+        this.head = null;
+        length = 0;
     }
 
     @Override
-    public int getLength() {
-
-//        int length = 0;
-//        SinglyNode<T> currentNode = this.head;
-//
-//        while (currentNode != null) {
-//            length++;
-//            currentNode = currentNode.getNext();
-//        }
-      return length;
+    public SinglyNode<T> getHead() {
+        return (SinglyNode<T>) head;
     }
 
     @Override
-    public SinglyNode<T> getNodeByIndex(int index) {
+    public SinglyNode<T> get(int index) {
         if (index >= getLength() || index < 0) {
             System.out.println("Index out of range");
             return null;
         } else {
-            SinglyNode<T> currentNode = this.head;
+            SinglyNode<T> currentNode = (SinglyNode<T>) this.head;
             for (int i = 0; i < index; i++) {
-                currentNode = currentNode.getNext();
+                currentNode = (SinglyNode<T>) currentNode.getNext();
             }
             return currentNode;
         }
@@ -51,25 +39,28 @@ public class SinglyList<T> extends LinkedList<T>{
      * @return index where data is located
      */
     public int getIndexByData(T data) {
-        SinglyNode<T> currentNode = this.head;
-        for (int i =0; currentNode != null; i++) {
+        SinglyNode<T> currentNode = (SinglyNode<T>) this.head;
+        int index = 0;
+        for (int i = 0; currentNode != null; i++) {
             if (currentNode.getData() == data) {
-                return i;
+                index = i;
+                break;
             } else if (currentNode.getNext() == null) {
                 System.out.println("Not found");
-                return 404;
+                index = 404;
+                break;
             } else {
-                currentNode = currentNode.getNext();
+                currentNode = (SinglyNode<T>) currentNode.getNext();
             }
         }
-        return 404;
+        return index;
     }
 
     @Override
     public SinglyNode<T> getLast() {
-        SinglyNode<T> lastNode = this.head;
+        SinglyNode<T> lastNode = (SinglyNode<T>) this.head;
         while (lastNode.getNext() != null) {
-            lastNode = lastNode.getNext();
+            lastNode = (SinglyNode<T>) lastNode.getNext();
         }
         return lastNode;
     }
@@ -94,13 +85,14 @@ public class SinglyList<T> extends LinkedList<T>{
         SinglyNode<T> newNode = new SinglyNode<>(data);
         if (index >= getLength()) {
             System.out.println("Index out of range");
+            return;
         } else if (this.head == null) {
             this.head = newNode;
         } else {
-            SinglyNode<T> nodeNext = getNodeByIndex(index);
+            SinglyNode<T> nodeNext = get(index);
             newNode.setNext(nodeNext);
             if (index > 0) {
-                SinglyNode<T> nodePrevious = getNodeByIndex(--index);
+                SinglyNode<T> nodePrevious = get(--index);
                 nodePrevious.setNext(newNode);
             } else {
                 this.head = newNode;
@@ -114,14 +106,14 @@ public class SinglyList<T> extends LinkedList<T>{
         if (index >= getLength()) {
             System.out.println("Index out of range");
         } else if (index == 0) {
-            this.head = this.head.getNext();
+            this.head = ((SinglyNode<T>)this.head).getNext();
             length--;
-        } else if (getNodeByIndex(index).getNext() == null) {
-            getNodeByIndex(--index).setNext(null);
+        } else if (get(index).getNext() == null) {
+            get(--index).setNext(null);
             length--;
         } else {
-            SinglyNode<T> nodeIndex = getNodeByIndex(index);
-            SinglyNode<T> nodePrevious = getNodeByIndex(--index);
+            SinglyNode<T> nodeIndex = get(index);
+            SinglyNode<T> nodePrevious = get(--index);
             nodePrevious.setNext(nodeIndex.getNext());
             length--;
         }
@@ -130,7 +122,7 @@ public class SinglyList<T> extends LinkedList<T>{
 
     @Override
     public void print() {
-        SinglyNode<T> currentNode = this.head;
+        SinglyNode<T> currentNode = (SinglyNode<T>) this.head;
 
         System.out.print("\n[");
 
@@ -145,9 +137,8 @@ public class SinglyList<T> extends LinkedList<T>{
             }
 
             // Go to next node
-            currentNode = currentNode.getNext();
+            currentNode = (SinglyNode<T>) currentNode.getNext();
         }
         System.out.println("]\n");
     }
-
 }
