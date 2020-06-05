@@ -1,10 +1,11 @@
 package com.itcr.ce.datosparty.states;
 
+import com.itcr.ce.datosparty.GameLauncher;
 import com.itcr.ce.datosparty.Handler;
-import com.itcr.ce.datosparty.dataStructures.DoublyNode;
-import com.itcr.ce.datosparty.dataStructures.SinglyNode;
+import com.itcr.ce.datosparty.dataStructures.*;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.entities.boxes.Box;
+import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.logic.Round;
 import com.itcr.ce.datosparty.userInterface.GameUI;
 import com.itcr.ce.datosparty.userInterface.UIManager;
@@ -15,6 +16,8 @@ public class GameState extends State{
 
     private final UIManager uiManager;
 
+    private int width = GameLauncher.width/16;
+    private int height = GameLauncher.height/16;
 
     public GameState(Handler handler){
 
@@ -36,15 +39,36 @@ public class GameState extends State{
 
     @Override
     public void render(Graphics g) {
-
+        g.drawImage(Assets.mapGuide, (width * 16) / (40 / 3), 0, null);
         uiManager.render(g);
-        DoublyNode<Box> currentBox = handler.getBoard().getPhaseA().getHead();
-        for (int i = 0; i < handler.getBoard().getPhaseA().getLength(); i++){
-            currentBox.getData().render(g);
-            currentBox = currentBox.getNext();
+
+        DoublyNode<Box> currentBoxMain = handler.getBoard().getMainCircuit().getHead();
+        for (int i = 0; i < handler.getBoard().getMainCircuit().getLength(); i++) {
+            currentBoxMain.getData().render(g);
+            currentBoxMain = currentBoxMain.getNext();
+        }
+        DoublyNode<Box> currentBoxA = handler.getBoard().getPhaseA().getHead();
+        for (int i = 0; i < handler.getBoard().getPhaseA().getLength(); i++) {
+            currentBoxA.getData().render(g);
+            currentBoxA = currentBoxA.getNext();
+        }
+        DoublyNode<Box> currentBoxB = handler.getBoard().getPhaseB().getHead();
+        for (int i = 0; i < handler.getBoard().getPhaseB().getLength(); i++) {
+            currentBoxB.getData().render(g);
+            currentBoxB = currentBoxB.getNext();
+        }
+        DoublyNode<Box> currentBoxC = handler.getBoard().getPhaseC().getHead();
+        for (int i = 0; i < handler.getBoard().getPhaseC().getLength(); i++) {
+            currentBoxC.getData().render(g);
+            currentBoxC = currentBoxC.getNext();
+        }
+        DoublyNode<Box> currentBoxD = handler.getBoard().getPhaseD().getHead();
+        for (int i = 0; i < handler.getBoard().getPhaseD().getLength(); i++) {
+            currentBoxD.getData().render(g);
+            currentBoxD = currentBoxD.getNext();
         }
         SinglyNode<Player> currentPlayer = Round.getPlayerOrder().getHead();
-        for (int i = 0; i < Round.getPlayerOrder().getLength(); i++){
+        for (int i = 0; i < Round.getPlayerOrder().getLength(); i++) {
             currentPlayer.getData().render(g);
             currentPlayer = currentPlayer.getNext();
         }
