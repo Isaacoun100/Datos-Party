@@ -7,10 +7,6 @@ public class Turn {
 
     private static SinglyNode<Player> playersTurn;
 
-    public static void rollDice() {
-        playersTurn.getData().setMovement();
-    }
-
     public static void nextPlayer() {
         playersTurn = playersTurn.getNext();
     }
