@@ -103,7 +103,7 @@ public class Assets {
         soundEffects= new BufferedImage[1];
         soundEffects[0]= buttonSheet.crop(7,8,9,2);
 
-        mapGuide = mapSheet.crop(0,0,80,64);
+        mapGuide = mapSheet.crop(0,0,100,76);
 
     }
 }

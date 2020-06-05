@@ -39,7 +39,7 @@ public class GameState extends State{
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.mapGuide, (width * 16) / (40 / 3), 0, null);
+        g.drawImage(Assets.mapGuide, -10, 0, null);
         uiManager.render(g);
 
         DoublyNode<Box> currentBoxMain = handler.getBoard().getMainCircuit().getHead();
