@@ -29,7 +29,7 @@ public class Game extends Thread {
         Turn.setPlayersTurn(playerList.getHead());
         int numberOfPlayers = Round.getPlayerOrder().getLength();
         Player currentPlayer;
-        DoublyNode<Box> startBox = handler.getBoard().getPhaseA().getNodeByIndex(0);
+        DoublyNode<Box> startBox = handler.getBoard().getMainCircuit().getNodeByIndex(0);
         for(int i = 0; i < Round.getPlayerOrder().getLength(); i++){
 
             currentPlayer = Round.getPlayerOrder().getNodeByIndex(i).getData();
@@ -64,7 +64,7 @@ public class Game extends Thread {
 
     public void setStar(){
         Random numRandom = new Random();
-        CircularDoublyList<Box> phaseA =  handler.getBoard().getPhaseA();
+        CircularDoublyList<Box> phaseA =  handler.getBoard().getMainCircuit();
         int starIndex = numRandom.nextInt(phaseA.getLength());
         Box starBox = phaseA.getNodeByIndex(starIndex).getData();
         starBox.setStarBox(true);

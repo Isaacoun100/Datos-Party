@@ -1,5 +1,6 @@
 package com.itcr.ce.datosparty.states;
 
+import com.itcr.ce.datosparty.GameLauncher;
 import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.userInterface.MainMenuUI;
 import com.itcr.ce.datosparty.userInterface.UIImage;
@@ -14,20 +15,22 @@ public class MainMenuState extends State{
 
     private final UIManager uiManager;
 
+    private int width = GameLauncher.width/16;
+    private int height = GameLauncher.height/16;
     public MainMenuState(Handler handler){
 
         super(handler);
 
         uiManager = new MainMenuUI(handler);
-            uiManager.addObject(new UIImage(6,6,2*20,2*3,Assets.titleImage));
+            uiManager.addObject(new UIImage((width/2)-19,height/6,40,6,Assets.titleImage));
 
-            uiManager.addObject(new UIImageButton(20, 25, 3*3, 3, Assets.playButton,
+            uiManager.addObject(new UIImageButton((width/2)-4, (height/2), 9, 3, Assets.playButton,
                     () -> State.setState(GameLoop.selectPlayerState)));
 
-            uiManager.addObject(new UIImageButton(17, 27, 3*5, 3, Assets.settingsButton,
+            uiManager.addObject(new UIImageButton((width/2)-7, (height/2)+3, 15, 3, Assets.settingsButton,
                     () -> State.setState(GameLoop.optionsState)));
 
-            uiManager.addObject(new UIImageButton(17, 29, 3*5, 3, Assets.creditsButtonMenu,
+            uiManager.addObject(new UIImageButton((width/2)-7, (height/2)+6, 15, 3, Assets.creditsButtonMenu,
                     () -> State.setState(GameLoop.creditsState)));
 
     }
