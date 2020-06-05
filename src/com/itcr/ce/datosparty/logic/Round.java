@@ -88,7 +88,7 @@ public class Round {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            game.checkStar(currentPlayer);
+            //game.checkStar(currentPlayer);
             System.out.println("Dice: " + currentPlayer.getMovement());
             System.out.print("\n");
             Turn.nextPlayer();
