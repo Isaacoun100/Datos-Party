@@ -1,6 +1,7 @@
 package com.itcr.ce.datosparty.logic;
 
 import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
+import com.itcr.ce.datosparty.dataStructures.nodes.Node;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.gfx.Assets;
@@ -25,7 +26,7 @@ public class Round {
         imageList.add(Assets.player3Static);
         imageList.add(Assets.player4Static);
 
-        SinglyNode<BufferedImage> currentImage = imageList.getHead();
+        Node<BufferedImage> currentImage = imageList.getHead();
         float x = 110;
         float y = 570;
         while(temp!=null){

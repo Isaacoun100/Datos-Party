@@ -4,6 +4,7 @@ import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.Handler;
 import com.itcr.ce.datosparty.dataStructures.lists.CircularDoublyList;
 import com.itcr.ce.datosparty.dataStructures.lists.CircularList;
+import com.itcr.ce.datosparty.dataStructures.lists.DoublyList;
 import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
 import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
@@ -82,28 +83,28 @@ public class Game extends Thread {
     public void setStar(){
         Random numRandom = new Random();
         CircularList<Box> mainCircuit =  handler.getBoard().getMainCircuit();
-        CircularDoublyList<Box> phaseA = handler.getBoard().getPhaseA();
-        CircularDoublyList<Box> phaseB = handler.getBoard().getPhaseB();
-        CircularDoublyList<Box> phaseC = handler.getBoard().getPhaseC();
+        SinglyList<Box> phaseA = handler.getBoard().getPhaseA();
+        SinglyList<Box> phaseB = handler.getBoard().getPhaseB();
+        DoublyList<Box> phaseC = handler.getBoard().getPhaseC();
         switch (Dice.roll(4, 1)) {
             case 1 -> {
                 int starIndex = numRandom.nextInt(mainCircuit.getLength());
-                Box starBox = mainCircuit.getNodeByIndex(starIndex).getData();
+                Box starBox = mainCircuit.get(starIndex).getData();
                 starBox.setStarBox(true);
             }
             case 2 -> {
                 int starIndex = numRandom.nextInt(phaseA.getLength());
-                Box starBox = phaseA.getNodeByIndex(starIndex).getData();
+                Box starBox = phaseA.get(starIndex).getData();
                 starBox.setStarBox(true);
             }
             case 3 -> {
                 int starIndex = numRandom.nextInt(phaseB.getLength());
-                Box starBox = phaseB.getNodeByIndex(starIndex).getData();
+                Box starBox = phaseB.get(starIndex).getData();
                 starBox.setStarBox(true);
             }
             case 4 -> {
                 int starIndex = numRandom.nextInt(phaseC.getLength());
-                Box starBox = phaseC.getNodeByIndex(starIndex).getData();
+                Box starBox = phaseC.get(starIndex).getData();
                 starBox.setStarBox(true);
             }
         }
