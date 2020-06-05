@@ -9,6 +9,9 @@ import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.entities.boxes.Box;
 import com.itcr.ce.datosparty.minigames.MiniGameBuilder;
 import com.itcr.ce.datosparty.minigames.minilogic.Minigame;
+import com.itcr.ce.datosparty.minigames.states.FirstMinigameState;
+import com.itcr.ce.datosparty.states.GameState;
+import com.itcr.ce.datosparty.states.State;
 
 import java.util.Random;
 
@@ -37,14 +40,24 @@ public class Game extends Thread {
 
         }
         MiniGameBuilder.build(GameLoop.miniGameStates,numberOfPlayers,handler, this);
+        buildGameState(GameLoop.gameState,handler, this);
         System.out.println("number of players: "+Round.getPlayerOrder().getLength());
+
+    }
+
+    private void buildGameState(SinglyList<com.itcr.ce.datosparty.states.State> gameState, Handler handler, Game game) {
+        gameState.add(new GameState(handler, game));
 
     }
 
     @Override
     public void run() {
         while(currentRound != Round.getMaxRound()){
-            Round.playRound(this);
+            try {
+                Round.playRound(this);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             Minigame.playMinigame(1);
             try {
                 pauseGame();
