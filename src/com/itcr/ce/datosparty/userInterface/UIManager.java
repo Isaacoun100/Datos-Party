@@ -36,6 +36,12 @@ public abstract class UIManager {
         }
     }
 
+    public void render(Graphics g, int renderID){
+        SinglyNode<UIObject> current;
+        current = objects.get(renderID);
+        current.getData().render(g);
+    }
+
     public void onMouseMove(MouseEvent e){
         SinglyNode<UIObject> current;
         current = objects.getHead();
@@ -64,6 +70,12 @@ public abstract class UIManager {
 
     public void addObject(UIObject o){
         objects.add(o);
+    }
+
+    public void changeObjectPos(int objectIndex, int x, int y){
+        UIObject o = objects.get(objectIndex).getData();
+        o.x = x;
+        o.y = y;
     }
 
     public void removeObject(UIObject o){
