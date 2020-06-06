@@ -111,13 +111,13 @@ public class Player extends Entity {
             }
           //  Node<Box> nextNode = getPosition().getNext();
             setPosition(nextNode);
+            x = position.getData().getX();
+            y = position.getData().getY() - 45;
             game.sleep(500);
             // Checks if there is a star
             game.checkStar(this);
             // Subtracts from number given on dice
             boxesLeft--;
-            x = position.getData().getX();
-            y = position.getData().getY() - 45;
         }
         update(this.getPosition().getData());
     }

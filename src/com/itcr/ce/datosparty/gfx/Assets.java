@@ -116,7 +116,7 @@ public class Assets {
         player2Static = sheet.crop(7,6,1,2);
         player3Static = sheet.crop(10,6,1,2);
         player4Static = sheet.crop(13,6,1,2);
-        starSeller = sheet.crop(16,6,2,2);
+        starSeller = sheet.crop(16,6,1,2);
 
 
         gameMusic= new BufferedImage[1];

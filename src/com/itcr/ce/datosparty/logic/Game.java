@@ -98,7 +98,7 @@ public class Game extends Thread {
         Random numRandom = new Random();
         int starIndex = numRandom.nextInt(list.getLength());
         Box starBox = list.get(starIndex).getData();
-        starSeller.setPosition(starBox.getX()+3,starBox.getY()- 45);
+        starSeller.setPosition(starBox.getX(),starBox.getY()-35);
         starBox.setStarBox(true);
     }
 
