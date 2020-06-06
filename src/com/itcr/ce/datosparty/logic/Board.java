@@ -45,7 +45,6 @@ public class Board {
         mainCircuit.get(33).getData().setBoxID("phaseC2");
         mainCircuit.get(33).getData().setCrossRoads(true);
 
-
     }
 
     private void pickBox(int xPos, int yPos, LinkedList<Box> mainCircuit) {

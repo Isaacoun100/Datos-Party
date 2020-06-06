@@ -3,6 +3,7 @@ package com.itcr.ce.datosparty.states;
 import com.itcr.ce.datosparty.GameLauncher;
 import com.itcr.ce.datosparty.Handler;
 import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
+import com.itcr.ce.datosparty.dataStructures.nodes.Node;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.entities.boxes.Box;
@@ -36,7 +37,7 @@ public class GameState extends State{
 
         gameUI.addObject(new UIImageButton(3, height-20, 8, 8, Assets.diceButton,
                 () -> {
-                    if(!currentBox.isCrossRoads()) {
+                    if(!currentBox.isCrossRoads()&&!currentBox.isStarBox()) {
                         currentPlayer.setMovement(Dice.roll(6,1) + Dice.roll(6,1));
                         SoundEffect.DiceRoll();
                         //Thread.sleep(3000);
@@ -165,7 +166,7 @@ public class GameState extends State{
             currentPlayer = (SinglyNode<Player>) currentPlayer.getNext();
         }
 
-        if(!currentBox.isCrossRoads()){
+        if(!currentBox.isCrossRoads()&&!currentBox.isStarBox()){
             gameUI.render(g,0);
         } else if (currentBox.getBoxID().equals("phaseA")) {
             gameUI.render(g,1);

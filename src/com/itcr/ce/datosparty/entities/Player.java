@@ -111,8 +111,9 @@ public class Player extends Entity {
             }
           //  Node<Box> nextNode = getPosition().getNext();
             setPosition(nextNode);
-            x = position.getData().getX();
-            y = position.getData().getY() - 45;
+//            x = position.getData().getX();
+//            y = position.getData().getY() - 45;
+            setRenderPos(position.getData().getX(),position.getData().getY());
             game.sleep(500);
             // Checks if there is a star
             game.checkStar(this);
@@ -216,6 +217,10 @@ public class Player extends Entity {
 
     public void setPosition(Node<Box> position) {
         this.position = position;
+    }
+    public void setRenderPos(float x, float y){
+        this.x = x;
+        this.y = y-45;
     }
 
     public void update(Box currentBox) {

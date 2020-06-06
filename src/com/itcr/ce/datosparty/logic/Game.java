@@ -95,11 +95,22 @@ public class Game extends Thread {
     }
 
     private void placeStar(LinkedList<Box> list){
+
         Random numRandom = new Random();
         int starIndex = numRandom.nextInt(list.getLength());
         Box starBox = list.get(starIndex).getData();
-        starSeller.setPosition(starBox.getX(),starBox.getY()-35);
-        starBox.setStarBox(true);
+        Box phaseA = handler.getBoard().getMainCircuit().get(11).getData();
+        Box phaseC1 = handler.getBoard().getMainCircuit().get(15).getData();
+        Box phaseB = handler.getBoard().getMainCircuit().get(12).getData();
+        Box phaseC2 = handler.getBoard().getMainCircuit().get(33).getData();
+
+        if( starBox == phaseA||starBox == phaseB || starBox==phaseC1 || starBox==phaseC2){
+            placeStar(list);
+        }
+        else {
+            starSeller.setPosition(starBox.getX(), starBox.getY() - 35);
+            starBox.setStarBox(true);
+        }
     }
 
     public void buyStar(Player player) {
