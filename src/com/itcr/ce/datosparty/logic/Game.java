@@ -2,13 +2,11 @@ package com.itcr.ce.datosparty.logic;
 
 import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.Handler;
-import com.itcr.ce.datosparty.dataStructures.lists.CircularDoublyList;
-import com.itcr.ce.datosparty.dataStructures.lists.CircularList;
-import com.itcr.ce.datosparty.dataStructures.lists.DoublyList;
+import com.itcr.ce.datosparty.dataStructures.lists.*;
 import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
-import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
+import com.itcr.ce.datosparty.entities.StarSeller;
 import com.itcr.ce.datosparty.entities.boxes.Box;
 import com.itcr.ce.datosparty.minigames.MiniGameBuilder;
 import com.itcr.ce.datosparty.minigames.minilogic.Minigame;
@@ -23,6 +21,7 @@ public class Game extends Thread {
     Handler handler;
     int currentRound = 1;
     private final SinglyList<Player> playerList;
+    public StarSeller starSeller = new StarSeller(-300,-300);
 
     public SinglyList<Player> getPlayerList() {
         return playerList;
@@ -81,33 +80,24 @@ public class Game extends Thread {
     }
 
     public void setStar(){
-        Random numRandom = new Random();
         CircularList<Box> mainCircuit =  handler.getBoard().getMainCircuit();
         SinglyList<Box> phaseA = handler.getBoard().getPhaseA();
         SinglyList<Box> phaseB = handler.getBoard().getPhaseB();
         DoublyList<Box> phaseC = handler.getBoard().getPhaseC();
         switch (Dice.roll(4, 1)) {
-            case 1 -> {
-                int starIndex = numRandom.nextInt(mainCircuit.getLength());
-                Box starBox = mainCircuit.get(starIndex).getData();
-                starBox.setStarBox(true);
-            }
-            case 2 -> {
-                int starIndex = numRandom.nextInt(phaseA.getLength());
-                Box starBox = phaseA.get(starIndex).getData();
-                starBox.setStarBox(true);
-            }
-            case 3 -> {
-                int starIndex = numRandom.nextInt(phaseB.getLength());
-                Box starBox = phaseB.get(starIndex).getData();
-                starBox.setStarBox(true);
-            }
-            case 4 -> {
-                int starIndex = numRandom.nextInt(phaseC.getLength());
-                Box starBox = phaseC.get(starIndex).getData();
-                starBox.setStarBox(true);
-            }
+            case 1 -> placeStar(mainCircuit);
+            case 2 -> placeStar(phaseA);
+            case 3 -> placeStar(phaseB);
+            case 4 -> placeStar(phaseC);
         }
+    }
+
+    private void placeStar(LinkedList<Box> list){
+        Random numRandom = new Random();
+        int starIndex = numRandom.nextInt(list.getLength());
+        Box starBox = list.get(starIndex).getData();
+        starSeller.setPosition(starBox.getX()+3,starBox.getY()- 45);
+        starBox.setStarBox(true);
     }
 
     public void buyStar(Player player) {
