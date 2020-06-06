@@ -21,6 +21,8 @@ public class GameState extends State{
 
     private int width = GameLauncher.width/16;
     private int height = GameLauncher.height/16;
+    private final int firstBoxX = ((width*16)/(800/56))+50;
+    private final int firstBoxY = ((height*16)/(608/299))-20;
     private Player currentPlayer;
     private Box currentBox;
 
@@ -42,20 +44,84 @@ public class GameState extends State{
                 }
                 }));
 
-        gameUI.addObject(new UIImageButton(6,height-20,8,8,Assets.upArrow,
+        // Phase A connector
+        gameUI.addObject(new UIImageButton(44,38,4,4,Assets.upArrow,
                 ()->{
-                    currentPlayer.setDirection(true);
-                    int movementLeft = currentPlayer.getMovement();
-                    currentPlayer.setMovement(movementLeft);
-                    game.resumeGame();
+                    if (currentBox.getBoxID().equals("phaseA")) {
+                        currentPlayer.setDirection(true);
+                        int movementLeft = currentPlayer.getMovement();
+                        currentPlayer.setMovement(movementLeft);
+                        game.resumeGame();
+                    }
                 }));
 
-        gameUI.addObject(new UIImageButton(12,height-20,8,8,Assets.rightArrow,
+        gameUI.addObject(new UIImageButton(47,42,4,4,Assets.rightArrow,
                 ()->{
-                    currentPlayer.setDirection(false);
-                    int movementLeft = currentPlayer.getMovement();
-                    currentPlayer.setMovement(movementLeft);
-                    game.resumeGame();
+                    if (currentBox.getBoxID().equals("phaseA")) {
+                        currentPlayer.setDirection(false);
+                        int movementLeft = currentPlayer.getMovement();
+                        currentPlayer.setMovement(movementLeft);
+                        game.resumeGame();
+                    }
+                }));
+
+        // Phase C1 connector
+        gameUI.addObject(new UIImageButton(48,40,4,4,Assets.upArrow,
+                ()->{
+                    if (currentBox.getBoxID().equals("phaseC1")) {
+                        currentPlayer.setDirection(true);
+                        int movementLeft = currentPlayer.getMovement();
+                        currentPlayer.setMovement(movementLeft);
+                        game.resumeGame();
+                    }
+                }));
+
+        gameUI.addObject(new UIImageButton(51,44,4,4,Assets.rightArrow,
+                ()->{
+                    if (currentBox.getBoxID().equals("phaseC1")) {
+                        currentPlayer.setDirection(false);
+                        int movementLeft = currentPlayer.getMovement();
+                        currentPlayer.setMovement(movementLeft);
+                        game.resumeGame();
+                    }
+                }));
+        // Phase B connector
+        gameUI.addObject(new UIImageButton(60,52,4,4,Assets.rightArrow,
+                ()->{
+                    if (currentBox.getBoxID().equals("phaseB")) {
+                        currentPlayer.setDirection(true);
+                        int movementLeft = currentPlayer.getMovement();
+                        currentPlayer.setMovement(movementLeft);
+                        game.resumeGame();
+                    }
+                }));
+        gameUI.addObject(new UIImageButton(57,55,4,4,Assets.downArrow,
+                ()->{
+                    if (currentBox.getBoxID().equals("phaseB")) {
+                        currentPlayer.setDirection(false);
+                        int movementLeft = currentPlayer.getMovement();
+                        currentPlayer.setMovement(movementLeft);
+                        game.resumeGame();
+                    }
+                }));
+        // Phase C2 connector
+        gameUI.addObject(new UIImageButton(71,5,4,4,Assets.leftArrow,
+                ()->{
+                    if (currentBox.getBoxID().equals("phaseC2")) {
+                        currentPlayer.setDirection(false);
+                        int movementLeft = currentPlayer.getMovement();
+                        currentPlayer.setMovement(movementLeft);
+                        game.resumeGame();
+                    }
+                }));
+        gameUI.addObject(new UIImageButton(74,8,4,4,Assets.downArrow,
+                ()->{
+                    if (currentBox.getBoxID().equals("phaseC2")) {
+                        currentPlayer.setDirection(true);
+                        int movementLeft = currentPlayer.getMovement();
+                        currentPlayer.setMovement(movementLeft);
+                        game.resumeGame();
+                    }
                 }));
     }
 
@@ -91,7 +157,6 @@ public class GameState extends State{
         int phaseDLength = handler.getBoard().getPhaseD().getLength();
         renderBoard(currentBoxD, phaseDLength, g);
 
-
         game.starSeller.render(g);
 
         SinglyNode<Player> currentPlayer = Round.getPlayerOrder().getHead();
@@ -102,9 +167,19 @@ public class GameState extends State{
 
         if(!currentBox.isCrossRoads()){
             gameUI.render(g,0);
-        } else if (currentBox.isCrossRoads()) {
+        } else if (currentBox.getBoxID().equals("phaseA")) {
             gameUI.render(g,1);
             gameUI.render(g,2);
+        } else if (currentBox.getBoxID().equals("phaseC1")) {
+            gameUI.render(g,3);
+            gameUI.render(g,4);
+        } else if (currentBox.getBoxID().equals("phaseB")) {
+            gameUI.render(g,5);
+            gameUI.render(g,6);
+        } else if (currentBox.getBoxID().equals("phaseC2")) {
+            gameUI.render(g,7);
+            gameUI.render(g,8);
+            System.out.println("working on it");
         }
     }
 
