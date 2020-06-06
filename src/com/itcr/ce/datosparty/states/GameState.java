@@ -179,7 +179,6 @@ public class GameState extends State{
         } else if (currentBox.getBoxID().equals("phaseC2")) {
             gameUI.render(g,7);
             gameUI.render(g,8);
-            System.out.println("working on it");
         }
     }
 
