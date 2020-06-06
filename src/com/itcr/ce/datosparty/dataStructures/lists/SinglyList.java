@@ -1,6 +1,7 @@
 package com.itcr.ce.datosparty.dataStructures.lists;
 
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
+import com.itcr.ce.datosparty.dataStructures.nodes.Node;
 
 /**
  *
