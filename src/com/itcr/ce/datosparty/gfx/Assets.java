@@ -4,9 +4,9 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-    public static BufferedImage blueBox, greenBox, yellowBox, redBox, player1Static, player2Static, player3Static, player4Static, mapGuide;
+    public static BufferedImage blueBox, greenBox, yellowBox, redBox, player1Static, player2Static, player3Static, player4Static, starSeller, mapGuide;
     public static BufferedImage[] settingsButton, playButton, creditsButton,backButton, titleImage,pressEnterImage,
-            notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, player1Button, player2Button,
+            notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, upArrow, downArrow, leftArrow, rightArrow, player1Button, player2Button,
             player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp, volumeDown, gameMusic, soundEffects;
 
     /**
@@ -58,6 +58,23 @@ public class Assets {
         diceButton[0] = buttonSheet.crop(0,0,4,4);
         diceButton[1] = buttonSheet.crop(19,0,4,4);
 
+        upArrow = new BufferedImage[2];
+        upArrow[0] = sheet.crop(14,4,1,1);
+        upArrow[1] = sheet.crop(15,4,1,1);
+
+        downArrow = new BufferedImage[2];
+        downArrow[0] = sheet.crop(16,4,1,1);
+        downArrow[1] = sheet.crop(17,4,1,1);
+
+        rightArrow = new BufferedImage[2];
+        rightArrow[0] = sheet.crop(14,5,1,1);
+        rightArrow[1] = sheet.crop(15,5,1,1);
+
+        leftArrow = new BufferedImage[2];
+        leftArrow[0] = sheet.crop(16,5,1,1);
+        leftArrow[1] = sheet.crop(17,5,1,1);
+
+
         creditsButton= new BufferedImage[2];
         creditsButton[0] = buttonSheet.crop(0,17,7,2);
         creditsButton[1] = buttonSheet.crop(19,17,7,2);
@@ -99,6 +116,7 @@ public class Assets {
         player2Static = sheet.crop(7,6,1,2);
         player3Static = sheet.crop(10,6,1,2);
         player4Static = sheet.crop(13,6,1,2);
+        starSeller = sheet.crop(16,6,2,2);
 
 
         gameMusic= new BufferedImage[1];
