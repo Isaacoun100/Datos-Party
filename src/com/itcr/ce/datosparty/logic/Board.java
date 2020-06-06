@@ -5,8 +5,6 @@ import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.boxes.*;
 import com.itcr.ce.datosparty.utilities.MapCoordinates;
 
-import java.util.List;
-
 public class Board {
 
     public final CircularList<Box> mainCircuit = new CircularList<>();
@@ -37,6 +35,17 @@ public class Board {
         buildPhaseB();
         buildPhaseC();
         phaseDBuilder();
+
+        mainCircuit.get(11).getData().setBoxID("phaseA");
+        mainCircuit.get(11).getData().setCrossRoads(true);
+        mainCircuit.get(15).getData().setBoxID("phaseB");
+        mainCircuit.get(15).getData().setCrossRoads(true);
+        mainCircuit.get(12).getData().setBoxID("phaseC1");
+        mainCircuit.get(12).getData().setCrossRoads(true);
+        mainCircuit.get(33).getData().setBoxID("phaseC2");
+        mainCircuit.get(33).getData().setCrossRoads(true);
+
+
     }
 
     private void pickBox(int xPos, int yPos, LinkedList<Box> mainCircuit) {
