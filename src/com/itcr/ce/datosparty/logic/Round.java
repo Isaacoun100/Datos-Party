@@ -67,10 +67,15 @@ public class Round {
         Round.maxRound = maxRound;
     }
 
+    public static void endTurn(){
+        Turn.nextPlayer();
+    }
+
     public static void playRound(Game game) throws InterruptedException {
         Turn.setPlayersTurn(Round.getPlayerOrder().getHead());
         Player currentPlayer;
-        if (game.getCurrentRound() == 2) {
+        int currentRound = game.getCurrentRound();
+        if (currentRound == 2) {
             System.out.println("Estrella");
             game.setStar();
         }
@@ -92,7 +97,9 @@ public class Round {
             //game.checkStar(currentPlayer);
             System.out.println("Dice: " + currentPlayer.getMovement());
             System.out.print("\n");
-            Turn.nextPlayer();
+
+            endTurn();
+
         }
     }
 }
