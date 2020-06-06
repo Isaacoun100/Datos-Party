@@ -1,7 +1,7 @@
 package com.itcr.ce.datosparty.logic;
 
-import com.itcr.ce.datosparty.dataStructures.SinglyList;
-import com.itcr.ce.datosparty.dataStructures.SinglyNode;
+import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
+import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
 
 public class Leaderboard {
@@ -17,9 +17,8 @@ public class Leaderboard {
 
         while(temporal!=null){
             leaderboard.add(temporal.getData());
-            temporal=temporal.getNext();
+            temporal = (SinglyNode<Player>) temporal.getNext();
         }
-
     }
 
     public static SinglyList<Player> getLeaderboard(){
@@ -39,7 +38,7 @@ public class Leaderboard {
             System.out.println( " with "+temporal.getData().getStars()+ " stars and "+
                                         temporal.getData().getCoins()+" coins");
 
-            temporal=temporal.getNext();
+            temporal=(SinglyNode<Player>) temporal.getNext();
             i++;
         }
 
@@ -61,9 +60,9 @@ public class Leaderboard {
                         leaderboard.swap(temporal,search);
                     }
                 }
-                search=search.getNext();
+                search=(SinglyNode<Player>) search.getNext();
             }
-            temporal = temporal.getNext();
+            temporal = (SinglyNode<Player>) temporal.getNext();
         }
 
     }
@@ -79,7 +78,7 @@ public class Leaderboard {
             else if(temporal.getData().getCoins()!=0){
                 return false;
             }
-            temporal=temporal.getNext();
+            temporal=(SinglyNode<Player>) temporal.getNext();
         }
         return true;
     }
