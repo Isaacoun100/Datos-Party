@@ -9,5 +9,6 @@ public enum Connector {
     PHASE_C_LAST,
     PHASE_C_FIRST_REVERSED,
     PHASE_C_LAST_REVERSED,
+    REVERSED,
     NONE
 }
