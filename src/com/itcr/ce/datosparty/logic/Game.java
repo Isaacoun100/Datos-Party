@@ -19,7 +19,7 @@ import java.util.Random;
 public class Game extends Thread {
 
     Handler handler;
-    int currentRound = 1;
+    int currentRound = 0;
     private final SinglyList<Player> playerList;
     public StarSeller starSeller = new StarSeller(-300,-300);
 
@@ -55,6 +55,7 @@ public class Game extends Thread {
     @Override
     public void run() {
         while(currentRound != Round.getMaxRound()){
+            currentRound++;
             try {
                 Round.playRound(this);
             } catch (InterruptedException e) {
@@ -66,7 +67,6 @@ public class Game extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            currentRound++;
         }
         System.out.println("C'est fini");
         Leaderboard.getLeaderboard();
