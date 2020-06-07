@@ -25,7 +25,7 @@ public class MainMenuState extends State{
             uiManager.addObject(new UIImage((width/2)-19,height/6,40,6,Assets.titleImage));
 
             uiManager.addObject(new UIImageButton((width/2)-4, (height/2), 9, 3, Assets.playButton,
-                    () -> State.setState(GameLoop.selectPlayerState)));
+                    () -> State.setState(GameLoop.selectRoundState)));
 
             uiManager.addObject(new UIImageButton((width/2)-7, (height/2)+3, 15, 3, Assets.settingsButton,
                     () -> State.setState(GameLoop.optionsState)));
