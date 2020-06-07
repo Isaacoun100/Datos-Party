@@ -4,10 +4,12 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-    public static BufferedImage blueBox, greenBox, yellowBox, redBox, player1Static, player2Static, player3Static, player4Static, starSeller, mapGuide;
+    public static BufferedImage blueBox, greenBox, yellowBox, redBox, player1Static, player2Static, player3Static,
+                                player4Static, starSeller, mapGuide;
     public static BufferedImage[] settingsButton, playButton, creditsButton,backButton, titleImage,pressEnterImage,
-            notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, upArrow, downArrow, leftArrow, rightArrow, player1Button, player2Button,
-            player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp, volumeDown, gameMusic, soundEffects;
+            notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, upArrow, downArrow, leftArrow,
+            rightArrow, player1Button, player2Button, player3Button, player4Button, returnButton, creditsButtonMenu,
+            volumeUp, volumeDown, gameMusic, soundEffects, noviceButton, proButton, eliteButton, roundTitle;
 
     /**
      * This Method initializes all assets that are used in the game, for them to load properly
@@ -102,6 +104,21 @@ public class Assets {
         volumeDown = new BufferedImage[2];
         volumeDown[0] = buttonSheet.crop(9,0,3,3);
         volumeDown[1] = buttonSheet.crop(28,0,3,3);
+
+        noviceButton = new BufferedImage[2];
+        noviceButton[0] = buttonSheet.crop(7,17,7,2);
+        noviceButton[1] = buttonSheet.crop(26,17,7,2);
+
+        proButton = new BufferedImage[2];
+        proButton[0] = buttonSheet.crop(7,19,7,2);
+        proButton[1] = buttonSheet.crop(26,19,7,2);
+
+        eliteButton = new BufferedImage[2];
+        eliteButton[0] = buttonSheet.crop(0,19,7,2);
+        eliteButton[1] = buttonSheet.crop(19,19,7,2);
+
+        roundTitle = new BufferedImage[1];
+        roundTitle[0]= buttonSheet.crop(7,10,12,6);
 
         boton1 = new BufferedImage[2];
         boton1[0] = sheet.crop(14,4,5,1);
