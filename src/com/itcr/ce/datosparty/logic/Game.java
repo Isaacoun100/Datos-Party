@@ -96,7 +96,7 @@ public class Game extends Thread {
         Random numRandom = new Random();
         int starIndex = numRandom.nextInt(list.getLength());
         Box starBox = list.get(starIndex).getData();
-        starSeller.setPosition(starBox.getX()+3,starBox.getY()- 45);
+        starSeller.setPosition(starBox.getX() + 3, starBox.getY() - 45);
         starBox.setStarBox(true);
     }
 
@@ -108,11 +108,43 @@ public class Game extends Thread {
         //Choose yes/no
         if (player.getCoins() >= 10) {
             player.addCoins(-10);
-            player.setStars(1);
+            player.addStars(1);
             player.getPosition().getData().setStarBox(false);
             setStar();
         } else {
             System.out.println("You don't have enough money, though...");
+        }
+    }
+
+    public void resetEvents() {
+        SinglyList<Event> tempList = new SinglyList<>();
+        SinglyNode<Event> randomNode;
+        int randomIndex;
+        eventCloner(tempList, DUEL, 10);
+        eventCloner(tempList, STEAL_COINS, 10);
+        tempList.add(STEAL_COINS);
+        tempList.add(GIFT_COINS);
+        tempList.add(LOSE_STAR);
+        eventCloner(tempList, WIN_2_STARS, 3);
+        tempList.add(WIN_5_STARS);
+        eventCloner(tempList, STEAL_STAR, 3);
+        eventCloner(tempList, TELEPORT, 10);
+        eventCloner(tempList, SWAP_PLAYERS, 5);
+        if (this.eventStack.peek() != null) {
+            this.eventStack.pop();
+        }
+        while (tempList.getHead() != null) {
+            randomIndex = Dice.roll(0, tempList.getLength() - 1);
+            randomNode = tempList.get(randomIndex);
+            this.eventStack.push(randomNode.getData());
+            tempList.remove(randomIndex);
+        }
+    }
+
+    private void eventCloner(SinglyList<Event> tempList, Event event, int times) {
+        while (times > 0) {
+            tempList.add(event);
+            times--;
         }
     }
 
