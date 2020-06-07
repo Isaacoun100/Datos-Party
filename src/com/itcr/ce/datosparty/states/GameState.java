@@ -130,10 +130,19 @@ public class GameState extends State{
 
         gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,2*8,Assets.starPurchaseBackDrop)));
 
+        gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,8,Assets.buyMsg)));
+
         gameUI.addObject(new UIImageButton(width/2-8,height/2-10,8,8,Assets.yesButton,()->{
+            game.buyStar(currentPlayer);
+            int movementLeft = currentPlayer.getMovement();
+            currentPlayer.setMovement(movementLeft);
+            game.resumeGame();
 
         }));
         gameUI.addObject(new UIImageButton(width/2+2,height/2-10,8,8,Assets.noButton,()->{
+            int movementLeft = currentPlayer.getMovement();
+            currentPlayer.setMovement(movementLeft);
+            game.resumeGame();
 
         }));
     }
@@ -196,6 +205,7 @@ public class GameState extends State{
             gameUI.render(g,9);
             gameUI.render(g,10);
             gameUI.render(g,11);
+            gameUI.render(g,12);
         }
     }
 

@@ -4,10 +4,13 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-    public static BufferedImage blueBox, greenBox, yellowBox, redBox, player1Static, player2Static, player3Static, player4Static, starSeller, mapGuide;
+    public static BufferedImage blueBox, greenBox, yellowBox, redBox, player1Static, player2Static, player3Static,
+            player4Static, starSeller, mapGuide;
     public static BufferedImage[] settingsButton, playButton, creditsButton,backButton, titleImage,pressEnterImage,
-            notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, upArrow, downArrow, leftArrow, rightArrow, player1Button, player2Button,
-            player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp, volumeDown, gameMusic, soundEffects, starPurchaseBackDrop, starIcon, yesButton, noButton, purchaseMsg;
+            notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, upArrow, downArrow, leftArrow,
+            rightArrow, player1Button, player2Button,
+            player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp, volumeDown, gameMusic, soundEffects,
+            starPurchaseBackDrop, starIcon, yesButton, noButton, purchaseMsg, buyMsg;
 
     /**
      * This Method initializes all assets that are used in the game, for them to load properly
@@ -145,7 +148,9 @@ public class Assets {
         purchaseMsg[0] = sheet.crop(20,7,3,1);
         purchaseMsg[1] = sheet.crop(20,7,3,1);
 
-
+        buyMsg = new BufferedImage[2];
+        buyMsg[0] = sheet.crop(25,5,4,1);
+        buyMsg[1] = sheet.crop(25,5,4,1);
 
         mapGuide = mapSheet.crop(0,0,100,76);
 
