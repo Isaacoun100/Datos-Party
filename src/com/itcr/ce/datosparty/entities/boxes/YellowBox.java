@@ -22,7 +22,7 @@ public class YellowBox extends Box {
     }
 
     @Override
-    public void boxAction(Player player) {
+    public void boxAction(Player player, Game game) {
         System.out.println("YellowBox");
         System.out.println("Event");
         System.out.println("Current Coins: "+player.getCoins());

@@ -193,8 +193,8 @@ public class Player extends Entity {
         this.position = position;
     }
 
-    public void update(Box currentBox) {
-        currentBox.boxAction(this);
+    public void update(Box currentBox, Game game) {
+        currentBox.boxAction(this, game);
     }
 
     @Override

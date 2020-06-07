@@ -2,6 +2,7 @@ package com.itcr.ce.datosparty.entities.boxes;
 
 import com.itcr.ce.datosparty.entities.Entity;
 import com.itcr.ce.datosparty.entities.Player;
+import com.itcr.ce.datosparty.logic.Game;
 
 public abstract class Box extends Entity {
 
@@ -39,6 +40,6 @@ public abstract class Box extends Entity {
     }
 
 
-    public abstract void boxAction(Player player);
+    public abstract void boxAction(Player player, Game game);
 
 }

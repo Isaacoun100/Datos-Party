@@ -2,6 +2,7 @@ package com.itcr.ce.datosparty.entities.boxes;
 
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.entities.Player;
+import com.itcr.ce.datosparty.logic.Game;
 
 import java.awt.*;
 
@@ -24,14 +25,8 @@ public class RedBox extends Box {
     }
 
     @Override
-    public void boxAction(Player player) {
-        if(player.getCoins() < 3){
-            player.addCoins(0);
-        }
-        else{
-            player.addCoins(-3);
-        }
+    public void boxAction(Player player, Game game) {
+        player.addCoins(-3);
         System.out.println("RedBox");
-        System.out.println("Current Coins: "+player.getCoins());
     }
 }
