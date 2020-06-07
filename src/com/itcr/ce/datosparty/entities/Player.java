@@ -23,6 +23,7 @@ public class Player extends Entity {
     private float y;
     BufferedImage image;
     private Boolean changeDirection;
+    private Node<Box> position;
 
     public Boolean getChangeDirection() {
         return changeDirection;
@@ -31,8 +32,6 @@ public class Player extends Entity {
     public void setDirection(Boolean changeDirection) {
         this.changeDirection = changeDirection;
     }
-
-    private Node<Box> position;
 
     public Player(String name, float x, float y, BufferedImage image) {
         super(x, y, 80, 120);
@@ -60,22 +59,28 @@ public class Player extends Entity {
                 setDirection(false);
             }
             switch (getConnector(getPosition(),handler, changeDirection)) {
-                case PHASE_A_FIRST -> {nextNode = phaseAFirst;
+                case PHASE_A_FIRST -> {
+                    nextNode = phaseAFirst;
                     setDirection(false);
                 }
-                case PHASE_A_LAST -> {nextNode = phaseALast;
+                case PHASE_A_LAST -> {
+                    nextNode = phaseALast;
                     setDirection(false);
                 }
-                case PHASE_B_FIRST -> {nextNode = phaseBFirst;
+                case PHASE_B_FIRST -> {
+                    nextNode = phaseBFirst;
                     setDirection(false);
                 }
-                case PHASE_B_LAST -> {nextNode = phaseBLast;
+                case PHASE_B_LAST -> {
+                    nextNode = phaseBLast;
                     setDirection(false);
                 }
-                case PHASE_C_FIRST -> {nextNode = phaseCFirst;
+                case PHASE_C_FIRST -> {
+                    nextNode = phaseCFirst;
                     setDirection(false);
                 }
-                case PHASE_C_LAST -> {nextNode = phaseCLast;
+                case PHASE_C_LAST -> {
+                    nextNode = phaseCLast;
                     setDirection(false);
                 }
                 default -> {
