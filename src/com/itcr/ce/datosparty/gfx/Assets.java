@@ -11,7 +11,7 @@ public class Assets {
             notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, upArrow, downArrow, leftArrow,
             rightArrow, player1Button, player2Button,
             player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp, volumeDown, gameMusic, soundEffects,
-            starPurchaseBackDrop, starIcon, yesButton, noButton, purchaseMsg, buyMsg, endTurnBtn;
+            starPurchaseBackDrop, yesButton, noButton, purchaseMsg, buyMsg, endTurnBtn, coin, star;
 
     public static Font bitArtFont;
 
@@ -122,7 +122,7 @@ public class Assets {
         player2Static = sheet.crop(7,6,1,2);
         player3Static = sheet.crop(10,6,1,2);
         player4Static = sheet.crop(13,6,1,2);
-        starSeller = sheet.crop(16,6,1,2);
+        starSeller = sheet.crop(16,6,2,2);
 
 
         gameMusic= new BufferedImage[1];
@@ -135,9 +135,6 @@ public class Assets {
         starPurchaseBackDrop[0] = sheet.crop(18,5,4,2);
         starPurchaseBackDrop[1] = sheet.crop(18,5,4,2);
 
-        starIcon = new BufferedImage[2];
-        starIcon[0] = sheet.crop(22,5,1,1);
-        starIcon[1] = sheet.crop(22,5,1,1);
 
         yesButton = new BufferedImage[2];
         yesButton[0] = sheet.crop(18,7,1,1);
@@ -160,6 +157,27 @@ public class Assets {
         endTurnBtn[0] = sheet.crop(31,4,2,2);
 
         mapGuide = mapSheet.crop(0,0,100,76);
+
+        coin = new BufferedImage[7];
+        coin[0] = sheet.crop(27,7,1,1);
+        coin[1] = sheet.crop(28,7,1,1);
+        coin[2] = sheet.crop(29,7,1,1);
+        coin[3] = sheet.crop(30,7,1,1);
+        coin[4] = sheet.crop(31,7,1,1);
+        coin[5] = sheet.crop(32,7,1,1);
+        coin[6] = sheet.crop(27,7,1,1);
+
+        star = new BufferedImage[10];
+        star[0] = sheet.crop(29,6,1,1);
+        star[1] = sheet.crop(30,6,1,1);
+        star[2] = sheet.crop(31,6,1,1);
+        star[3] = sheet.crop(32,6,1,1);
+        star[4] = sheet.crop(33,6,1,1);
+        star[5] = sheet.crop(34,6,1,1);
+        star[6] = sheet.crop(35,6,1,1);
+        star[7] = sheet.crop(36,6,1,1);
+        star[8] = sheet.crop(37,6,1,1);
+        star[9] = sheet.crop(29,6,1,1);
 
         //bitArtFont = FontLoader.loadFont("/fonts/retro_computer_personal_use.ttf");
 
