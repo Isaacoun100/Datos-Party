@@ -7,7 +7,7 @@ public class Assets {
     public static BufferedImage blueBox, greenBox, yellowBox, redBox, player1Static, player2Static, player3Static, player4Static, starSeller, mapGuide;
     public static BufferedImage[] settingsButton, playButton, creditsButton,backButton, titleImage,pressEnterImage,
             notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, upArrow, downArrow, leftArrow, rightArrow, player1Button, player2Button,
-            player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp, volumeDown, gameMusic, soundEffects;
+            player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp, volumeDown, gameMusic, soundEffects, starPurchaseBackDrop, starIcon, yesButton, noButton, purchaseMsg;
 
     /**
      * This Method initializes all assets that are used in the game, for them to load properly
@@ -123,7 +123,29 @@ public class Assets {
         gameMusic[0]= buttonSheet.crop(8,5,8,2);
 
         soundEffects= new BufferedImage[1];
-        soundEffects[0]= buttonSheet.crop(7,8,9,2);
+        soundEffects[0] = buttonSheet.crop(7,8,9,2);
+
+        starPurchaseBackDrop = new BufferedImage[2];
+        starPurchaseBackDrop[0] = sheet.crop(18,5,4,2);
+        starPurchaseBackDrop[1] = sheet.crop(18,5,4,2);
+
+        starIcon = new BufferedImage[2];
+        starIcon[0] = sheet.crop(22,5,1,1);
+        starIcon[1] = sheet.crop(22,5,1,1);
+
+        yesButton = new BufferedImage[2];
+        yesButton[0] = sheet.crop(18,7,1,1);
+        yesButton[1] = sheet.crop(18,4,1,1);
+
+        noButton = new BufferedImage[2];
+        noButton[0] = sheet.crop(19,7,1,1);
+        noButton[1] = sheet.crop(19,4,1,1);
+
+        purchaseMsg = new BufferedImage[2];
+        purchaseMsg[0] = sheet.crop(20,7,3,1);
+        purchaseMsg[1] = sheet.crop(20,7,3,1);
+
+
 
         mapGuide = mapSheet.crop(0,0,100,76);
 

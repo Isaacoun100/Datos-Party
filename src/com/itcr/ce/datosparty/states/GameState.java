@@ -3,14 +3,17 @@ package com.itcr.ce.datosparty.states;
 import com.itcr.ce.datosparty.GameLauncher;
 import com.itcr.ce.datosparty.Handler;
 import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
-import com.itcr.ce.datosparty.dataStructures.nodes.Node;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.entities.boxes.Box;
 import com.itcr.ce.datosparty.gfx.Assets;
-import com.itcr.ce.datosparty.logic.*;
+import com.itcr.ce.datosparty.logic.Dice;
+import com.itcr.ce.datosparty.logic.Game;
+import com.itcr.ce.datosparty.logic.Round;
+import com.itcr.ce.datosparty.logic.Turn;
 import com.itcr.ce.datosparty.music.SoundEffect;
 import com.itcr.ce.datosparty.userInterface.GameUI;
+import com.itcr.ce.datosparty.userInterface.UIImage;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
 
@@ -124,6 +127,15 @@ public class GameState extends State{
                         game.resumeGame();
                     }
                 }));
+
+        gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,2*8,Assets.starPurchaseBackDrop)));
+
+        gameUI.addObject(new UIImageButton(width/2-8,height/2-10,8,8,Assets.yesButton,()->{
+
+        }));
+        gameUI.addObject(new UIImageButton(width/2+2,height/2-10,8,8,Assets.noButton,()->{
+
+        }));
     }
 
     @Override
@@ -180,6 +192,10 @@ public class GameState extends State{
         } else if (currentBox.getBoxID().equals("phaseC2")) {
             gameUI.render(g,7);
             gameUI.render(g,8);
+        } else if(currentBox.isStarBox()){
+            gameUI.render(g,9);
+            gameUI.render(g,10);
+            gameUI.render(g,11);
         }
     }
 
