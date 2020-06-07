@@ -32,7 +32,7 @@ public class UsedMinigames {
         }
 
         else{
-            this.check(Dice.roll(8,1));
+            this.check(Dice.roll(1, 8));
         }
     }
 

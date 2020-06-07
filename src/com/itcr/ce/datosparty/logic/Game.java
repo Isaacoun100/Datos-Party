@@ -84,7 +84,7 @@ public class Game extends Thread {
         SinglyList<Box> phaseA = handler.getBoard().getPhaseA();
         SinglyList<Box> phaseB = handler.getBoard().getPhaseB();
         DoublyList<Box> phaseC = handler.getBoard().getPhaseC();
-        switch (Dice.roll(4, 1)) {
+        switch (Dice.roll(1, 4)) {
             case 1 -> placeStar(mainCircuit);
             case 2 -> placeStar(phaseA);
             case 3 -> placeStar(phaseB);

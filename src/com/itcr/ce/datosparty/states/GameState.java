@@ -35,7 +35,7 @@ public class GameState extends State{
         gameUI.addObject(new UIImageButton(3, height-20, 8, 8, Assets.diceButton,
                 () -> {
                     if(!currentBox.isCrossRoads()) {
-                        currentPlayer.setMovement(Dice.roll(6,1) + Dice.roll(6,1));
+                        currentPlayer.setMovement(Dice.roll(1, 6) + Dice.roll(1, 6));
                         SoundEffect.DiceRoll();
                         //Thread.sleep(3000);
                         game.resumeGame();

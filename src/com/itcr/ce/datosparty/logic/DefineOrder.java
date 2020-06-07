@@ -68,10 +68,10 @@ public class DefineOrder {
 
     public int lockDice(){
 
-        int dice = Dice.roll(6,1);
+        int dice = Dice.roll(1, 6);
 
         while (compareDice(dice)){
-            dice = Dice.roll(6,1);
+            dice = Dice.roll(1, 6);
             System.out.println("Why do they always send the poor");
         }
 
