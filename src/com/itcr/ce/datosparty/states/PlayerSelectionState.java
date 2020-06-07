@@ -34,7 +34,7 @@ public class PlayerSelectionState extends State {
             System.out.println("The order is:");
             setOrder.order();
             Leaderboard.initLeaderBoard();
-            game = new Game(handler, 10);
+            game = new Game(handler, SelectRoundState.getRound());
             game.start();
             State.setState(GameLoop.gameState.getHead().getData());
         }));
@@ -44,7 +44,7 @@ public class PlayerSelectionState extends State {
             System.out.println("The order is:");
             setOrder.order();
             Leaderboard.initLeaderBoard();
-            game = new Game(handler, 10);
+            game = new Game(handler, SelectRoundState.getRound());
             game.start();
             State.setState(GameLoop.gameState.getHead().getData());
         }));
@@ -54,7 +54,7 @@ public class PlayerSelectionState extends State {
             System.out.println("The order is:");
             setOrder.order();
             Leaderboard.initLeaderBoard();
-            game = new Game(handler, 10);
+            game = new Game(handler, SelectRoundState.getRound());
             game.start();
             State.setState(GameLoop.gameState.getHead().getData());
         }));
