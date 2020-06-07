@@ -3,18 +3,17 @@ package com.itcr.ce.datosparty.logic;
 import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.Handler;
 import com.itcr.ce.datosparty.dataStructures.lists.*;
-import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.entities.StarSeller;
 import com.itcr.ce.datosparty.entities.boxes.Box;
 import com.itcr.ce.datosparty.minigames.MiniGameBuilder;
 import com.itcr.ce.datosparty.minigames.minilogic.Minigame;
-import com.itcr.ce.datosparty.minigames.states.FirstMinigameState;
 import com.itcr.ce.datosparty.states.GameState;
-import com.itcr.ce.datosparty.states.State;
 
 import java.util.Random;
+
+import static com.itcr.ce.datosparty.logic.Event.*;
 
 public class Game extends Thread {
 
@@ -22,6 +21,14 @@ public class Game extends Thread {
     int currentRound = 1;
     private final SinglyList<Player> playerList;
     public StarSeller starSeller = new StarSeller(-300,-300);
+    public Stack<Event> eventStack = new Stack<>();
+
+    private final CircularList<Box> mainCircuit;
+    private final SinglyList<Box> phaseA;
+    private final SinglyList<Box> phaseB;
+    private final DoublyList<Box> phaseC;
+    private final CircularDoublyList<Box> phaseD;
+
 
     public SinglyList<Player> getPlayerList() {
         return playerList;
@@ -43,7 +50,13 @@ public class Game extends Thread {
         }
         MiniGameBuilder.build(GameLoop.miniGameStates,numberOfPlayers,handler, this);
         buildGameState(GameLoop.gameState,handler, this);
-        System.out.println("number of players: "+Round.getPlayerOrder().getLength());
+        this.mainCircuit =  handler.getBoard().getMainCircuit();
+        this.phaseA = handler.getBoard().getPhaseA();
+        this.phaseB = handler.getBoard().getPhaseB();
+        this.phaseC = handler.getBoard().getPhaseC();
+        this.phaseD = handler.getBoard().getPhaseD();
+        resetEvents();
+        System.out.println("number of players: " + Round.getPlayerOrder().getLength());
 
     }
 
@@ -80,10 +93,6 @@ public class Game extends Thread {
     }
 
     public void setStar(){
-        CircularList<Box> mainCircuit =  handler.getBoard().getMainCircuit();
-        SinglyList<Box> phaseA = handler.getBoard().getPhaseA();
-        SinglyList<Box> phaseB = handler.getBoard().getPhaseB();
-        DoublyList<Box> phaseC = handler.getBoard().getPhaseC();
         switch (Dice.roll(1, 4)) {
             case 1 -> placeStar(mainCircuit);
             case 2 -> placeStar(phaseA);
@@ -158,5 +167,25 @@ public class Game extends Thread {
 
     public synchronized void resumeGame() {
         this.notify();
+    }
+
+    public CircularList<Box> getMainCircuit() {
+        return mainCircuit;
+    }
+
+    public SinglyList<Box> getPhaseA() {
+        return phaseA;
+    }
+
+    public SinglyList<Box> getPhaseB() {
+        return phaseB;
+    }
+
+    public DoublyList<Box> getPhaseC() {
+        return phaseC;
+    }
+
+    public CircularDoublyList<Box> getPhaseD() {
+        return phaseD;
     }
 }
