@@ -169,14 +169,20 @@ public class Player extends Entity {
 
     public void addCoins(int coins) {
         this.coins += coins;
+        if(this.coins < 0){
+            this.coins = 0;
+        }
     }
 
     public int getStars() {
         return stars;
     }
 
-    public void setStars(int stars) {
+    public void addStars(int stars) {
         this.stars += stars;
+        if(this.stars < 0){
+            this.stars = 0;
+        }
     }
 
     public Node<Box> getPosition() {
