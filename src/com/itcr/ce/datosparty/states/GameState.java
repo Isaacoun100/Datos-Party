@@ -1,25 +1,25 @@
 package com.itcr.ce.datosparty.states;
 
 import com.itcr.ce.datosparty.GameLauncher;
+import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.Handler;
 import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.entities.boxes.Box;
+import com.itcr.ce.datosparty.gfx.Animation;
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.logic.Dice;
 import com.itcr.ce.datosparty.logic.Game;
 import com.itcr.ce.datosparty.logic.Round;
 import com.itcr.ce.datosparty.logic.Turn;
 import com.itcr.ce.datosparty.music.SoundEffect;
-import com.itcr.ce.datosparty.userInterface.GameUI;
+import com.itcr.ce.datosparty.userInterface.UIAnimatedImage;
 import com.itcr.ce.datosparty.userInterface.UIImage;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 public class GameState extends State{
 
@@ -27,22 +27,23 @@ public class GameState extends State{
 
     private int width = GameLauncher.width/16;
     private int height = GameLauncher.height/16;
-    private final int firstBoxX = ((width*16)/(800/56))+50;
-    private final int firstBoxY = ((height*16)/(608/299))-20;
+    private final int  maxRound;
     private int playerMovement;
     private Player currentPlayer;
     private Box currentBox;
     private final Font font;
-
     private final Game game;
+    private Animation star, coin;
 
     public GameState(Handler handler, Game game){
         super(handler);
         this.game = game;
+        this.maxRound = game.getMaxRound();
 
         font = new Font("Windows Command Prompt", Font.PLAIN,50);
-
-        gameUI = new GameUI(handler);
+        gameUI = new UIManager(handler);
+        star = new Animation(200,Assets.star);
+        coin = new Animation(200, Assets.coin);
 
         gameUI.addObject(new UIImageButton(1, height-20, 8, 8, Assets.diceButton,
                 () -> {
@@ -135,9 +136,9 @@ public class GameState extends State{
                     }
                 }));
 
-        gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,2*8,Assets.starPurchaseBackDrop)));
+        gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,2*8,Assets.starPurchaseBackDrop[0])));
 
-        gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,8,Assets.buyMsg)));
+        gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,8,Assets.buyMsg[0])));
 
         gameUI.addObject(new UIImageButton(width/2-8,height/2-10,8,8,Assets.yesButton,()->{
             game.buyStar(currentPlayer);
@@ -156,13 +157,20 @@ public class GameState extends State{
         gameUI.addObject(new UIImageButton(9,height-20,4*2,4*2,Assets.endTurnBtn,()->{
             //Round.endTurn();
         }));
+
+        gameUI.addObject(new UIAnimatedImage(0,3,4,4,star));
+        gameUI.addObject(new UIAnimatedImage(0,6,4,4,coin));
     }
 
     @Override
     public void tick() {
-        currentPlayer = Turn.getPlayersTurn().getData();
-        playerMovement = currentPlayer.getMovement();
-        currentBox = currentPlayer.getPosition().getData();
+        if(game.getCurrentRound() != maxRound){
+            currentPlayer = Turn.getPlayersTurn().getData();
+            playerMovement = currentPlayer.getMovement();
+            currentBox = currentPlayer.getPosition().getData();
+        } else {
+            State.setState(GameLoop.endGameState);
+        }
         handler.getMouseManager().setUiManager(gameUI);
         gameUI.tick();
     }
@@ -173,8 +181,10 @@ public class GameState extends State{
 
         g.setFont(font);
         g.drawString(currentPlayer.getName(),10,40);
-        g.drawString("Coins: "+currentPlayer.getCoins(),10,80);
-        g.drawString("Stars: "+currentPlayer.getStars(),10,120);
+        g.drawString("X"+currentPlayer.getStars(),60,100);
+        g.drawString("X"+currentPlayer.getCoins(),60,140);
+        gameUI.render(g,14);
+        gameUI.render(g,15);
 
 
         SinglyNode<Box> currentBoxMain = handler.getBoard().getMainCircuit().getHead();
