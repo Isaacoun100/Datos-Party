@@ -2,7 +2,6 @@ package com.itcr.ce.datosparty.states;
 
 import com.itcr.ce.datosparty.GameLauncher;
 import com.itcr.ce.datosparty.GameLoop;
-import com.itcr.ce.datosparty.userInterface.MainMenuUI;
 import com.itcr.ce.datosparty.userInterface.UIImage;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
@@ -21,7 +20,7 @@ public class MainMenuState extends State{
 
         super(handler);
 
-        uiManager = new MainMenuUI(handler);
+        uiManager = new UIManager(handler);
             uiManager.addObject(new UIImage((width/2)-19,height/6,40,6,Assets.titleImage));
 
             uiManager.addObject(new UIImageButton((width/2)-4, (height/2), 9, 3, Assets.playButton,

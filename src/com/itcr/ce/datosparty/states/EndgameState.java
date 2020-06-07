@@ -1,6 +1,6 @@
 package com.itcr.ce.datosparty.states;
 
-import com.itcr.ce.datosparty.userInterface.EndGameUI;
+import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
 import com.itcr.ce.datosparty.Handler;
@@ -16,10 +16,10 @@ public class EndgameState extends State {
     public EndgameState(Handler handler) {
         super(handler);
 
-        uiManager = new EndGameUI(handler);
+        uiManager = new UIManager(handler);
 
         uiManager.addObject(new UIImageButton(18, 32, 7*2, 2*2, Assets.creditsButton,
-                () -> setState(handler.getGameLoop().creditsState)));
+                () -> setState(GameLoop.creditsState)));
 
 
     }
