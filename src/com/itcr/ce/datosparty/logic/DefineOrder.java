@@ -29,7 +29,7 @@ public class DefineOrder {
         while(playerCount>0){
 
             playerName = JOptionPane.showInputDialog(null, "Player name");
-            if(playerName==null){ playerName="Player "+playerCount;}
+            if(playerName==null || playerName==""){ playerName="Player "+playerCount;}
             newPlayer = new TemporalPlayer(playerName, lockDice());
             this.addNewTemporal(newPlayer);
             playerCount--;
@@ -90,7 +90,7 @@ public class DefineOrder {
                 after = (SinglyNode<TemporalPlayer>) before.getNext();
                 while (after!=null){
                     if (before.getData().getDiceValue()<after.getData().getDiceValue()){
-                        this.swap(before,after);
+                        TemporalPlayerList.swap(before,after);
                     }
                     after = (SinglyNode<TemporalPlayer>) after.getNext();
                 }
@@ -103,13 +103,6 @@ public class DefineOrder {
         Round.initRound();
         Round.translate(TemporalPlayerList);
 
-    }
-
-    private void swap(SinglyNode<TemporalPlayer> node1, SinglyNode<TemporalPlayer> node2) {
-        TemporalPlayer data1 = node1.getData();
-        TemporalPlayer data2 =  node2.getData();
-        node1.setData(data2);
-        node2.setData(data1);
     }
 
 

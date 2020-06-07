@@ -24,6 +24,15 @@ public class Player extends Entity {
     BufferedImage image;
     private Boolean changeDirection;
     private Node<Box> position;
+    private Boolean reversed = false;
+
+    public Boolean getReversed() {
+        return reversed;
+    }
+
+    public void setReversed(Boolean reversed) {
+        this.reversed = reversed;
+    }
 
     public Boolean getChangeDirection() {
         return changeDirection;
@@ -43,13 +52,17 @@ public class Player extends Entity {
 
     public void move(Game game, Handler handler) throws InterruptedException {
         int boxesLeft =  getMovement();
+
         Node <Box> nextNode;
         Node <Box> phaseAFirst = handler.getBoard().getPhaseA().getHead();
-        Node <Box> phaseALast = handler.getBoard().getMainCircuit().get(44);
+        Node <Box> phaseAExit = handler.getBoard().getMainCircuit().get(44);
         Node <Box> phaseBFirst = handler.getBoard().getPhaseB().getHead();
-        Node <Box> phaseBLast = handler.getBoard().getMainCircuit().get(24);
-        Node <Box> phaseCFirst = handler.getBoard().getPhaseC().getHead();
-        Node <Box> phaseCLast = handler.getBoard().getMainCircuit().get(33);
+        Node <Box> phaseBExit = handler.getBoard().getMainCircuit().get(24);
+        Node <Box> phaseC1First = handler.getBoard().getPhaseC().getHead();
+        Node <Box> phaseC1Exit = handler.getBoard().getMainCircuit().get(33);
+        Node <Box> phaseC2First = handler.getBoard().getPhaseC().getLast();
+        Node <Box> phaseC2Exit = handler.getBoard().getMainCircuit().get(12);
+
         while (boxesLeft > 0) {
             // Goes to next Node<Box>
             if(getPosition().getData().isCrossRoads()){
@@ -64,7 +77,7 @@ public class Player extends Entity {
                     setDirection(false);
                 }
                 case PHASE_A_LAST -> {
-                    nextNode = phaseALast;
+                    nextNode = phaseAExit;
                     setDirection(false);
                 }
                 case PHASE_B_FIRST -> {
@@ -72,20 +85,32 @@ public class Player extends Entity {
                     setDirection(false);
                 }
                 case PHASE_B_LAST -> {
-                    nextNode = phaseBLast;
+                    nextNode = phaseBExit;
                     setDirection(false);
                 }
-                case PHASE_C_FIRST -> {
-                    nextNode = phaseCFirst;
+                case PHASE_C_FIRST -> {nextNode = phaseC1First;
                     setDirection(false);
                 }
-                case PHASE_C_LAST -> {
-                    nextNode = phaseCLast;
+                case PHASE_C_LAST -> {nextNode = phaseC1Exit;
+                    setDirection(false);
+                }
+                case PHASE_C_FIRST_REVERSED -> {nextNode = phaseC2First;
+                    setDirection(false);
+                    setReversed(true);
+                }
+                case PHASE_C_LAST_REVERSED -> {
+                    nextNode = phaseC2Exit;
+                    setDirection(false);
+                    setReversed(false);
+                }
+                case REVERSED -> {
+                    nextNode = getPosition().getPrevious();
                     setDirection(false);
                 }
                 default -> {
                     nextNode = getPosition().getNext();
                     setDirection(false);
+                    setReversed(false);
                 }
             }
           //  Node<Box> nextNode = getPosition().getNext();
@@ -108,9 +133,10 @@ public class Player extends Entity {
         Node<Box> phaseBConnector = handler.getBoard().getMainCircuit().get(15);
         Node<Box> phaseBLast = handler.getBoard().getPhaseB().getLast();
         Node<Box> phaseCConnector = handler.getBoard().getMainCircuit().get(12);
+        Node<Box> phaseCFirst = handler.getBoard().getPhaseC().getHead();
         Node<Box> phaseCLast = handler.getBoard().getPhaseC().getLast();
         Node<Box> phaseCConnectorReversed = handler.getBoard().getMainCircuit().get(33);
-        Node<Box> phaseCLastReversed = handler.getBoard().getPhaseC().getHead();
+
 
         if(current == phaseAConnector){
             if(changeDirection){
@@ -136,6 +162,15 @@ public class Player extends Entity {
             }
             return NONE;
         }
+        else if(current == phaseCFirst && reversed){
+            return PHASE_C_LAST_REVERSED;
+        }
+        else if(current == phaseCFirst){
+            return NONE;
+        }
+        else if(current == phaseCLast && reversed) {
+            return REVERSED;
+        }
         else if(current == phaseCLast){
             return PHASE_C_LAST;
         }
@@ -145,8 +180,8 @@ public class Player extends Entity {
             }
             return NONE;
         }
-        else if(current == phaseCLastReversed){
-            return PHASE_C_LAST_REVERSED;
+        else if(getReversed()){
+           return REVERSED;
         }
         else return NONE;
     }
