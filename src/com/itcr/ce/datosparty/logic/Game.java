@@ -20,6 +20,21 @@ public class Game extends Thread {
 
     Handler handler;
     int currentRound = 0;
+
+    public int getMaxRound() {
+        return maxRound;
+    }
+
+    public Handler getHandler() {
+        return handler;
+    }
+
+    public int getCurrentRound() {
+        return currentRound;
+    }
+
+    int maxRound;
+    private boolean active;
     private final SinglyList<Player> playerList;
     public StarSeller starSeller = new StarSeller(-300,-300);
 
@@ -28,8 +43,10 @@ public class Game extends Thread {
     }
 
     public Game(Handler handler, int numRound) {
+        active = true;
         this.handler = handler;
-        Round.setMaxRound(numRound);
+        maxRound = numRound;
+        Round.setMaxRound(maxRound);
         playerList = Round.getPlayerOrder();
         Turn.setPlayersTurn(playerList.getHead());
         int numberOfPlayers = Round.getPlayerOrder().getLength();
@@ -54,23 +71,25 @@ public class Game extends Thread {
 
     @Override
     public void run() {
-        while(currentRound != Round.getMaxRound()){
-            currentRound++;
-            try {
-                Round.playRound(this);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        while (active){
+            while(currentRound != Round.getMaxRound()){
+                try {
+                    Round.playRound(this);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if(currentRound != Round.getMaxRound()){
+                    Minigame.playMinigame(1);}
+                try {
+                    pauseGame();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                currentRound++;
             }
-            if(currentRound != Round.getMaxRound()){
-                Minigame.playMinigame(1);}
-            try {
-                pauseGame();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            System.out.println("C'est fini");
+            Leaderboard.getLeaderboard();
         }
-        System.out.println("C'est fini");
-        Leaderboard.getLeaderboard();
     }
 
     public void checkStar(Player player) throws InterruptedException {
@@ -128,10 +147,6 @@ public class Game extends Thread {
         } else {
             System.out.println("You don't have enough money, though...");
         }
-    }
-
-    public int getCurrentRound() {
-    return currentRound;
     }
 
     public synchronized void pauseGame() throws InterruptedException {
