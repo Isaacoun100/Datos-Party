@@ -95,10 +95,10 @@ public class Player extends Entity {
             game.checkStar(this);
             // Subtracts from number given on dice
             boxesLeft--;
-            x = position.getData().getX();
-            y = position.getData().getY() - 45;
         }
-        update(this.getPosition().getData());
+        update(this.getPosition().getData(), game);
+        System.out.println("Coins: " + this.coins);
+        System.out.println("Stars: " + this.stars);
     }
 
     private Connector getConnector(Node<Box> current, Handler handler,boolean changeDirection) {
@@ -191,6 +191,8 @@ public class Player extends Entity {
 
     public void setPosition(Node<Box> position) {
         this.position = position;
+        this.x = position.getData().getX();
+        this.y = position.getData().getY() - 45;
     }
 
     public void update(Box currentBox, Game game) {
