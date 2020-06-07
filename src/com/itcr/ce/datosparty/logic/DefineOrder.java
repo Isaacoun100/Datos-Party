@@ -28,8 +28,13 @@ public class DefineOrder {
 
         while(playerCount>0){
 
-            playerName = JOptionPane.showInputDialog(null, "Player name");
-            if(playerName==null || playerName==""){ playerName="Player "+playerCount;}
+            playerName = JOptionPane.showInputDialog(null, "Player "+ playerCount + " name");
+            if(playerName==null || playerName.length() == 0){
+
+                playerName="Player "+playerCount;
+
+            }
+
             newPlayer = new TemporalPlayer(playerName, lockDice());
             this.addNewTemporal(newPlayer);
             playerCount--;
@@ -72,7 +77,6 @@ public class DefineOrder {
 
         while (compareDice(dice)){
             dice = Dice.roll(6,1);
-            System.out.println("Why do they always send the poor");
         }
 
         diceThrowList.add(dice);
