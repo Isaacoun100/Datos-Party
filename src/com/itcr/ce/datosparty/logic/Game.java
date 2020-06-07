@@ -19,7 +19,7 @@ import java.util.Random;
 public class Game extends Thread {
 
     Handler handler;
-    int currentRound = 0;
+    int currentRound = 1;
 
     public int getMaxRound() {
         return maxRound;
@@ -128,7 +128,7 @@ public class Game extends Thread {
             placeStar(list);
         }
         else {
-            starSeller.setPosition(starBox.getX(), starBox.getY() - 35);
+            starSeller.setPosition(starBox.getX()+1, starBox.getY() - 35);
             starBox.setStarBox(true);
         }
     }
