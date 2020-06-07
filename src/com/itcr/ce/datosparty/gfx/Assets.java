@@ -1,5 +1,6 @@
 package com.itcr.ce.datosparty.gfx;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Assets {
@@ -10,7 +11,9 @@ public class Assets {
             notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, upArrow, downArrow, leftArrow,
             rightArrow, player1Button, player2Button,
             player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp, volumeDown, gameMusic, soundEffects,
-            starPurchaseBackDrop, starIcon, yesButton, noButton, purchaseMsg, buyMsg;
+            starPurchaseBackDrop, starIcon, yesButton, noButton, purchaseMsg, buyMsg, endTurnBtn;
+
+    public static Font bitArtFont;
 
     /**
      * This Method initializes all assets that are used in the game, for them to load properly
@@ -152,7 +155,13 @@ public class Assets {
         buyMsg[0] = sheet.crop(25,5,4,1);
         buyMsg[1] = sheet.crop(25,5,4,1);
 
+        endTurnBtn = new BufferedImage[2];
+        endTurnBtn[1] = sheet.crop(29,4,2,2);
+        endTurnBtn[0] = sheet.crop(31,4,2,2);
+
         mapGuide = mapSheet.crop(0,0,100,76);
+
+        //bitArtFont = FontLoader.loadFont("/fonts/retro_computer_personal_use.ttf");
 
     }
 }

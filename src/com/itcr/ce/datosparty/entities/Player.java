@@ -118,7 +118,7 @@ public class Player extends Entity {
             // Checks if there is a star
             game.checkStar(this);
             // Subtracts from number given on dice
-            boxesLeft--;
+            setMovement(boxesLeft--);
         }
         update(this.getPosition().getData());
     }

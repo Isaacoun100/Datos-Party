@@ -18,6 +18,8 @@ import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
 
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class GameState extends State{
 
@@ -27,8 +29,10 @@ public class GameState extends State{
     private int height = GameLauncher.height/16;
     private final int firstBoxX = ((width*16)/(800/56))+50;
     private final int firstBoxY = ((height*16)/(608/299))-20;
+    private int playerMovement;
     private Player currentPlayer;
     private Box currentBox;
+    private final Font font;
 
     private final Game game;
 
@@ -36,12 +40,15 @@ public class GameState extends State{
         super(handler);
         this.game = game;
 
+        font = new Font("Windows Command Prompt", Font.PLAIN,50);
+
         gameUI = new GameUI(handler);
 
-        gameUI.addObject(new UIImageButton(3, height-20, 8, 8, Assets.diceButton,
+        gameUI.addObject(new UIImageButton(1, height-20, 8, 8, Assets.diceButton,
                 () -> {
                     if(!currentBox.isCrossRoads()&&!currentBox.isStarBox()) {
-                        currentPlayer.setMovement(Dice.roll(6,1) + Dice.roll(6,1));
+                        int diceResult = Dice.roll(6,1) + Dice.roll(6,1);
+                        currentPlayer.setMovement(diceResult);
                         SoundEffect.DiceRoll();
                         //Thread.sleep(3000);
                         game.resumeGame();
@@ -145,11 +152,16 @@ public class GameState extends State{
             game.resumeGame();
 
         }));
+
+        gameUI.addObject(new UIImageButton(9,height-20,4*2,4*2,Assets.endTurnBtn,()->{
+            //Round.endTurn();
+        }));
     }
 
     @Override
     public void tick() {
         currentPlayer = Turn.getPlayersTurn().getData();
+        playerMovement = currentPlayer.getMovement();
         currentBox = currentPlayer.getPosition().getData();
         handler.getMouseManager().setUiManager(gameUI);
         gameUI.tick();
@@ -158,6 +170,12 @@ public class GameState extends State{
     @Override
     public void render(Graphics g) {
         g.drawImage(Assets.mapGuide, -10, 0, null);
+
+        g.setFont(font);
+        g.drawString(currentPlayer.getName(),10,40);
+        g.drawString("Coins: "+currentPlayer.getCoins(),10,80);
+        g.drawString("Stars: "+currentPlayer.getStars(),10,120);
+
 
         SinglyNode<Box> currentBoxMain = handler.getBoard().getMainCircuit().getHead();
         int mainCircuitLength = handler.getBoard().getMainCircuit().getLength();
@@ -181,14 +199,15 @@ public class GameState extends State{
 
         game.starSeller.render(g);
 
-        SinglyNode<Player> currentPlayer = Round.getPlayerOrder().getHead();
+        SinglyNode<Player> currentPlayerNode = Round.getPlayerOrder().getHead();
         for (int i = 0; i < Round.getPlayerOrder().getLength(); i++) {
-            currentPlayer.getData().render(g);
-            currentPlayer = (SinglyNode<Player>) currentPlayer.getNext();
+            currentPlayerNode.getData().render(g);
+            currentPlayerNode = (SinglyNode<Player>) currentPlayerNode.getNext();
         }
 
         if(!currentBox.isCrossRoads()&&!currentBox.isStarBox()){
             gameUI.render(g,0);
+            g.drawString("X"+playerMovement,10*16,(height-15)*16);
         } else if (currentBox.getBoxID().equals("phaseA")) {
             gameUI.render(g,1);
             gameUI.render(g,2);
@@ -206,6 +225,8 @@ public class GameState extends State{
             gameUI.render(g,10);
             gameUI.render(g,11);
             gameUI.render(g,12);
+        } else if (currentPlayerNode.getData().getMovement()==0){
+            gameUI.render(g,13);
         }
     }
 

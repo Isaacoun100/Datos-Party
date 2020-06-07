@@ -61,7 +61,8 @@ public class Game extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            Minigame.playMinigame(1);
+            if(currentRound != Round.getMaxRound()){
+                Minigame.playMinigame(1);}
             try {
                 pauseGame();
             } catch (InterruptedException e) {
