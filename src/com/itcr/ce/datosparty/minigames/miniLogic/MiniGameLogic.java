@@ -1,4 +1,4 @@
-package com.itcr.ce.datosparty.minigames.minilogic;
+package com.itcr.ce.datosparty.minigames.miniLogic;
 
 import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
 import com.itcr.ce.datosparty.entities.Player;

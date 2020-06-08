@@ -1,4 +1,4 @@
-package com.itcr.ce.datosparty.minigames.minilogic;
+package com.itcr.ce.datosparty.minigames.miniLogic;
 
 import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.logic.Dice;
