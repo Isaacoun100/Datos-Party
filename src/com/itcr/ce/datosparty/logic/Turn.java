@@ -28,8 +28,6 @@ public class Turn {
     public static void playTurn(Game game) throws InterruptedException {
         Player currentPlayer = Turn.getPlayersTurn().getData();
         while (Turn.getPlayersTurn() != null) {
-            //Player
-            //Player currentPlayer = Turn.getPlayersTurn().getData();
             System.out.println(currentPlayer.getName());
             game.pauseGame();
             try {

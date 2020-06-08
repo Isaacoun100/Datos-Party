@@ -6,14 +6,14 @@ import java.awt.image.BufferedImage;
 public class Assets {
 
     public static BufferedImage blueBox, greenBox, yellowBox, redBox, player1Static, player2Static, player3Static,
-            player4Static, starSeller, mapGuide;
+            player4Static, starSeller,noCoinsMsg,enoughCoins, mapGuide,eventBackDrop;
 
     public static BufferedImage[] settingsButton, playButton, creditsButton,backButton, titleImage,pressEnterImage,
             notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, upArrow, downArrow, leftArrow,
-            rightArrow, player1Button, player2Button,
+            rightArrow, player1Button, player2Button, duel, stealCoins, giveCoins, loseStar, win2Stars, win5Stars,stealStar, teleport, swapPlace,
             player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp, volumeDown, gameMusic, soundEffects,
             starPurchaseBackDrop, yesBtn, noBtn, purchaseMsg, buyMsg, endTurnBtn, coin, star, noviceButton,
-            proButton, eliteButton, roundTitle;
+            proButton, eliteButton, roundTitle, okBtn;
 
     public static Font bitArtFont;
 
@@ -142,7 +142,6 @@ public class Assets {
         player4Static = sheet.crop(13,6,1,2);
         starSeller = sheet.crop(16,6,2,2);
 
-
         gameMusic= new BufferedImage[1];
         gameMusic[0]= buttonSheet.crop(8,5,8,2);
 
@@ -152,7 +151,6 @@ public class Assets {
         starPurchaseBackDrop = new BufferedImage[2];
         starPurchaseBackDrop[0] = sheet.crop(18,5,4,2);
         starPurchaseBackDrop[1] = sheet.crop(18,5,4,2);
-
 
         yesBtn = new BufferedImage[2];
         yesBtn[0] = sheet.crop(18,7,1,1);
@@ -166,6 +164,9 @@ public class Assets {
         purchaseMsg[0] = sheet.crop(20,7,3,1);
         purchaseMsg[1] = sheet.crop(20,7,3,1);
 
+        noCoinsMsg = sheet.crop(20,8,7,2);
+        enoughCoins = sheet.crop(20,7,4,1);
+
         buyMsg = new BufferedImage[2];
         buyMsg[0] = sheet.crop(25,5,4,1);
         buyMsg[1] = sheet.crop(25,5,4,1);
@@ -174,7 +175,12 @@ public class Assets {
         endTurnBtn[1] = sheet.crop(29,4,2,2);
         endTurnBtn[0] = sheet.crop(31,4,2,2);
 
+        okBtn = new BufferedImage[2];
+        okBtn[0] = sheet.crop(19,8,1,1);
+        okBtn[1] = sheet.crop(18,8,1,1);
+
         mapGuide = mapSheet.crop(0,0,100,76);
+        eventBackDrop = sheet.crop(0,8,2,3);
 
         coin = new BufferedImage[7];
         coin[0] = sheet.crop(27,7,1,1);
@@ -196,6 +202,106 @@ public class Assets {
         star[7] = sheet.crop(36,6,1,1);
         star[8] = sheet.crop(37,6,1,1);
         star[9] = sheet.crop(29,6,1,1);
+
+        duel = new BufferedImage[8];
+        duel[0] = sheet.crop(2,8,2,1);
+        duel[1] = sheet.crop(4,8,2,1);
+        duel[2] = sheet.crop(6,8,2,1);
+        duel[3] = sheet.crop(8,8,2,1);
+        duel[4] = sheet.crop(10,8,2,1);
+        duel[5] = sheet.crop(12,8,2,1);
+        duel[6] = sheet.crop(14,8,2,1);
+        duel[7] = sheet.crop(16,8,2,1);
+
+        stealCoins = new BufferedImage[6];
+
+        stealCoins[0] = sheet.crop(2,9,1,1);
+        stealCoins[1] = sheet.crop(3,9,1,1);
+        stealCoins[2] = sheet.crop(4,9,1,1);
+        stealCoins[3] = sheet.crop(5,9,1,1);
+        stealCoins[4] = sheet.crop(6,9,1,1);
+        stealCoins[5] = sheet.crop(7,9,1,1);
+
+        giveCoins = new BufferedImage[6];
+
+        giveCoins[0] = sheet.crop(2,10,1,1);
+        giveCoins[1] = sheet.crop(3,10,1,1);
+        giveCoins[2] = sheet.crop(4,10,1,1);
+        giveCoins[3] = sheet.crop(5,10,1,1);
+        giveCoins[4] = sheet.crop(6,10,1,1);
+        giveCoins[5] = sheet.crop(7,10,1,1);
+
+        loseStar = new BufferedImage[10];
+        loseStar[0] = sheet.crop(8,10,1,1);
+        loseStar[1] = sheet.crop(9,10,1,1);
+        loseStar[2] = sheet.crop(10,10,1,1);
+        loseStar[3] = sheet.crop(11,10,1,1);
+        loseStar[4] = sheet.crop(12,10,1,1);
+        loseStar[5] = sheet.crop(13,10,1,1);
+        loseStar[6] = sheet.crop(14,10,1,1);
+        loseStar[7] = sheet.crop(15,10,1,1);
+        loseStar[8] = sheet.crop(16,10,1,1);
+        loseStar[9] = sheet.crop(17,10,1,1);
+
+        win2Stars = new BufferedImage[11];
+        win2Stars[0] = sheet.crop(8,11,1,1);
+        win2Stars[1] = sheet.crop(9,11,1,1);
+        win2Stars[2] = sheet.crop(10,11,1,1);
+        win2Stars[3] = sheet.crop(11,11,1,1);
+        win2Stars[4] = sheet.crop(12,11,1,1);
+        win2Stars[5] = sheet.crop(13,11,1,1);
+        win2Stars[6] = sheet.crop(14,11,1,1);
+        win2Stars[7] = sheet.crop(15,11,1,1);
+        win2Stars[8] = sheet.crop(16,11,1,1);
+        win2Stars[9] = sheet.crop(17,11,1,1);
+
+        win5Stars = new BufferedImage[11];
+        win5Stars[0] = sheet.crop(8,12,1,1);
+        win5Stars[1] = sheet.crop(9,12,1,1);
+        win5Stars[2] = sheet.crop(10,12,1,1);
+        win5Stars[3] = sheet.crop(11,12,1,1);
+        win5Stars[4] = sheet.crop(12,12,1,1);
+        win5Stars[5] = sheet.crop(13,12,1,1);
+        win5Stars[6] = sheet.crop(14,12,1,1);
+        win5Stars[7] = sheet.crop(15,12,1,1);
+        win5Stars[8] = sheet.crop(16,12,1,1);
+        win5Stars[9] = sheet.crop(17,12,1,1);
+
+        stealStar = new BufferedImage[11];
+        stealStar[0] = sheet.crop(8,9,1,1);
+        stealStar[1] = sheet.crop(9,9,1,1);
+        stealStar[2] = sheet.crop(10,9,1,1);
+        stealStar[3] = sheet.crop(11,9,1,1);
+        stealStar[4] = sheet.crop(12,9,1,1);
+        stealStar[5] = sheet.crop(13,9,1,1);
+        stealStar[6] = sheet.crop(14,9,1,1);
+        stealStar[7] = sheet.crop(15,9,1,1);
+        stealStar[8] = sheet.crop(16,9,1,1);
+        stealStar[9] = sheet.crop(17,9,1,1);
+
+        teleport = new BufferedImage[12];
+
+        teleport[0] = sheet.crop(17,12,1,2);
+        teleport[1] = sheet.crop(18,12,1,2);
+        teleport[2] = sheet.crop(19,12,1,2);
+        teleport[3] = sheet.crop(20,12,1,2);
+        teleport[4] = sheet.crop(21,12,1,2);
+        teleport[5] = sheet.crop(22,12,1,2);
+        teleport[6] = sheet.crop(23,12,1,2);
+        teleport[7] = sheet.crop(24,12,1,2);
+        teleport[8] = sheet.crop(25,12,1,2);
+        teleport[9] = sheet.crop(26,12,1,2);
+        teleport[10] = sheet.crop(27,12,1,2);
+        teleport[11] = sheet.crop(28,12,1,2);
+
+        swapPlace = new BufferedImage[6];
+
+        swapPlace[0] = sheet.crop(17,10,2,2);
+        swapPlace[1] = sheet.crop(19,10,2,2);
+        swapPlace[2] = sheet.crop(21,10,2,2);
+        swapPlace[3] = sheet.crop(23,10,2,2);
+        swapPlace[4] = sheet.crop(25,10,2,2);
+        swapPlace[5] = sheet.crop(27,10,2,2);
 
         //bitArtFont = FontLoader.loadFont("/fonts/retro_computer_personal_use.ttf");
 

@@ -13,7 +13,6 @@ public class MapCoordinates {
 
     public static SinglyList<SinglyList<Integer>> getMainCircuitCoordinates() {
         SinglyList<SinglyList<Integer>> MainCircuitCoordinates = new SinglyList<>();
-
         //Index 0
         MainCircuitCoordinates.add(new SinglyList<>());
         SinglyNode<SinglyList<Integer>> current = MainCircuitCoordinates.getHead();

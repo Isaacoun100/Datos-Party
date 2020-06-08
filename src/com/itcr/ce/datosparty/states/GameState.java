@@ -30,6 +30,7 @@ public class GameState extends State{
     private final int  maxRound;
     private int playerMovement;
     private Player currentPlayer;
+    private boolean enoughCoins = false, clicked = false;
     private Box currentBox;
     private final Font font;
     private final Game game;
@@ -141,13 +142,40 @@ public class GameState extends State{
 
         gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,8,Assets.buyMsg[0],"buyMsg")));
 
-        gameUI.addObject(new UIImageButton(width/2-8,height/2-10,8,8,Assets.yesBtn,"yesBtn",
-                ()->{ game.buyStar(currentPlayer);
-                int movementLeft = currentPlayer.getMovement();
-                currentPlayer.setMovement(movementLeft);
-                game.resumeGame();
+        gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,8,Assets.noCoinsMsg,"noCoinsMsg")));
 
-        }));
+        gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,8,Assets.enoughCoins,"enoughCoins")));
+
+
+        gameUI.addObject(new UIImageButton(width/2-2,height/2-8,8,8,Assets.okBtn,"okBtnStars",
+                ()->{ if(enoughCoins && clicked){
+                    game.buyStar(currentPlayer);
+                    int movementLeft = currentPlayer.getMovement();
+                    currentPlayer.setMovement(movementLeft);
+                    clicked = false;
+                    game.resumeGame();
+                }
+                }));
+
+        gameUI.addObject(new UIImageButton(width/2-2,height/2-8,8,8,Assets.okBtn,"okBtnNoStars",
+                ()->{ if(!enoughCoins && clicked){
+                    int movementLeft = currentPlayer.getMovement();
+                    currentPlayer.setMovement(movementLeft);
+                    clicked = false;
+                    game.resumeGame();
+                }
+                }));
+
+        gameUI.addObject(new UIImageButton(width/2-8,height/2-10,8,8,Assets.yesBtn,"yesBtn",
+                ()->{ int coins = currentPlayer.getCoins();
+                if(coins<10){
+                    enoughCoins = false;
+                } else {
+                    enoughCoins = true;
+                }
+                    clicked = true;
+
+                }));
         gameUI.addObject(new UIImageButton(width/2+2,height/2-10,8,8,Assets.noBtn,"noBtn",()->{
             int movementLeft = currentPlayer.getMovement();
             currentPlayer.setMovement(movementLeft);
@@ -161,6 +189,8 @@ public class GameState extends State{
 
         gameUI.addObject(new UIAnimatedImage(0,3,4,4, star,"star"));
         gameUI.addObject(new UIAnimatedImage(0,6,4,4, coin,"coin"));
+
+
     }
 
     @Override
@@ -230,12 +260,21 @@ public class GameState extends State{
         } else if (currentBox.getBoxID().equals("phaseC2")) {
             gameUI.renderById(g,"lArrowPhaseC2");
             gameUI.renderById(g,"dArrowPhaseC2");
-        } else if(currentBox.isStarBox()){
+        } else if(currentBox.isStarBox() && !clicked){
             gameUI.renderById(g,"starPBackDrop");
             gameUI.renderById(g,"buyMsg");
             gameUI.renderById(g,"yesBtn");
             gameUI.renderById(g,"noBtn");
-        }
+        }else if(currentBox.isStarBox() && enoughCoins){
+             gameUI.renderById(g,"starPBackDrop");
+             gameUI.renderById(g,"enoughCoins");
+             gameUI.renderById(g,"okBtnStars");
+         }
+         else if(currentBox.isStarBox() && !enoughCoins){
+             gameUI.renderById(g,"starPBackDrop");
+             gameUI.renderById(g,"noCoinsMsg");
+             gameUI.renderById(g,"okBtnNoStars");
+         }
     }
 
     private void renderBoard(SinglyNode<Box> currentBox, int length, Graphics g) {
