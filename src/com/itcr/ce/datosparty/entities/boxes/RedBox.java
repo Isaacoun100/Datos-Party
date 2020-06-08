@@ -2,6 +2,7 @@ package com.itcr.ce.datosparty.entities.boxes;
 
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.entities.Player;
+import com.itcr.ce.datosparty.music.SoundEffect;
 
 import java.awt.*;
 
@@ -25,13 +26,12 @@ public class RedBox extends Box {
 
     @Override
     public void boxAction(Player player) {
+        SoundEffect.PopSound();
         if(player.getCoins() < 3){
             player.addCoins(0);
         }
         else{
             player.addCoins(-3);
         }
-        System.out.println("RedBox");
-        System.out.println("Current Coins: "+player.getCoins());
     }
 }

@@ -2,6 +2,7 @@ package com.itcr.ce.datosparty.entities.boxes;
 
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.entities.Player;
+import com.itcr.ce.datosparty.music.SoundEffect;
 
 import java.awt.*;
 
@@ -23,8 +24,7 @@ public class GreenBox extends Box {
 
     @Override
     public void boxAction(Player player){
+        SoundEffect.PopSound();
         player.addCoins(+3);
-        System.out.println("GreenBox");
-        System.out.println("Current Coins: "+player.getCoins());
     }
 }
