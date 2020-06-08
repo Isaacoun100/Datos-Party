@@ -27,6 +27,7 @@ public class Turn {
 
     public static void playTurn(Game game) throws InterruptedException {
         Player currentPlayer = Turn.getPlayersTurn().getData();
+        game.setCurrentEvent(null);
         while (Turn.getPlayersTurn() != null) {
             //Player
             //Player currentPlayer = Turn.getPlayersTurn().getData();
