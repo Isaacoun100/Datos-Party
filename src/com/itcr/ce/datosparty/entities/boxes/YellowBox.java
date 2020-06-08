@@ -10,7 +10,6 @@ import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.logic.*;
 import com.itcr.ce.datosparty.logic.Event;
-import com.itcr.ce.datosparty.minigames.minilogic.Minigame;
 
 import java.awt.*;
 
@@ -34,30 +33,18 @@ public class YellowBox extends Box {
     @Override
     public void boxAction(Player player, Game game) {
         game.setCurrentEvent(Event.STEAL_COINS); // game.eventStack.pop();
-//        try {
-//            game.pauseGame();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         switch (game.getCurrentEvent()) {
             case DUEL -> {
                 // WIP
                 System.out.println("DUEL");
-                Minigame.playMinigame(1);
             }
             case STEAL_COINS -> {
                 // WIP
-                System.out.println("STEAL_COINS");
-                // Chooses random player
-                // Should give player the option to steal whoever player he chooses to
-                int maxPlayers = Round.getPlayerOrder().getLength() - 1;
-                int randomCoins = Dice.roll(1, 10);
-                Player randomPlayer = Round.getPlayerOrder().get(Dice.roll(0, maxPlayers)).getData();
-                randomPlayer.addCoins(-randomCoins);
-                if (randomPlayer.getCoins() < randomCoins) {
-                    randomCoins = randomPlayer.getCoins();
+                try {
+                    game.pauseGame();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-                player.addCoins(randomCoins);
             }
             case GIFT_COINS -> {
                 // WIP
