@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 
 
-public abstract class UIManager {
+public class UIManager {
 
     private SinglyList<UIObject> objects;
 

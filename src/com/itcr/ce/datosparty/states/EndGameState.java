@@ -1,6 +1,9 @@
 package com.itcr.ce.datosparty.states;
 
-import com.itcr.ce.datosparty.userInterface.EndGameUI;
+import com.itcr.ce.datosparty.GameLoop;
+import com.itcr.ce.datosparty.logic.DefineOrder;
+import com.itcr.ce.datosparty.logic.Game;
+import com.itcr.ce.datosparty.logic.Round;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
 import com.itcr.ce.datosparty.Handler;
@@ -8,18 +11,23 @@ import com.itcr.ce.datosparty.gfx.Assets;
 
 import java.awt.*;
 
-public class EndgameState extends State {
+public class EndGameState extends State {
 
     private final UIManager uiManager;
 
 
-    public EndgameState(Handler handler) {
+    public EndGameState(Handler handler, Game game) {
         super(handler);
 
-        uiManager = new EndGameUI(handler);
+        uiManager = new UIManager(handler);
 
         uiManager.addObject(new UIImageButton(18, 32, 7*2, 2*2, Assets.creditsButton,
-                () -> setState(handler.getGameLoop().creditsState)));
+                () -> {
+                game.setActive(false);
+                GameLoop.gameDependantStates.clear();
+                Round.getPlayerOrder().clear();
+                DefineOrder.getTemporalPlayerList().clear();
+                setState(GameLoop.creditsState); }));
 
 
     }

@@ -30,10 +30,9 @@ public class GameLoop implements Runnable {
     /**
      * State Initialization
      */
-    public static State mainMenuState, titleScreenState, creditsState, optionsState, endGameState, boardState,
-                        winnerState, selectPlayerState;
-    public static SinglyList<State> miniGameStates = new SinglyList<>();
-    public static SinglyList<State> gameState = new SinglyList<>();
+    public static State mainMenuState, creditsState, optionsState,
+                        winnerState, selectPlayerState, selectRoundState;
+    public static SinglyList<State> gameDependantStates = new SinglyList<>();
 
     /**
      * Input Initialization
@@ -97,14 +96,10 @@ public class GameLoop implements Runnable {
         mainMenuState = new MainMenuState(handler);
         creditsState = new CreditsState(handler);
         optionsState = new OptionsState(handler);
-        endGameState = new EndgameState(handler);
-        boardState = new BoardState(handler);
         winnerState = new WinnerState(handler);
+        selectRoundState = new SelectRoundState(handler);
         selectPlayerState = new PlayerSelectionState(handler);
 
-
-        //game = new Game(handler, 5);
-        //game.start();
         State.setState(mainMenuState);
 
     }

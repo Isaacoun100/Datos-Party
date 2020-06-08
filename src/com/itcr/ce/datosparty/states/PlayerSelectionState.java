@@ -3,7 +3,6 @@ package com.itcr.ce.datosparty.states;
 import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.logic.Game;
 import com.itcr.ce.datosparty.logic.Leaderboard;
-import com.itcr.ce.datosparty.userInterface.SelectPlayerUI;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
 import com.itcr.ce.datosparty.Handler;
@@ -26,7 +25,7 @@ public class PlayerSelectionState extends State {
     public PlayerSelectionState(Handler handler) {
         super(handler);
 
-        uiManager = new SelectPlayerUI(handler);
+        uiManager = new UIManager(handler);
         DefineOrder.initTemporal();
 
         uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player2Button, () -> {
@@ -34,9 +33,9 @@ public class PlayerSelectionState extends State {
             System.out.println("The order is:");
             setOrder.order();
             Leaderboard.initLeaderBoard();
-            game = new Game(handler, 10);
+            game = new Game(handler, SelectRoundState.getRound());
             game.start();
-            State.setState(GameLoop.gameState.getHead().getData());
+            State.setState(GameLoop.gameDependantStates.get(8).getData());
         }));
 
         uiManager.addObject(new UIImageButton(35, 1, 7*2, 2*2, Assets.player3Button, () -> {
@@ -44,9 +43,9 @@ public class PlayerSelectionState extends State {
             System.out.println("The order is:");
             setOrder.order();
             Leaderboard.initLeaderBoard();
-            game = new Game(handler, 10);
+            game = new Game(handler, SelectRoundState.getRound());
             game.start();
-            State.setState(GameLoop.gameState.getHead().getData());
+            State.setState(GameLoop.gameDependantStates.get(8).getData());
         }));
 
         uiManager.addObject(new UIImageButton(20, 30, 7*2, 2*2, Assets.player4Button, () -> {
@@ -54,9 +53,9 @@ public class PlayerSelectionState extends State {
             System.out.println("The order is:");
             setOrder.order();
             Leaderboard.initLeaderBoard();
-            game = new Game(handler, 10);
+            game = new Game(handler, SelectRoundState.getRound());
             game.start();
-            State.setState(GameLoop.gameState.getHead().getData());
+            State.setState(GameLoop.gameDependantStates.get(8).getData());
         }));
 
     }

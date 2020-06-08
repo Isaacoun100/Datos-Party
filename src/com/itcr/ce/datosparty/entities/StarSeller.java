@@ -7,7 +7,7 @@ import java.awt.*;
 public class StarSeller extends Entity{
 
     public StarSeller(float x, float y) {
-        super(x, y, 150, 150);
+        super(x, y, 130, 130);
     }
 
     @Override

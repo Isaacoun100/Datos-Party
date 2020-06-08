@@ -1,6 +1,6 @@
 package com.itcr.ce.datosparty.states;
 
-import com.itcr.ce.datosparty.userInterface.CreditsUI;
+import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.userInterface.UIImage;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
@@ -15,14 +15,14 @@ public class CreditsState extends State{
 
     public CreditsState(Handler handler){
         super(handler);
-        uiManager = new CreditsUI(handler);
+        uiManager = new UIManager(handler);
 
-        uiManager.addObject(new UIImage(20,10,5*2,5*2, Assets.notOKComputerIcon));
-        uiManager.addObject(new UIImage(16,19,2*9, 2, Assets.notOKComputer));
-        uiManager.addObject(new UIImage(7,26,9*4, 4, Assets.nothingHereMessage));
+        uiManager.addObject(new UIImage(20,10,5*2,5*2, Assets.notOKComputerIcon[0]));
+        uiManager.addObject(new UIImage(16,19,2*9, 2, Assets.notOKComputer[0]));
+        uiManager.addObject(new UIImage(7,26,9*4, 4, Assets.nothingHereMessage[0]));
 
         uiManager.addObject(new UIImageButton(20, 30, 3*3, 3, Assets.backButton,
-                () -> setState(handler.getGameLoop().mainMenuState)));
+                () -> setState(GameLoop.mainMenuState)));
 
     }
 

@@ -11,6 +11,10 @@ public class DefineOrder {
     TemporalPlayer newPlayer;
     String playerName;
 
+    public static SinglyList<TemporalPlayer> getTemporalPlayerList() {
+        return TemporalPlayerList;
+    }
+
     public static void initTemporal(){
         TemporalPlayerList = new SinglyList<>();
     }
@@ -28,8 +32,13 @@ public class DefineOrder {
 
         while(playerCount>0){
 
-            playerName = JOptionPane.showInputDialog(null, "Player name");
-            if(playerName==null || playerName==""){ playerName="Player "+playerCount;}
+            playerName = JOptionPane.showInputDialog(null, "Player "+ playerCount + " name");
+            if(playerName==null || playerName.length() == 0){
+
+                playerName="Player "+playerCount;
+
+            }
+
             newPlayer = new TemporalPlayer(playerName, lockDice());
             this.addNewTemporal(newPlayer);
             playerCount--;
@@ -72,7 +81,6 @@ public class DefineOrder {
 
         while (compareDice(dice)){
             dice = Dice.roll(1, 6);
-            System.out.println("Why do they always send the poor");
         }
 
         diceThrowList.add(dice);
