@@ -30,7 +30,6 @@ public class PlayerSelectionState extends State {
 
         uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player2Button, () -> {
             setOrder.recursiveAdd(2);
-            System.out.println("The order is:");
             setOrder.order();
             Leaderboard.initLeaderBoard();
             game = new Game(handler, SelectRoundState.getRound());
@@ -40,7 +39,6 @@ public class PlayerSelectionState extends State {
 
         uiManager.addObject(new UIImageButton(35, 1, 7*2, 2*2, Assets.player3Button, () -> {
             setOrder.recursiveAdd(3);
-            System.out.println("The order is:");
             setOrder.order();
             Leaderboard.initLeaderBoard();
             game = new Game(handler, SelectRoundState.getRound());
@@ -50,7 +48,6 @@ public class PlayerSelectionState extends State {
 
         uiManager.addObject(new UIImageButton(20, 30, 7*2, 2*2, Assets.player4Button, () -> {
             setOrder.recursiveAdd(4);
-            System.out.println("The order is:");
             setOrder.order();
             Leaderboard.initLeaderBoard();
             game = new Game(handler, SelectRoundState.getRound());

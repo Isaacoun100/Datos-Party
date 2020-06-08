@@ -45,19 +45,6 @@ public class DefineOrder {
             playerCount--;
         }
 
-        this.displayPlayer(TemporalPlayerList);
-
-    }
-
-    public void displayPlayer(SinglyList<TemporalPlayer> displayList){
-
-        SinglyNode<TemporalPlayer> temporal = displayList.getHead();
-
-        while(temporal!=null){
-            System.out.println("[ "+ temporal.getData().getId() +" , "+ temporal.getData().getDiceValue() +" ]");
-            temporal = (SinglyNode<TemporalPlayer>) temporal.getNext();
-        }
-
     }
 
     public boolean compareDice(int dice){
@@ -108,7 +95,6 @@ public class DefineOrder {
             count++;
         }
 
-        this.displayPlayer(TemporalPlayerList);
         Round.initRound();
         Round.translate(TemporalPlayerList);
 
