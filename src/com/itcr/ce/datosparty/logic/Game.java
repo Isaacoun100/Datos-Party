@@ -8,7 +8,7 @@ import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.entities.StarSeller;
 import com.itcr.ce.datosparty.entities.boxes.Box;
 import com.itcr.ce.datosparty.minigames.MiniGameBuilder;
-import com.itcr.ce.datosparty.minigames.minilogic.Minigame;
+import com.itcr.ce.datosparty.minigames.miniLogic.Minigame;
 import com.itcr.ce.datosparty.states.EndGameState;
 import com.itcr.ce.datosparty.states.GameState;
 

@@ -1,11 +1,7 @@
 package com.itcr.ce.datosparty.minigames.states;
 
-import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.logic.Game;
-import com.itcr.ce.datosparty.logic.Round;
-import com.itcr.ce.datosparty.minigames.minilogic.FirstMiniGameLogic;
-import com.itcr.ce.datosparty.minigames.ui.FirstMinigameUI;
 import com.itcr.ce.datosparty.minigames.ui.SecondMinigameUI;
 import com.itcr.ce.datosparty.userInterface.ClickListener;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
