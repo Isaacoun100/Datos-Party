@@ -2,6 +2,7 @@ package com.itcr.ce.datosparty.entities.boxes;
 
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.entities.Player;
+import com.itcr.ce.datosparty.logic.Game;
 import com.itcr.ce.datosparty.music.SoundEffect;
 
 import java.awt.*;
