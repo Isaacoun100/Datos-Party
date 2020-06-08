@@ -22,6 +22,7 @@ public class Game extends Thread {
     int currentRound = 1;
     private boolean active;
     private final SinglyList<Player> playerList;
+    private final int numberOfPlayers;
     public StarSeller starSeller = new StarSeller(-300,-300);
     int maxRound;
     public Stack<Event> eventStack = new Stack<>();
@@ -41,7 +42,7 @@ public class Game extends Thread {
         Round.setMaxRound(maxRound);
         this.playerList = Round.getPlayerOrder();
         Turn.setPlayersTurn(playerList.getHead());
-        int numberOfPlayers = Round.getPlayerOrder().getLength();
+        this.numberOfPlayers = Round.getPlayerOrder().getLength();
         Player currentPlayer;
         SinglyNode<Box> startBox = handler.getBoard().getMainCircuit().get(0);
 
@@ -203,6 +204,10 @@ public class Game extends Thread {
     }
     public SinglyList<Player> getPlayerList() {
         return playerList;
+    }
+
+    public int getNumberOfPlayers() {
+        return numberOfPlayers;
     }
 
     public Event getCurrentEvent() {
