@@ -35,7 +35,7 @@ public class PlayerSelectionState extends State {
             Leaderboard.initLeaderBoard();
             game = new Game(handler, SelectRoundState.getRound());
             game.start();
-            State.setState(GameLoop.gameState.getHead().getData());
+            State.setState(GameLoop.gameDependantStates.get(8).getData());
         }));
 
         uiManager.addObject(new UIImageButton(35, 1, 7*2, 2*2, Assets.player3Button, () -> {
@@ -45,7 +45,7 @@ public class PlayerSelectionState extends State {
             Leaderboard.initLeaderBoard();
             game = new Game(handler, SelectRoundState.getRound());
             game.start();
-            State.setState(GameLoop.gameState.getHead().getData());
+            State.setState(GameLoop.gameDependantStates.get(8).getData());
         }));
 
         uiManager.addObject(new UIImageButton(20, 30, 7*2, 2*2, Assets.player4Button, () -> {
@@ -55,7 +55,7 @@ public class PlayerSelectionState extends State {
             Leaderboard.initLeaderBoard();
             game = new Game(handler, SelectRoundState.getRound());
             game.start();
-            State.setState(GameLoop.gameState.getHead().getData());
+            State.setState(GameLoop.gameDependantStates.get(8).getData());
         }));
 
     }
