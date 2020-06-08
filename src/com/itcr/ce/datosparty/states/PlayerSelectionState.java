@@ -28,7 +28,7 @@ public class PlayerSelectionState extends State {
         uiManager = new UIManager(handler);
         DefineOrder.initTemporal();
 
-        uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player2Button, () -> {
+        uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player2Button,"player2Btn", () -> {
             setOrder.recursiveAdd(2);
             System.out.println("The order is:");
             setOrder.order();
@@ -38,7 +38,7 @@ public class PlayerSelectionState extends State {
             State.setState(GameLoop.gameDependantStates.get(8).getData());
         }));
 
-        uiManager.addObject(new UIImageButton(35, 1, 7*2, 2*2, Assets.player3Button, () -> {
+        uiManager.addObject(new UIImageButton(35, 1, 7*2, 2*2, Assets.player3Button,"player3Btn", () -> {
             setOrder.recursiveAdd(3);
             System.out.println("The order is:");
             setOrder.order();
@@ -48,7 +48,7 @@ public class PlayerSelectionState extends State {
             State.setState(GameLoop.gameDependantStates.get(8).getData());
         }));
 
-        uiManager.addObject(new UIImageButton(20, 30, 7*2, 2*2, Assets.player4Button, () -> {
+        uiManager.addObject(new UIImageButton(20, 30, 7*2, 2*2, Assets.player4Button,"player4Btn", () -> {
             setOrder.recursiveAdd(4);
             System.out.println("The order is:");
             setOrder.order();
@@ -68,7 +68,7 @@ public class PlayerSelectionState extends State {
 
     @Override
     public void render(Graphics g) {
-        uiManager.render(g);
+        uiManager.renderAll(g);
     }
 
 }

@@ -1,11 +1,7 @@
 package com.itcr.ce.datosparty.minigames.states;
 
-import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.logic.Game;
-import com.itcr.ce.datosparty.logic.Round;
-import com.itcr.ce.datosparty.minigames.minilogic.FirstMiniGameLogic;
-import com.itcr.ce.datosparty.minigames.ui.FirstMinigameUI;
 import com.itcr.ce.datosparty.minigames.ui.SecondMinigameUI;
 import com.itcr.ce.datosparty.userInterface.ClickListener;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
@@ -24,7 +20,7 @@ public class SecondMinigameState extends State {
         uiManager = new SecondMinigameUI(handler);
 
         if(numPlayers>=1){
-            uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player1Button, new ClickListener() {
+            uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player1Button,"player1Btn", new ClickListener() {
                 @Override
                 public void onClick() {
                     System.out.println("1");
@@ -33,7 +29,7 @@ public class SecondMinigameState extends State {
         }
 
         if(numPlayers>=2){
-            uiManager.addObject(new UIImageButton(30, 1, 7*2, 2*2, Assets.player2Button, new ClickListener() {
+            uiManager.addObject(new UIImageButton(30, 1, 7*2, 2*2, Assets.player2Button,"player2Btn", new ClickListener() {
                 @Override
                 public void onClick() {
                     System.out.println("2");
@@ -42,7 +38,7 @@ public class SecondMinigameState extends State {
         }
 
         if(numPlayers>=3){
-            uiManager.addObject(new UIImageButton(1, 30, 7*2, 2*2, Assets.player3Button, new ClickListener() {
+            uiManager.addObject(new UIImageButton(1, 30, 7*2, 2*2, Assets.player3Button,"player3Btn", new ClickListener() {
                 @Override
                 public void onClick() {
                     System.out.println("3");
@@ -51,7 +47,7 @@ public class SecondMinigameState extends State {
         }
 
         if(numPlayers>=4){
-            uiManager.addObject(new UIImageButton(30, 30, 7*2, 2*2, Assets.player4Button, new ClickListener() {
+            uiManager.addObject(new UIImageButton(30, 30, 7*2, 2*2, Assets.player4Button,"player4Btn", new ClickListener() {
                 @Override
                 public void onClick() {
                     System.out.println("4");
@@ -69,7 +65,7 @@ public class SecondMinigameState extends State {
 
     @Override
     public void render(Graphics g) {
-        uiManager.render(g);
+        uiManager.renderAll(g);
     }
 
 }

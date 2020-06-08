@@ -21,7 +21,7 @@ public class EndGameState extends State {
 
         uiManager = new UIManager(handler);
 
-        uiManager.addObject(new UIImageButton(18, 32, 7*2, 2*2, Assets.creditsButton,
+        uiManager.addObject(new UIImageButton(18, 32, 7*2, 2*2, Assets.creditsButton,"creditsBtn",
                 () -> {
                 game.setActive(false);
                 GameLoop.gameDependantStates.clear();
@@ -39,6 +39,6 @@ public class EndGameState extends State {
 
     @Override
     public void render(Graphics g) {
-        uiManager.render(g);
+        uiManager.renderAll(g);
     }
 }
