@@ -1,6 +1,7 @@
 package com.itcr.ce.datosparty.music;
 
 import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
+import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 
 public class LoopMusic extends Thread{
 
@@ -8,7 +9,7 @@ public class LoopMusic extends Thread{
     public void run() {
 
         Queue.songList();
-        SinglyList<String[]> songList = Queue.queue;
+        SinglyList<String> songList = Queue.queue;
 
         int length, i=0;
         long size;
@@ -16,8 +17,7 @@ public class LoopMusic extends Thread{
 
         while(i<=length){
 
-            String[] newSong = songList.get(i).getData();
-            MusicPlayer.playSong(newSong[0],newSong[1]);
+            MusicPlayer.playSong(songList.get(i).getData());
             size=MusicPlayer.songLength();
 
             if(i==length){
