@@ -33,11 +33,7 @@ public class Player extends Entity {
         this.reversed = reversed;
     }
 
-    public Boolean getChangeDirection() {
-        return changeDirection;
-    }
-
-    public void setDirection(Boolean changeDirection) {
+        public void setDirection(Boolean changeDirection) {
         this.changeDirection = changeDirection;
     }
 
@@ -51,10 +47,34 @@ public class Player extends Entity {
         this.name = name;
     }
 
-    public void move(Game game, Handler handler) throws InterruptedException {
+    public void move(Game game) throws InterruptedException {
         int boxesLeft =  getMovement();
+        while (boxesLeft > 0) {
+            // Goes to next Node<Box>
+            if(getPosition().getData().isCrossRoads()){
+                game.pauseGame();
+            }
+            else {
+                setDirection(false);
+            }
+            Node<Box> nextNode = pickPath(game);
+          //  Node<Box> nextNode = getPosition().getNext();
+            setPosition(nextNode);
+            float  newX = position.getData().getX();
+            float  newY = position.getData().getY();
+            setRenderPos(newX,newY);
+            game.sleep(500);
+            // Checks if there is a star
+            game.checkStar(this);
+            // Subtracts from number given on dice
+            setMovement(boxesLeft--);
+        }
+        update(this.getPosition().getData());
+    }
 
+    private Node<Box> pickPath(Game game) {
         Node <Box> nextNode;
+        Handler handler = game.getHandler();
         Node <Box> phaseAFirst = handler.getBoard().getPhaseA().getHead();
         Node <Box> phaseAExit = handler.getBoard().getMainCircuit().get(44);
         Node <Box> phaseBFirst = handler.getBoard().getPhaseB().getHead();
@@ -64,63 +84,45 @@ public class Player extends Entity {
         Node <Box> phaseC2First = handler.getBoard().getPhaseC().getLast();
         Node <Box> phaseC2Exit = handler.getBoard().getMainCircuit().get(12);
 
-        while (boxesLeft > 0) {
-            // Goes to next Node<Box>
-            if(getPosition().getData().isCrossRoads()){
-                game.pauseGame();
-            }
-            else {
+        switch (getConnector(getPosition(),handler, changeDirection)) {
+
+            case PHASE_A_FIRST -> {nextNode = phaseAFirst;
                 setDirection(false);
             }
-            switch (getConnector(getPosition(),handler, changeDirection)) {
-                case PHASE_A_FIRST -> {nextNode = phaseAFirst;
-                    setDirection(false);
-                }
-                case PHASE_A_LAST -> {nextNode = phaseAExit;
-                    setDirection(false);
-                }
-                case PHASE_B_FIRST -> {nextNode = phaseBFirst;
-                    setDirection(false);
-                }
-                case PHASE_B_LAST -> {nextNode = phaseBExit;
-                    setDirection(false);
-                }
-                case PHASE_C_FIRST -> {nextNode = phaseC1First;
-                    setDirection(false);
-                }
-                case PHASE_C_LAST -> {nextNode = phaseC1Exit;
-                    setDirection(false);
-                }
-                case PHASE_C_FIRST_REVERSED -> {nextNode = phaseC2First;
-                    setDirection(false);
-                    setReversed(true);
-                }
-                case PHASE_C_LAST_REVERSED -> {nextNode = phaseC2Exit;
-                    setDirection(false);
-                    setReversed(false);
-                }
-                case REVERSED -> {
-                    nextNode = getPosition().getPrevious();
-                    setDirection(false);
-                }
-                default -> {
-                    nextNode = getPosition().getNext();
-                    setDirection(false);
-                    setReversed(false);
-                }
+            case PHASE_A_LAST -> {nextNode = phaseAExit;
+                setDirection(false);
             }
-          //  Node<Box> nextNode = getPosition().getNext();
-            setPosition(nextNode);
-//            x = position.getData().getX();
-//            y = position.getData().getY() - 45;
-            setRenderPos(position.getData().getX(),position.getData().getY());
-            game.sleep(500);
-            // Checks if there is a star
-            game.checkStar(this);
-            // Subtracts from number given on dice
-            boxesLeft--;
+            case PHASE_B_FIRST -> {nextNode = phaseBFirst;
+                setDirection(false);
+            }
+            case PHASE_B_LAST -> {nextNode = phaseBExit;
+                setDirection(false);
+            }
+            case PHASE_C_FIRST -> {nextNode = phaseC1First;
+                setDirection(false);
+            }
+            case PHASE_C_LAST -> {nextNode = phaseC1Exit;
+                setDirection(false);
+            }
+            case PHASE_C_FIRST_REVERSED -> {nextNode = phaseC2First;
+                setDirection(false);
+                setReversed(true);
+            }
+            case PHASE_C_LAST_REVERSED -> {nextNode = phaseC2Exit;
+                setDirection(false);
+                setReversed(false);
+            }
+            case REVERSED -> {
+                nextNode = getPosition().getPrevious();
+                setDirection(false);
+            }
+            default -> {
+                nextNode = getPosition().getNext();
+                setDirection(false);
+                setReversed(false);
+            }
         }
-        update(this.getPosition().getData());
+        return nextNode;
     }
 
     private Connector getConnector(Node<Box> current, Handler handler,boolean changeDirection) {

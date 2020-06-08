@@ -1,12 +1,21 @@
 package com.itcr.ce.datosparty.gfx;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Assets {
 
     public static BufferedImage blueBox, greenBox, yellowBox, redBox, player1Static, player2Static, player3Static,
+            player4Static, starSeller, mapGuide;
+    public static BufferedImage blueBox, greenBox, yellowBox, redBox, player1Static, player2Static, player3Static,
                                 player4Static, starSeller, mapGuide;
     public static BufferedImage[] settingsButton, playButton, creditsButton,backButton, titleImage,pressEnterImage,
+            notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, upArrow, downArrow, leftArrow,
+            rightArrow, player1Button, player2Button,
+            player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp, volumeDown, gameMusic, soundEffects,
+            starPurchaseBackDrop, yesButton, noButton, purchaseMsg, buyMsg, endTurnBtn, coin, star;
+
+    public static Font bitArtFont;
             notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, upArrow, downArrow, leftArrow,
             rightArrow, player1Button, player2Button, player3Button, player4Button, returnButton, creditsButtonMenu,
             volumeUp, volumeDown, gameMusic, soundEffects, noviceButton, proButton, eliteButton, roundTitle;
@@ -133,16 +142,64 @@ public class Assets {
         player2Static = sheet.crop(7,6,1,2);
         player3Static = sheet.crop(10,6,1,2);
         player4Static = sheet.crop(13,6,1,2);
-        starSeller = sheet.crop(16,6,1,2);
+        starSeller = sheet.crop(16,6,2,2);
 
 
         gameMusic= new BufferedImage[1];
         gameMusic[0]= buttonSheet.crop(8,5,8,2);
 
         soundEffects= new BufferedImage[1];
-        soundEffects[0]= buttonSheet.crop(7,8,9,2);
+        soundEffects[0] = buttonSheet.crop(7,8,9,2);
+
+        starPurchaseBackDrop = new BufferedImage[2];
+        starPurchaseBackDrop[0] = sheet.crop(18,5,4,2);
+        starPurchaseBackDrop[1] = sheet.crop(18,5,4,2);
+
+
+        yesButton = new BufferedImage[2];
+        yesButton[0] = sheet.crop(18,7,1,1);
+        yesButton[1] = sheet.crop(18,4,1,1);
+
+        noButton = new BufferedImage[2];
+        noButton[0] = sheet.crop(19,7,1,1);
+        noButton[1] = sheet.crop(19,4,1,1);
+
+        purchaseMsg = new BufferedImage[2];
+        purchaseMsg[0] = sheet.crop(20,7,3,1);
+        purchaseMsg[1] = sheet.crop(20,7,3,1);
+
+        buyMsg = new BufferedImage[2];
+        buyMsg[0] = sheet.crop(25,5,4,1);
+        buyMsg[1] = sheet.crop(25,5,4,1);
+
+        endTurnBtn = new BufferedImage[2];
+        endTurnBtn[1] = sheet.crop(29,4,2,2);
+        endTurnBtn[0] = sheet.crop(31,4,2,2);
 
         mapGuide = mapSheet.crop(0,0,100,76);
+
+        coin = new BufferedImage[7];
+        coin[0] = sheet.crop(27,7,1,1);
+        coin[1] = sheet.crop(28,7,1,1);
+        coin[2] = sheet.crop(29,7,1,1);
+        coin[3] = sheet.crop(30,7,1,1);
+        coin[4] = sheet.crop(31,7,1,1);
+        coin[5] = sheet.crop(32,7,1,1);
+        coin[6] = sheet.crop(27,7,1,1);
+
+        star = new BufferedImage[10];
+        star[0] = sheet.crop(29,6,1,1);
+        star[1] = sheet.crop(30,6,1,1);
+        star[2] = sheet.crop(31,6,1,1);
+        star[3] = sheet.crop(32,6,1,1);
+        star[4] = sheet.crop(33,6,1,1);
+        star[5] = sheet.crop(34,6,1,1);
+        star[6] = sheet.crop(35,6,1,1);
+        star[7] = sheet.crop(36,6,1,1);
+        star[8] = sheet.crop(37,6,1,1);
+        star[9] = sheet.crop(29,6,1,1);
+
+        //bitArtFont = FontLoader.loadFont("/fonts/retro_computer_personal_use.ttf");
 
     }
 }

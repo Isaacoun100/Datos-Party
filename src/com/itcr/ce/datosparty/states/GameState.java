@@ -1,16 +1,21 @@
 package com.itcr.ce.datosparty.states;
 
 import com.itcr.ce.datosparty.GameLauncher;
+import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.Handler;
 import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
-import com.itcr.ce.datosparty.dataStructures.nodes.Node;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.entities.boxes.Box;
+import com.itcr.ce.datosparty.gfx.Animation;
 import com.itcr.ce.datosparty.gfx.Assets;
-import com.itcr.ce.datosparty.logic.*;
+import com.itcr.ce.datosparty.logic.Dice;
+import com.itcr.ce.datosparty.logic.Game;
+import com.itcr.ce.datosparty.logic.Round;
+import com.itcr.ce.datosparty.logic.Turn;
 import com.itcr.ce.datosparty.music.SoundEffect;
-import com.itcr.ce.datosparty.userInterface.GameUI;
+import com.itcr.ce.datosparty.userInterface.UIAnimatedImage;
+import com.itcr.ce.datosparty.userInterface.UIImage;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
 
@@ -22,23 +27,29 @@ public class GameState extends State{
 
     private int width = GameLauncher.width/16;
     private int height = GameLauncher.height/16;
-    private final int firstBoxX = ((width*16)/(800/56))+50;
-    private final int firstBoxY = ((height*16)/(608/299))-20;
+    private final int  maxRound;
+    private int playerMovement;
     private Player currentPlayer;
     private Box currentBox;
-
+    private final Font font;
     private final Game game;
+    private Animation star, coin;
 
     public GameState(Handler handler, Game game){
         super(handler);
         this.game = game;
+        this.maxRound = game.getMaxRound();
 
-        gameUI = new GameUI(handler);
+        font = new Font("Windows Command Prompt", Font.PLAIN,50);
+        gameUI = new UIManager(handler);
+        star = new Animation(200,Assets.star);
+        coin = new Animation(200, Assets.coin);
 
-        gameUI.addObject(new UIImageButton(3, height-20, 8, 8, Assets.diceButton,
+        gameUI.addObject(new UIImageButton(1, height-20, 8, 8, Assets.diceButton,
                 () -> {
                     if(!currentBox.isCrossRoads()&&!currentBox.isStarBox()) {
-                        currentPlayer.setMovement(Dice.roll(6,1) + Dice.roll(6,1));
+                        int diceResult = Dice.roll(6,1) + Dice.roll(6,1);
+                        currentPlayer.setMovement(diceResult);
                         SoundEffect.DiceRoll();
                         //Thread.sleep(3000);
                         game.resumeGame();
@@ -124,12 +135,42 @@ public class GameState extends State{
                         game.resumeGame();
                     }
                 }));
+
+        gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,2*8,Assets.starPurchaseBackDrop[0])));
+
+        gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,8,Assets.buyMsg[0])));
+
+        gameUI.addObject(new UIImageButton(width/2-8,height/2-10,8,8,Assets.yesButton,()->{
+            game.buyStar(currentPlayer);
+            int movementLeft = currentPlayer.getMovement();
+            currentPlayer.setMovement(movementLeft);
+            game.resumeGame();
+
+        }));
+        gameUI.addObject(new UIImageButton(width/2+2,height/2-10,8,8,Assets.noButton,()->{
+            int movementLeft = currentPlayer.getMovement();
+            currentPlayer.setMovement(movementLeft);
+            game.resumeGame();
+
+        }));
+
+        gameUI.addObject(new UIImageButton(9,height-20,4*2,4*2,Assets.endTurnBtn,()->{
+            //Round.endTurn();
+        }));
+
+        gameUI.addObject(new UIAnimatedImage(0,3,4,4,star));
+        gameUI.addObject(new UIAnimatedImage(0,6,4,4,coin));
     }
 
     @Override
     public void tick() {
-        currentPlayer = Turn.getPlayersTurn().getData();
-        currentBox = currentPlayer.getPosition().getData();
+        if(game.getCurrentRound() != maxRound){
+            currentPlayer = Turn.getPlayersTurn().getData();
+            playerMovement = currentPlayer.getMovement();
+            currentBox = currentPlayer.getPosition().getData();
+        } else {
+            State.setState(GameLoop.endGameState);
+        }
         handler.getMouseManager().setUiManager(gameUI);
         gameUI.tick();
     }
@@ -137,6 +178,14 @@ public class GameState extends State{
     @Override
     public void render(Graphics g) {
         g.drawImage(Assets.mapGuide, -10, 0, null);
+
+        g.setFont(font);
+        g.drawString(currentPlayer.getName(),10,40);
+        g.drawString("X"+currentPlayer.getStars(),60,100);
+        g.drawString("X"+currentPlayer.getCoins(),60,140);
+        gameUI.render(g,14);
+        gameUI.render(g,15);
+
 
         SinglyNode<Box> currentBoxMain = handler.getBoard().getMainCircuit().getHead();
         int mainCircuitLength = handler.getBoard().getMainCircuit().getLength();
@@ -160,14 +209,15 @@ public class GameState extends State{
 
         game.starSeller.render(g);
 
-        SinglyNode<Player> currentPlayer = Round.getPlayerOrder().getHead();
+        SinglyNode<Player> currentPlayerNode = Round.getPlayerOrder().getHead();
         for (int i = 0; i < Round.getPlayerOrder().getLength(); i++) {
-            currentPlayer.getData().render(g);
-            currentPlayer = (SinglyNode<Player>) currentPlayer.getNext();
+            currentPlayerNode.getData().render(g);
+            currentPlayerNode = (SinglyNode<Player>) currentPlayerNode.getNext();
         }
 
         if(!currentBox.isCrossRoads()&&!currentBox.isStarBox()){
             gameUI.render(g,0);
+            g.drawString("X"+playerMovement,10*16,(height-15)*16);
         } else if (currentBox.getBoxID().equals("phaseA")) {
             gameUI.render(g,1);
             gameUI.render(g,2);
@@ -180,6 +230,13 @@ public class GameState extends State{
         } else if (currentBox.getBoxID().equals("phaseC2")) {
             gameUI.render(g,7);
             gameUI.render(g,8);
+        } else if(currentBox.isStarBox()){
+            gameUI.render(g,9);
+            gameUI.render(g,10);
+            gameUI.render(g,11);
+            gameUI.render(g,12);
+        } else if (currentPlayerNode.getData().getMovement()==0){
+            gameUI.render(g,13);
         }
     }
 

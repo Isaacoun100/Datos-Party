@@ -76,7 +76,6 @@ public class Round {
         Player currentPlayer;
         int currentRound = game.getCurrentRound();
         if (currentRound == 2) {
-            System.out.println("Estrella");
             game.setStar();
         }
         while (Turn.getPlayersTurn() != null) {
@@ -97,9 +96,7 @@ public class Round {
             //game.checkStar(currentPlayer);
             System.out.println("Dice: " + currentPlayer.getMovement());
             System.out.print("\n");
-
-            endTurn();
-
+            Turn.nextPlayer();
         }
     }
 }
