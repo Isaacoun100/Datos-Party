@@ -9,11 +9,8 @@ import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.entities.boxes.Box;
 import com.itcr.ce.datosparty.gfx.Animation;
 import com.itcr.ce.datosparty.gfx.Assets;
-import com.itcr.ce.datosparty.logic.Dice;
+import com.itcr.ce.datosparty.logic.*;
 import com.itcr.ce.datosparty.logic.Event;
-import com.itcr.ce.datosparty.logic.Game;
-import com.itcr.ce.datosparty.logic.Round;
-import com.itcr.ce.datosparty.logic.Turn;
 import com.itcr.ce.datosparty.music.SoundEffect;
 import com.itcr.ce.datosparty.userInterface.UIAnimatedImage;
 import com.itcr.ce.datosparty.userInterface.UIImage;
@@ -35,6 +32,10 @@ public class GameState extends State{
     private final Font font;
     private final Game game;
     private Event currentEvent;
+    private Player player1;
+    private Player player2;
+    private Player player3;
+    private Player player4;
 
     public GameState(Handler handler, Game game){
 
@@ -157,6 +158,37 @@ public class GameState extends State{
 
         }));
 
+        gameUI.addObject(new UIImageButton(width/2-2,height/2-5,7*2,2*2,Assets.player1Button,"player1Btn",
+                ()->{
+            this.player1 = game.getPlayerList().get(0).getData();
+            EventLogic.stealCoins(currentPlayer, player1);
+            game.resumeGame();
+                }));
+
+        gameUI.addObject(new UIImageButton(width/2-2,height/2-3,7*2,2*2,Assets.player2Button,"player2Btn",
+                ()->{
+            this.player2 = game.getPlayerList().get(1).getData();
+            EventLogic.stealCoins(currentPlayer, player2);
+            game.resumeGame();
+                }));
+        if (game.getNumberOfPlayers() == 3) {
+            gameUI.addObject(new UIImageButton(width/2+2,height/2-5,7*2,2*2,Assets.player3Button,"player3Btn",
+                    ()->{
+                this.player3 = game.getPlayerList().get(2).getData();
+                EventLogic.stealCoins(currentPlayer, player3);
+                game.resumeGame();
+                    }));
+        }
+
+        if (game.getNumberOfPlayers() == 3) {
+            gameUI.addObject(new UIImageButton(width/2,height/2-3,7*2,2*2,Assets.player4Button,"player4Btn",
+                    ()->{
+                this.player4 = game.getPlayerList().get(3).getData();
+                EventLogic.stealCoins(currentPlayer, player4);
+                game.resumeGame();
+                    }));
+        }
+
         gameUI.addObject(new UIImageButton(9,height-20,4*2,4*2,Assets.endTurnBtn,"endTurnBtn",()->{
             //Round.endTurn();
         }));
@@ -185,8 +217,8 @@ public class GameState extends State{
 
         g.setFont(font);
         g.drawString(currentPlayer.getName(),10,40);
-        g.drawString("X"+currentPlayer.getStars(),60,100);
-        g.drawString("X"+currentPlayer.getCoins(),60,140);
+        g.drawString("X" + currentPlayer.getStars(),60,100);
+        g.drawString("X" + currentPlayer.getCoins(),60,140);
         gameUI.renderById(g,"star");
         gameUI.renderById(g,"coin");
 
@@ -240,7 +272,17 @@ public class GameState extends State{
             gameUI.renderById(g,"noBtn");
         }
         if (currentEvent == Event.STEAL_COINS) {
-            gameUI.render(g, "starPBackDrop");
+            gameUI.renderById(g, "starPBackDrop");
+            if (currentPlayer != player1) {
+                gameUI.renderById(g, "player1Btn");
+            } else if (currentPlayer != player2) {
+                gameUI.renderById(g, "player2Btn");
+            } else if (currentPlayer != player3 && game.getNumberOfPlayers() == 3) {
+                gameUI.renderById(g, "player3Btn");
+            } else if (currentPlayer != player4 && game.getNumberOfPlayers() == 4) {
+                gameUI.renderById(g, "player4Btn");
+            }
+            g.drawString(currentEvent.toString(), (width*13)- 50, 50);
         }
     }
 
