@@ -25,6 +25,7 @@ public class Game extends Thread {
     public StarSeller starSeller = new StarSeller(-300,-300);
     int maxRound;
     public Stack<Event> eventStack = new Stack<>();
+    private Event currentEvent;
 
     private final CircularList<Box> mainCircuit;
     private final SinglyList<Box> phaseA;
@@ -203,6 +204,14 @@ public class Game extends Thread {
     }
     public SinglyList<Player> getPlayerList() {
         return playerList;
+    }
+
+    public Event getCurrentEvent() {
+        return currentEvent;
+    }
+
+    public void setCurrentEvent(Event currentEvent) {
+        this.currentEvent = currentEvent;
     }
 
     public CircularList<Box> getMainCircuit() {
