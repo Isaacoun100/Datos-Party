@@ -10,6 +10,7 @@ import com.itcr.ce.datosparty.entities.boxes.Box;
 import com.itcr.ce.datosparty.gfx.Animation;
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.logic.Dice;
+import com.itcr.ce.datosparty.logic.Event;
 import com.itcr.ce.datosparty.logic.Game;
 import com.itcr.ce.datosparty.logic.Round;
 import com.itcr.ce.datosparty.logic.Turn;
@@ -33,6 +34,7 @@ public class GameState extends State{
     private Box currentBox;
     private final Font font;
     private final Game game;
+    private Event currentEvent;
 
     public GameState(Handler handler, Game game){
 
@@ -169,6 +171,7 @@ public class GameState extends State{
             currentPlayer = Turn.getPlayersTurn().getData();
             playerMovement = currentPlayer.getMovement();
             currentBox = currentPlayer.getPosition().getData();
+            currentEvent = game.getCurrentEvent();
         } else {
             State.setState(GameLoop.gameDependantStates.get(9).getData());
         }
@@ -238,6 +241,9 @@ public class GameState extends State{
             gameUI.render(g,12);
         } else if (currentPlayerNode.getData().getMovement()==0){
             gameUI.render(g,13);
+        }
+        if (currentEvent == Event.STEAL_COINS) {
+            gameUI.render(g, 9);
         }
     }
 
