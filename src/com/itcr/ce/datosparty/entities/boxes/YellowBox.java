@@ -39,7 +39,6 @@ public class YellowBox extends Box {
                 System.out.println("DUEL");
             }
             case STEAL_COINS -> {
-                // WIP
                 try {
                     game.pauseGame();
                 } catch (InterruptedException e) {
