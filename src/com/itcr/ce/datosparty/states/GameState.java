@@ -195,32 +195,33 @@ public class GameState extends State{
 
         }));
 
-        gameUI.addObject(new UIImageButton(width/2-2,height/2-5,7*2,2*2,Assets.player1Button,"player1Btn",
+        gameUI.addObject(new UIImageButton(width/2-14,height/2-13,7*2,2*2,Assets.player1Button,"player1Btn",
                 ()->{
-            this.player1 = game.getPlayerList().get(0).getData();
             EventLogic.stealCoins(currentPlayer, player1);
+            game.setCurrentEvent(null);
             game.resumeGame();
                 }));
 
-        gameUI.addObject(new UIImageButton(width/2-2,height/2-3,7*2,2*2,Assets.player2Button,"player2Btn",
+        gameUI.addObject(new UIImageButton(width/2-14,height/2-7,7*2,2*2,Assets.player2Button,"player2Btn",
                 ()->{
-            this.player2 = game.getPlayerList().get(1).getData();
             EventLogic.stealCoins(currentPlayer, player2);
+            game.setCurrentEvent(null);
             game.resumeGame();
                 }));
-        if (game.getNumberOfPlayers() == 3) {
-            gameUI.addObject(new UIImageButton(width/2+2,height/2-5,7*2,2*2,Assets.player3Button,"player3Btn",
+        if (game.getNumberOfPlayers() >= 3) {
+            gameUI.addObject(new UIImageButton(width/2+3,height/2-13,7*2,2*2,Assets.player3Button,"player3Btn",
                     ()->{
-                this.player3 = game.getPlayerList().get(2).getData();
                 EventLogic.stealCoins(currentPlayer, player3);
+                game.setCurrentEvent(null);
                 game.resumeGame();
                     }));
         }
 
-        if (game.getNumberOfPlayers() == 3) {
-            gameUI.addObject(new UIImageButton(width/2,height/2-3,7*2,2*2,Assets.player4Button,"player4Btn",
+        if (game.getNumberOfPlayers() >= 4) {
+            gameUI.addObject(new UIImageButton(width/2+3,height/2-7,7*2,2*2,Assets.player4Button,"player4Btn",
                     ()->{
                 this.player4 = game.getPlayerList().get(3).getData();
+                game.setCurrentEvent(null);
                 EventLogic.stealCoins(currentPlayer, player4);
                 game.resumeGame();
                     }));
@@ -321,13 +322,18 @@ public class GameState extends State{
 
         if (currentEvent == Event.STEAL_COINS) {
             gameUI.renderById(g, "starPBackDrop");
+            this.player1 = game.getPlayerList().get(0).getData();
+            this.player2 = game.getPlayerList().get(1).getData();
             if (currentPlayer != player1) {
                 gameUI.renderById(g, "player1Btn");
-            } else if (currentPlayer != player2) {
+            }
+            if (currentPlayer != player2) {
                 gameUI.renderById(g, "player2Btn");
-            } else if (currentPlayer != player3 && game.getNumberOfPlayers() == 3) {
+            }
+            if (game.getNumberOfPlayers() == 3 &&  currentPlayer !=  game.getPlayerList().get(2).getData()) {
                 gameUI.renderById(g, "player3Btn");
-            } else if (currentPlayer != player4 && game.getNumberOfPlayers() == 4) {
+            }
+            if (game.getNumberOfPlayers() == 4 && currentPlayer != game.getPlayerList().get(3).getData()) {
                 gameUI.renderById(g, "player4Btn");
             }
             g.drawString(currentEvent.toString(), (width*13)- 50, 50);
