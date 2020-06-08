@@ -7,18 +7,16 @@ public class Assets {
 
     public static BufferedImage blueBox, greenBox, yellowBox, redBox, player1Static, player2Static, player3Static,
             player4Static, starSeller, mapGuide;
-    public static BufferedImage blueBox, greenBox, yellowBox, redBox, player1Static, player2Static, player3Static,
-                                player4Static, starSeller, mapGuide;
+
     public static BufferedImage[] settingsButton, playButton, creditsButton,backButton, titleImage,pressEnterImage,
             notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, upArrow, downArrow, leftArrow,
             rightArrow, player1Button, player2Button,
             player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp, volumeDown, gameMusic, soundEffects,
-            starPurchaseBackDrop, yesButton, noButton, purchaseMsg, buyMsg, endTurnBtn, coin, star;
+            starPurchaseBackDrop, yesButton, noButton, purchaseMsg, buyMsg, endTurnBtn, coin, star, noviceButton,
+            proButton, eliteButton, roundTitle;;
 
     public static Font bitArtFont;
-            notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, upArrow, downArrow, leftArrow,
-            rightArrow, player1Button, player2Button, player3Button, player4Button, returnButton, creditsButtonMenu,
-            volumeUp, volumeDown, gameMusic, soundEffects, noviceButton, proButton, eliteButton, roundTitle;
+
 
     /**
      * This Method initializes all assets that are used in the game, for them to load properly
