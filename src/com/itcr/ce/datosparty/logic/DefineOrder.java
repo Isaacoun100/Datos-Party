@@ -6,10 +6,15 @@ import javax.swing.JOptionPane;
 
 public class DefineOrder {
 
+
     private static SinglyList<TemporalPlayer> TemporalPlayerList;
     private static SinglyList<Integer> diceThrowList;
     TemporalPlayer newPlayer;
     String playerName;
+
+    public static SinglyList<TemporalPlayer> getTemporalPlayerList() {
+        return TemporalPlayerList;
+    }
 
     public static void initTemporal(){
         TemporalPlayerList = new SinglyList<>();
