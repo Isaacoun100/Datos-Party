@@ -33,17 +33,18 @@ public class GameState extends State{
     private Box currentBox;
     private final Font font;
     private final Game game;
-    private Animation star, coin;
 
     public GameState(Handler handler, Game game){
+
         super(handler);
         this.game = game;
         this.maxRound = game.getMaxRound();
 
-        font = new Font("Windows Command Prompt", Font.PLAIN,50);
+        font = new Font("Windows Command Prompt", Font.PLAIN,50); // "Times New Roman" for emergencies
         gameUI = new UIManager(handler);
-        star = new Animation(200,Assets.star);
-        coin = new Animation(200, Assets.coin);
+
+        Animation star = new Animation(200, Assets.star);
+        Animation coin = new Animation(200, Assets.coin);
 
         gameUI.addObject(new UIImageButton(1, height-20, 8, 8, Assets.diceButton,
                 () -> {
@@ -158,8 +159,8 @@ public class GameState extends State{
             //Round.endTurn();
         }));
 
-        gameUI.addObject(new UIAnimatedImage(0,3,4,4,star));
-        gameUI.addObject(new UIAnimatedImage(0,6,4,4,coin));
+        gameUI.addObject(new UIAnimatedImage(0,3,4,4, star));
+        gameUI.addObject(new UIAnimatedImage(0,6,4,4, coin));
     }
 
     @Override
@@ -169,7 +170,7 @@ public class GameState extends State{
             playerMovement = currentPlayer.getMovement();
             currentBox = currentPlayer.getPosition().getData();
         } else {
-            State.setState(GameLoop.endGameState);
+            State.setState(GameLoop.gameDependantStates.get(9).getData());
         }
         handler.getMouseManager().setUiManager(gameUI);
         gameUI.tick();
