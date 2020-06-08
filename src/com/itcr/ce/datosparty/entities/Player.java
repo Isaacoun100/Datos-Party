@@ -15,7 +15,7 @@ public class Player extends Entity {
 
     private final String name;
 
-    private int movement,
+    private int movement = 0,
                 coins = 0,
                 stars = 0;
 
@@ -49,7 +49,7 @@ public class Player extends Entity {
 
     public void move(Game game) throws InterruptedException {
         int boxesLeft =  getMovement();
-        while (boxesLeft > 0) {
+        while (boxesLeft > -1) {
             // Goes to next Node<Box>
             if(getPosition().getData().isCrossRoads()){
                 game.pauseGame();

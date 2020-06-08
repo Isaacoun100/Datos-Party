@@ -16,8 +16,8 @@ public class SingleUIImage extends UIObject{
      * @param height
      * @param image this uses an Array List from java, remember to change it for one of the data structures Gabo created
      */
-    public SingleUIImage(float x, float y, int width, int height, BufferedImage[] image) {
-        super(x*16, y*16, width*16, height*16);
+    public SingleUIImage(float x, float y, int width, int height, BufferedImage[] image, String id) {
+        super(x*16, y*16, width*16, height*16, id);
         this.image = image;
     }
 
