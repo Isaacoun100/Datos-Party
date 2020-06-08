@@ -47,6 +47,15 @@ public class GameState extends State{
         font = new Font("Windows Command Prompt", Font.PLAIN,50); // "Times New Roman" for emergencies
         gameUI = new UIManager(handler);
 
+        this.player1 = game.getPlayerList().get(0).getData();
+        this.player2 = game.getPlayerList().get(1).getData();
+        if (game.getNumberOfPlayers() >= 3) {
+            this.player3 = game.getPlayerList().get(2).getData();
+        }
+        if (game.getNumberOfPlayers() >= 4) {
+            this.player4 = game.getPlayerList().get(3).getData();
+        }
+
         Animation star = new Animation(200, Assets.star);
         Animation coin = new Animation(200, Assets.coin);
         Animation duel = new Animation(200,Assets.duel);
@@ -201,6 +210,8 @@ public class GameState extends State{
             game.setCurrentEvent(null);
             game.resumeGame();
                 }));
+        gameUI.addObject(new UIAnimatedImage(0,3,4,4, star,"star1"));
+        gameUI.addObject(new UIAnimatedImage(0,6,4,4, coin,"coin1"));
 
         gameUI.addObject(new UIImageButton(width/2-14,height/2-7,7*2,2*2,Assets.player2Button,"player2Btn",
                 ()->{
@@ -208,6 +219,9 @@ public class GameState extends State{
             game.setCurrentEvent(null);
             game.resumeGame();
                 }));
+        gameUI.addObject(new UIAnimatedImage(0,15,4,4, star,"star2"));
+        gameUI.addObject(new UIAnimatedImage(0,18,4,4, coin,"coin2"));
+
         if (game.getNumberOfPlayers() >= 3) {
             gameUI.addObject(new UIImageButton(width/2+3,height/2-13,7*2,2*2,Assets.player3Button,"player3Btn",
                     ()->{
@@ -215,6 +229,8 @@ public class GameState extends State{
                 game.setCurrentEvent(null);
                 game.resumeGame();
                     }));
+            gameUI.addObject(new UIAnimatedImage(10,3,4,4, star,"star3"));
+            gameUI.addObject(new UIAnimatedImage(10,6,4,4, coin,"coin3"));
         }
 
         if (game.getNumberOfPlayers() >= 4) {
@@ -225,16 +241,13 @@ public class GameState extends State{
                 EventLogic.stealCoins(currentPlayer, player4);
                 game.resumeGame();
                     }));
+            gameUI.addObject(new UIAnimatedImage(10,15,4,4, star,"star4"));
+            gameUI.addObject(new UIAnimatedImage(10,18,4,4, coin,"coin4"));
         }
 
         gameUI.addObject(new UIImageButton(9,height-20,4*2,4*2,Assets.endTurnBtn,"endTurnBtn",()->{
             //Round.endTurn();
         }));
-
-        gameUI.addObject(new UIAnimatedImage(0,3,4,4, star,"star"));
-        gameUI.addObject(new UIAnimatedImage(0,6,4,4, coin,"coin"));
-
-
     }
 
     @Override
@@ -256,11 +269,33 @@ public class GameState extends State{
         g.drawImage(Assets.mapGuide, -10, 0, null);
 
         g.setFont(font);
-        g.drawString(currentPlayer.getName(),10,40);
-        g.drawString("X" + currentPlayer.getStars(),60,100);
-        g.drawString("X" + currentPlayer.getCoins(),60,140);
-        gameUI.renderById(g,"star");
-        gameUI.renderById(g,"coin");
+        g.drawString(player1.getName(),10,40);
+        g.drawString("X" + player1.getStars(),60,100);
+        g.drawString("X" + player1.getCoins(),60,140);
+        gameUI.renderById(g,"star1");
+        gameUI.renderById(g,"coin1");
+
+        g.drawString(player2.getName(),10,235);
+        g.drawString("X" + player2.getStars(),60,100 + 195);
+        g.drawString("X" + player2.getCoins(),60,140 + 195);
+        gameUI.renderById(g,"star2");
+        gameUI.renderById(g,"coin2");
+
+        if (game.getNumberOfPlayers() >= 3) {
+            g.drawString(player3.getName(),175,40);
+            g.drawString("X" + player3.getStars(),60 + 165,100);
+            g.drawString("X" + player3.getCoins(),60 + 165,140);
+            gameUI.renderById(g,"star3");
+            gameUI.renderById(g,"coin3");
+        }
+
+        if (game.getNumberOfPlayers() >= 4) {
+            g.drawString(player4.getName(),175,235);
+            g.drawString("X" + player4.getStars(),60 + 165,100 + 195);
+            g.drawString("X" + player4.getCoins(),60 + 165,140 + 195);
+            gameUI.renderById(g,"star4");
+            gameUI.renderById(g,"coin4");
+        }
 
 
         SinglyNode<Box> currentBoxMain = handler.getBoard().getMainCircuit().getHead();
@@ -322,18 +357,16 @@ public class GameState extends State{
 
         if (currentEvent == Event.STEAL_COINS) {
             gameUI.renderById(g, "starPBackDrop");
-            this.player1 = game.getPlayerList().get(0).getData();
-            this.player2 = game.getPlayerList().get(1).getData();
             if (currentPlayer != player1) {
                 gameUI.renderById(g, "player1Btn");
             }
             if (currentPlayer != player2) {
                 gameUI.renderById(g, "player2Btn");
             }
-            if (game.getNumberOfPlayers() == 3 &&  currentPlayer !=  game.getPlayerList().get(2).getData()) {
+            if (game.getNumberOfPlayers() == 3 &&  currentPlayer !=  player3) {
                 gameUI.renderById(g, "player3Btn");
             }
-            if (game.getNumberOfPlayers() == 4 && currentPlayer != game.getPlayerList().get(3).getData()) {
+            if (game.getNumberOfPlayers() == 4 && currentPlayer != player4) {
                 gameUI.renderById(g, "player4Btn");
             }
             g.drawString(currentEvent.toString(), (width*13)- 50, 50);
