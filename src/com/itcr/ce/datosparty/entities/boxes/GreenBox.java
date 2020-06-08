@@ -7,6 +7,7 @@ import com.itcr.ce.datosparty.logic.Game;
 import java.awt.*;
 
 public class GreenBox extends Box {
+
     public GreenBox(float x, float y, int width, int height) {
         super(x, y, width, height);
     }

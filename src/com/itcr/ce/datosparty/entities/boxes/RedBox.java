@@ -8,7 +8,6 @@ import java.awt.*;
 
 public class RedBox extends Box {
 
-
     public RedBox(float x, float y, int width, int height) {
         super(x, y, width, height);
     }

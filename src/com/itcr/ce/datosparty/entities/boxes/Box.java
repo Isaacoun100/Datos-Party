@@ -7,15 +7,6 @@ import com.itcr.ce.datosparty.logic.Game;
 public abstract class Box extends Entity {
 
     private boolean starBox = false;
-
-    public boolean isCrossRoads() {
-        return crossRoads;
-    }
-
-    public void setCrossRoads(boolean crossRoads) {
-        this.crossRoads = crossRoads;
-    }
-
     private boolean crossRoads = false;
     private String boxID = "";
 
@@ -31,14 +22,21 @@ public abstract class Box extends Entity {
         return boxID;
     }
 
-    public void setStarBox(boolean starBox) {
-        this.starBox = starBox;
-    }
-
     public void setBoxID(String boxID) {
         this.boxID = boxID;
     }
 
+    public void setStarBox(boolean starBox) {
+        this.starBox = starBox;
+    }
+
+    public boolean isCrossRoads() {
+        return crossRoads;
+    }
+
+    public void setCrossRoads(boolean crossRoads) {
+        this.crossRoads = crossRoads;
+    }
 
     public abstract void boxAction(Player player, Game game);
 

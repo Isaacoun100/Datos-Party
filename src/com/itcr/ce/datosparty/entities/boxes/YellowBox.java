@@ -1,6 +1,5 @@
 package com.itcr.ce.datosparty.entities.boxes;
 
-import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.dataStructures.lists.CircularDoublyList;
 import com.itcr.ce.datosparty.dataStructures.lists.CircularList;
 import com.itcr.ce.datosparty.dataStructures.lists.DoublyList;
@@ -16,6 +15,7 @@ import com.itcr.ce.datosparty.minigames.minilogic.Minigame;
 import java.awt.*;
 
 public class YellowBox extends Box {
+
     public YellowBox(float x, float y, int width, int height) {
         super(x, y, width, height);
     }
@@ -34,24 +34,25 @@ public class YellowBox extends Box {
     @Override
     public void boxAction(Player player, Game game) {
         System.out.println("YellowBox");
-        Event event = Event.STEAL_COINS; // game.eventStack.pop();
-        try {
-            game.pauseGame();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        switch (event) {
+        game.setCurrentEvent(Event.STEAL_COINS); // game.eventStack.pop();
+//        try {
+//            game.pauseGame();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        switch (game.getCurrentEvent()) {
             case DUEL -> {
+                // WIP
                 System.out.println("DUEL");
                 Minigame.playMinigame(1);
             }
             case STEAL_COINS -> {
+                // WIP
                 System.out.println("STEAL_COINS");
                 // Chooses random player
                 // Should give player the option to steal whoever player he chooses to
                 int maxPlayers = Round.getPlayerOrder().getLength() - 1;
                 int randomCoins = Dice.roll(1, 10);
-                System.out.println(randomCoins);
                 Player randomPlayer = Round.getPlayerOrder().get(Dice.roll(0, maxPlayers)).getData();
                 randomPlayer.addCoins(-randomCoins);
                 if (randomPlayer.getCoins() < randomCoins) {
@@ -60,18 +61,20 @@ public class YellowBox extends Box {
                 player.addCoins(randomCoins);
             }
             case GIFT_COINS -> {
+                // WIP
                 System.out.println("GIFT_COINS");
                 SinglyNode<Player> playerToAdd = Round.getPlayerOrder().getHead();
-                int numPlayers = Round.getPlayerOrder().getLength();
+                int playersToGift = Round.getPlayerOrder().getLength() - 1;
                 int randomCoins = Dice.roll(1, 10);
-                while (randomCoins % numPlayers != 0) {
+                while (randomCoins % playersToGift != 0) {
                     randomCoins = Dice.roll(1, 10);
                 }
                 player.addCoins(-randomCoins);
                 while (playerToAdd != null) {
-                    playerToAdd.getData().addCoins(randomCoins / numPlayers);
+                    playerToAdd.getData().addCoins(randomCoins / playersToGift);
                     playerToAdd = (SinglyNode<Player>) playerToAdd.getNext();
                 }
+                System.out.println("Gifted " + randomCoins + " coins.");
             }
             case LOSE_STAR -> {
                 System.out.println("LOSE_STAR");
@@ -89,8 +92,10 @@ public class YellowBox extends Box {
                 System.out.println("STEAL_STAR");
                 int maxPlayers = Round.getPlayerOrder().getLength() - 1;
                 Player randomPlayer = Round.getPlayerOrder().get(Dice.roll(0, maxPlayers)).getData();
-                randomPlayer.addStars(-1);
-                player.addStars(1);
+                if (randomPlayer.getStars() >= 1) {
+                    randomPlayer.addStars(-1);
+                    player.addStars(1);
+                }
             }
             case TELEPORT -> {
                 System.out.println("TELEPORT");
