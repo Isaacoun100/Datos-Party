@@ -31,7 +31,7 @@ public class GameLoop implements Runnable {
      * State Initialization
      */
     public static State mainMenuState, titleScreenState, creditsState, optionsState, endGameState, boardState,
-                        winnerState, selectPlayerState;
+                        winnerState, selectPlayerState, selectRoundState;
     public static SinglyList<State> miniGameStates = new SinglyList<>();
     public static SinglyList<State> gameState = new SinglyList<>();
 
@@ -100,6 +100,7 @@ public class GameLoop implements Runnable {
         endGameState = new EndgameState(handler);
         boardState = new BoardState(handler);
         winnerState = new WinnerState(handler);
+        selectRoundState = new SelectRoundState(handler);
         selectPlayerState = new PlayerSelectionState(handler);
 
 
