@@ -74,7 +74,7 @@ public class GameState extends State{
                         int diceResult = Dice.roll(1, 6) + Dice.roll(1, 6);
                         currentPlayer.setMovement(diceResult);
                         SoundEffect.DiceRoll();
-                        Thread.sleep(3000);
+//                        Thread.sleep(3000);
                         game.resumeGame();
                 }
                 }));
@@ -223,7 +223,7 @@ public class GameState extends State{
         gameUI.addObject(new UIAnimatedImage(0,18,4,4, coin,"coin2"));
 
         if (game.getNumberOfPlayers() >= 3) {
-            gameUI.addObject(new UIImageButton(width/2+3,height/2-13,7*2,2*2,Assets.player3Button,"player3Btn",
+            gameUI.addObject(new UIImageButton(width/2,height/2-13,7*2,2*2,Assets.player3Button,"player3Btn",
                     ()->{
                 EventLogic.stealCoins(currentPlayer, player3);
                 game.setCurrentEvent(null);
@@ -234,7 +234,7 @@ public class GameState extends State{
         }
 
         if (game.getNumberOfPlayers() >= 4) {
-            gameUI.addObject(new UIImageButton(width/2+3,height/2-7,7*2,2*2,Assets.player4Button,"player4Btn",
+            gameUI.addObject(new UIImageButton(width/2,height/2-7,7*2,2*2,Assets.player4Button,"player4Btn",
                     ()->{
                 this.player4 = game.getPlayerList().get(3).getData();
                 game.setCurrentEvent(null);
@@ -363,7 +363,7 @@ public class GameState extends State{
             if (currentPlayer != player2) {
                 gameUI.renderById(g, "player2Btn");
             }
-            if (game.getNumberOfPlayers() == 3 &&  currentPlayer !=  player3) {
+            if (game.getNumberOfPlayers() >= 3 &&  currentPlayer !=  player3) {
                 gameUI.renderById(g, "player3Btn");
             }
             if (game.getNumberOfPlayers() == 4 && currentPlayer != player4) {
