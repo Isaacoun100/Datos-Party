@@ -67,36 +67,12 @@ public class Round {
         Round.maxRound = maxRound;
     }
 
-    public static void endTurn(){
-        Turn.nextPlayer();
-    }
-
     public static void playRound(Game game) throws InterruptedException {
         Turn.setPlayersTurn(Round.getPlayerOrder().getHead());
-        Player currentPlayer;
         int currentRound = game.getCurrentRound();
         if (currentRound == 2) {
             game.setStar();
         }
-        while (Turn.getPlayersTurn() != null) {
-            //Player
-            currentPlayer = Turn.getPlayersTurn().getData();
-            System.out.println(currentPlayer.getName());
-            game.pauseGame();
-            try {
-                Turn.movePlayer(game);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            //game.checkStar(currentPlayer);
-            System.out.println("Dice: " + currentPlayer.getMovement());
-            System.out.print("\n");
-            Turn.nextPlayer();
-        }
+        Turn.playTurn(game);
     }
 }

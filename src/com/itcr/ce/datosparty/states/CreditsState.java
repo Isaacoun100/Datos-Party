@@ -17,11 +17,11 @@ public class CreditsState extends State{
         super(handler);
         uiManager = new UIManager(handler);
 
-        uiManager.addObject(new UIImage(20,10,5*2,5*2, Assets.notOKComputerIcon[0]));
-        uiManager.addObject(new UIImage(16,19,2*9, 2, Assets.notOKComputer[0]));
-        uiManager.addObject(new UIImage(7,26,9*4, 4, Assets.nothingHereMessage[0]));
+        uiManager.addObject(new UIImage(20,10,5*2,5*2, Assets.notOKComputerIcon[0],"notOkCompIco"));
+        uiManager.addObject(new UIImage(16,19,2*9, 2, Assets.notOKComputer[0],"notOKCompMsg"));
+        uiManager.addObject(new UIImage(7,26,9*4, 4, Assets.nothingHereMessage[0],"nothingMsg"));
 
-        uiManager.addObject(new UIImageButton(20, 30, 3*3, 3, Assets.backButton,
+        uiManager.addObject(new UIImageButton(20, 30, 3*3, 3, Assets.backButton,"bckBtn",
                 () -> setState(GameLoop.mainMenuState)));
 
     }
@@ -34,6 +34,6 @@ public class CreditsState extends State{
 
     @Override
     public void render(Graphics g) {
-        uiManager.render(g);
+        uiManager.renderAll(g);
     }
 }

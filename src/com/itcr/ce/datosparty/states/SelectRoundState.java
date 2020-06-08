@@ -22,23 +22,23 @@ public class SelectRoundState extends State {
 
         selectRoundUI = new UIManager(handler);
 
-        selectRoundUI.addObject(new SingleUIImage(29,5,12*4,6*4,Assets.roundTitle));
+        selectRoundUI.addObject(new SingleUIImage(29,5,12*4,6*4,Assets.roundTitle,"roundTitle"));
 
-        selectRoundUI.addObject(new UIImageButton(4, 40, 7*4, 2*4, Assets.noviceButton, () -> {
+        selectRoundUI.addObject(new UIImageButton(4, 40, 7*4, 2*4, Assets.noviceButton,"noviceBtn", () -> {
 
             round=5;
             State.setState(GameLoop.selectPlayerState);
 
         }));
 
-        selectRoundUI.addObject(new UIImageButton(37, 40, 7*4, 2*4, Assets.proButton, () -> {
+        selectRoundUI.addObject(new UIImageButton(37, 40, 7*4, 2*4, Assets.proButton,"proBtn", () -> {
 
             round=10;
             State.setState(GameLoop.selectPlayerState);
 
         }));
 
-        selectRoundUI.addObject(new UIImageButton(69, 40, 7*4, 2*4, Assets.eliteButton, () -> {
+        selectRoundUI.addObject(new UIImageButton(69, 40, 7*4, 2*4, Assets.eliteButton,"eliteBtn", () -> {
 
             round=20;
             State.setState(GameLoop.selectPlayerState);
@@ -56,6 +56,6 @@ public class SelectRoundState extends State {
 
     @Override
     public void render(Graphics g) {
-        selectRoundUI.render(g);
+        selectRoundUI.renderAll(g);
     }
 }

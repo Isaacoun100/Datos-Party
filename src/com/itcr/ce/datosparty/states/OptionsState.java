@@ -16,39 +16,39 @@ public class OptionsState extends State{
 
         uiManager = new OptionsUI(handler);
 
-        uiManager.addObject(new UIImageButton(44, 3, 3, 3, Assets.volumeUp, new ClickListener() {
+        uiManager.addObject(new UIImageButton(44, 3, 3, 3, Assets.volumeUp,"volumeUpMusic", new ClickListener() {
             @Override
             public void onClick() {
                 SoundEffect.PopSound();
                 MusicPlayer.musicVolumeUp();
             }}));
 
-        uiManager.addObject(new UIImageButton(3, 3, 3, 3, Assets.volumeDown, new ClickListener() {
+        uiManager.addObject(new UIImageButton(3, 3, 3, 3, Assets.volumeDown,"volumeDownMusic", new ClickListener() {
             @Override
             public void onClick() {
                 SoundEffect.PopSound();
                 MusicPlayer.musicVolumeDown();
             }}));
 
-        uiManager.addObject(new SingleUIImage(18, 3, 7*2, 2*2, Assets.gameMusic));
+        uiManager.addObject(new SingleUIImage(18, 3, 7*2, 2*2, Assets.gameMusic,"gameMusic"));
 
-        uiManager.addObject(new UIImageButton(44, 11, 3, 3, Assets.volumeUp, new ClickListener() {
+        uiManager.addObject(new UIImageButton(44, 11, 3, 3, Assets.volumeUp,"volumeUpEffect", new ClickListener() {
             @Override
             public void onClick() {
                 SoundEffect.PopSound();
                 MusicPlayer.clipVolumeUp();
             }}));
 
-        uiManager.addObject(new UIImageButton(3, 11, 3, 3, Assets.volumeDown, new ClickListener() {
+        uiManager.addObject(new UIImageButton(3, 11, 3, 3, Assets.volumeDown,"volumeDownEffect", new ClickListener() {
             @Override
             public void onClick() {
                 SoundEffect.PopSound();
                 MusicPlayer.clipVolumeDown();
             }}));
 
-        uiManager.addObject(new SingleUIImage(18, 11, 7*2, 2*2, Assets.soundEffects));
+        uiManager.addObject(new SingleUIImage(18, 11, 7*2, 2*2, Assets.soundEffects, "soundFMessage"));
 
-        uiManager.addObject(new UIImageButton(20, 30, 3*3, 3, Assets.backButton,
+        uiManager.addObject(new UIImageButton(20, 30, 3*3, 3, Assets.backButton, "bckBtn",
                 () -> setState(handler.getGameLoop().mainMenuState)));
 
     }
@@ -61,6 +61,6 @@ public class OptionsState extends State{
 
     @Override
     public void render(Graphics g) {
-        uiManager.render(g);
+        uiManager.renderAll(g);
     }
 }

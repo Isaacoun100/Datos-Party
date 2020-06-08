@@ -16,8 +16,8 @@ public class UIImage extends UIObject{
      * @param height
      * @param image
      */
-    public UIImage(float x, float y, int width, int height, BufferedImage image) {
-        super(x*16, y*16, width*16, height*16);
+    public UIImage(float x, float y, int width, int height, BufferedImage image, String id) {
+        super(x*16, y*16, width*16, height*16, id);
         this.image = image;
     }
 

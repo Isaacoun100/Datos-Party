@@ -28,8 +28,6 @@ public class BlueBox extends Box {
 
     @Override
     public void boxAction(Player player) {
-        System.out.println("BlueBox");
-        System.out.println("Current Coins: "+player.getCoins());
     }
 }
 

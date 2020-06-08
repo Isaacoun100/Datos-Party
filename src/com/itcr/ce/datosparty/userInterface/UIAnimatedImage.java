@@ -15,8 +15,8 @@ public class UIAnimatedImage extends UIObject{
      * @param height
      * @param animation
      */
-    public UIAnimatedImage(float x, float y, int width, int height, Animation animation) {
-        super(x*16, y*16, width*16, height*16);
+    public UIAnimatedImage(float x, float y, int width, int height, Animation animation, String id) {
+        super(x*16, y*16, width*16, height*16, id);
         this.animation = animation;
     }
 

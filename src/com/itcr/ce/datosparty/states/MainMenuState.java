@@ -4,7 +4,6 @@ import com.itcr.ce.datosparty.GameLauncher;
 import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.gfx.Animation;
 import com.itcr.ce.datosparty.userInterface.UIAnimatedImage;
-import com.itcr.ce.datosparty.userInterface.UIImage;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
 import com.itcr.ce.datosparty.Handler;
@@ -26,15 +25,15 @@ public class MainMenuState extends State{
         titleAnimation = new Animation(500, Assets.titleImage);
 
         uiManager = new UIManager(handler);
-            uiManager.addObject(new UIAnimatedImage((width/2)-39,height/6,40*2,6*2,titleAnimation));
+            uiManager.addObject(new UIAnimatedImage((width/2)-39,height/6,40*2,6*2,titleAnimation,"titleAnimation"));
 
-            uiManager.addObject(new UIImageButton((width/2)-4, (height/2), 9, 3, Assets.playButton,
+            uiManager.addObject(new UIImageButton((width/2)-4, (height/2), 9, 3, Assets.playButton,"playBtn",
                     () -> State.setState(GameLoop.selectRoundState)));
 
-            uiManager.addObject(new UIImageButton((width/2)-7, (height/2)+3, 15, 3, Assets.settingsButton,
+            uiManager.addObject(new UIImageButton((width/2)-7, (height/2)+3, 15, 3, Assets.settingsButton,"settingsBtn",
                     () -> State.setState(GameLoop.optionsState)));
 
-            uiManager.addObject(new UIImageButton((width/2)-7, (height/2)+6, 15, 3, Assets.creditsButtonMenu,
+            uiManager.addObject(new UIImageButton((width/2)-7, (height/2)+6, 15, 3, Assets.creditsButtonMenu,"creditsBtn",
                     () -> State.setState(GameLoop.creditsState)));
 
     }
@@ -48,7 +47,7 @@ public class MainMenuState extends State{
 
     @Override
     public void render(Graphics g) {
-            uiManager.render(g);
+            uiManager.renderAll(g);
             //g.drawImage(titleAnimation.getCurrentFrame(), (width/2)-19, height/6,40,6,null);
         }
 
