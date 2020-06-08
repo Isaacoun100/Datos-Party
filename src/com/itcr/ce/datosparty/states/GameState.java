@@ -49,6 +49,15 @@ public class GameState extends State{
 
         Animation star = new Animation(200, Assets.star);
         Animation coin = new Animation(200, Assets.coin);
+        Animation duel = new Animation(200,Assets.duel);
+        Animation stealCoins = new Animation(200,Assets.stealCoins);
+        Animation giveCoins = new Animation(200, Assets.giveCoins);
+        Animation loseStar = new Animation(200,Assets.loseStar);
+        Animation win2Stars = new Animation(200,Assets.win2Stars);
+        Animation win5Stars = new Animation(200,Assets.win5Stars);
+        Animation stealStar = new Animation(200,Assets.stealStar);
+        Animation teleport = new Animation(200,Assets.teleport);
+        Animation swapPlace = new Animation(200,Assets.swapPlace);
 
         gameUI.addObject(new UIImageButton(1, height-20, 8, 8, Assets.diceButton, "dice",
                 () -> {
@@ -300,7 +309,16 @@ public class GameState extends State{
             gameUI.renderById(g,"buyMsg");
             gameUI.renderById(g,"yesBtn");
             gameUI.renderById(g,"noBtn");
-        }
+        }else if(currentBox.isStarBox() && enoughCoins){
+             gameUI.renderById(g,"starPBackDrop");
+             gameUI.renderById(g,"enoughCoins");
+             gameUI.renderById(g,"okBtnStars");
+         }else if(currentBox.isStarBox() && !enoughCoins){
+             gameUI.renderById(g,"starPBackDrop");
+             gameUI.renderById(g,"noCoinsMsg");
+             gameUI.renderById(g,"okBtnNoStars");
+         }
+
         if (currentEvent == Event.STEAL_COINS) {
             gameUI.renderById(g, "starPBackDrop");
             if (currentPlayer != player1) {
@@ -314,16 +332,7 @@ public class GameState extends State{
             }
             g.drawString(currentEvent.toString(), (width*13)- 50, 50);
         }
-        }else if(currentBox.isStarBox() && enoughCoins){
-             gameUI.renderById(g,"starPBackDrop");
-             gameUI.renderById(g,"enoughCoins");
-             gameUI.renderById(g,"okBtnStars");
-         }
-         else if(currentBox.isStarBox() && !enoughCoins){
-             gameUI.renderById(g,"starPBackDrop");
-             gameUI.renderById(g,"noCoinsMsg");
-             gameUI.renderById(g,"okBtnNoStars");
-         }
+
     }
 
     private void renderBoard(SinglyNode<Box> currentBox, int length, Graphics g) {
