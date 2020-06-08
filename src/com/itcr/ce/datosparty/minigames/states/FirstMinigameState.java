@@ -29,7 +29,7 @@ public class FirstMinigameState extends State {
             System.out.println("1");
             Player player1 = Round.getPlayerOrder().get(0).getData();
             currentGame.winGame(player1);
-            GameLoop.setState(GameLoop.gameState.getHead().getData());
+            GameLoop.setState(GameLoop.gameDependantStates.get(8).getData());
         }));
 
         if(numPlayers>=2){
@@ -37,7 +37,7 @@ public class FirstMinigameState extends State {
                 System.out.println("2");
                 Player player2 = Round.getPlayerOrder().get(1).getData();
                 currentGame.winGame(player2);
-                GameLoop.setState(GameLoop.gameState.getHead().getData());
+                GameLoop.setState(GameLoop.gameDependantStates.get(8).getData());
             }));
         }
 
@@ -46,7 +46,7 @@ public class FirstMinigameState extends State {
                 System.out.println("3");
                 Player player3 = Round.getPlayerOrder().get(2).getData();
                 currentGame.winGame(player3);
-                GameLoop.setState(GameLoop.gameState.getHead().getData());
+                GameLoop.setState(GameLoop.gameDependantStates.get(8).getData());
             }));
         }
 
@@ -55,7 +55,7 @@ public class FirstMinigameState extends State {
                 System.out.println("4");
                 Player player4 = Round.getPlayerOrder().get(3).getData();
                 currentGame.winGame(player4);
-                GameLoop.setState(GameLoop.gameState.getHead().getData());
+                GameLoop.setState(GameLoop.gameDependantStates.get(8).getData());
             }));
         }
 
