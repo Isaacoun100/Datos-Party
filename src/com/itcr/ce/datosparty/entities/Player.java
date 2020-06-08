@@ -23,6 +23,7 @@ public class Player extends Entity {
     private float y;
     BufferedImage image;
     private Boolean changeDirection;
+    private Node<Box> position;
     private Boolean reversed = false;
 
     public Boolean getReversed() {
@@ -36,8 +37,6 @@ public class Player extends Entity {
         public void setDirection(Boolean changeDirection) {
         this.changeDirection = changeDirection;
     }
-
-    private Node<Box> position;
 
     public Player(String name, float x, float y, BufferedImage image) {
         super(x, y, 80, 120);
@@ -69,7 +68,7 @@ public class Player extends Entity {
             // Subtracts from number given on dice
             setMovement(boxesLeft--);
         }
-        update(this.getPosition().getData());
+        update(this.getPosition().getData(), game);
     }
 
     private Node<Box> pickPath(Game game) {
@@ -203,14 +202,20 @@ public class Player extends Entity {
 
     public void addCoins(int coins) {
         this.coins += coins;
+        if(this.coins < 0){
+            this.coins = 0;
+        }
     }
 
     public int getStars() {
         return stars;
     }
 
-    public void setStars(int stars) {
+    public void addStars(int stars) {
         this.stars += stars;
+        if(this.stars < 0){
+            this.stars = 0;
+        }
     }
 
     public Node<Box> getPosition() {
@@ -225,8 +230,8 @@ public class Player extends Entity {
         this.y = y-45;
     }
 
-    public void update(Box currentBox) {
-        currentBox.boxAction(this);
+    public void update(Box currentBox, Game game) {
+        currentBox.boxAction(this, game);
     }
 
     @Override

@@ -14,47 +14,43 @@ import com.itcr.ce.datosparty.states.GameState;
 
 import java.util.Random;
 
+import static com.itcr.ce.datosparty.logic.Event.*;
+
 public class Game extends Thread {
 
     Handler handler;
     int currentRound = 1;
-
-    public int getMaxRound() {
-        return maxRound;
-    }
-
-    public Handler getHandler() {
-        return handler;
-    }
-
-    public int getCurrentRound() {
-        return currentRound;
-    }
-
-    int maxRound;
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
     private boolean active;
     private final SinglyList<Player> playerList;
+    private final int numberOfPlayers;
     public StarSeller starSeller = new StarSeller(-300,-300);
+    int maxRound;
+    public Stack<Event> eventStack = new Stack<>();
+    private Event currentEvent;
 
-    public SinglyList<Player> getPlayerList() {
-        return playerList;
-    }
+    private final CircularList<Box> mainCircuit;
+    private final SinglyList<Box> phaseA;
+    private final SinglyList<Box> phaseB;
+    private final DoublyList<Box> phaseC;
+    private final CircularDoublyList<Box> phaseD;
+
 
     public Game(Handler handler, int numRound) {
-        active = true;
+        this.active = true;
         this.handler = handler;
-        maxRound = numRound;
+        this.maxRound = numRound;
         Round.setMaxRound(maxRound);
-        playerList = Round.getPlayerOrder();
+        this.playerList = Round.getPlayerOrder();
         Turn.setPlayersTurn(playerList.getHead());
-        int numberOfPlayers = Round.getPlayerOrder().getLength();
+        this.numberOfPlayers = Round.getPlayerOrder().getLength();
         Player currentPlayer;
         SinglyNode<Box> startBox = handler.getBoard().getMainCircuit().get(0);
+
+        this.mainCircuit =  handler.getBoard().getMainCircuit();
+        this.phaseA = handler.getBoard().getPhaseA();
+        this.phaseB = handler.getBoard().getPhaseB();
+        this.phaseC = handler.getBoard().getPhaseC();
+        this.phaseD = handler.getBoard().getPhaseD();
 
         for(int i = 0; i < Round.getPlayerOrder().getLength(); i++){
             currentPlayer = Round.getPlayerOrder().get(i).getData();
@@ -63,7 +59,8 @@ public class Game extends Thread {
         MiniGameBuilder.build(GameLoop.gameDependantStates,numberOfPlayers,handler, this);
         buildGameState(GameLoop.gameDependantStates,handler, this);
         buildEndGameState(GameLoop.gameDependantStates,handler,this);
-        System.out.println("number of players: "+Round.getPlayerOrder().getLength());
+        resetEvents();
+        System.out.println("number of players: " + Round.getPlayerOrder().getLength());
 
     }
 
@@ -108,11 +105,7 @@ public class Game extends Thread {
     }
 
     public void setStar(){
-        CircularList<Box> mainCircuit =  handler.getBoard().getMainCircuit();
-        SinglyList<Box> phaseA = handler.getBoard().getPhaseA();
-        SinglyList<Box> phaseB = handler.getBoard().getPhaseB();
-        DoublyList<Box> phaseC = handler.getBoard().getPhaseC();
-        switch (Dice.roll(4, 1)) {
+        switch (Dice.roll(1, 4)) {
             case 1 -> placeStar(mainCircuit);
             case 2 -> placeStar(phaseA);
             case 3 -> placeStar(phaseB);
@@ -147,7 +140,7 @@ public class Game extends Thread {
         //Choose yes/no
         if (player.getCoins() >= 10) {
             player.addCoins(-10);
-            player.setStars(1);
+            player.addStars(1);
             player.getPosition().getData().setStarBox(false);
             setStar();
         } else {
@@ -155,12 +148,93 @@ public class Game extends Thread {
         }
     }
 
+    public void resetEvents() {
+        SinglyList<Event> tempList = new SinglyList<>();
+        SinglyNode<Event> randomNode;
+        int randomIndex;
+        eventCloner(tempList, DUEL, 10);
+        eventCloner(tempList, STEAL_COINS, 10);
+        tempList.add(STEAL_COINS);
+        tempList.add(GIFT_COINS);
+        tempList.add(LOSE_STAR);
+        eventCloner(tempList, WIN_2_STARS, 3);
+        tempList.add(WIN_5_STARS);
+        eventCloner(tempList, STEAL_STAR, 3);
+        eventCloner(tempList, TELEPORT, 10);
+        eventCloner(tempList, SWAP_PLAYERS, 5);
+        if (this.eventStack.peek() != null) {
+            this.eventStack.pop();
+        }
+        while (tempList.getHead() != null) {
+            randomIndex = Dice.roll(0, tempList.getLength() - 1);
+            randomNode = tempList.get(randomIndex);
+            this.eventStack.push(randomNode.getData());
+            tempList.remove(randomIndex);
+        }
+    }
 
+    private void eventCloner(SinglyList<Event> tempList, Event event, int times) {
+        while (times > 0) {
+            tempList.add(event);
+            times--;
+        }
+    }
+
+    public int getCurrentRound() {
+    return currentRound;
+    }
     public synchronized void pauseGame() throws InterruptedException {
         this.wait();
     }
 
     public synchronized void resumeGame() {
         this.notify();
+    }
+
+    public int getMaxRound() {
+        return maxRound;
+    }
+
+    public Handler getHandler() {
+        return handler;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+    public SinglyList<Player> getPlayerList() {
+        return playerList;
+    }
+
+    public int getNumberOfPlayers() {
+        return numberOfPlayers;
+    }
+
+    public Event getCurrentEvent() {
+        return currentEvent;
+    }
+
+    public void setCurrentEvent(Event currentEvent) {
+        this.currentEvent = currentEvent;
+    }
+
+    public CircularList<Box> getMainCircuit() {
+        return mainCircuit;
+    }
+
+    public SinglyList<Box> getPhaseA() {
+        return phaseA;
+    }
+
+    public SinglyList<Box> getPhaseB() {
+        return phaseB;
+    }
+
+    public DoublyList<Box> getPhaseC() {
+        return phaseC;
+    }
+
+    public CircularDoublyList<Box> getPhaseD() {
+        return phaseD;
     }
 }

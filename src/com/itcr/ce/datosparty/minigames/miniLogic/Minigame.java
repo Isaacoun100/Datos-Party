@@ -8,7 +8,7 @@ public class Minigame {
     public static void newMinigame(){
         UsedMinigames UMG = new UsedMinigames();
         UMG.initDuplicates();
-        UMG.check(Dice.roll(8,1));
+        UMG.check(Dice.roll(1, 8));
     }
 
     public static void playMinigame(int gameID){

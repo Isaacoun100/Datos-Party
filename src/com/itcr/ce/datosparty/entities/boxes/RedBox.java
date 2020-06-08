@@ -2,12 +2,12 @@ package com.itcr.ce.datosparty.entities.boxes;
 
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.entities.Player;
+import com.itcr.ce.datosparty.logic.Game;
 import com.itcr.ce.datosparty.music.SoundEffect;
 
 import java.awt.*;
 
 public class RedBox extends Box {
-
 
     public RedBox(float x, float y, int width, int height) {
         super(x, y, width, height);
@@ -25,13 +25,8 @@ public class RedBox extends Box {
     }
 
     @Override
-    public void boxAction(Player player) {
+    public void boxAction(Player player, Game game) {
         SoundEffect.PopSound();
-        if(player.getCoins() < 3){
-            player.addCoins(0);
-        }
-        else{
-            player.addCoins(-3);
-        }
+        player.addCoins(-3);
     }
 }

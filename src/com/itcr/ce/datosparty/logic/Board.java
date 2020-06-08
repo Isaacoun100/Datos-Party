@@ -48,7 +48,7 @@ public class Board {
     }
 
     private void pickBox(int xPos, int yPos, LinkedList<Box> mainCircuit) {
-        switch (Dice.roll(3, 1)) {
+        switch (Dice.roll(1, 3)) {
             case 1 -> mainCircuit.add(new BlueBox(xPos, yPos, 80, 80));
             case 2 -> mainCircuit.add(new GreenBox(xPos, yPos, 80, 80));
             case 3 -> mainCircuit.add(new RedBox(xPos, yPos, 80, 80));
@@ -58,7 +58,7 @@ public class Board {
 
     private void buildPath(SinglyList<SinglyList<Integer>> coordinateList, LinkedList<Box> phase, boolean yellowRoad) {
         SinglyNode<SinglyList<Integer>> current = coordinateList.getHead();
-        int firstYellow = Dice.roll(6,3);
+        int firstYellow = Dice.roll(3, 6);
         for(int i = 0; i < coordinateList.getLength(); i++){
 
             int xPos = current.getData().getHead().getData();

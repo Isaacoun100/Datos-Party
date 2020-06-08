@@ -6,7 +6,6 @@ import javax.swing.JOptionPane;
 
 public class DefineOrder {
 
-
     private static SinglyList<TemporalPlayer> TemporalPlayerList;
     private static SinglyList<Integer> diceThrowList;
     TemporalPlayer newPlayer;
@@ -65,10 +64,10 @@ public class DefineOrder {
 
     public int lockDice(){
 
-        int dice = Dice.roll(6,1);
+        int dice = Dice.roll(1, 6);
 
         while (compareDice(dice)){
-            dice = Dice.roll(6,1);
+            dice = Dice.roll(1, 6);
         }
 
         diceThrowList.add(dice);
