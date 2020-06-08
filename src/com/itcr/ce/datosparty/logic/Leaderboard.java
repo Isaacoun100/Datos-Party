@@ -24,24 +24,7 @@ public class Leaderboard {
     public static SinglyList<Player> getLeaderboard(){
         updateLeaderBoard();
         setLeaderboard();
-        showLeaderboard();
         return leaderboard;
-    }
-
-    private static void showLeaderboard(){
-        SinglyNode<Player> temporal = leaderboard.getHead();
-        int i =1;
-
-        while(temporal!=null){
-
-            System.out.println(i+ " place is to "+temporal.getData().getName());
-            System.out.println( " with "+temporal.getData().getStars()+ " stars and "+
-                                        temporal.getData().getCoins()+" coins");
-
-            temporal=(SinglyNode<Player>) temporal.getNext();
-            i++;
-        }
-
     }
 
     private static void setLeaderboard(){
