@@ -8,7 +8,7 @@ public class MusicPlayer {
     private static double gameMusicLevel = 1.0, effectMusicLevel = 1.0;
     private static Clip clip, track;
 
-    public static void playSong(String musicLocation, String songName){
+    public static void playSong(String musicLocation){
 
         try{
 
@@ -20,8 +20,6 @@ public class MusicPlayer {
                 track = AudioSystem.getClip();
                 track.open(audioInput);
                 track.start();
-
-                System.out.println(songName);
 
 
             }
