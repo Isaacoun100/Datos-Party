@@ -3,16 +3,14 @@ package com.itcr.ce.datosparty.logic;
 import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.Handler;
 import com.itcr.ce.datosparty.dataStructures.lists.*;
-import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.entities.StarSeller;
 import com.itcr.ce.datosparty.entities.boxes.Box;
 import com.itcr.ce.datosparty.minigames.MiniGameBuilder;
 import com.itcr.ce.datosparty.minigames.minilogic.Minigame;
-import com.itcr.ce.datosparty.minigames.states.FirstMinigameState;
+import com.itcr.ce.datosparty.states.EndGameState;
 import com.itcr.ce.datosparty.states.GameState;
-import com.itcr.ce.datosparty.states.State;
 
 import java.util.Random;
 
@@ -34,6 +32,11 @@ public class Game extends Thread {
     }
 
     int maxRound;
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     private boolean active;
     private final SinglyList<Player> playerList;
     public StarSeller starSeller = new StarSeller(-300,-300);
@@ -52,20 +55,15 @@ public class Game extends Thread {
         int numberOfPlayers = Round.getPlayerOrder().getLength();
         Player currentPlayer;
         SinglyNode<Box> startBox = handler.getBoard().getMainCircuit().get(0);
-        for(int i = 0; i < Round.getPlayerOrder().getLength(); i++){
 
+        for(int i = 0; i < Round.getPlayerOrder().getLength(); i++){
             currentPlayer = Round.getPlayerOrder().get(i).getData();
             currentPlayer.setPosition(startBox);
-
         }
-        MiniGameBuilder.build(GameLoop.miniGameStates,numberOfPlayers,handler, this);
-        buildGameState(GameLoop.gameState,handler, this);
+        MiniGameBuilder.build(GameLoop.gameDependantStates,numberOfPlayers,handler, this);
+        buildGameState(GameLoop.gameDependantStates,handler, this);
+        buildEndGameState(GameLoop.gameDependantStates,handler,this);
         System.out.println("number of players: "+Round.getPlayerOrder().getLength());
-
-    }
-
-    private void buildGameState(SinglyList<com.itcr.ce.datosparty.states.State> gameState, Handler handler, Game game) {
-        gameState.add(new GameState(handler, game));
 
     }
 
@@ -90,6 +88,15 @@ public class Game extends Thread {
             System.out.println("C'est fini");
             Leaderboard.getLeaderboard();
         }
+    }
+
+    private void buildGameState(SinglyList<com.itcr.ce.datosparty.states.State> gameState, Handler handler, Game game) {
+        gameState.add(new GameState(handler, game));
+
+    }
+
+    private void buildEndGameState(SinglyList<com.itcr.ce.datosparty.states.State> endGameState, Handler handler, Game game) {
+        endGameState.add(new EndGameState(handler, game));
     }
 
     public void checkStar(Player player) throws InterruptedException {
@@ -148,6 +155,7 @@ public class Game extends Thread {
             System.out.println("You don't have enough money, though...");
         }
     }
+
 
     public synchronized void pauseGame() throws InterruptedException {
         this.wait();
