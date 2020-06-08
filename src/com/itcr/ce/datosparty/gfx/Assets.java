@@ -12,8 +12,8 @@ public class Assets {
             notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, upArrow, downArrow, leftArrow,
             rightArrow, player1Button, player2Button,
             player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp, volumeDown, gameMusic, soundEffects,
-            starPurchaseBackDrop, yesButton, noButton, purchaseMsg, buyMsg, endTurnBtn, coin, star, noviceButton,
-            proButton, eliteButton, roundTitle;;
+            starPurchaseBackDrop, yesBtn, noBtn, purchaseMsg, buyMsg, endTurnBtn, coin, star, noviceButton,
+            proButton, eliteButton, roundTitle;
 
     public static Font bitArtFont;
 
@@ -154,13 +154,13 @@ public class Assets {
         starPurchaseBackDrop[1] = sheet.crop(18,5,4,2);
 
 
-        yesButton = new BufferedImage[2];
-        yesButton[0] = sheet.crop(18,7,1,1);
-        yesButton[1] = sheet.crop(18,4,1,1);
+        yesBtn = new BufferedImage[2];
+        yesBtn[0] = sheet.crop(18,7,1,1);
+        yesBtn[1] = sheet.crop(18,4,1,1);
 
-        noButton = new BufferedImage[2];
-        noButton[0] = sheet.crop(19,7,1,1);
-        noButton[1] = sheet.crop(19,4,1,1);
+        noBtn = new BufferedImage[2];
+        noBtn[0] = sheet.crop(19,7,1,1);
+        noBtn[1] = sheet.crop(19,4,1,1);
 
         purchaseMsg = new BufferedImage[2];
         purchaseMsg[0] = sheet.crop(20,7,3,1);

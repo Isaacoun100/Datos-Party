@@ -2,7 +2,6 @@ package com.itcr.ce.datosparty.minigames.states;
 
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.logic.Game;
-import com.itcr.ce.datosparty.minigames.ui.FourthMinigameUI;
 import com.itcr.ce.datosparty.minigames.ui.SixthMinigameUI;
 import com.itcr.ce.datosparty.userInterface.ClickListener;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
@@ -22,7 +21,7 @@ public class SixthMinigameState extends State {
 
 
         if(numPlayers>=1){
-            uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player1Button, new ClickListener() {
+            uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player1Button,"player1Btn", new ClickListener() {
                 @Override
                 public void onClick() {
                     System.out.println("1");
@@ -31,7 +30,7 @@ public class SixthMinigameState extends State {
         }
 
         if(numPlayers>=2){
-            uiManager.addObject(new UIImageButton(30, 1, 7*2, 2*2, Assets.player2Button, new ClickListener() {
+            uiManager.addObject(new UIImageButton(30, 1, 7*2, 2*2, Assets.player2Button,"player2Btn", new ClickListener() {
                 @Override
                 public void onClick() {
                     System.out.println("2");
@@ -40,7 +39,7 @@ public class SixthMinigameState extends State {
         }
 
         if(numPlayers>=3){
-            uiManager.addObject(new UIImageButton(1, 30, 7*2, 2*2, Assets.player3Button, new ClickListener() {
+            uiManager.addObject(new UIImageButton(1, 30, 7*2, 2*2, Assets.player3Button,"player3Btn", new ClickListener() {
                 @Override
                 public void onClick() {
                     System.out.println("3");
@@ -49,7 +48,7 @@ public class SixthMinigameState extends State {
         }
 
         if(numPlayers>=4){
-            uiManager.addObject(new UIImageButton(30, 30, 7*2, 2*2, Assets.player4Button, new ClickListener() {
+            uiManager.addObject(new UIImageButton(30, 30, 7*2, 2*2, Assets.player4Button,"player4Btn", new ClickListener() {
                 @Override
                 public void onClick() {
                     System.out.println("4");
@@ -67,7 +66,7 @@ public class SixthMinigameState extends State {
 
     @Override
     public void render(Graphics g) {
-        uiManager.render(g);
+        uiManager.renderAll(g);
     }
 
 }

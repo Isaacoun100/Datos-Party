@@ -3,9 +3,8 @@ package com.itcr.ce.datosparty.minigames.states;
 import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.logic.Game;
-import com.itcr.ce.datosparty.minigames.minilogic.FirstMiniGameLogic;
+import com.itcr.ce.datosparty.minigames.miniLogic.FirstMiniGameLogic;
 import com.itcr.ce.datosparty.minigames.ui.FirstMinigameUI;
-import com.itcr.ce.datosparty.userInterface.ClickListener;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
 import com.itcr.ce.datosparty.states.State;
@@ -25,7 +24,7 @@ public class FirstMinigameState extends State {
         uiManager = new FirstMinigameUI(handler);
         FirstMiniGameLogic currentGame = new FirstMiniGameLogic(game);
 
-        uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player1Button, () -> {
+        uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player1Button, "player1Btn", () -> {
             System.out.println("1");
             Player player1 = Round.getPlayerOrder().get(0).getData();
             currentGame.winGame(player1);
@@ -33,7 +32,7 @@ public class FirstMinigameState extends State {
         }));
 
         if(numPlayers>=2){
-            uiManager.addObject(new UIImageButton(30, 1, 7*2, 2*2, Assets.player2Button, () -> {
+            uiManager.addObject(new UIImageButton(30, 1, 7*2, 2*2, Assets.player2Button,"player2Btn", () -> {
                 System.out.println("2");
                 Player player2 = Round.getPlayerOrder().get(1).getData();
                 currentGame.winGame(player2);
@@ -42,7 +41,7 @@ public class FirstMinigameState extends State {
         }
 
         if(numPlayers>=3){
-            uiManager.addObject(new UIImageButton(1, 30, 7*2, 2*2, Assets.player3Button, () -> {
+            uiManager.addObject(new UIImageButton(1, 30, 7*2, 2*2, Assets.player3Button,"player3Btn", () -> {
                 System.out.println("3");
                 Player player3 = Round.getPlayerOrder().get(2).getData();
                 currentGame.winGame(player3);
@@ -51,7 +50,7 @@ public class FirstMinigameState extends State {
         }
 
         if(numPlayers>=4){
-            uiManager.addObject(new UIImageButton(30, 30, 7*2, 2*2, Assets.player4Button, () -> {
+            uiManager.addObject(new UIImageButton(30, 30, 7*2, 2*2, Assets.player4Button,"player4Btn", () -> {
                 System.out.println("4");
                 Player player4 = Round.getPlayerOrder().get(3).getData();
                 currentGame.winGame(player4);
@@ -69,7 +68,7 @@ public class FirstMinigameState extends State {
 
     @Override
     public void render(Graphics g) {
-        uiManager.render(g);
+        uiManager.renderAll(g);
     }
 
 }

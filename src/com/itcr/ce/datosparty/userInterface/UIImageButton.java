@@ -18,8 +18,8 @@ public class UIImageButton extends UIObject{
      * @param clicker clicker interface to define what the button does when clicked
      */
 
-    public UIImageButton(float x, float y, int width, int height, BufferedImage[] images, ClickListener clicker) {
-        super(x*16, y*16, width*16, height*16);
+    public UIImageButton(float x, float y, int width, int height, BufferedImage[] images, String id, ClickListener clicker) {
+        super(x*16, y*16, width*16, height*16, id);
         this.images = images;
         this.clicker = clicker;
     }

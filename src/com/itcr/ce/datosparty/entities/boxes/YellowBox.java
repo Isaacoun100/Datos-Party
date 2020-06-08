@@ -33,7 +33,6 @@ public class YellowBox extends Box {
 
     @Override
     public void boxAction(Player player, Game game) {
-        System.out.println("YellowBox");
         game.setCurrentEvent(Event.STEAL_COINS); // game.eventStack.pop();
 //        try {
 //            game.pauseGame();

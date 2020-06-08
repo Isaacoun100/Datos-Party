@@ -7,14 +7,16 @@ public abstract class UIObject {
 
     protected float x, y;
     protected int width, height;
+    protected String id;
     protected Rectangle bounds;
     protected boolean hovering = false;
 
-    public UIObject(float x, float y, int width, int height){
+    public UIObject(float x, float y, int width, int height, String id){
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.id = id;
         bounds = new Rectangle((int) x, (int) y, width, height);
 
     }
@@ -39,6 +41,10 @@ public abstract class UIObject {
     /**
      * Getters and setters
      */
+
+    public String getId() {
+        return id;
+    }
 
     public float getX() {
         return x;
