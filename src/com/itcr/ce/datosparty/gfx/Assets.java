@@ -269,7 +269,7 @@ public class Assets {
         win5Stars[8] = sheet.crop(16,12,1,1);
         win5Stars[9] = sheet.crop(8,12,1,1);
 
-        stealStar = new BufferedImage[11];
+        stealStar = new BufferedImage[10];
         stealStar[0] = sheet.crop(8,9,1,1);
         stealStar[1] = sheet.crop(9,9,1,1);
         stealStar[2] = sheet.crop(10,9,1,1);
