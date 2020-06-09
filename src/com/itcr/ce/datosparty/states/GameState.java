@@ -37,6 +37,7 @@ public class GameState extends State{
     private Player player2;
     private Player player3;
     private Player player4;
+    private EventLogic stealCoinsLogic = new EventLogic();
 
     public GameState(Handler handler, Game game){
 
@@ -206,7 +207,7 @@ public class GameState extends State{
 
         gameUI.addObject(new UIImageButton(width/2-14,height/2-13,7*2,2*2,Assets.player1Button,"player1Btn",
                 ()->{
-            EventLogic.stealCoins(currentPlayer, player1);
+            stealCoinsLogic.stealCoins(currentPlayer, player1);
             game.setCurrentEvent(null);
             game.resumeGame();
                 }));
@@ -215,7 +216,7 @@ public class GameState extends State{
 
         gameUI.addObject(new UIImageButton(width/2-14,height/2-7,7*2,2*2,Assets.player2Button,"player2Btn",
                 ()->{
-            EventLogic.stealCoins(currentPlayer, player2);
+            stealCoinsLogic.stealCoins(currentPlayer, player2);
             game.setCurrentEvent(null);
             game.resumeGame();
                 }));
@@ -225,7 +226,7 @@ public class GameState extends State{
         if (game.getNumberOfPlayers() >= 3) {
             gameUI.addObject(new UIImageButton(width/2,height/2-13,7*2,2*2,Assets.player3Button,"player3Btn",
                     ()->{
-                EventLogic.stealCoins(currentPlayer, player3);
+                stealCoinsLogic.stealCoins(currentPlayer, player3);
                 game.setCurrentEvent(null);
                 game.resumeGame();
                     }));
@@ -238,7 +239,7 @@ public class GameState extends State{
                     ()->{
                 this.player4 = game.getPlayerList().get(3).getData();
                 game.setCurrentEvent(null);
-                EventLogic.stealCoins(currentPlayer, player4);
+                stealCoinsLogic.stealCoins(currentPlayer, player4);
                 game.resumeGame();
                     }));
             gameUI.addObject(new UIAnimatedImage(10,15,4,4, star,"star4"));
