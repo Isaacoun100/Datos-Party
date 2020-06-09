@@ -5,15 +5,82 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-    public static BufferedImage blueBox, greenBox, yellowBox, redBox, player1Static, player2Static, player3Static,
-            player4Static, starSeller,noCoinsMsg,enoughCoins, mapGuide,eventBackDrop;
+    public static BufferedImage blueBox;
+    public static BufferedImage greenBox;
+    public static BufferedImage yellowBox;
+    public static BufferedImage redBox;
+    public static BufferedImage player1Static;
+    public static BufferedImage player2Static;
+    public static BufferedImage player3Static;
+    public static BufferedImage player4Static;
+    public static BufferedImage starSeller;
+    public static BufferedImage noCoinsMsg;
+    public static BufferedImage enoughCoins;
+    public static BufferedImage mapGuide;
+    public static BufferedImage eventBackDrop;
+    public static BufferedImage eventBackDropBad;
+    public static BufferedImage getEventBackDropSpecial;
+    public static BufferedImage secondPLaceImg;
+    public static BufferedImage thirdPlaceImg;
+    public static BufferedImage endGamePodium2;
+    public static BufferedImage endGamePodium3;
+    public static BufferedImage playerSelectionTitle;
 
-    public static BufferedImage[] settingsButton, playButton, creditsButton,backButton, titleImage,pressEnterImage,
-            notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, upArrow, downArrow, leftArrow,
-            rightArrow, player1Button, player2Button, duel, stealCoins, giveCoins, loseStar, win2Stars, win5Stars,stealStar, teleport, swapPlace,
-            player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp, volumeDown, gameMusic, soundEffects,
-            starPurchaseBackDrop, yesBtn, noBtn, purchaseMsg, buyMsg, endTurnBtn, coin, star, noviceButton,
-            proButton, eliteButton, roundTitle, okBtn, stealCoins1, stealCoins2, stealCoins3, stealCoins4;
+    public static BufferedImage[] settingsButton;
+    public static BufferedImage[] playButton;
+    public static BufferedImage[] creditsButton;
+    public static BufferedImage[] backButton;
+    public static BufferedImage[] titleImage;
+    public static BufferedImage[] pressEnterImage;
+    public static BufferedImage[] notOKComputer;
+    public static BufferedImage[] notOKComputerIcon;
+    public static BufferedImage[] nothingHereMessage;
+    public static BufferedImage[] boton1;
+    public static BufferedImage[] diceButton;
+    public static BufferedImage[] upArrow;
+    public static BufferedImage[] downArrow;
+    public static BufferedImage[] leftArrow;
+    public static BufferedImage[] rightArrow;
+    public static BufferedImage[] player1Button;
+    public static BufferedImage[] player2Button;
+    public static BufferedImage[] duel;
+    public static BufferedImage[] stealCoins;
+    public static BufferedImage[] giveCoins;
+    public static BufferedImage[] loseStar;
+    public static BufferedImage[] win2Stars;
+    public static BufferedImage[] win5Stars;
+    public static BufferedImage[] stealStar;
+    public static BufferedImage[] teleport;
+    public static BufferedImage[] swapPlace;
+    public static BufferedImage[] player3Button;
+    public static BufferedImage[] player4Button;
+    public static BufferedImage[] creditsButtonMenu;
+    public static BufferedImage[] volumeUp;
+    public static BufferedImage[] volumeDown;
+    public static BufferedImage[] gameMusic;
+    public static BufferedImage[] soundEffects;
+    public static BufferedImage[] starPurchaseBackDrop;
+    public static BufferedImage[] yesBtn;
+    public static BufferedImage[] noBtn;
+    public static BufferedImage[] purchaseMsg;
+    public static BufferedImage[] buyMsg;
+    public static BufferedImage[] endTurnBtn;
+    public static BufferedImage[] coin;
+    public static BufferedImage[] star;
+    public static BufferedImage[] noviceButton;
+    public static BufferedImage[] proButton;
+    public static BufferedImage[] eliteButton;
+    public static BufferedImage[] roundTitle;
+    public static BufferedImage[] okBtn;
+    public static BufferedImage[] stealCoins1;
+    public static BufferedImage[] stealCoins2;
+    public static BufferedImage[] stealCoins3;
+    public static BufferedImage[] stealCoins4;
+    public static BufferedImage[] twoPlayerAnim;
+    public static BufferedImage[] threePlayerAnim;
+    public static BufferedImage[] fourPlayerAnim;
+    public static BufferedImage[] firstPlaceAnim;
+    public static BufferedImage[] lastPlaceAnim;
 
     public static Font bitArtFont;
     public static Font bitArtFont2;
@@ -183,6 +250,9 @@ public class Assets {
 
         mapGuide = mapSheet.crop(0,0,100,76);
         eventBackDrop = sheet.crop(0,8,2,3);
+        eventBackDropBad = sheet.crop(0,11,2,3);
+        getEventBackDropSpecial = sheet.crop(6,11,2,3);
+
 
         coin = new BufferedImage[7];
         coin[0] = sheet.crop(27,7,1,1);
@@ -323,6 +393,38 @@ public class Assets {
         stealCoins4[0] = sheet.crop(3,13,1,2);
         stealCoins4[1] = sheet.crop(5,13,1,2);
 
+        firstPlaceAnim = new BufferedImage[3];
+        firstPlaceAnim[0] = sheet.crop(29,8,4,4);
+        firstPlaceAnim[1] = sheet.crop(31,8,4,4);
+        firstPlaceAnim[2] = sheet.crop(33,8,4,4);
+
+        lastPlaceAnim = new BufferedImage[3];
+        lastPlaceAnim[0] = sheet.crop(29,10,4,4);
+        lastPlaceAnim[1] = sheet.crop(31,10,4,4);
+        lastPlaceAnim[2] = sheet.crop(33,10,4,4);
+
+        secondPLaceImg = sheet.crop(36,8,1,1);
+        thirdPlaceImg = sheet.crop(35,8,1,1);
+
+        twoPlayerAnim = new BufferedImage[2];
+        twoPlayerAnim[0] = sheet.crop(36,10,2,2);
+        twoPlayerAnim[1] = sheet.crop(38,10,2,2);
+
+        threePlayerAnim = new BufferedImage[3];
+        threePlayerAnim[0] = sheet.crop(31,12,3,2);
+        threePlayerAnim[1] = sheet.crop(34,12,3,2);
+        threePlayerAnim[2] = sheet.crop(37,12,3,2);
+
+        fourPlayerAnim = new BufferedImage[4];
+        fourPlayerAnim[0] = sheet.crop(24,14,4,2);
+        fourPlayerAnim[1] = sheet.crop(28,14,4,2);
+        fourPlayerAnim[2] = sheet.crop(32,14,4,2);
+        fourPlayerAnim[3] = sheet.crop(36,14,4,2);
+
+        endGamePodium2 = sheet.crop(34,16,4,3);
+        endGamePodium3 = sheet.crop(34,16,6,3);
+
+        playerSelectionTitle = sheet.crop(6,13,10,2);
 
         bitArtFont = FontLoader.loadFont("res/fonts/windows_command_prompt.ttf");
         bitArtFont2 = FontLoader.loadFont("res/fonts/retro_computer_personal_use.ttf");

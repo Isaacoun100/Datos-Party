@@ -25,8 +25,8 @@ public class GameState extends State{
 
     private final UIManager gameUI;
 
-    private int width = GameLauncher.width/16;
-    private int height = GameLauncher.height/16;
+    private final int width = GameLauncher.width/16;
+    private final int height = GameLauncher.height/16;
     private final int  maxRound;
     private int playerMovement, enoughCoins = 0;
     private Player currentPlayer;
@@ -170,16 +170,16 @@ public class GameState extends State{
                     }
                 }));
 
-        gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,2*8,Assets.starPurchaseBackDrop[0],"starPBackDrop")));
+        gameUI.addObject((new UIImage((float)width/2-16, (float)height/2-16, 4*8,2*8,Assets.starPurchaseBackDrop[0],"starPBackDrop")));
 
-        gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,8,Assets.buyMsg[0],"buyMsg")));
+        gameUI.addObject((new UIImage((float)width/2-16, (float)height/2-16, 4*8,8,Assets.buyMsg[0],"buyMsg")));
 
-        gameUI.addObject((new UIImage(width/2-16, height/2-15   , 4*8,8,Assets.noCoinsMsg,"noCoinsMsg")));
+        gameUI.addObject((new UIImage((float)width/2-16, (float)height/2-15   , 4*8,8,Assets.noCoinsMsg,"noCoinsMsg")));
 
-        gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,8,Assets.enoughCoins,"enoughCoins")));
+        gameUI.addObject((new UIImage((float)width/2-16, (float)height/2-16, 4*8,8,Assets.enoughCoins,"enoughCoins")));
 
 
-        gameUI.addObject(new UIImageButton(width/2-4,height/2-10,8,8,Assets.okBtn,"okBtnStars",
+        gameUI.addObject(new UIImageButton((float)width/2-4,(float)height/2-10,8,8,Assets.okBtn,"okBtnStars",
                 ()->{ if(clicked){
                     int movementLeft = currentPlayer.getMovement();
                     currentPlayer.setMovement(movementLeft);
@@ -194,7 +194,7 @@ public class GameState extends State{
                 }
                 }));
 
-        gameUI.addObject(new UIImageButton(width/2-4,height/2-10,8,8,Assets.okBtn,"okBtnNoStars",
+        gameUI.addObject(new UIImageButton((float)width/2-4,(float)height/2-10,8,8,Assets.okBtn,"okBtnNoStars",
                 ()->{ if(clicked){
                     this.enoughCoins = 0;
                     int movementLeft = currentPlayer.getMovement();
@@ -206,7 +206,7 @@ public class GameState extends State{
                 }
                 }));
 
-        gameUI.addObject(new UIImageButton(width/2-8,height/2-10,8,8,Assets.yesBtn,"yesBtn",
+        gameUI.addObject(new UIImageButton((float)width/2-8,(float)height/2-10,8,8,Assets.yesBtn,"yesBtn",
                 ()->{
                     if(currentBox.isStarBox()&&!clicked) {
                         int coins = currentPlayer.getCoins();
@@ -218,7 +218,7 @@ public class GameState extends State{
                         this.clicked = true;
                     }
                 }));
-        gameUI.addObject(new UIImageButton(width/2+2,height/2-10,8,8,Assets.noBtn,"noBtn",()->{
+        gameUI.addObject(new UIImageButton((float)width/2+2,(float)height/2-10,8,8,Assets.noBtn,"noBtn",()->{
             if(!clicked) {
                 int movementLeft = currentPlayer.getMovement();
                 currentPlayer.setMovement(movementLeft);
@@ -227,7 +227,7 @@ public class GameState extends State{
 
         }));
 
-        gameUI.addObject(new UIImageButton(width/2-14,height/2-22, 8,2*8,Assets.stealCoins1,"player1Btn",
+        gameUI.addObject(new UIImageButton((float)width/2-14,(float)height/2-22, 8,2*8,Assets.stealCoins1,"player1Btn",
                 ()->{
                     if(game.getCurrentEvent()== Event.STEAL_COINS){
                         stealCoinsLogic.stealCoins(currentPlayer, player1);
@@ -238,7 +238,7 @@ public class GameState extends State{
         gameUI.addObject(new UIAnimatedImage(0,3,4,4, star,"star1"));
         gameUI.addObject(new UIAnimatedImage(0,6,4,4, coin,"coin1"));
 
-        gameUI.addObject(new UIImageButton(width/2-14,height/2-7, 8,2*8,Assets.stealCoins2,"player2Btn",
+        gameUI.addObject(new UIImageButton((float)width/2-14,(float)height/2-7, 8,2*8,Assets.stealCoins2,"player2Btn",
                 ()->{
                     if(game.getCurrentEvent()== Event.STEAL_COINS) {
                         stealCoinsLogic.stealCoins(currentPlayer, player2);
@@ -250,7 +250,7 @@ public class GameState extends State{
         gameUI.addObject(new UIAnimatedImage(0,18,4,4, coin,"coin2"));
 
         if (game.getNumberOfPlayers() >= 3) {
-            gameUI.addObject(new UIImageButton(width/2+6,height/2-22, 8,2*8,Assets.stealCoins3,"player3Btn",
+            gameUI.addObject(new UIImageButton((float)width/2+6,(float)height/2-22, 8,2*8,Assets.stealCoins3,"player3Btn",
                     ()->{
                         if(game.getCurrentEvent()== Event.STEAL_COINS) {
                             stealCoinsLogic.stealCoins(currentPlayer, player3);
@@ -263,7 +263,7 @@ public class GameState extends State{
         }
 
         if (game.getNumberOfPlayers() >= 4) {
-            gameUI.addObject(new UIImageButton(width/2+6,height/2-7, 8,2*8,Assets.stealCoins4,"player4Btn",
+            gameUI.addObject(new UIImageButton((float)width/2+6,(float)height/2-7, 8,2*8,Assets.stealCoins4,"player4Btn",
                     ()->{
                         if(game.getCurrentEvent()== Event.STEAL_COINS) {
                             stealCoinsLogic.stealCoins(currentPlayer, player4);
@@ -283,19 +283,19 @@ public class GameState extends State{
             }
         }));
 
-        gameUI.addObject((new UIImage(width/2-8, height/2-24, 2*8,3*8,Assets.eventBackDrop,"eventBackDrop")));
+        gameUI.addObject((new UIImage((float)width/2-8, (float)height/2-24, 2*8,3*8,Assets.eventBackDrop,"eventBackDrop")));
 
-        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,stealCoins,"stealCoins"));
-        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*3,2*3,duel,"duel"));
-        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,giveCoins,"giveCoins"));
-        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,loseStar,"loseStar"));
-        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,win2Stars,"win2Stars"));
-        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,win5Stars,"win5Stars"));
-        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,stealStar,"stealStar"));
-        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-18, 4,2*4,teleport,"teleport"));
-        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 2*4,2*4,swapPlace,"swapPlace"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*2,4*2,stealCoins,"stealCoins"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*3,2*3,duel,"duel"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*2,4*2,giveCoins,"giveCoins"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*2,4*2,loseStar,"loseStar"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*2,4*2,win2Stars,"win2Stars"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*2,4*2,win5Stars,"win5Stars"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*2,4*2,stealStar,"stealStar"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-2, (float)height/2-18, 4,2*4,teleport,"teleport"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 2*4,2*4,swapPlace,"swapPlace"));
 
-        gameUI.addObject(new UIImageButton(width/2-4,height/2-2,8,8,Assets.okBtn,"okBtnEvents",
+        gameUI.addObject(new UIImageButton((float)width/2-4,(float)height/2-2,8,8,Assets.okBtn,"okBtnEvents",
                 ()->{ if(currentEvent != null){
                     int movementLeft = currentPlayer.getMovement();
                     currentPlayer.setMovement(movementLeft);
