@@ -14,23 +14,15 @@ import java.awt.*;
 public class EndGameState extends State {
 
     private final UIManager uiManager;
+    private final Font font;
 
-
-    public EndGameState(Handler handler, Game game) {
+    public EndGameState(Handler handler) {
         super(handler);
-
         uiManager = new UIManager(handler);
-
-        uiManager.addObject(new UIImageButton(18, 32, 7*2, 2*2, Assets.creditsButton,"creditsBtn",
-                () -> {
-                game.setActive(false);
-                GameLoop.gameDependantStates.clear();
-                Round.getPlayerOrder().clear();
-                DefineOrder.getTemporalPlayerList().clear();
-                setState(GameLoop.creditsState); }));
-
+        font = new Font("Arial", Font.PLAIN,50);
 
     }
+
     @Override
     public void tick() {
         handler.getMouseManager().setUiManager(uiManager);
@@ -40,5 +32,10 @@ public class EndGameState extends State {
     @Override
     public void render(Graphics g) {
         uiManager.renderAll(g);
+
+        g.setFont(font);
+        g.drawString("JU",10,40);
+        g.drawString("JO",60,100);
+
     }
 }
