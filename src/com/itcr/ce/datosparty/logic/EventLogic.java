@@ -14,10 +14,15 @@ public class EventLogic {
         }
     }
 
-    public static void stealCoins(Player thief, Player victim) {
-        System.out.println("STEAL_COINS");
-        // Chooses random player
-        // Should give player the option to steal whoever player he chooses to
+    private Player returnRandomPlayer(Player currentPlayer) {
+        Player randomPlayer = currentPlayer;
+        while (randomPlayer == currentPlayer) {
+            randomPlayer =Round.getPlayerOrder().get(Dice.roll(0, Round.getPlayerOrder().getLength() - 1)).getData();
+        }
+        return randomPlayer;
+    }
+
+    public void stealCoins(Player thief, Player victim) {
         int randomCoins = Dice.roll(1, 10);
         if (victim.getCoins() < randomCoins) {
             randomCoins = thief.getCoins();
