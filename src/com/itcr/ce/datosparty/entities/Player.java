@@ -25,7 +25,33 @@ public class Player extends Entity {
     private Boolean changeDirection;
     private Node<Box> position;
     private Boolean reversed = false;
+    private Boolean currentTurn = false;
+    private Boolean boxAction = false;
+    private Boolean throwDice = false;
 
+    public void setThrowDice(boolean throwDice){
+        this.throwDice = throwDice;
+    }
+
+    public Boolean getThrowDice() {
+        return throwDice;
+    }
+
+    public void setCurrentTurn(Boolean currentTurn) {
+        this.currentTurn = currentTurn;
+    }
+
+    public boolean getCurrentTurn(){
+        return currentTurn;
+    }
+
+    public void setBoxAction(Boolean boxAction) {
+        this.boxAction = boxAction;
+    }
+
+    public boolean getBoxAction(){
+        return boxAction;
+    }
     public Boolean getReversed() {
         return reversed;
     }
@@ -48,7 +74,7 @@ public class Player extends Entity {
 
     public void move(Game game) throws InterruptedException {
         int boxesLeft =  getMovement();
-        while (boxesLeft > -1) {
+        while (boxesLeft > 0) {
             // Goes to next Node<Box>
             if(getPosition().getData().isCrossRoads()){
                 game.pauseGame();
@@ -66,7 +92,7 @@ public class Player extends Entity {
             // Checks if there is a star
             game.checkStar(this);
             // Subtracts from number given on dice
-            setMovement(boxesLeft--);
+            setMovement(--boxesLeft);
         }
         update(this.getPosition().getData(), game);
     }
