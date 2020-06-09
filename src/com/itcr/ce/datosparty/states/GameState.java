@@ -37,6 +37,7 @@ public class GameState extends State{
     private Player player2;
     private Player player3;
     private Player player4;
+    private EventLogic stealCoinsLogic = new EventLogic();
 
     public GameState(Handler handler, Game game){
 
@@ -205,7 +206,7 @@ public class GameState extends State{
         gameUI.addObject(new UIImageButton(width/2-14,height/2-13,7*2,2*2,Assets.player1Button,"player1Btn",
                 ()->{
                     if(game.getCurrentEvent()== Event.STEAL_COINS){
-                        EventLogic.stealCoins(currentPlayer, player1);
+                        stealCoinsLogic.stealCoins(currentPlayer, player1);
                         game.setCurrentEvent(null);
                         game.resumeGame();
                     }
@@ -216,7 +217,7 @@ public class GameState extends State{
         gameUI.addObject(new UIImageButton(width/2-14,height/2-7,7*2,2*2,Assets.player2Button,"player2Btn",
                 ()->{
                     if(game.getCurrentEvent()== Event.STEAL_COINS) {
-                        EventLogic.stealCoins(currentPlayer, player2);
+                        stealCoinsLogic.stealCoins(currentPlayer, player2);
                         game.setCurrentEvent(null);
                         game.resumeGame();
                     }
@@ -228,7 +229,7 @@ public class GameState extends State{
             gameUI.addObject(new UIImageButton(width/2,height/2-13,7*2,2*2,Assets.player3Button,"player3Btn",
                     ()->{
                         if(game.getCurrentEvent()== Event.STEAL_COINS) {
-                            EventLogic.stealCoins(currentPlayer, player3);
+                            stealCoinsLogic.stealCoins(currentPlayer, player3);
                             game.setCurrentEvent(null);
                             game.resumeGame();
                         }
@@ -242,8 +243,8 @@ public class GameState extends State{
                     ()->{
                         if(game.getCurrentEvent()== Event.STEAL_COINS) {
                             this.player4 = game.getPlayerList().get(3).getData();
+                            stealCoinsLogic.stealCoins(currentPlayer, player4);
                             game.setCurrentEvent(null);
-                            EventLogic.stealCoins(currentPlayer, player4);
                             game.resumeGame();
                         }
                     }));
@@ -421,5 +422,4 @@ public class GameState extends State{
             currentBox = (SinglyNode<Box>) currentBox.getNext();
         }
     }
-
 }
