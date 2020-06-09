@@ -3,7 +3,9 @@ package com.itcr.ce.datosparty.states;
 import com.itcr.ce.datosparty.GameLauncher;
 import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.Handler;
+import com.itcr.ce.datosparty.dataStructures.lists.CircularList;
 import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
+import com.itcr.ce.datosparty.dataStructures.nodes.Node;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.entities.boxes.Box;
@@ -34,29 +36,35 @@ public class GameState extends State{
     private final Font font;
     private final Game game;
     private Event currentEvent;
-    private Player player1;
-    private Player player2;
+    private final Player player1;
+    private final Player player2;
     private Player player3;
     private Player player4;
-    private EventLogic stealCoinsLogic = new EventLogic();
+    private final EventLogic stealCoinsLogic = new EventLogic();
+    private Node<Player> currentPlayerNode;
 
     public GameState(Handler handler, Game game){
 
         super(handler);
         this.game = game;
         this.maxRound = game.getMaxRound();
-
+        CircularList<Player> playerList = new CircularList<>();
         font = new Font("Windows Command Prompt", Font.PLAIN,50); // "Times New Roman" for emergencies
         gameUI = new UIManager(handler);
 
         this.player1 = game.getPlayerList().get(0).getData();
+        playerList.add(player1);
         this.player2 = game.getPlayerList().get(1).getData();
+        playerList.add(player2);
         if (game.getNumberOfPlayers() >= 3) {
             this.player3 = game.getPlayerList().get(2).getData();
+            playerList.add(player3);
         }
         if (game.getNumberOfPlayers() >= 4) {
             this.player4 = game.getPlayerList().get(3).getData();
+            playerList.add(player4);
         }
+        currentPlayerNode = playerList.getHead();
 
         Animation star = new Animation(200, Assets.star);
         Animation coin = new Animation(200, Assets.coin);
@@ -72,7 +80,8 @@ public class GameState extends State{
 
         gameUI.addObject(new UIImageButton(1, height-20, 8, 8, Assets.diceButton, "dice",
                 () -> {
-                    if(currentPlayer.getMovement()==0) {
+                    if(currentPlayer.getThrowDice()) {
+                        currentPlayer.setThrowDice(false);
                         int diceResult = Dice.roll(1, 6) + Dice.roll(1, 6);
                         currentPlayer.setMovement(diceResult);
                         SoundEffect.DiceRoll();
@@ -260,6 +269,7 @@ public class GameState extends State{
                             this.player4 = game.getPlayerList().get(3).getData();
                             stealCoinsLogic.stealCoins(currentPlayer, player4);
                             game.setCurrentEvent(null);
+                            stealCoinsLogic.stealCoins(currentPlayer, player4);
                             game.resumeGame();
                         }
                     }));
@@ -268,7 +278,10 @@ public class GameState extends State{
         }
 
         gameUI.addObject(new UIImageButton(9,height-20,4*2,4*2,Assets.endTurnBtn,"endTurnBtn",()->{
-            //Round.endTurn();
+            if (!currentPlayer.getThrowDice() && currentPlayer.getMovement()==0) {
+                currentPlayer.setCurrentTurn(false);
+                game.resumeGame();
+            }
         }));
 
         gameUI.addObject((new UIImage(width/2-8, height/2-24, 2*8,3*8,Assets.eventBackDrop,"eventBackDrop")));
@@ -301,11 +314,15 @@ public class GameState extends State{
             playerMovement = currentPlayer.getMovement();
             currentBox = currentPlayer.getPosition().getData();
             currentEvent = game.getCurrentEvent();
+            if(!currentPlayer.getCurrentTurn()){
+                currentPlayerNode = currentPlayerNode.getNext();
+            }
         } else {
             State.setState(GameLoop.gameDependantStates.get(9).getData());
         }
         handler.getMouseManager().setUiManager(gameUI);
         gameUI.tick();
+        //System.out.println(currentPlayer.getCurrentTurn());
     }
 
     @Override
@@ -465,6 +482,10 @@ public class GameState extends State{
                 g.drawString("STAR!", ((width * 16)) / 2 - 55, (height * 16) / 2 - 88);
                 gameUI.renderById(g, "okBtnEvents");
             }
+        }
+
+        if (!currentPlayer.getThrowDice() && currentPlayer.getMovement()==0){
+            gameUI.renderById(g,"endTurnBtn");
         }
     }
     private void renderBoard(SinglyNode<Box> currentBox, int length, Graphics g) {

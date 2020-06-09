@@ -40,5 +40,6 @@ public class YellowBox extends Box {
             case SWAP_PLAYERS -> eventLogic.swapPlayers(player, game);
             default -> System.out.println("Couldn't find event");
         }
+        player.setBoxAction(false);
     }
 }

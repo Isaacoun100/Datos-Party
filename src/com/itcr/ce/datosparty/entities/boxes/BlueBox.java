@@ -26,6 +26,7 @@ public class BlueBox extends Box {
 
     @Override
     public void boxAction(Player player, Game game) {
+        player.setBoxAction(false);
     }
 }
 

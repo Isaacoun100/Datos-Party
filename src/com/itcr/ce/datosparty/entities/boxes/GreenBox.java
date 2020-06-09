@@ -28,5 +28,7 @@ public class GreenBox extends Box {
     public void boxAction(Player player, Game game){
         SoundEffect.PopSound();
         player.addCoins(+3);
+        player.setBoxAction(false);
+
     }
 }
