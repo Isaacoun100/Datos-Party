@@ -29,6 +29,7 @@ public class EventLogic {
         }
         victim.addCoins(-randomCoins);
         thief.addCoins(randomCoins);
+        System.out.println("Stolen " + randomCoins + " coins");
     }
 
     public static void giftCoins() {
