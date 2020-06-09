@@ -16,6 +16,8 @@ public class Assets {
             proButton, eliteButton, roundTitle, okBtn, stealCoins1, stealCoins2, stealCoins3, stealCoins4;
 
     public static Font bitArtFont;
+    public static Font bitArtFont2;
+    public static Font bitArtFont3;
 
 
     /**
@@ -322,9 +324,9 @@ public class Assets {
         stealCoins4[1] = sheet.crop(5,13,1,2);
 
 
-
-
-        //bitArtFont = FontLoader.loadFont("/fonts/retro_computer_personal_use.ttf");
+        bitArtFont = FontLoader.loadFont("res/fonts/windows_command_prompt.ttf");
+        bitArtFont2 = FontLoader.loadFont("res/fonts/retro_computer_personal_use.ttf");
+        bitArtFont3 = FontLoader.loadFont("res/fonts/3Dventure.ttf");
 
     }
 }
