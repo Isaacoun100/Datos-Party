@@ -169,7 +169,6 @@ public class GameState extends State{
 
         gameUI.addObject(new UIImageButton(width/2-4,height/2-10,8,8,Assets.okBtn,"okBtnStars",
                 ()->{ if(enoughCoins && clicked){
-                    game.buyStar(currentPlayer);
                     int movementLeft = currentPlayer.getMovement();
                     currentPlayer.setMovement(movementLeft);
                     this.clicked = false;
@@ -192,6 +191,9 @@ public class GameState extends State{
                         int coins = currentPlayer.getCoins();
                         this.enoughCoins = coins >= 10;
                         this.clicked = true;
+                        if(enoughCoins){
+                            game.buyStar(currentPlayer);
+                        }
                     }
                 }));
         gameUI.addObject(new UIImageButton(width/2+2,height/2-10,8,8,Assets.noBtn,"noBtn",()->{
@@ -201,7 +203,7 @@ public class GameState extends State{
 
         }));
 
-        gameUI.addObject(new UIImageButton(width/2-14,height/2-13,7*2,2*2,Assets.player1Button,"player1Btn",
+        gameUI.addObject(new UIImageButton(width/2-14,height/2-22, 8,2*8,Assets.stealCoins1,"player1Btn",
                 ()->{
                     if(game.getCurrentEvent()== Event.STEAL_COINS){
                         EventLogic.stealCoins(currentPlayer, player1);
@@ -212,7 +214,7 @@ public class GameState extends State{
         gameUI.addObject(new UIAnimatedImage(0,3,4,4, star,"star1"));
         gameUI.addObject(new UIAnimatedImage(0,6,4,4, coin,"coin1"));
 
-        gameUI.addObject(new UIImageButton(width/2-14,height/2-7,7*2,2*2,Assets.player2Button,"player2Btn",
+        gameUI.addObject(new UIImageButton(width/2-14,height/2-7, 8,2*8,Assets.stealCoins2,"player2Btn",
                 ()->{
                     if(game.getCurrentEvent()== Event.STEAL_COINS) {
                         EventLogic.stealCoins(currentPlayer, player2);
@@ -224,7 +226,7 @@ public class GameState extends State{
         gameUI.addObject(new UIAnimatedImage(0,18,4,4, coin,"coin2"));
 
         if (game.getNumberOfPlayers() >= 3) {
-            gameUI.addObject(new UIImageButton(width/2,height/2-13,7*2,2*2,Assets.player3Button,"player3Btn",
+            gameUI.addObject(new UIImageButton(width/2+6,height/2-22, 8,2*8,Assets.stealCoins3,"player3Btn",
                     ()->{
                         if(game.getCurrentEvent()== Event.STEAL_COINS) {
                             EventLogic.stealCoins(currentPlayer, player3);
@@ -237,7 +239,7 @@ public class GameState extends State{
         }
 
         if (game.getNumberOfPlayers() >= 4) {
-            gameUI.addObject(new UIImageButton(width/2,height/2-7,7*2,2*2,Assets.player4Button,"player4Btn",
+            gameUI.addObject(new UIImageButton(width/2+6,height/2-7, 8,2*8,Assets.stealCoins4,"player4Btn",
                     ()->{
                         if(game.getCurrentEvent()== Event.STEAL_COINS) {
                             this.player4 = game.getPlayerList().get(3).getData();
@@ -256,15 +258,24 @@ public class GameState extends State{
 
         gameUI.addObject((new UIImage(width/2-8, height/2-24, 2*8,3*8,Assets.eventBackDrop,"eventBackDrop")));
 
-        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-16, 4,4,stealCoins,"stealCoins"));
-        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-16, 4,4,duel,"duel"));
-        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-16, 4,4,giveCoins,"giveCoins"));
-        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-16, 4,4,loseStar,"loseStar"));
-        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-16, 4,4,win2Stars,"win2Stars"));
-        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-16, 4,4,win5Stars,"win5Stars"));
-        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-16, 4,4,stealStar,"stealStar"));
-        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-16, 4,4,teleport,"teleport"));
-        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-16, 4,4,swapPlace,"swapPlace"));
+        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,stealCoins,"stealCoins"));
+        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,2*2,duel,"duel"));
+        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,giveCoins,"giveCoins"));
+        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,loseStar,"loseStar"));
+        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,win2Stars,"win2Stars"));
+        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,win5Stars,"win5Stars"));
+        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,stealStar,"stealStar"));
+        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 2,2*2,teleport,"teleport"));
+        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 2,2*2,swapPlace,"swapPlace"));
+
+        gameUI.addObject(new UIImageButton(width/2-4,height/2-10,8,8,Assets.okBtn,"okBtnEvents",
+                ()->{ if(enoughCoins && clicked){
+                    int movementLeft = currentPlayer.getMovement();
+                    currentPlayer.setMovement(movementLeft);
+                    this.clicked = false;
+                    game.resumeGame();
+                }
+                }));
 
     }
 
@@ -379,9 +390,10 @@ public class GameState extends State{
 
         if (currentEvent != null) {
             gameUI.renderById(g, "eventBackDrop");
-            g.drawString(currentEvent.toString(), ((width * 16)) / 2 - 5, (height * 16) / 2 - 12);
             if (currentEvent == Event.STEAL_COINS) {
                 gameUI.renderById(g, "stealCoins");
+                g.drawString("STEAL", ((width * 16)) / 2 - 55, (height * 16) / 2 - 120);
+                g.drawString("COINS!", ((width * 16)) / 2 - 55, (height * 16) / 2 - 88);
                 if (currentPlayer != player1) {
                     gameUI.renderById(g, "player1Btn");
                 }
@@ -396,20 +408,43 @@ public class GameState extends State{
                 }
             } else if (currentEvent == Event.DUEL) {
                 gameUI.renderById(g, "duel");
+                g.drawString("DUEL", ((width * 16)) / 2 - 55, (height * 16) / 2 - 120);
+                gameUI.renderById(g, "okBtnEvents");
             } else if (currentEvent == Event.GIFT_COINS) {
                 gameUI.renderById(g, "giveCoins");
+                g.drawString("GIFT", ((width * 16)) / 2 - 55, (height * 16) / 2 - 120);
+                g.drawString("COINS!", ((width * 16)) / 2 - 55, (height * 16) / 2 - 88);
+                gameUI.renderById(g, "okBtnEvents");
             } else if (currentEvent == Event.LOSE_STAR) {
                 gameUI.renderById(g, "loseStar");
+                g.drawString("LOSE", ((width * 16)) / 2 - 55, (height * 16) / 2 - 120);
+                g.drawString("STAR!", ((width * 16)) / 2 - 55, (height * 16) / 2 - 88);
+                gameUI.renderById(g, "okBtnEvents");
             } else if (currentEvent == Event.SWAP_PLAYERS) {
                 gameUI.renderById(g, "swapPlace");
+                g.drawString("SWAP", ((width * 16)) / 2 - 55, (height * 16) / 2 - 120);
+                g.drawString("PLAYERS!", ((width * 16)) / 2 - 55, (height * 16) / 2 - 88);
+                gameUI.renderById(g, "okBtnEvents");
             } else if (currentEvent == Event.TELEPORT) {
                 gameUI.renderById(g, "teleport");
+                g.drawString("TELEPORT", ((width * 16)) / 2 - 55, (height * 16) / 2 - 120);
+                g.drawString("PORT!", ((width * 16)) / 2 - 55, (height * 16) / 2 - 88);
+                gameUI.renderById(g, "okBtnEvents");
             } else if (currentEvent == Event.WIN_2_STARS) {
                 gameUI.renderById(g, "win2Stars");
+                g.drawString("WIN 2", ((width * 16)) / 2 - 55, (height * 16) / 2 - 120);
+                g.drawString("STARS!", ((width * 16)) / 2 - 55, (height * 16) / 2 - 88);
+                gameUI.renderById(g, "okBtnEvents");
             } else if (currentEvent == Event.WIN_5_STARS) {
                 gameUI.renderById(g, "win5Stars");
+                g.drawString("WIN 5", ((width * 16)) / 2 - 55, (height * 16) / 2 - 120);
+                g.drawString("STARS!", ((width * 16)) / 2 - 55, (height * 16) / 2 - 88);
+                gameUI.renderById(g, "okBtnEvents");
             } else if (currentEvent == Event.STEAL_STAR) {
                 gameUI.renderById(g, "stealStar");
+                g.drawString("STEAL", ((width * 16)) / 2 - 55, (height * 16) / 2 - 120);
+                g.drawString("STAR!", ((width * 16)) / 2 - 55, (height * 16) / 2 - 88);
+                gameUI.renderById(g, "okBtnEvents");
             }
         }
     }

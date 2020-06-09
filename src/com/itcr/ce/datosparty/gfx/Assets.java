@@ -13,7 +13,7 @@ public class Assets {
             rightArrow, player1Button, player2Button, duel, stealCoins, giveCoins, loseStar, win2Stars, win5Stars,stealStar, teleport, swapPlace,
             player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp, volumeDown, gameMusic, soundEffects,
             starPurchaseBackDrop, yesBtn, noBtn, purchaseMsg, buyMsg, endTurnBtn, coin, star, noviceButton,
-            proButton, eliteButton, roundTitle, okBtn;
+            proButton, eliteButton, roundTitle, okBtn, stealCoins1, stealCoins2, stealCoins3, stealCoins4;
 
     public static Font bitArtFont;
 
@@ -302,6 +302,25 @@ public class Assets {
         swapPlace[3] = sheet.crop(23,10,2,2);
         swapPlace[4] = sheet.crop(25,10,2,2);
         swapPlace[5] = sheet.crop(27,10,2,2);
+
+        stealCoins1 = new BufferedImage[2];
+        stealCoins1[0] = sheet.crop(2,11,1,2);
+        stealCoins1[1] = sheet.crop(4,11,1,2);
+
+        stealCoins2 = new BufferedImage[2];
+        stealCoins2[0] = sheet.crop(3,11,1,2);
+        stealCoins2[1] = sheet.crop(5,11,1,2);
+
+        stealCoins3 = new BufferedImage[2];
+        stealCoins3[0] = sheet.crop(2,13,1,2);
+        stealCoins3[1] = sheet.crop(4,13,1,2);
+
+        stealCoins4 = new BufferedImage[2];
+        stealCoins4[0] = sheet.crop(3,13,1,2);
+        stealCoins4[1] = sheet.crop(5,13,1,2);
+
+
+
 
         //bitArtFont = FontLoader.loadFont("/fonts/retro_computer_personal_use.ttf");
 
