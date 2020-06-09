@@ -32,7 +32,25 @@ public class EventLogic {
         System.out.println("Stolen " + randomCoins + " coins");
     }
 
-    public static void giftCoins() {
-
+    public void giftCoins(Player player, Game game) {
+        pauseEvent(game);
+        SinglyNode<Player> playerToAdd = Round.getPlayerOrder().getHead();
+        int playersToGift = Round.getPlayerOrder().getLength() - 1;
+        int randomCoins = Dice.roll(1, 10);
+        while (randomCoins % playersToGift != 0) {
+            randomCoins = Dice.roll(1, 10);
+        }
+        if (player.getCoins() < randomCoins) {
+            System.out.println("Can't gift " + randomCoins + " coins.");
+            return;
+        }
+        player.addCoins(-randomCoins);
+        while (playerToAdd != null) {
+            if (playerToAdd.getData() != player) {
+                playerToAdd.getData().addCoins(randomCoins / playersToGift);
+            }
+            playerToAdd = (SinglyNode<Player>) playerToAdd.getNext();
+        }
+        System.out.println("Gifted " + randomCoins + " coins.");
     }
 }
