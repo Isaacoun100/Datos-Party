@@ -5,7 +5,6 @@ import com.itcr.ce.datosparty.entities.Player;
 public class EventLogic {
 
     public static void stealCoins(Player thief, Player victim) {
-        System.out.println("STEAL_COINS");
         // Chooses random player
         // Should give player the option to steal whoever player he chooses to
         int randomCoins = Dice.roll(1, 10);
