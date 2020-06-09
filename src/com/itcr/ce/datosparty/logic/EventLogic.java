@@ -6,7 +6,7 @@ public class EventLogic {
 
     public void duel(){}
 
-    public void pauseToSteal(Game game) {
+    public void pauseEvent(Game game) {
         try {
             game.pauseGame();
         } catch (InterruptedException e) {
