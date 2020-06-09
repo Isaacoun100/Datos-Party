@@ -266,7 +266,6 @@ public class GameState extends State{
             gameUI.addObject(new UIImageButton(width/2+6,height/2-7, 8,2*8,Assets.stealCoins4,"player4Btn",
                     ()->{
                         if(game.getCurrentEvent()== Event.STEAL_COINS) {
-                            this.player4 = game.getPlayerList().get(3).getData();
                             stealCoinsLogic.stealCoins(currentPlayer, player4);
                             game.setCurrentEvent(null);
                             stealCoinsLogic.stealCoins(currentPlayer, player4);
