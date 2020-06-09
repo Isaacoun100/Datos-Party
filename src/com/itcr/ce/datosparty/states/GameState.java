@@ -320,7 +320,6 @@ public class GameState extends State{
             gameUI.renderById(g, "coin4");
         }
 
-
         SinglyNode<Box> currentBoxMain = handler.getBoard().getMainCircuit().getHead();
         int mainCircuitLength = handler.getBoard().getMainCircuit().getLength();
         renderBoard(currentBoxMain, mainCircuitLength, g);
