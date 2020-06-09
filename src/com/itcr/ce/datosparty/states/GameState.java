@@ -167,7 +167,6 @@ public class GameState extends State{
 
         gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,8,Assets.enoughCoins,"enoughCoins")));
 
-
         gameUI.addObject(new UIImageButton(width/2-4,height/2-10,8,8,Assets.okBtn,"okBtnStars",
                 ()->{ if(enoughCoins && clicked){
                     game.buyStar(currentPlayer);
