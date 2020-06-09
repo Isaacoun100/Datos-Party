@@ -75,7 +75,7 @@ public class GameState extends State{
                         int diceResult = Dice.roll(1, 6) + Dice.roll(1, 6);
                         currentPlayer.setMovement(diceResult);
                         SoundEffect.DiceRoll();
-//                        Thread.sleep(3000);
+//                       Thread.sleep(3000);
                         game.resumeGame();
                 }
                 }));
@@ -272,15 +272,11 @@ public class GameState extends State{
 
     @Override
     public void tick() {
-        if(game.getCurrentRound() != maxRound){
-            try {
-                currentPlayer = Turn.getPlayersTurn().getData();
-                playerMovement = currentPlayer.getMovement();
-                currentBox = currentPlayer.getPosition().getData();
-                currentEvent = game.getCurrentEvent();
-            }catch (Exception e){
-                System.out.println("upsi");
-            }
+        if(game.getCurrentRound() < maxRound){
+            currentPlayer = Turn.getPlayersTurn().getData();
+            playerMovement = currentPlayer.getMovement();
+            currentBox = currentPlayer.getPosition().getData();
+            currentEvent = game.getCurrentEvent();
         } else {
             State.setState(GameLoop.gameDependantStates.get(9).getData());
         }
