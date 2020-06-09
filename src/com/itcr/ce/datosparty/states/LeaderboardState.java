@@ -6,13 +6,14 @@ import com.itcr.ce.datosparty.userInterface.UIManager;
 import java.awt.*;
 
 public class LeaderboardState extends State{
+
     private final UIManager uiManager;
+    private final Font font;
 
     public LeaderboardState(Handler handler) {
         super(handler);
         uiManager = new UIManager(handler);
-
-
+        font = new Font("Arial", Font.PLAIN,50);
 
     }
 
@@ -25,6 +26,11 @@ public class LeaderboardState extends State{
     @Override
     public void render(Graphics g) {
         uiManager.renderAll(g);
+
+        g.setFont(font);
+        g.drawString("JU",10,40);
+        g.drawString("JO",60,100);
+
     }
 
 }
