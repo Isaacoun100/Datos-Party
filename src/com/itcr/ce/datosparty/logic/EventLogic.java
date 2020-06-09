@@ -102,26 +102,44 @@ public class EventLogic {
         switch (Dice.roll(1, 5)) {
             case 1 -> {
                 numRandom = Dice.roll(0, mainCircuit.getLength() - 1);
-                player.setPosition(mainCircuit.get(numRandom));
+                Node<Box> newPosition = mainCircuit.get(numRandom);
+                player.setX(newPosition.getData().getX());
+                player.setY(newPosition.getData().getY());
+                player.setPosition(newPosition);
             }
             case 2 -> {
                 numRandom = Dice.roll(0, phaseA.getLength() - 1);
+                Node<Box> newPosition = phaseA.get(numRandom);
+                player.setX(newPosition.getData().getX());
+                player.setY(newPosition.getData().getY());
                 player.setPosition(phaseA.get(numRandom));
+
             }
             case 3 -> {
                 numRandom = Dice.roll(0, phaseB.getLength() - 1);
+                Node<Box> newPosition = phaseB.get(numRandom);
+                player.setX(newPosition.getData().getX());
+                player.setY(newPosition.getData().getY());
                 player.setPosition(phaseB.get(numRandom));
+
             }
             case 4 -> {
                 numRandom = Dice.roll(0, phaseC.getLength() - 1);
+                Node<Box> newPosition = phaseC.get(numRandom);
+                player.setX(newPosition.getData().getX());
+                player.setY(newPosition.getData().getY());
                 player.setPosition(phaseC.get(numRandom));
             }
             case 5 -> {
                 numRandom = Dice.roll(0, phaseD.getLength() - 1);
+                Node<Box> newPosition = phaseD.get(numRandom);
+                player.setX(newPosition.getData().getX());
+                player.setY(newPosition.getData().getY());
                 player.setPosition(phaseD.get(numRandom));
             }
         }
     }
+
 
     public void swapPlayers(Player player, Game game) {
         pauseEvent(game);
@@ -129,7 +147,12 @@ public class EventLogic {
         Player randomPlayer =  Round.getPlayerOrder().get(numRandom).getData();
         Node<Box> randomPosition = randomPlayer.getPosition();
         Node<Box> playerPosition = player.getPosition();
+        randomPlayer.setX(playerPosition.getData().getX());
+        randomPlayer.setY(playerPosition.getData().getY());
+        player.setX(randomPosition.getData().getX());
+        player.setY(randomPosition.getData().getY());
         randomPlayer.setPosition(playerPosition);
         player.setPosition(randomPosition);
+
     }
 }
