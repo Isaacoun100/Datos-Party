@@ -213,7 +213,7 @@ public class Assets {
         duel[6] = sheet.crop(14,8,2,1);
         duel[7] = sheet.crop(16,8,2,1);
 
-        stealCoins = new BufferedImage[6];
+        stealCoins = new BufferedImage[7];
 
         stealCoins[0] = sheet.crop(2,9,1,1);
         stealCoins[1] = sheet.crop(3,9,1,1);
@@ -221,8 +221,9 @@ public class Assets {
         stealCoins[3] = sheet.crop(5,9,1,1);
         stealCoins[4] = sheet.crop(6,9,1,1);
         stealCoins[5] = sheet.crop(7,9,1,1);
+        stealCoins[6] = sheet.crop(2,9,1,1);
 
-        giveCoins = new BufferedImage[6];
+        giveCoins = new BufferedImage[7];
 
         giveCoins[0] = sheet.crop(2,10,1,1);
         giveCoins[1] = sheet.crop(3,10,1,1);
@@ -230,6 +231,7 @@ public class Assets {
         giveCoins[3] = sheet.crop(5,10,1,1);
         giveCoins[4] = sheet.crop(6,10,1,1);
         giveCoins[5] = sheet.crop(7,10,1,1);
+        giveCoins[6] = sheet.crop(2,9,1,1);
 
         loseStar = new BufferedImage[10];
         loseStar[0] = sheet.crop(8,10,1,1);
@@ -241,7 +243,7 @@ public class Assets {
         loseStar[6] = sheet.crop(14,10,1,1);
         loseStar[7] = sheet.crop(15,10,1,1);
         loseStar[8] = sheet.crop(16,10,1,1);
-        loseStar[9] = sheet.crop(17,10,1,1);
+        loseStar[9] = sheet.crop(8,10,1,1);
 
         win2Stars = new BufferedImage[11];
         win2Stars[0] = sheet.crop(8,11,1,1);
@@ -253,7 +255,7 @@ public class Assets {
         win2Stars[6] = sheet.crop(14,11,1,1);
         win2Stars[7] = sheet.crop(15,11,1,1);
         win2Stars[8] = sheet.crop(16,11,1,1);
-        win2Stars[9] = sheet.crop(17,11,1,1);
+        win2Stars[9] = sheet.crop(8,11,1,1);
 
         win5Stars = new BufferedImage[11];
         win5Stars[0] = sheet.crop(8,12,1,1);
@@ -265,7 +267,7 @@ public class Assets {
         win5Stars[6] = sheet.crop(14,12,1,1);
         win5Stars[7] = sheet.crop(15,12,1,1);
         win5Stars[8] = sheet.crop(16,12,1,1);
-        win5Stars[9] = sheet.crop(17,12,1,1);
+        win5Stars[9] = sheet.crop(8,12,1,1);
 
         stealStar = new BufferedImage[11];
         stealStar[0] = sheet.crop(8,9,1,1);
@@ -277,7 +279,7 @@ public class Assets {
         stealStar[6] = sheet.crop(14,9,1,1);
         stealStar[7] = sheet.crop(15,9,1,1);
         stealStar[8] = sheet.crop(16,9,1,1);
-        stealStar[9] = sheet.crop(17,9,1,1);
+        stealStar[9] = sheet.crop(8,9,1,1);
 
         teleport = new BufferedImage[12];
 

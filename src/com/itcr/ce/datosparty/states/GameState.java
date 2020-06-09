@@ -260,20 +260,20 @@ public class GameState extends State{
         gameUI.addObject((new UIImage(width/2-8, height/2-24, 2*8,3*8,Assets.eventBackDrop,"eventBackDrop")));
 
         gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,stealCoins,"stealCoins"));
-        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,2*2,duel,"duel"));
+        gameUI.addObject(new UIAnimatedImage(width/2-8, height/2-18, 4*3,2*3,duel,"duel"));
         gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,giveCoins,"giveCoins"));
         gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,loseStar,"loseStar"));
         gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,win2Stars,"win2Stars"));
         gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,win5Stars,"win5Stars"));
         gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,stealStar,"stealStar"));
-        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 2,2*2,teleport,"teleport"));
-        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 2,2*2,swapPlace,"swapPlace"));
+        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-18, 4,2*4,teleport,"teleport"));
+        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 2*4,2*4,swapPlace,"swapPlace"));
 
-        gameUI.addObject(new UIImageButton(width/2-4,height/2-10,8,8,Assets.okBtn,"okBtnEvents",
-                ()->{ if(enoughCoins && clicked){
+        gameUI.addObject(new UIImageButton(width/2-4,height/2-2,8,8,Assets.okBtn,"okBtnEvents",
+                ()->{ if(currentEvent != null){
                     int movementLeft = currentPlayer.getMovement();
                     currentPlayer.setMovement(movementLeft);
-                    this.clicked = false;
+                    game.setCurrentEvent(null);
                     game.resumeGame();
                 }
                 }));
@@ -405,7 +405,7 @@ public class GameState extends State{
                 }
             } else if (currentEvent == Event.DUEL) {
                 gameUI.renderById(g, "duel");
-                g.drawString("DUEL", ((width * 16)) / 2 - 55, (height * 16) / 2 - 120);
+                g.drawString("DUEL!", ((width * 16)) / 2 - 55, (height * 16) / 2 - 120);
                 gameUI.renderById(g, "okBtnEvents");
             } else if (currentEvent == Event.GIFT_COINS) {
                 gameUI.renderById(g, "giveCoins");
@@ -419,12 +419,11 @@ public class GameState extends State{
                 gameUI.renderById(g, "okBtnEvents");
             } else if (currentEvent == Event.SWAP_PLAYERS) {
                 gameUI.renderById(g, "swapPlace");
-                g.drawString("SWAP", ((width * 16)) / 2 - 55, (height * 16) / 2 - 120);
-                g.drawString("PLAYERS!", ((width * 16)) / 2 - 55, (height * 16) / 2 - 88);
+                g.drawString("SWAP!", ((width * 16)) / 2 - 55, (height * 16) / 2 - 120);
                 gameUI.renderById(g, "okBtnEvents");
             } else if (currentEvent == Event.TELEPORT) {
                 gameUI.renderById(g, "teleport");
-                g.drawString("TELEPORT", ((width * 16)) / 2 - 55, (height * 16) / 2 - 120);
+                g.drawString("TELE-", ((width * 16)) / 2 - 55, (height * 16) / 2 - 120);
                 g.drawString("PORT!", ((width * 16)) / 2 - 55, (height * 16) / 2 - 88);
                 gameUI.renderById(g, "okBtnEvents");
             } else if (currentEvent == Event.WIN_2_STARS) {
