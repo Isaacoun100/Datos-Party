@@ -4,7 +4,15 @@ import com.itcr.ce.datosparty.entities.Player;
 
 public class EventLogic {
 
-    public static void duel(){}
+    public void duel(){}
+
+    public void pauseToSteal(Game game) {
+        try {
+            game.pauseGame();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void stealCoins(Player thief, Player victim) {
         System.out.println("STEAL_COINS");
