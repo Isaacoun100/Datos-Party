@@ -163,7 +163,7 @@ public class GameState extends State{
 
         gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,8,Assets.buyMsg[0],"buyMsg")));
 
-        gameUI.addObject((new UIImage(width/2-16, height/2-17, 4*8,8,Assets.noCoinsMsg,"noCoinsMsg")));
+        gameUI.addObject((new UIImage(width/2-16, height/2-15   , 4*8,8,Assets.noCoinsMsg,"noCoinsMsg")));
 
         gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,8,Assets.enoughCoins,"enoughCoins")));
 
@@ -254,15 +254,32 @@ public class GameState extends State{
         gameUI.addObject(new UIImageButton(9,height-20,4*2,4*2,Assets.endTurnBtn,"endTurnBtn",()->{
             //Round.endTurn();
         }));
+
+        gameUI.addObject((new UIImage(width/2-8, height/2-24, 2*8,3*8,Assets.eventBackDrop,"eventBackDrop")));
+
+        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-16, 4,4,stealCoins,"stealCoins"));
+        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-16, 4,4,duel,"duel"));
+        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-16, 4,4,giveCoins,"giveCoins"));
+        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-16, 4,4,loseStar,"loseStar"));
+        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-16, 4,4,win2Stars,"win2Stars"));
+        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-16, 4,4,win5Stars,"win5Stars"));
+        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-16, 4,4,stealStar,"stealStar"));
+        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-16, 4,4,teleport,"teleport"));
+        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-16, 4,4,swapPlace,"swapPlace"));
+
     }
 
     @Override
     public void tick() {
         if(game.getCurrentRound() != maxRound){
-            currentPlayer = Turn.getPlayersTurn().getData();
-            playerMovement = currentPlayer.getMovement();
-            currentBox = currentPlayer.getPosition().getData();
-            currentEvent = game.getCurrentEvent();
+            try {
+                currentPlayer = Turn.getPlayersTurn().getData();
+                playerMovement = currentPlayer.getMovement();
+                currentBox = currentPlayer.getPosition().getData();
+                currentEvent = game.getCurrentEvent();
+            }catch (Exception e){
+                System.out.println("upsi");
+            }
         } else {
             State.setState(GameLoop.gameDependantStates.get(9).getData());
         }
@@ -275,38 +292,38 @@ public class GameState extends State{
         g.drawImage(Assets.mapGuide, -10, 0, null);
 
         g.setFont(font);
-        g.drawString(player1.getName(),10,40);
-        g.drawString("X" + player1.getStars(),60,100);
-        g.drawString("X" + player1.getCoins(),60,140);
-        gameUI.renderById(g,"star1");
-        gameUI.renderById(g,"coin1");
+        g.drawString(player1.getName(), 10, 40);
+        g.drawString("X" + player1.getStars(), 60, 100);
+        g.drawString("X" + player1.getCoins(), 60, 140);
+        gameUI.renderById(g, "star1");
+        gameUI.renderById(g, "coin1");
 
-        g.drawString(player2.getName(),10,235);
-        g.drawString("X" + player2.getStars(),60,100 + 195);
-        g.drawString("X" + player2.getCoins(),60,140 + 195);
-        gameUI.renderById(g,"star2");
-        gameUI.renderById(g,"coin2");
+        g.drawString(player2.getName(), 10, 235);
+        g.drawString("X" + player2.getStars(), 60, 100 + 195);
+        g.drawString("X" + player2.getCoins(), 60, 140 + 195);
+        gameUI.renderById(g, "star2");
+        gameUI.renderById(g, "coin2");
 
         if (game.getNumberOfPlayers() >= 3) {
-            g.drawString(player3.getName(),175,40);
-            g.drawString("X" + player3.getStars(),60 + 165,100);
-            g.drawString("X" + player3.getCoins(),60 + 165,140);
-            gameUI.renderById(g,"star3");
-            gameUI.renderById(g,"coin3");
+            g.drawString(player3.getName(), 175, 40);
+            g.drawString("X" + player3.getStars(), 60 + 165, 100);
+            g.drawString("X" + player3.getCoins(), 60 + 165, 140);
+            gameUI.renderById(g, "star3");
+            gameUI.renderById(g, "coin3");
         }
 
         if (game.getNumberOfPlayers() >= 4) {
-            g.drawString(player4.getName(),175,235);
-            g.drawString("X" + player4.getStars(),60 + 165,100 + 195);
-            g.drawString("X" + player4.getCoins(),60 + 165,140 + 195);
-            gameUI.renderById(g,"star4");
-            gameUI.renderById(g,"coin4");
+            g.drawString(player4.getName(), 175, 235);
+            g.drawString("X" + player4.getStars(), 60 + 165, 100 + 195);
+            g.drawString("X" + player4.getCoins(), 60 + 165, 140 + 195);
+            gameUI.renderById(g, "star4");
+            gameUI.renderById(g, "coin4");
         }
 
 
         SinglyNode<Box> currentBoxMain = handler.getBoard().getMainCircuit().getHead();
         int mainCircuitLength = handler.getBoard().getMainCircuit().getLength();
-        renderBoard(currentBoxMain,mainCircuitLength,g);
+        renderBoard(currentBoxMain, mainCircuitLength, g);
 
         SinglyNode<Box> currentBoxA = handler.getBoard().getPhaseA().getHead();
         int phaseALength = handler.getBoard().getPhaseA().getLength();
@@ -332,59 +349,77 @@ public class GameState extends State{
             currentPlayerNode = (SinglyNode<Player>) currentPlayerNode.getNext();
         }
 
-        gameUI.renderById(g,"dice");
-        g.drawString("X"+playerMovement,10*16,(height-15)*16);
+        gameUI.renderById(g, "dice");
+        g.drawString("X" + playerMovement, 10 * 16, (height - 15) * 16);
 
-         if (currentBox.getBoxID().equals("phaseA")) {
-            gameUI.renderById(g,"uArrowPhaseA");
-            gameUI.renderById(g,"rArrowPhaseA");
+        if (currentBox.getBoxID().equals("phaseA")) {
+            gameUI.renderById(g, "uArrowPhaseA");
+            gameUI.renderById(g, "rArrowPhaseA");
         } else if (currentBox.getBoxID().equals("phaseC1")) {
-            gameUI.renderById(g,"uArrowPhaseC1");
-            gameUI.renderById(g,"rArrowPhaseC1");
+            gameUI.renderById(g, "uArrowPhaseC1");
+            gameUI.renderById(g, "rArrowPhaseC1");
         } else if (currentBox.getBoxID().equals("phaseB")) {
-            gameUI.renderById(g,"rArrowPhaseB");
-            gameUI.renderById(g,"dArrowPhaseB");
+            gameUI.renderById(g, "rArrowPhaseB");
+            gameUI.renderById(g, "dArrowPhaseB");
         } else if (currentBox.getBoxID().equals("phaseC2")) {
-            gameUI.renderById(g,"lArrowPhaseC2");
-            gameUI.renderById(g,"dArrowPhaseC2");
-        } else if(currentBox.isStarBox() && !clicked){
-            gameUI.renderById(g,"starPBackDrop");
-            gameUI.renderById(g,"buyMsg");
-            gameUI.renderById(g,"yesBtn");
-            gameUI.renderById(g,"noBtn");
-        }else if(currentBox.isStarBox() && enoughCoins && clicked){
-             gameUI.renderById(g,"starPBackDrop");
-             gameUI.renderById(g,"enoughCoins");
-             gameUI.renderById(g,"okBtnStars");
-         }else if(currentBox.isStarBox() && !enoughCoins && clicked){
-             gameUI.renderById(g,"starPBackDrop");
-             gameUI.renderById(g,"noCoinsMsg");
-             gameUI.renderById(g,"okBtnNoStars");
-         }
-
-        if (currentEvent == Event.STEAL_COINS) {
+            gameUI.renderById(g, "lArrowPhaseC2");
+            gameUI.renderById(g, "dArrowPhaseC2");
+        } else if (currentBox.isStarBox() && !clicked) {
             gameUI.renderById(g, "starPBackDrop");
-            if (currentPlayer != player1) {
-                gameUI.renderById(g, "player1Btn");
-            }
-            if (currentPlayer != player2) {
-                gameUI.renderById(g, "player2Btn");
-            }
-            if (game.getNumberOfPlayers() >= 3 &&  currentPlayer !=  player3) {
-                gameUI.renderById(g, "player3Btn");
-            }
-            if (game.getNumberOfPlayers() == 4 && currentPlayer != player4) {
-                gameUI.renderById(g, "player4Btn");
-            }
-            g.drawString(currentEvent.toString(), (width*13)- 50, 50);
+            gameUI.renderById(g, "buyMsg");
+            gameUI.renderById(g, "yesBtn");
+            gameUI.renderById(g, "noBtn");
+        } else if (currentBox.isStarBox() && enoughCoins && clicked) {
+            gameUI.renderById(g, "starPBackDrop");
+            gameUI.renderById(g, "enoughCoins");
+            gameUI.renderById(g, "okBtnStars");
+        } else if (currentBox.isStarBox() && !enoughCoins && clicked) {
+            gameUI.renderById(g, "starPBackDrop");
+            gameUI.renderById(g, "noCoinsMsg");
+            gameUI.renderById(g, "okBtnNoStars");
         }
 
+        if (currentEvent != null) {
+            gameUI.renderById(g, "eventBackDrop");
+            g.drawString(currentEvent.toString(), ((width * 16)) / 2 - 5, (height * 16) / 2 - 12);
+            if (currentEvent == Event.STEAL_COINS) {
+                gameUI.renderById(g, "stealCoins");
+                if (currentPlayer != player1) {
+                    gameUI.renderById(g, "player1Btn");
+                }
+                if (currentPlayer != player2) {
+                    gameUI.renderById(g, "player2Btn");
+                }
+                if (game.getNumberOfPlayers() >= 3 && currentPlayer != player3) {
+                    gameUI.renderById(g, "player3Btn");
+                }
+                if (game.getNumberOfPlayers() == 4 && currentPlayer != player4) {
+                    gameUI.renderById(g, "player4Btn");
+                }
+            } else if (currentEvent == Event.DUEL) {
+                gameUI.renderById(g, "duel");
+            } else if (currentEvent == Event.GIFT_COINS) {
+                gameUI.renderById(g, "giveCoins");
+            } else if (currentEvent == Event.LOSE_STAR) {
+                gameUI.renderById(g, "loseStar");
+            } else if (currentEvent == Event.SWAP_PLAYERS) {
+                gameUI.renderById(g, "swapPlace");
+            } else if (currentEvent == Event.TELEPORT) {
+                gameUI.renderById(g, "teleport");
+            } else if (currentEvent == Event.WIN_2_STARS) {
+                gameUI.renderById(g, "win2Stars");
+            } else if (currentEvent == Event.WIN_5_STARS) {
+                gameUI.renderById(g, "win5Stars");
+            } else if (currentEvent == Event.STEAL_STAR) {
+                gameUI.renderById(g, "stealStar");
+            }
+        }
     }
-
     private void renderBoard(SinglyNode<Box> currentBox, int length, Graphics g) {
         for (int i = 0; i < length; i++) {
             currentBox.getData().render(g);
             currentBox = (SinglyNode<Box>) currentBox.getNext();
         }
     }
+
 }
