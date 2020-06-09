@@ -252,7 +252,7 @@ public class GameState extends State{
 
     @Override
     public void tick() {
-        if(game.getCurrentRound() != maxRound){
+        if(game.getCurrentRound() < maxRound){
             currentPlayer = Turn.getPlayersTurn().getData();
             playerMovement = currentPlayer.getMovement();
             currentBox = currentPlayer.getPosition().getData();
