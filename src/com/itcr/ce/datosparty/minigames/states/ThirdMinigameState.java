@@ -3,6 +3,7 @@ package com.itcr.ce.datosparty.minigames.states;
 import com.itcr.ce.datosparty.logic.Game;
 import com.itcr.ce.datosparty.minigames.ui.ThirdMinigameUI;
 import com.itcr.ce.datosparty.userInterface.ClickListener;
+import com.itcr.ce.datosparty.userInterface.UIImage;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
 import com.itcr.ce.datosparty.states.State;
@@ -19,23 +20,14 @@ public class ThirdMinigameState extends State {
         super(handler);
         uiManager = new ThirdMinigameUI(handler);
 
-        if(numPlayers>=1){
-            uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player1Button,"player1Btn", new ClickListener() {
-                @Override
-                public void onClick() {
-                    System.out.println("1");
-                }
-            }));
-        }
+        uiManager.addObject(new UIImage(1, 1, 7*2, 2*2, Assets.player1Static,"player1"));
 
-        if(numPlayers>=2){
-            uiManager.addObject(new UIImageButton(30, 1, 7*2, 2*2, Assets.player2Button,"player2Btn", new ClickListener() {
-                @Override
-                public void onClick() {
-                    System.out.println("2");
-                }
-            }));
-        }
+        uiManager.addObject(new UIImageButton(30, 1, 7*2, 2*2, Assets.player2Button,"player2Btn", new ClickListener() {
+            @Override
+            public void onClick() {
+                System.out.println("2");
+            }
+        }));
 
         if(numPlayers>=3){
             uiManager.addObject(new UIImageButton(1, 30, 7*2, 2*2, Assets.player3Button,"player3Btn", new ClickListener() {
@@ -46,7 +38,7 @@ public class ThirdMinigameState extends State {
             }));
         }
 
-        if(numPlayers>=4){
+        if(numPlayers == 4){
             uiManager.addObject(new UIImageButton(30, 30, 7*2, 2*2, Assets.player4Button,"player4Btn", new ClickListener() {
                 @Override
                 public void onClick() {
