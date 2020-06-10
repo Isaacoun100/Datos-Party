@@ -20,32 +20,13 @@ public class ThirdMinigameState extends State {
         super(handler);
         uiManager = new ThirdMinigameUI(handler);
 
-        uiManager.addObject(new UIImage(1, 1, 7*2, 2*2, Assets.player1Static,"player1"));
+        uiManager.addObject(new UIImage(1, 1, 7*2, 2*2, Assets.player1Static,"player1Image"));
 
-        uiManager.addObject(new UIImageButton(30, 1, 7*2, 2*2, Assets.player2Button,"player2Btn", new ClickListener() {
-            @Override
-            public void onClick() {
-                System.out.println("2");
-            }
-        }));
+        uiManager.addObject(new UIImage(1, 2, 7*2, 2*2, Assets.player1Static,"player2Image"));
 
-        if(numPlayers>=3){
-            uiManager.addObject(new UIImageButton(1, 30, 7*2, 2*2, Assets.player3Button,"player3Btn", new ClickListener() {
-                @Override
-                public void onClick() {
-                    System.out.println("3");
-                }
-            }));
-        }
+        uiManager.addObject(new UIImage(2, 1, 7*2, 2*2, Assets.player1Static,"player3Image"));
 
-        if(numPlayers == 4){
-            uiManager.addObject(new UIImageButton(30, 30, 7*2, 2*2, Assets.player4Button,"player4Btn", new ClickListener() {
-                @Override
-                public void onClick() {
-                    System.out.println("4");
-                }
-            }));
-        }
+        uiManager.addObject(new UIImage(2, 2, 7*2, 2*2, Assets.player1Static,"player4Image"));
 
     }
 
