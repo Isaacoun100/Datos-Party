@@ -84,8 +84,11 @@ public class Assets {
     public static BufferedImage[] congratulationsTitle;
 
     public static Font bitArtFont;
-    public static Font bitArtFont2;
-    public static Font bitArtFont3;
+    public static Font retroComputer;
+    public static Font threeDventure;
+    public static Font upHeavett;
+    public static Font pixelInversions;
+
 
 
     /**
@@ -435,8 +438,10 @@ public class Assets {
         playerSelectionTitle = sheet.crop(6,13,10,2);
 
         bitArtFont = FontLoader.loadFont("res/fonts/windows_command_prompt.ttf");
-        bitArtFont2 = FontLoader.loadFont("res/fonts/retro_computer_personal_use.ttf");
-        bitArtFont3 = FontLoader.loadFont("res/fonts/3Dventure.ttf");
+        retroComputer = FontLoader.loadFont("res/fonts/retro_computer_personal_use.ttf");
+        threeDventure = FontLoader.loadFont("res/fonts/3Dventure.ttf");
+        upHeavett = FontLoader.loadFont("res/fonts/upheavtt.ttf");
+        pixelInversions = FontLoader.loadFont("res/fonts/pixel-inversions.ttf");
 
     }
 }

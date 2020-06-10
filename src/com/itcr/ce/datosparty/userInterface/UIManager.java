@@ -90,7 +90,8 @@ public class UIManager {
         o.y = y;
     }
 
-    public void removeObject(UIObject o){
-        uiObjects.getIndexByData(o);
+    public void removeObject(String id){
+        int index = retrieveIndexByID(id);
+        uiObjects.remove(index);
     }
 }
