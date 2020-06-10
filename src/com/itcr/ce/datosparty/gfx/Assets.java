@@ -10,10 +10,11 @@ public class Assets {
 
     public static BufferedImage[] settingsButton, playButton, creditsButton,backButton, titleImage,pressEnterImage,
             notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, upArrow, downArrow, leftArrow,
-            rightArrow, player1Button, player2Button, duel, stealCoins, giveCoins, loseStar, win2Stars, win5Stars,stealStar, teleport, swapPlace,
-            player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp, volumeDown, gameMusic, soundEffects,
-            starPurchaseBackDrop, yesBtn, noBtn, purchaseMsg, buyMsg, endTurnBtn, coin, star, noviceButton,
-            proButton, eliteButton, roundTitle, okBtn, stealCoins1, stealCoins2, stealCoins3, stealCoins4;
+            rightArrow, player1Button, player2Button, duel, stealCoins, giveCoins, loseStar, win2Stars, win5Stars,
+            stealStar, teleport, swapPlace, player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp,
+            volumeDown, gameMusic, soundEffects, starPurchaseBackDrop, yesBtn, noBtn, purchaseMsg, buyMsg, endTurnBtn,
+            coin, star, noviceButton, proButton, eliteButton, roundTitle, okBtn, stealCoins1, stealCoins2, stealCoins3,
+            stealCoins4, titanCard, ghostCard, koichiCard, samCard, tuxCard, backCard, checkButton;
 
     public static Font bitArtFont;
 
