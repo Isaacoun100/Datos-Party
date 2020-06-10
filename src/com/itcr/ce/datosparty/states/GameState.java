@@ -49,7 +49,7 @@ public class GameState extends State{
         this.game = game;
         this.maxRound = game.getMaxRound();
         CircularList<Player> playerList = new CircularList<>();
-        font = Assets.bitArtFont.deriveFont(Font.PLAIN, 55); //new Font("Windows Command Prompt", Font.PLAIN,50);
+        font = Assets.bitArtFont.deriveFont(Font.PLAIN, 50); //new Font("Windows Command Prompt", Font.PLAIN,50);
         gameUI = new UIManager(handler);
 
         this.player1 = game.getPlayerList().get(0).getData();

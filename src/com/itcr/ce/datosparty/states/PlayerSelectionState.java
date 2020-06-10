@@ -36,7 +36,7 @@ public class PlayerSelectionState extends State {
 
         Animation twoPlayerAnim = new Animation(600, Assets.twoPlayerAnim);
         Animation threePlayerAnim = new Animation(400, Assets.threePlayerAnim);
-        Animation fourPlayerAnim = new Animation(200,Assets.fourPlayerAnim);
+        Animation fourPlayerAnim = new Animation(200,Assets.fourthPlayerAnim);
 
         uiManager.addObject(new UIImage((float)width/2-40,(float)height/2-30,10*8,2*8,Assets.playerSelectionTitle,"SelectPlayerTitle"));
 

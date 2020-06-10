@@ -78,7 +78,7 @@ public class Assets {
     public static BufferedImage[] stealCoins4;
     public static BufferedImage[] twoPlayerAnim;
     public static BufferedImage[] threePlayerAnim;
-    public static BufferedImage[] fourPlayerAnim;
+    public static BufferedImage[] fourthPlayerAnim;
     public static BufferedImage[] firstPlaceAnim;
     public static BufferedImage[] lastPlaceAnim;
 
@@ -415,11 +415,11 @@ public class Assets {
         threePlayerAnim[1] = sheet.crop(34,12,3,2);
         threePlayerAnim[2] = sheet.crop(37,12,3,2);
 
-        fourPlayerAnim = new BufferedImage[4];
-        fourPlayerAnim[0] = sheet.crop(24,14,4,2);
-        fourPlayerAnim[1] = sheet.crop(28,14,4,2);
-        fourPlayerAnim[2] = sheet.crop(32,14,4,2);
-        fourPlayerAnim[3] = sheet.crop(36,14,4,2);
+        fourthPlayerAnim = new BufferedImage[4];
+        fourthPlayerAnim[0] = sheet.crop(24,14,4,2);
+        fourthPlayerAnim[1] = sheet.crop(28,14,4,2);
+        fourthPlayerAnim[2] = sheet.crop(32,14,4,2);
+        fourthPlayerAnim[3] = sheet.crop(36,14,4,2);
 
         endGamePodium2 = sheet.crop(34,16,4,3);
         endGamePodium3 = sheet.crop(34,16,6,3);
