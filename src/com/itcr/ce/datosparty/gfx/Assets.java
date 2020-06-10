@@ -83,6 +83,10 @@ public class Assets {
     public static BufferedImage[] lastPlaceAnim;
     public static BufferedImage[] congratulationsTitle;
 
+    public static BufferedImage[] bomb1;
+    public static BufferedImage[] bomb2;
+    public static BufferedImage[] bomb3;
+
     public static Font bitArtFont;
     public static Font bitArtFont2;
     public static Font bitArtFont3;
@@ -96,6 +100,7 @@ public class Assets {
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/SpriteSheet-Sheet.png"));
         SpriteSheet buttonSheet = new SpriteSheet(ImageLoader.loadImage("/textures/ButtonSprite-Sheet.png"));
         SpriteSheet mapSheet = new SpriteSheet(ImageLoader.loadImage("/textures/MapLayout.png"));
+        SpriteSheet bomb = new SpriteSheet(ImageLoader.loadImage("/textures/Bomb-sheet.png"));
 
         titleImage = new BufferedImage[2];
         titleImage[0] = sheet.crop(0,0,20,3);
@@ -431,6 +436,29 @@ public class Assets {
         congratulationsTitle[2] = sheet.crop(0,21,17,2);
         congratulationsTitle[3] = sheet.crop(0,19,17,2);
 
+        bomb1 = new BufferedImage[6];
+        bomb1[0] = bomb.crop(0, 0, 1, 1);
+        bomb1[1] = bomb.crop(1, 0, 1, 1);
+        bomb1[2] = bomb.crop(2, 0, 1, 1);
+        bomb1[3] = bomb.crop(3, 0, 1, 1);
+        bomb1[4] = bomb.crop(4, 0, 1, 1);
+        bomb1[5] = bomb.crop(5, 0, 1, 1);
+
+        bomb2 = new BufferedImage[6];
+        bomb2[0] = bomb.crop(0, 1, 1, 1);
+        bomb2[1] = bomb.crop(1, 1, 1, 1);
+        bomb2[2] = bomb.crop(2, 1, 1, 1);
+        bomb2[3] = bomb.crop(3, 1, 1, 1);
+        bomb2[4] = bomb.crop(4, 1, 1, 1);
+        bomb2[5] = bomb.crop(5, 1, 1, 1);
+
+        bomb3 = new BufferedImage[6];
+        bomb3[0] = bomb.crop(0, 2, 1, 1);
+        bomb3[1] = bomb.crop(1, 2, 1, 1);
+        bomb3[2] = bomb.crop(2, 2, 1, 1);
+        bomb3[3] = bomb.crop(3, 2, 1, 1);
+        bomb3[4] = bomb.crop(4, 2, 1, 1);
+        bomb3[5] = bomb.crop(5, 2, 1, 1);
 
         playerSelectionTitle = sheet.crop(6,13,10,2);
 
