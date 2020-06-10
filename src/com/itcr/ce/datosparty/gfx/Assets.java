@@ -81,6 +81,7 @@ public class Assets {
     public static BufferedImage[] fourthPlayerAnim;
     public static BufferedImage[] firstPlaceAnim;
     public static BufferedImage[] lastPlaceAnim;
+    public static BufferedImage[] congratulationsTitle;
 
     public static Font bitArtFont;
     public static Font bitArtFont2;
@@ -423,6 +424,13 @@ public class Assets {
 
         endGamePodium2 = sheet.crop(34,16,4,3);
         endGamePodium3 = sheet.crop(34,16,6,3);
+
+        congratulationsTitle = new BufferedImage[4];
+        congratulationsTitle[0] = sheet.crop(0,17,17,2);
+        congratulationsTitle[1] = sheet.crop(0,19,17,2);
+        congratulationsTitle[2] = sheet.crop(0,21,17,2);
+        congratulationsTitle[3] = sheet.crop(0,19,17,2);
+
 
         playerSelectionTitle = sheet.crop(6,13,10,2);
 
