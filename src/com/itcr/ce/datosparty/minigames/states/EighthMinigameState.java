@@ -1,7 +1,6 @@
 package com.itcr.ce.datosparty.minigames.states;
 
 import com.itcr.ce.datosparty.logic.Game;
-import com.itcr.ce.datosparty.minigames.ui.EighthMinigameUI;
 import com.itcr.ce.datosparty.userInterface.ClickListener;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
@@ -12,7 +11,10 @@ import com.itcr.ce.datosparty.Handler;
 import java.awt.*;
 
 public class EighthMinigameState extends State {
-    private UIManager uiManager;
+
+    private UIManager MemoryUI;
+    private String done = "";
+    private boolean active=true;
 
     public EighthMinigameState(Handler handler, int numPlayers, Game game) {
         super(handler);
@@ -58,8 +60,8 @@ public class EighthMinigameState extends State {
 
     @Override
     public void tick() {
-        handler.getMouseManager().setUiManager(uiManager);
-        uiManager.tick();
+        handler.getMouseManager().setUiManager(MemoryUI);
+        MemoryUI.tick();
     }
 
     @Override
