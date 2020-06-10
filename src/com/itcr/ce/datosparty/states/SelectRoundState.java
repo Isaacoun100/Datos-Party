@@ -26,7 +26,7 @@ public class SelectRoundState extends State {
 
         selectRoundUI.addObject(new UIImageButton(4, 40, 7*4, 2*4, Assets.noviceButton,"noviceBtn", () -> {
 
-            round=1;
+            round=5;
             State.setState(GameLoop.selectPlayerState);
 
         }));

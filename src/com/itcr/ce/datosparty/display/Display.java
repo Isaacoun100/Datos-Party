@@ -31,6 +31,7 @@ public class Display {
      * This method creates the display using the swing logic
      */
     private void createDisplay(){
+
         frame = new JFrame(title);
         frame.setSize(width,height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
