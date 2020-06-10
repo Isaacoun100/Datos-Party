@@ -362,6 +362,8 @@ public class Assets {
         endGamePodium2 = sheet.crop(34,16,4,3);
         endGamePodium3 = sheet.crop(34,16,6,3);
 
+        loginWallpaper= ImageLoader.loadImage("/textures/LoginWallpaper.png");
+
         congratulationsTitle = new BufferedImage[4];
         congratulationsTitle[0] = sheet.crop(0,17,17,2);
         congratulationsTitle[1] = sheet.crop(0,19,17,2);
