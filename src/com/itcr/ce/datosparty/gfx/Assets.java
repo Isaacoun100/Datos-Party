@@ -78,7 +78,7 @@ public class Assets {
     public static BufferedImage[] stealCoins4;
     public static BufferedImage[] twoPlayerAnim;
     public static BufferedImage[] threePlayerAnim;
-    public static BufferedImage[] fourthPlayerAnim;
+    public static BufferedImage[] fourPlayerAnim;
     public static BufferedImage[] firstPlaceAnim;
     public static BufferedImage[] lastPlaceAnim;
     public static BufferedImage[] congratulationsTitle;
@@ -395,17 +395,17 @@ public class Assets {
         stealCoins4[1] = sheet.crop(5,13,1,2);
 
         firstPlaceAnim = new BufferedImage[3];
-        firstPlaceAnim[0] = sheet.crop(29,8,4,4);
-        firstPlaceAnim[1] = sheet.crop(31,8,4,4);
-        firstPlaceAnim[2] = sheet.crop(33,8,4,4);
+        firstPlaceAnim[0] = sheet.crop(29,8,2,2);
+        firstPlaceAnim[1] = sheet.crop(31,8,2,2);
+        firstPlaceAnim[2] = sheet.crop(33,8,2,2);
 
         lastPlaceAnim = new BufferedImage[3];
-        lastPlaceAnim[0] = sheet.crop(29,10,4,4);
-        lastPlaceAnim[1] = sheet.crop(31,10,4,4);
-        lastPlaceAnim[2] = sheet.crop(33,10,4,4);
+        lastPlaceAnim[0] = sheet.crop(29,10,2,2);
+        lastPlaceAnim[1] = sheet.crop(31,10,2,2);
+        lastPlaceAnim[2] = sheet.crop(33,10,2,2);
 
-        secondPLaceImg = sheet.crop(36,8,1,1);
-        thirdPlaceImg = sheet.crop(35,8,1,1);
+        secondPLaceImg = sheet.crop(35,8,1,2);
+        thirdPlaceImg = sheet.crop(36,8,1,2);
 
         twoPlayerAnim = new BufferedImage[2];
         twoPlayerAnim[0] = sheet.crop(36,10,2,2);
@@ -416,11 +416,11 @@ public class Assets {
         threePlayerAnim[1] = sheet.crop(34,12,3,2);
         threePlayerAnim[2] = sheet.crop(37,12,3,2);
 
-        fourthPlayerAnim = new BufferedImage[4];
-        fourthPlayerAnim[0] = sheet.crop(24,14,4,2);
-        fourthPlayerAnim[1] = sheet.crop(28,14,4,2);
-        fourthPlayerAnim[2] = sheet.crop(32,14,4,2);
-        fourthPlayerAnim[3] = sheet.crop(36,14,4,2);
+        fourPlayerAnim = new BufferedImage[4];
+        fourPlayerAnim[0] = sheet.crop(24,14,4,2);
+        fourPlayerAnim[1] = sheet.crop(28,14,4,2);
+        fourPlayerAnim[2] = sheet.crop(32,14,4,2);
+        fourPlayerAnim[3] = sheet.crop(36,14,4,2);
 
         endGamePodium2 = sheet.crop(34,16,4,3);
         endGamePodium3 = sheet.crop(34,16,6,3);
