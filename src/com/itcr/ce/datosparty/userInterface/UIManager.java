@@ -84,7 +84,8 @@ public class UIManager {
         uiObjects.add(o);
     }
 
-    public void changeObjectPos(int objectIndex, int x, int y){
+    public void changeObjectPos(String id, int x, int y){
+        int objectIndex = retrieveIndexByID(id);
         UIObject o = uiObjects.get(objectIndex).getData();
         o.x = x;
         o.y = y;
