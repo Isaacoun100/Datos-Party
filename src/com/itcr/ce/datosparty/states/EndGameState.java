@@ -57,7 +57,7 @@ public class EndGameState extends State {
         endGameUI.addObject(new UIAnimatedImage((float)width/2-33,(float)height/2-30,17*4,2*4,congratsMsg,"congratsMsg"));
 
 
-        endGameUI.addObject(new UIAnimatedImage((float)width/2-7,(float)height/2-15, 8*2,8*2,firstPlaceAnim,"firstPlace"));
+        endGameUI.addObject(new UIAnimatedImage((float)width/2-7,(float)height/2-14, 8*2,8*2,firstPlaceAnim,"firstPlace"));
         endGameUI.addObject(new UIAnimatedImage((float)width/2-4,(float)height/2+3,4,4, star,"star1"));
         endGameUI.addObject(new UIAnimatedImage((float)width/2-4,(float)height/2+6,4,4, coin,"coin1"));
         this.firstPlace = Leaderboard.getLeaderboard().getHead();
@@ -95,7 +95,7 @@ public class EndGameState extends State {
         endGameUI.renderById(g,"creditsBtn");
         if(game.getNumberOfPlayers()==2){
             endGameUI.renderById(g,"podium2");
-        }else if (game.getNumberOfPlayers()>3){
+        }else if (game.getNumberOfPlayers()>=3){
             endGameUI.renderById(g,"podium3");
         }
 
