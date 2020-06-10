@@ -3,7 +3,9 @@ package com.itcr.ce.datosparty.states;
 import com.itcr.ce.datosparty.GameLauncher;
 import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.Handler;
+import com.itcr.ce.datosparty.dataStructures.lists.CircularList;
 import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
+import com.itcr.ce.datosparty.dataStructures.nodes.Node;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.entities.boxes.Box;
@@ -23,8 +25,8 @@ public class GameState extends State{
 
     private final UIManager gameUI;
 
-    private int width = GameLauncher.width/16;
-    private int height = GameLauncher.height/16;
+    private final int width = GameLauncher.width/16;
+    private final int height = GameLauncher.height/16;
     private final int  maxRound;
     private int playerMovement, enoughCoins = 0;
     private Player currentPlayer;
@@ -34,29 +36,35 @@ public class GameState extends State{
     private final Font font;
     private final Game game;
     private Event currentEvent;
-    private Player player1;
-    private Player player2;
+    private final Player player1;
+    private final Player player2;
     private Player player3;
     private Player player4;
-    private EventLogic stealCoinsLogic = new EventLogic();
+    private final EventLogic stealCoinsLogic = new EventLogic();
+    private Node<Player> currentPlayerNode;
 
     public GameState(Handler handler, Game game){
 
         super(handler);
         this.game = game;
         this.maxRound = game.getMaxRound();
-
-        font = new Font("Windows Command Prompt", Font.PLAIN,50); // "Times New Roman" for emergencies
+        CircularList<Player> playerList = new CircularList<>();
+        font = Assets.bitArtFont.deriveFont(Font.PLAIN, 50); //new Font("Windows Command Prompt", Font.PLAIN,50);
         gameUI = new UIManager(handler);
 
         this.player1 = game.getPlayerList().get(0).getData();
+        playerList.add(player1);
         this.player2 = game.getPlayerList().get(1).getData();
+        playerList.add(player2);
         if (game.getNumberOfPlayers() >= 3) {
             this.player3 = game.getPlayerList().get(2).getData();
+            playerList.add(player3);
         }
         if (game.getNumberOfPlayers() >= 4) {
             this.player4 = game.getPlayerList().get(3).getData();
+            playerList.add(player4);
         }
+        currentPlayerNode = playerList.getHead();
 
         Animation star = new Animation(200, Assets.star);
         Animation coin = new Animation(200, Assets.coin);
@@ -72,7 +80,8 @@ public class GameState extends State{
 
         gameUI.addObject(new UIImageButton(1, height-20, 8, 8, Assets.diceButton, "dice",
                 () -> {
-                    if(currentPlayer.getMovement()==0) {
+                    if(currentPlayer.getThrowDice()) {
+                        currentPlayer.setThrowDice(false);
                         int diceResult = Dice.roll(1, 6) + Dice.roll(1, 6);
                         currentPlayer.setMovement(diceResult);
                         SoundEffect.DiceRoll();
@@ -161,16 +170,16 @@ public class GameState extends State{
                     }
                 }));
 
-        gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,2*8,Assets.starPurchaseBackDrop[0],"starPBackDrop")));
+        gameUI.addObject((new UIImage((float)width/2-16, (float)height/2-16, 4*8,2*8,Assets.starPurchaseBackDrop[0],"starPBackDrop")));
 
-        gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,8,Assets.buyMsg[0],"buyMsg")));
+        gameUI.addObject((new UIImage((float)width/2-16, (float)height/2-16, 4*8,8,Assets.buyMsg[0],"buyMsg")));
 
-        gameUI.addObject((new UIImage(width/2-16, height/2-15   , 4*8,8,Assets.noCoinsMsg,"noCoinsMsg")));
+        gameUI.addObject((new UIImage((float)width/2-16, (float)height/2-15   , 4*8,8,Assets.noCoinsMsg,"noCoinsMsg")));
 
-        gameUI.addObject((new UIImage(width/2-16, height/2-16, 4*8,8,Assets.enoughCoins,"enoughCoins")));
+        gameUI.addObject((new UIImage((float)width/2-16, (float)height/2-16, 4*8,8,Assets.enoughCoins,"enoughCoins")));
 
 
-        gameUI.addObject(new UIImageButton(width/2-4,height/2-10,8,8,Assets.okBtn,"okBtnStars",
+        gameUI.addObject(new UIImageButton((float)width/2-4,(float)height/2-10,8,8,Assets.okBtn,"okBtnStars",
                 ()->{ if(clicked){
                     int movementLeft = currentPlayer.getMovement();
                     currentPlayer.setMovement(movementLeft);
@@ -185,7 +194,7 @@ public class GameState extends State{
                 }
                 }));
 
-        gameUI.addObject(new UIImageButton(width/2-4,height/2-10,8,8,Assets.okBtn,"okBtnNoStars",
+        gameUI.addObject(new UIImageButton((float)width/2-4,(float)height/2-10,8,8,Assets.okBtn,"okBtnNoStars",
                 ()->{ if(clicked){
                     this.enoughCoins = 0;
                     int movementLeft = currentPlayer.getMovement();
@@ -197,7 +206,7 @@ public class GameState extends State{
                 }
                 }));
 
-        gameUI.addObject(new UIImageButton(width/2-8,height/2-10,8,8,Assets.yesBtn,"yesBtn",
+        gameUI.addObject(new UIImageButton((float)width/2-8,(float)height/2-10,8,8,Assets.yesBtn,"yesBtn",
                 ()->{
                     if(currentBox.isStarBox()&&!clicked) {
                         int coins = currentPlayer.getCoins();
@@ -209,7 +218,7 @@ public class GameState extends State{
                         this.clicked = true;
                     }
                 }));
-        gameUI.addObject(new UIImageButton(width/2+2,height/2-10,8,8,Assets.noBtn,"noBtn",()->{
+        gameUI.addObject(new UIImageButton((float)width/2+2,(float)height/2-10,8,8,Assets.noBtn,"noBtn",()->{
             if(!clicked) {
                 int movementLeft = currentPlayer.getMovement();
                 currentPlayer.setMovement(movementLeft);
@@ -218,7 +227,7 @@ public class GameState extends State{
 
         }));
 
-        gameUI.addObject(new UIImageButton(width/2-14,height/2-22, 8,2*8,Assets.stealCoins1,"player1Btn",
+        gameUI.addObject(new UIImageButton((float)width/2-14,(float)height/2-22, 8,2*8,Assets.stealCoins1,"player1Btn",
                 ()->{
                     if(game.getCurrentEvent()== Event.STEAL_COINS){
                         stealCoinsLogic.stealCoins(currentPlayer, player1);
@@ -229,7 +238,7 @@ public class GameState extends State{
         gameUI.addObject(new UIAnimatedImage(0,3,4,4, star,"star1"));
         gameUI.addObject(new UIAnimatedImage(0,6,4,4, coin,"coin1"));
 
-        gameUI.addObject(new UIImageButton(width/2-14,height/2-7, 8,2*8,Assets.stealCoins2,"player2Btn",
+        gameUI.addObject(new UIImageButton((float)width/2-14,(float)height/2-7, 8,2*8,Assets.stealCoins2,"player2Btn",
                 ()->{
                     if(game.getCurrentEvent()== Event.STEAL_COINS) {
                         stealCoinsLogic.stealCoins(currentPlayer, player2);
@@ -241,7 +250,7 @@ public class GameState extends State{
         gameUI.addObject(new UIAnimatedImage(0,18,4,4, coin,"coin2"));
 
         if (game.getNumberOfPlayers() >= 3) {
-            gameUI.addObject(new UIImageButton(width/2+6,height/2-22, 8,2*8,Assets.stealCoins3,"player3Btn",
+            gameUI.addObject(new UIImageButton((float)width/2+6,(float)height/2-22, 8,2*8,Assets.stealCoins3,"player3Btn",
                     ()->{
                         if(game.getCurrentEvent()== Event.STEAL_COINS) {
                             stealCoinsLogic.stealCoins(currentPlayer, player3);
@@ -254,12 +263,12 @@ public class GameState extends State{
         }
 
         if (game.getNumberOfPlayers() >= 4) {
-            gameUI.addObject(new UIImageButton(width/2+6,height/2-7, 8,2*8,Assets.stealCoins4,"player4Btn",
+            gameUI.addObject(new UIImageButton((float)width/2+6,(float)height/2-7, 8,2*8,Assets.stealCoins4,"player4Btn",
                     ()->{
                         if(game.getCurrentEvent()== Event.STEAL_COINS) {
-                            this.player4 = game.getPlayerList().get(3).getData();
                             stealCoinsLogic.stealCoins(currentPlayer, player4);
                             game.setCurrentEvent(null);
+                            stealCoinsLogic.stealCoins(currentPlayer, player4);
                             game.resumeGame();
                         }
                     }));
@@ -268,22 +277,25 @@ public class GameState extends State{
         }
 
         gameUI.addObject(new UIImageButton(9,height-20,4*2,4*2,Assets.endTurnBtn,"endTurnBtn",()->{
-            //Round.endTurn();
+            if (!currentPlayer.getThrowDice() && currentPlayer.getMovement()==0) {
+                currentPlayer.setCurrentTurn(false);
+                game.resumeGame();
+            }
         }));
 
-        gameUI.addObject((new UIImage(width/2-8, height/2-24, 2*8,3*8,Assets.eventBackDrop,"eventBackDrop")));
+        gameUI.addObject((new UIImage((float)width/2-8, (float)height/2-24, 2*8,3*8,Assets.eventBackDrop,"eventBackDrop")));
 
-        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,stealCoins,"stealCoins"));
-        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*3,2*3,duel,"duel"));
-        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,giveCoins,"giveCoins"));
-        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,loseStar,"loseStar"));
-        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,win2Stars,"win2Stars"));
-        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,win5Stars,"win5Stars"));
-        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 4*2,4*2,stealStar,"stealStar"));
-        gameUI.addObject(new UIAnimatedImage(width/2-2, height/2-18, 4,2*4,teleport,"teleport"));
-        gameUI.addObject(new UIAnimatedImage(width/2-4, height/2-18, 2*4,2*4,swapPlace,"swapPlace"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*2,4*2,stealCoins,"stealCoins"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*3,2*3,duel,"duel"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*2,4*2,giveCoins,"giveCoins"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*2,4*2,loseStar,"loseStar"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*2,4*2,win2Stars,"win2Stars"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*2,4*2,win5Stars,"win5Stars"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*2,4*2,stealStar,"stealStar"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-2, (float)height/2-18, 4,2*4,teleport,"teleport"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 2*4,2*4,swapPlace,"swapPlace"));
 
-        gameUI.addObject(new UIImageButton(width/2-4,height/2-2,8,8,Assets.okBtn,"okBtnEvents",
+        gameUI.addObject(new UIImageButton((float)width/2-4,(float)height/2-2,8,8,Assets.okBtn,"okBtnEvents",
                 ()->{ if(currentEvent != null){
                     int movementLeft = currentPlayer.getMovement();
                     currentPlayer.setMovement(movementLeft);
@@ -301,11 +313,15 @@ public class GameState extends State{
             playerMovement = currentPlayer.getMovement();
             currentBox = currentPlayer.getPosition().getData();
             currentEvent = game.getCurrentEvent();
+            if(!currentPlayer.getCurrentTurn()){
+                currentPlayerNode = currentPlayerNode.getNext();
+            }
         } else {
             State.setState(GameLoop.gameDependantStates.get(9).getData());
         }
         handler.getMouseManager().setUiManager(gameUI);
         gameUI.tick();
+        //System.out.println(currentPlayer.getCurrentTurn());
     }
 
     @Override
@@ -465,6 +481,10 @@ public class GameState extends State{
                 g.drawString("STAR!", ((width * 16)) / 2 - 55, (height * 16) / 2 - 88);
                 gameUI.renderById(g, "okBtnEvents");
             }
+        }
+
+        if (!currentPlayer.getThrowDice() && currentPlayer.getMovement()==0){
+            gameUI.renderById(g,"endTurnBtn");
         }
     }
     private void renderBoard(SinglyNode<Box> currentBox, int length, Graphics g) {

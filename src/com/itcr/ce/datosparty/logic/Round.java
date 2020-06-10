@@ -68,11 +68,37 @@ public class Round {
     }
 
     public static void playRound(Game game) throws InterruptedException {
-        Turn.setPlayersTurn(Round.getPlayerOrder().getHead());
+        SinglyNode<Player> currentTurn = Round.getPlayerOrder().getHead();
+        Player player1 = game.getPlayerList().get(0).getData();
+        Player player2 = game.getPlayerList().get(1).getData();
+
+        int numberOfPlayers = game.getNumberOfPlayers();
         int currentRound = game.getCurrentRound();
         if (currentRound == 2) {
             game.setStar();
         }
-        Turn.playTurn(game);
+
+        Turn.setPlayersTurn(currentTurn);
+        Turn.playTurn(game, player1);
+
+        currentTurn = (SinglyNode<Player>) currentTurn.getNext();
+        Turn.setPlayersTurn(currentTurn);
+        game.pauseGame();
+        Turn.playTurn(game, player2);
+
+        if(numberOfPlayers >= 3){
+            Player player3 = game.getPlayerList().get(2).getData();
+            currentTurn = (SinglyNode<Player>) currentTurn.getNext();
+            Turn.setPlayersTurn(currentTurn);
+            game.pauseGame();
+            Turn.playTurn(game, player3);
+        }
+        if(numberOfPlayers == 4){
+            Player player4 = game.getPlayerList().get(3).getData();
+            currentTurn = (SinglyNode<Player>) currentTurn.getNext();
+            Turn.setPlayersTurn(currentTurn);
+            game.pauseGame();
+            Turn.playTurn(game, player4);
+        }
     }
 }

@@ -7,10 +7,8 @@ public class Turn {
 
     private static SinglyNode<Player> playersTurn;
 
-    public static void nextPlayer(int movement) {
-        if(movement == 0){
-            playersTurn = (SinglyNode<Player>) playersTurn.getNext();
-        }
+    public static void nextPlayer() {
+        playersTurn = (SinglyNode<Player>) playersTurn.getNext();
     }
 
     public static SinglyNode<Player> getPlayersTurn() {
@@ -25,17 +23,20 @@ public class Turn {
         Turn.playersTurn = playersTurn;
     }
 
-    public static void playTurn(Game game) throws InterruptedException {
-        Player currentPlayer = Turn.getPlayersTurn().getData();
+    public static void playTurn(Game game, Player currentPlayer) throws InterruptedException {
+        currentPlayer.setCurrentTurn(true);
+        currentPlayer.setBoxAction(true);
+        currentPlayer.setThrowDice(true);
         while (Turn.getPlayersTurn() != null) {
-            System.out.println(currentPlayer.getName());
-            game.pauseGame();
-            try {
+            boolean activeTurn = currentPlayer.getCurrentTurn();
+            while (activeTurn) {
+                System.out.println(currentPlayer.getName());
                 Turn.movePlayer(game);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                game.pauseGame();
+                activeTurn = currentPlayer.getCurrentTurn();
+                System.out.println(activeTurn);
             }
-            Turn.nextPlayer(currentPlayer.getMovement());
+            nextPlayer();
         }
     }
 }
