@@ -29,6 +29,14 @@ public class Player extends Entity {
     private Boolean boxAction = false;
     private Boolean throwDice = false;
 
+    public Player(String name, float x, float y, BufferedImage image) {
+        super(x, y, 80, 120);
+        this.x = x;
+        this.y = y;
+        this.image = image;
+        this.name = name;
+    }
+
     public void setThrowDice(boolean throwDice){
         this.throwDice = throwDice;
     }
@@ -62,14 +70,6 @@ public class Player extends Entity {
 
         public void setDirection(Boolean changeDirection) {
         this.changeDirection = changeDirection;
-    }
-
-    public Player(String name, float x, float y, BufferedImage image) {
-        super(x, y, 80, 120);
-        this.x = x;
-        this.y = y;
-        this.image = image;
-        this.name = name;
     }
 
     public void move(Game game) throws InterruptedException {
