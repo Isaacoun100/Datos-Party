@@ -3,9 +3,7 @@ package com.itcr.ce.datosparty.states;
 import com.itcr.ce.datosparty.GameLauncher;
 import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.gfx.Animation;
-import com.itcr.ce.datosparty.userInterface.UIAnimatedImage;
-import com.itcr.ce.datosparty.userInterface.UIImageButton;
-import com.itcr.ce.datosparty.userInterface.UIManager;
+import com.itcr.ce.datosparty.userInterface.*;
 import com.itcr.ce.datosparty.Handler;
 import com.itcr.ce.datosparty.gfx.Assets;
 
@@ -22,9 +20,13 @@ public class MainMenuState extends State{
 
         super(handler);
 
-        titleAnimation = new Animation(500, Assets.titleImage);
 
         uiManager = new UIManager(handler);
+
+            uiManager.addObject(new UIBackground(Assets.loginWallpaper, "wp"));
+
+            titleAnimation = new Animation(500, Assets.titleImage);
+
             uiManager.addObject(new UIAnimatedImage((width/2)-39,height/6,40*2,6*2,titleAnimation,"titleAnimation"));
 
             uiManager.addObject(new UIImageButton((width/2)-4, (height/2), 9, 3, Assets.playButton,"playBtn",

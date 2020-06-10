@@ -95,4 +95,11 @@ public class UIManager {
         int index = retrieveIndexByID(id);
         uiObjects.remove(index);
     }
+
+    public void makeTop(String id){
+        int index = retrieveIndexByID(id);
+        Node<UIObject> top = uiObjects.getHead();
+        Node<UIObject> newTop = uiObjects.get(index);
+        uiObjects.swap(top,newTop);
+    }
 }

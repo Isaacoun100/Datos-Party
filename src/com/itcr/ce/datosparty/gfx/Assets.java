@@ -5,89 +5,23 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-    public static BufferedImage blueBox;
-    public static BufferedImage greenBox;
-    public static BufferedImage yellowBox;
-    public static BufferedImage redBox;
-    public static BufferedImage player1Static;
-    public static BufferedImage player2Static;
-    public static BufferedImage player3Static;
-    public static BufferedImage player4Static;
-    public static BufferedImage starSeller;
-    public static BufferedImage noCoinsMsg;
-    public static BufferedImage enoughCoins;
-    public static BufferedImage mapGuide;
-    public static BufferedImage eventBackDrop;
-    public static BufferedImage eventBackDropBad;
-    public static BufferedImage getEventBackDropSpecial;
-    public static BufferedImage secondPLaceImg;
-    public static BufferedImage thirdPlaceImg;
-    public static BufferedImage endGamePodium2;
-    public static BufferedImage endGamePodium3;
-    public static BufferedImage playerSelectionTitle;
+    public static BufferedImage blueBox,greenBox,yellowBox,redBox, player1Static, player2Static, player3Static,
+                                player4Static, starSeller, noCoinsMsg, enoughCoins, mapGuide, eventBackDrop,
+                                eventBackDropBad, getEventBackDropSpecial, secondPLaceImg, thirdPlaceImg,
+                                endGamePodium2, endGamePodium3, playerSelectionTitle, loginWallpaper;
 
-    public static BufferedImage[] settingsButton;
-    public static BufferedImage[] playButton;
-    public static BufferedImage[] creditsButton;
-    public static BufferedImage[] backButton;
-    public static BufferedImage[] titleImage;
-    public static BufferedImage[] pressEnterImage;
-    public static BufferedImage[] notOKComputer;
-    public static BufferedImage[] notOKComputerIcon;
-    public static BufferedImage[] nothingHereMessage;
-    public static BufferedImage[] boton1;
-    public static BufferedImage[] diceButton;
-    public static BufferedImage[] upArrow;
-    public static BufferedImage[] downArrow;
-    public static BufferedImage[] leftArrow;
-    public static BufferedImage[] rightArrow;
-    public static BufferedImage[] player1Button;
-    public static BufferedImage[] player2Button;
-    public static BufferedImage[] duel;
-    public static BufferedImage[] stealCoins;
-    public static BufferedImage[] giveCoins;
-    public static BufferedImage[] loseStar;
-    public static BufferedImage[] win2Stars;
-    public static BufferedImage[] win5Stars;
-    public static BufferedImage[] stealStar;
-    public static BufferedImage[] teleport;
-    public static BufferedImage[] swapPlace;
-    public static BufferedImage[] player3Button;
-    public static BufferedImage[] player4Button;
-    public static BufferedImage[] creditsButtonMenu;
-    public static BufferedImage[] volumeUp;
-    public static BufferedImage[] volumeDown;
-    public static BufferedImage[] gameMusic;
-    public static BufferedImage[] soundEffects;
-    public static BufferedImage[] starPurchaseBackDrop;
-    public static BufferedImage[] yesBtn;
-    public static BufferedImage[] noBtn;
-    public static BufferedImage[] purchaseMsg;
-    public static BufferedImage[] buyMsg;
-    public static BufferedImage[] endTurnBtn;
-    public static BufferedImage[] coin;
-    public static BufferedImage[] star;
-    public static BufferedImage[] noviceButton;
-    public static BufferedImage[] proButton;
-    public static BufferedImage[] eliteButton;
-    public static BufferedImage[] roundTitle;
-    public static BufferedImage[] okBtn;
-    public static BufferedImage[] stealCoins1;
-    public static BufferedImage[] stealCoins2;
-    public static BufferedImage[] stealCoins3;
-    public static BufferedImage[] stealCoins4;
-    public static BufferedImage[] twoPlayerAnim;
-    public static BufferedImage[] threePlayerAnim;
-    public static BufferedImage[] fourPlayerAnim;
-    public static BufferedImage[] firstPlaceAnim;
-    public static BufferedImage[] lastPlaceAnim;
-    public static BufferedImage[] congratulationsTitle;
+    public static BufferedImage[] settingsButton, playButton, creditsButton,backButton, titleImage,pressEnterImage,
+                                  notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, upArrow,
+                                  downArrow, leftArrow, rightArrow, player1Button, player2Button, duel, stealCoins,
+                                  giveCoins, loseStar, win2Stars, win5Stars, stealStar, teleport, swapPlace,
+                                  player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp, volumeDown,
+                                  gameMusic, soundEffects, starPurchaseBackDrop, yesBtn, noBtn, purchaseMsg, buyMsg,
+                                  endTurnBtn, coin, star, noviceButton, proButton, eliteButton, roundTitle, okBtn,
+                                  stealCoins1, stealCoins2, stealCoins3, stealCoins4, titanCard, ghostCard, koichiCard,
+                                  samCard, tuxCard, backCard, checkButton,congratulationsTitle, twoPlayerAnim,
+                                  threePlayerAnim, fourPlayerAnim, firstPlaceAnim, lastPlaceAnim;
 
-    public static Font bitArtFont;
-    public static Font retroComputer;
-    public static Font threeDventure;
-    public static Font upHeavett;
-    public static Font pixelInversions;
+    public static Font bitArtFont, retroComputer, threeDventure, upHeavett, pixelInversions;
 
 
 
@@ -428,12 +362,13 @@ public class Assets {
         endGamePodium2 = sheet.crop(34,16,4,3);
         endGamePodium3 = sheet.crop(34,16,6,3);
 
+        loginWallpaper= ImageLoader.loadImage("/textures/LoginWallpaper.png");
+
         congratulationsTitle = new BufferedImage[4];
         congratulationsTitle[0] = sheet.crop(0,17,17,2);
         congratulationsTitle[1] = sheet.crop(0,19,17,2);
         congratulationsTitle[2] = sheet.crop(0,21,17,2);
         congratulationsTitle[3] = sheet.crop(0,19,17,2);
-
 
         playerSelectionTitle = sheet.crop(6,13,10,2);
 
