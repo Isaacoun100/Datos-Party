@@ -104,29 +104,29 @@ public class EndGameState extends State {
         endGameUI.renderById(g, "coin1");
         endGameUI.renderById(g, "star1");
         endGameUI.renderById(g,"firstPlace");
-        g.drawString("X" + firstPlace.getData().getCoins(), localWidth/2, localHeight/2 + 6*16);
-        g.drawString("X" + firstPlace.getData().getStars(), localWidth/2, localHeight/2 + 9*16);
+        g.drawString("X" + firstPlace.getData().getStars(), localWidth/2, localHeight/2 + 6*16);
+        g.drawString("X" + firstPlace.getData().getCoins(), localWidth/2, localHeight/2 + 9*16);
         g.drawString("2nd place belongs to " + secondPlace.getData().getName(), localWidth/2-45*16, localHeight/2-6*16);
         endGameUI.renderById(g, "coin2");
         endGameUI.renderById(g, "star2");
         endGameUI.renderById(g,"secondPlace");
-        g.drawString("X" + secondPlace.getData().getCoins(), localWidth/2+16*-10, localHeight/2+10*16);
-        g.drawString("X" + secondPlace.getData().getStars(), localWidth/2+16*-10, localHeight/2+13*16);
+        g.drawString("X" + secondPlace.getData().getStars(), localWidth/2+16*-10, localHeight/2+10*16);
+        g.drawString("X" + secondPlace.getData().getCoins(), localWidth/2+16*-10, localHeight/2+13*16);
         if (game.getNumberOfPlayers() >= 3) {
             g.drawString("3rd place belongs to " + thirdPlace.getData().getName(), localWidth/2+7*16, localHeight/2-4*16);
             endGameUI.renderById(g, "coin3");
             endGameUI.renderById(g, "star3");
             endGameUI.renderById(g, "thirdPlace");
-            g.drawString("X" + thirdPlace.getData().getCoins(), localWidth/2+10*16, localHeight/2+13*16);
-            g.drawString("X" + thirdPlace.getData().getStars(), localWidth/2+10*16, localHeight/2+16*16);
+            g.drawString("X" + thirdPlace.getData().getStars(), localWidth/2+10*16, localHeight/2+13*16);
+            g.drawString("X" + thirdPlace.getData().getCoins(), localWidth/2+10*16, localHeight/2+16*16);
         }
         if (game.getNumberOfPlayers() == 4) {
             g.drawString("4th place belongs to " + fourthPlace.getData().getName(),localHeight/2+16*16, localHeight/2+22*16);
             endGameUI.renderById(g, "coin4");
             endGameUI.renderById(g, "star4");
             endGameUI.renderById(g,"fourthPlace");
-            g.drawString("X" + fourthPlace.getData().getCoins(), localWidth/2+29*16, localHeight/2+15*16);
-            g.drawString("X" + fourthPlace.getData().getStars(), localWidth/2+29*16, localHeight/2+18*16);
+            g.drawString("X" + fourthPlace.getData().getStars(), localWidth/2+29*16, localHeight/2+15*16);
+            g.drawString("X" + fourthPlace.getData().getCoins(), localWidth/2+29*16, localHeight/2+18*16);
         }
     }
 }
