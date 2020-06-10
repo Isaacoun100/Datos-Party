@@ -28,12 +28,17 @@ public class UIAnimatedImage extends UIObject{
 
     @Override
     public void tick() {
-        animation.tick();
+        if(animation!=null){
+            animation.tick();
+        }
+        else{
+            reverseAnimation.tick();
+        }
     }
 
     @Override
     public void render(Graphics g) {
-        if(animation == null) {
+        if(animation != null) {
             assert false;
             g.drawImage(animation.getCurrentFrame(), (int) x, (int) y, width, height, null);
         }else {
