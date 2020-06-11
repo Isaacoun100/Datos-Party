@@ -1,13 +1,9 @@
 package com.itcr.ce.datosparty.minigames.states;
 
-import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
 import com.itcr.ce.datosparty.minigames.miniLogic.FirstMiniGameLogic;
 import com.itcr.ce.datosparty.minigames.miniGameLogic.MemoryList;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
-import com.itcr.ce.datosparty.userInterface.UIAnimatedImage;
-import com.itcr.ce.datosparty.userInterface.ClickListener;
-import com.itcr.ce.datosparty.userInterface.UIImageButton;
-import com.itcr.ce.datosparty.userInterface.UIManager;
+import com.itcr.ce.datosparty.userInterface.*;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.gfx.Animation;
 import com.itcr.ce.datosparty.states.State;
@@ -23,18 +19,26 @@ public class EighthMinigameState extends State {
 
     private SinglyNode<Player> activePlayer = Round.getPlayerOrder().getHead();
     private Animation titanAn, samAn, tuxAn, koichiAn,ghostAn;
-    private SinglyNode<int[]> newCoords;
+    FirstMiniGameLogic gameLogic;
     private boolean active=false;
+    private boolean first=true;
     private UIManager MemoryUI;
     private String done = "";
+    public Game game;
     int timer=0;
 
     public EighthMinigameState(Handler handler, int numPlayers, Game game) {
         super(handler);
-        MemoryList.initCoords();
-        newCoords=MemoryList.getHead();
+         this.game= game;
+         initPositions();
+        gameLogic = new FirstMiniGameLogic(this.game);
+    }
+
+    public void initPositions(){
+        newPositions();
         MemoryUI = new UIManager(handler);
-        FirstMiniGameLogic gameLogic = new FirstMiniGameLogic(game);
+
+        MemoryUI.addObject(new UIBackground(Assets.memoryWallpaper, "wp"));
 
         titanAn = new Animation(100, Assets.titanCard);
         samAn = new Animation(100, Assets.samCard);
@@ -42,10 +46,9 @@ public class EighthMinigameState extends State {
         koichiAn = new Animation(100,Assets.koichiCard);
         ghostAn = new Animation(100,Assets.ghostCard);
 
+        MemoryUI.addObject(new UIAnimatedImage((float)MemoryList.getCoords(0)[0],(float)MemoryList.getCoords(0)[1],4*4,6*4, ghostAn,"ghostAn1"));
 
-        MemoryUI.addObject(new UIAnimatedImage((float)newCoords.getData()[0],(float)newCoords.getData()[1],4*4,6*4, ghostAn,"ghostAn1"));
-
-        MemoryUI.addObject(new UIImageButton(newCoords.getData()[0], newCoords.getData()[1], 4*4, 6*4, Assets.backCard,"ghostCard1", new ClickListener() {
+        MemoryUI.addObject(new UIImageButton(MemoryList.getCoords(0)[0], MemoryList.getCoords(0)[1], 4*4, 6*4, Assets.backCard,"ghostCard1", new ClickListener() {
             @Override
             public void onClick() {
                 if(done.length()>0){
@@ -58,11 +61,9 @@ public class EighthMinigameState extends State {
                 }
             }}));
 
-        newCoords= (SinglyNode<int[]>) newCoords.getNext();
+        MemoryUI.addObject(new UIAnimatedImage((float)MemoryList.getCoords(1)[0],(float)MemoryList.getCoords(1)[1],4*4,6*4, ghostAn,"ghostAn2"));
 
-        MemoryUI.addObject(new UIAnimatedImage((float)newCoords.getData()[0],(float)newCoords.getData()[1],4*4,6*4, ghostAn,"ghostAn2"));
-
-        MemoryUI.addObject(new UIImageButton(newCoords.getData()[0], newCoords.getData()[1], 4*4, 6*4, Assets.backCard,"ghostCard2", new ClickListener() {
+        MemoryUI.addObject(new UIImageButton(MemoryList.getCoords(1)[0], MemoryList.getCoords(1)[1], 4*4, 6*4, Assets.backCard,"ghostCard2", new ClickListener() {
             @Override
             public void onClick() {
                 if(done.length()>0){
@@ -75,11 +76,9 @@ public class EighthMinigameState extends State {
                 }
             }}));
 
-        newCoords= (SinglyNode<int[]>) newCoords.getNext();
+        MemoryUI.addObject(new UIAnimatedImage((float)MemoryList.getCoords(2)[0],(float)MemoryList.getCoords(2)[1],4*4,6*4, titanAn,"titanAn1"));
 
-        MemoryUI.addObject(new UIAnimatedImage((float)newCoords.getData()[0],(float)newCoords.getData()[1],4*4,6*4, titanAn,"titanAn1"));
-
-        MemoryUI.addObject(new UIImageButton(newCoords.getData()[0], newCoords.getData()[1], 4*4, 6*4, Assets.backCard,"titanCard1", new ClickListener() {
+        MemoryUI.addObject(new UIImageButton(MemoryList.getCoords(2)[0], MemoryList.getCoords(2)[1], 4*4, 6*4, Assets.backCard,"titanCard1", new ClickListener() {
             @Override
             public void onClick() {
                 if(done.length()>0){
@@ -92,11 +91,9 @@ public class EighthMinigameState extends State {
                 }
             }}));
 
-        newCoords= (SinglyNode<int[]>) newCoords.getNext();
+        MemoryUI.addObject(new UIAnimatedImage((float)MemoryList.getCoords(3)[0],(float)MemoryList.getCoords(3)[1],4*4,6*4, titanAn,"titanAn2"));
 
-        MemoryUI.addObject(new UIAnimatedImage((float)newCoords.getData()[0],(float)newCoords.getData()[1],4*4,6*4, titanAn,"titanAn2"));
-
-        MemoryUI.addObject(new UIImageButton(newCoords.getData()[0], newCoords.getData()[1], 4*4, 6*4, Assets.backCard,"titanCard2", new ClickListener() {
+        MemoryUI.addObject(new UIImageButton(MemoryList.getCoords(3)[0], MemoryList.getCoords(3)[1], 4*4, 6*4, Assets.backCard,"titanCard2", new ClickListener() {
             @Override
             public void onClick() {
                 if(done.length()>0){
@@ -109,11 +106,9 @@ public class EighthMinigameState extends State {
                 }
             }}));
 
-        newCoords= (SinglyNode<int[]>) newCoords.getNext();
+        MemoryUI.addObject(new UIAnimatedImage((float)MemoryList.getCoords(4)[0],(float)MemoryList.getCoords(4)[1],4*4,6*4, koichiAn,"koichiAn1"));
 
-        MemoryUI.addObject(new UIAnimatedImage((float)newCoords.getData()[0],(float)newCoords.getData()[1],4*4,6*4, koichiAn,"koichiAn1"));
-
-        MemoryUI.addObject(new UIImageButton(newCoords.getData()[0], newCoords.getData()[1], 4*4, 6*4, Assets.backCard,"koichiCard1", new ClickListener() {
+        MemoryUI.addObject(new UIImageButton(MemoryList.getCoords(4)[0], MemoryList.getCoords(4)[1], 4*4, 6*4, Assets.backCard,"koichiCard1", new ClickListener() {
             @Override
             public void onClick() {
                 if(done.length()>0){
@@ -126,11 +121,9 @@ public class EighthMinigameState extends State {
                 }
             }}));
 
-        newCoords= (SinglyNode<int[]>) newCoords.getNext();
+        MemoryUI.addObject(new UIAnimatedImage((float)MemoryList.getCoords(5)[0],(float)MemoryList.getCoords(5)[1],4*4,6*4, koichiAn,"koichiAn2"));
 
-        MemoryUI.addObject(new UIAnimatedImage((float)newCoords.getData()[0],(float)newCoords.getData()[1],4*4,6*4, koichiAn,"koichiAn2"));
-
-        MemoryUI.addObject(new UIImageButton(newCoords.getData()[0], newCoords.getData()[1], 4*4, 6*4, Assets.backCard,"koichiCard2", new ClickListener() {
+        MemoryUI.addObject(new UIImageButton(MemoryList.getCoords(5)[0], MemoryList.getCoords(5)[1], 4*4, 6*4, Assets.backCard,"koichiCard2", new ClickListener() {
             @Override
             public void onClick() {
                 if(done.length()>0){
@@ -143,11 +136,9 @@ public class EighthMinigameState extends State {
                 }
             }}));
 
-        newCoords= (SinglyNode<int[]>) newCoords.getNext();
+        MemoryUI.addObject(new UIAnimatedImage((float)MemoryList.getCoords(6)[0],(float)MemoryList.getCoords(6)[1],4*4,6*4, samAn,"samAn1"));
 
-        MemoryUI.addObject(new UIAnimatedImage((float)newCoords.getData()[0],(float)newCoords.getData()[1],4*4,6*4, samAn,"samAn1"));
-
-        MemoryUI.addObject(new UIImageButton(newCoords.getData()[0], newCoords.getData()[1], 4*4, 6*4, Assets.backCard,"samCard1", new ClickListener() {
+        MemoryUI.addObject(new UIImageButton(MemoryList.getCoords(6)[0], MemoryList.getCoords(6)[1], 4*4, 6*4, Assets.backCard,"samCard1", new ClickListener() {
             @Override
             public void onClick() {
                 if(done.length()>0){
@@ -160,11 +151,9 @@ public class EighthMinigameState extends State {
                 }
             }}));
 
-        newCoords= (SinglyNode<int[]>) newCoords.getNext();
+        MemoryUI.addObject(new UIAnimatedImage((float)MemoryList.getCoords(7)[0],(float)MemoryList.getCoords(7)[1],4*4,6*4, samAn,"samAn2"));
 
-        MemoryUI.addObject(new UIAnimatedImage((float)newCoords.getData()[0],(float)newCoords.getData()[1],4*4,6*4, samAn,"samAn2"));
-
-        MemoryUI.addObject(new UIImageButton(newCoords.getData()[0], newCoords.getData()[1], 4*4, 6*4, Assets.backCard,"samCard2", new ClickListener() {
+        MemoryUI.addObject(new UIImageButton(MemoryList.getCoords(7)[0], MemoryList.getCoords(7)[1], 4*4, 6*4, Assets.backCard,"samCard2", new ClickListener() {
             @Override
             public void onClick() {
                 if(done.length()>0){
@@ -177,11 +166,9 @@ public class EighthMinigameState extends State {
                 }
             }}));
 
-        newCoords= (SinglyNode<int[]>) newCoords.getNext();
+        MemoryUI.addObject(new UIAnimatedImage((float)MemoryList.getCoords(8)[0],(float)MemoryList.getCoords(8)[1],4*4,6*4, tuxAn,"tuxAn1"));
 
-        MemoryUI.addObject(new UIAnimatedImage((float)newCoords.getData()[0],(float)newCoords.getData()[1],4*4,6*4, tuxAn,"tuxAn1"));
-
-        MemoryUI.addObject(new UIImageButton(newCoords.getData()[0], newCoords.getData()[1], 4*4, 6*4, Assets.backCard,"tuxCard1", new ClickListener() {
+        MemoryUI.addObject(new UIImageButton(MemoryList.getCoords(8)[0], MemoryList.getCoords(8)[1], 4*4, 6*4, Assets.backCard,"tuxCard1", new ClickListener() {
             @Override
             public void onClick() {
                 if(done.length()>0){
@@ -194,11 +181,9 @@ public class EighthMinigameState extends State {
                 }
             }}));
 
-        newCoords= (SinglyNode<int[]>) newCoords.getNext();
+        MemoryUI.addObject(new UIAnimatedImage((float)MemoryList.getCoords(9)[0],(float)MemoryList.getCoords(9)[1],4*4,6*4, tuxAn,"tuxAn2"));
 
-        MemoryUI.addObject(new UIAnimatedImage((float)newCoords.getData()[0],(float)newCoords.getData()[1],4*4,6*4, tuxAn,"tuxAn2"));
-
-        MemoryUI.addObject(new UIImageButton(newCoords.getData()[0], newCoords.getData()[1], 4*4, 6*4, Assets.backCard,"tuxCard2", new ClickListener() {
+        MemoryUI.addObject(new UIImageButton(MemoryList.getCoords(9)[0], MemoryList.getCoords(9)[1], 4*4, 6*4, Assets.backCard,"tuxCard2", new ClickListener() {
             @Override
             public void onClick() {
                 if(done.length()>0){
@@ -214,6 +199,7 @@ public class EighthMinigameState extends State {
         MemoryUI.addObject(new UIImageButton(50, 20, 3*3, 3*3, Assets.checkButton,"checkButton", new ClickListener() {
             @Override
             public void onClick() {
+                first=true;
                 if(!active){
                     done=done.toUpperCase();
 
@@ -236,18 +222,27 @@ public class EighthMinigameState extends State {
                     done="";
                 }
             }}));
-
-
     }
 
     @Override
     public void tick() {
         handler.getMouseManager().setUiManager(MemoryUI);
+        if(first){
+            initPositions();
+            first=false;
+        }
         MemoryUI.tick();
+    }
+
+    public void newPositions(){
+        MemoryList.initCoords();
+        MemoryList.shuffle();
     }
 
     @Override
     public void render(Graphics g) {
+
+        MemoryUI.renderById(g,"wp");
 
         if(done.length()==2){
             MemoryUI.renderById(g,"checkButton");
