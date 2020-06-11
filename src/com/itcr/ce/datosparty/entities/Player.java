@@ -66,9 +66,6 @@ public class Player extends Entity {
         this.boxAction = boxAction;
     }
 
-    public boolean getBoxAction(){
-        return boxAction;
-    }
     public Boolean getReversed() {
         return reversed;
     }
@@ -120,29 +117,37 @@ public class Player extends Entity {
 
         switch (getConnector(getPosition(),handler, changeDirection)) {
 
-            case PHASE_A_FIRST -> {nextNode = phaseAFirst;
+            case PHASE_A_FIRST -> {
+                nextNode = phaseAFirst;
                 setDirection(false);
             }
-            case PHASE_A_LAST -> {nextNode = phaseAExit;
+            case PHASE_A_LAST -> {
+                nextNode = phaseAExit;
                 setDirection(false);
             }
-            case PHASE_B_FIRST -> {nextNode = phaseBFirst;
+            case PHASE_B_FIRST -> {
+                nextNode = phaseBFirst;
                 setDirection(false);
             }
-            case PHASE_B_LAST -> {nextNode = phaseBExit;
+            case PHASE_B_LAST -> {
+                nextNode = phaseBExit;
                 setDirection(false);
             }
-            case PHASE_C_FIRST -> {nextNode = phaseC1First;
+            case PHASE_C_FIRST -> {
+                nextNode = phaseC1First;
                 setDirection(false);
             }
-            case PHASE_C_LAST -> {nextNode = phaseC1Exit;
+            case PHASE_C_LAST -> {
+                nextNode = phaseC1Exit;
                 setDirection(false);
             }
-            case PHASE_C_FIRST_REVERSED -> {nextNode = phaseC2First;
+            case PHASE_C_FIRST_REVERSED -> {
+                nextNode = phaseC2First;
                 setDirection(false);
                 setReversed(true);
             }
-            case PHASE_C_LAST_REVERSED -> {nextNode = phaseC2Exit;
+            case PHASE_C_LAST_REVERSED -> {
+                nextNode = phaseC2Exit;
                 setDirection(false);
                 setReversed(false);
             }
@@ -260,6 +265,7 @@ public class Player extends Entity {
     public void setPosition(Node<Box> position) {
         this.position = position;
     }
+
     public void setRenderPos(float x, float y){
         this.x = x;
         this.y = y-45;
