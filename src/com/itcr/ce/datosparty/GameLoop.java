@@ -79,13 +79,14 @@ public class GameLoop implements Runnable {
      */
     private void init(){
 
-
         display = new Display(title, width, height);
         display.getFrame().addKeyListener(keyManager);
         display.getFrame().addMouseListener(mouseManager);
         display.getFrame().addMouseMotionListener(mouseManager);
         display.getCanvas().addMouseListener(mouseManager);
         display.getCanvas().addMouseMotionListener(mouseManager);
+
+
         Assets.init();
 
         board = new Board();
@@ -105,7 +106,7 @@ public class GameLoop implements Runnable {
 
     }
 
-    private void tick() {
+    private void tick() throws InterruptedException {
 
         keyManager.tick();
         if (State.getState() != null)
@@ -153,7 +154,11 @@ public class GameLoop implements Runnable {
             lastTime = now;
 
             if (delta >= 1) {
-                tick();
+                try {
+                    tick();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 render();
                 ticks++;
                 delta--;

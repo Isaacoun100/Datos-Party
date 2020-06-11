@@ -11,15 +11,15 @@ public class Assets {
                                 endGamePodium2, endGamePodium3, playerSelectionTitle, loginWallpaper, roundWallpaper,
                                 selectionWallpaper;
 
-    public static BufferedImage[] settingsButton, playButton, creditsButton,backButton, titleImage,pressEnterImage,
-                                  notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, upArrow,
-                                  downArrow, leftArrow, rightArrow, player1Button, player2Button, duel, stealCoins,
-                                  giveCoins, loseStar, win2Stars, win5Stars, stealStar, teleport, swapPlace,
+    public static BufferedImage[] settingsButton, playButton, creditsButton, backButton, titleImage, pressEnterImage,
+                                  notOKComputer,  notOKComputerIcon,  nothingHereMessage,  boton1,  diceButton,
+                                  upArrow, downArrow, leftArrow, rightArrow,  player1Button, player2Button, duel,
+                                  stealCoins, giveCoins, loseStar, win2Stars, win5Stars, stealStar, teleport, swapPlace,
                                   player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp, volumeDown,
                                   gameMusic, soundEffects, starPurchaseBackDrop, yesBtn, noBtn, purchaseMsg, buyMsg,
                                   endTurnBtn, coin, star, noviceButton, proButton, eliteButton, roundTitle, okBtn,
                                   stealCoins1, stealCoins2, stealCoins3, stealCoins4, titanCard, ghostCard, koichiCard,
-                                  samCard, tuxCard, backCard, checkButton,congratulationsTitle, twoPlayerAnim,
+                                  samCard, tuxCard, backCard, checkButton, congratulationsTitle, twoPlayerAnim,
                                   threePlayerAnim, fourPlayerAnim, firstPlaceAnim, lastPlaceAnim;
 
     public static Font bitArtFont, retroComputer, threeDventure, upHeavett, pixelInversions;
@@ -400,6 +400,24 @@ public class Assets {
         congratulationsTitle[3] = sheet.crop(0,19,17,2);
 
         playerSelectionTitle = sheet.crop(6,13,10,2);
+
+        redSelectorL = sheet.crop(20,24,1,2);
+        redSelectorR = sheet.crop(21,24,1,2);
+
+        blueSelectorL =  sheet.crop(22,24,1,2);
+        blueSelectorR = sheet.crop(23,24,1,2);
+
+        yellowSelectorL = sheet.crop(24,24,1,2);
+        yellowSelectorR = sheet.crop(25,24,1,2);
+
+        greenSelectorL = sheet.crop(26,24,1,2);
+        greenSelectorR = sheet.crop(27,24,1,2);
+
+        paintgun1 = sheet.crop(19,19,1,2);
+        paintgun2 = sheet.crop(18,19,1,2);
+        paintgun3 = sheet.crop(19,17,1,2);
+        paintgun4 = sheet.crop(18,17,1,2);
+
 
         bitArtFont = FontLoader.loadFont("res/fonts/windows_command_prompt.ttf");
         retroComputer = FontLoader.loadFont("res/fonts/retro_computer_personal_use.ttf");
