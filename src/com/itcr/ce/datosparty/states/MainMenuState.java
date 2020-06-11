@@ -23,20 +23,20 @@ public class MainMenuState extends State{
 
         uiManager = new UIManager(handler);
 
-            uiManager.addObject(new UIBackground(Assets.loginWallpaper, "wp"));
+        uiManager.addObject(new UIBackground(Assets.loginWallpaper, "wp"));
 
-            titleAnimation = new Animation(500, Assets.titleImage);
+        titleAnimation = new Animation(500, Assets.titleImage);
 
-            uiManager.addObject(new UIAnimatedImage((width/2)-39,height/6,40*2,6*2,titleAnimation,"titleAnimation"));
+        uiManager.addObject(new UIAnimatedImage((width/2)-39,height/6,40*2,6*2,titleAnimation,"titleAnimation"));
 
-            uiManager.addObject(new UIImageButton((width/2)-4, (height/2), 9, 3, Assets.playButton,"playBtn",
-                    () -> State.setState(GameLoop.selectRoundState)));
+        uiManager.addObject(new UIImageButton((width/2)-4, (height/2), 9, 3, Assets.playButton,"playBtn",
+                () -> State.setState(GameLoop.selectRoundState)));
 
-            uiManager.addObject(new UIImageButton((width/2)-7, (height/2)+3, 15, 3, Assets.settingsButton,"settingsBtn",
-                    () -> State.setState(GameLoop.optionsState)));
+        uiManager.addObject(new UIImageButton((width/2)-7, (height/2)+3, 15, 3, Assets.settingsButton,"settingsBtn",
+                () -> State.setState(GameLoop.optionsState)));
 
-            uiManager.addObject(new UIImageButton((width/2)-7, (height/2)+6, 15, 3, Assets.creditsButtonMenu,"creditsBtn",
-                    () -> State.setState(GameLoop.creditsState)));
+        uiManager.addObject(new UIImageButton((width/2)-7, (height/2)+6, 15, 3, Assets.creditsButtonMenu,"creditsBtn",
+                () -> State.setState(GameLoop.creditsState)));
 
     }
 
