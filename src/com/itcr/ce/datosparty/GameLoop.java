@@ -4,12 +4,13 @@ import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
 import com.itcr.ce.datosparty.input.MouseManager;
 import com.itcr.ce.datosparty.input.KeyManager;
 import com.itcr.ce.datosparty.display.Display;
-import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.logic.Board;
+import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.states.*;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+
 
 
 /**
