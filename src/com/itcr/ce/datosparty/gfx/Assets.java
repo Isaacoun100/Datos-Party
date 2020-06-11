@@ -7,9 +7,11 @@ public class Assets {
 
     public static BufferedImage blueBox,greenBox,yellowBox,redBox, player1Static, player2Static, player3Static,
                                 player4Static, starSeller, noCoinsMsg, enoughCoins, mapGuide, eventBackDrop,
-                                eventBackDropBad, getEventBackDropSpecial, secondPLaceImg, thirdPlaceImg,
+                                eventBackDropBad, getEventBackDropSpecial, secondPLaceImg, thirdPlaceImg,paintgun1,
                                 endGamePodium2, endGamePodium3, playerSelectionTitle, loginWallpaper, roundWallpaper,
-                                selectionWallpaper;
+                                selectionWallpaper, redSelectorL, redSelectorR, blueSelectorL, blueSelectorR,
+                                yellowSelectorL,yellowSelectorR, greenSelectorL, paintgun4,paintgun3, paintgun2,
+                                   greenSelectorR;
 
     public static BufferedImage[] settingsButton, playButton, creditsButton, backButton, titleImage, pressEnterImage,
                                   notOKComputer,  notOKComputerIcon,  nothingHereMessage,  boton1,  diceButton,
@@ -314,29 +316,29 @@ public class Assets {
         swapPlace[4] = sheet.crop(25,10,2,2);
         swapPlace[5] = sheet.crop(27,10,2,2);
 
-        titanCard = new BufferedImage[10];
+        titanCard = new BufferedImage[2];
         titanCard[0] = buttonSheet.crop(0,22,4,6);
-        titanCard[1] = buttonSheet.crop(19,22,3,6);
-        titanCard[2] = buttonSheet.crop(22,22,2,6);
-        titanCard[3] = buttonSheet.crop(24,22,1,6);
-        titanCard[4] = buttonSheet.crop(25,22,1,6);
-        titanCard[5] = buttonSheet.crop(31,28,1,6);
-        titanCard[6] = buttonSheet.crop(32,28,1,6);
-        titanCard[7] = buttonSheet.crop(33,28,2,6);
-        titanCard[8] = buttonSheet.crop(35,28,3,6);
-        titanCard[9] = buttonSheet.crop(27,28,4,6);
+        titanCard[1] = buttonSheet.crop(19,22,4,6);
 
-        ghostCard = new BufferedImage[10];
+        ghostCard = new BufferedImage[2];
         ghostCard[0] = buttonSheet.crop(4,22,4,6);
-        ghostCard[1] = buttonSheet.crop(26,9,3,6);
-        ghostCard[2] = buttonSheet.crop(29,9,2,6);
-        ghostCard[3] = buttonSheet.crop(31,9,1,6);
-        ghostCard[4] = buttonSheet.crop(32,9,1,6);
-        ghostCard[5] = buttonSheet.crop(31,28,1,6);
-        ghostCard[6] = buttonSheet.crop(32,28,1,6);
-        ghostCard[7] = buttonSheet.crop(33,28,2,6);
-        ghostCard[8] = buttonSheet.crop(35,28,3,6);
-        ghostCard[9] = buttonSheet.crop(27,28,4,6);
+        ghostCard[1] = buttonSheet.crop(23,22,4,6);
+
+        ghostCard = new BufferedImage[2];
+        ghostCard[0] = buttonSheet.crop(4,22,4,6);
+        ghostCard[1] = buttonSheet.crop(23,22,4,6);
+
+        koichiCard = new BufferedImage[2];
+        koichiCard[0] = buttonSheet.crop(8,22,4,6);
+        koichiCard[1] = buttonSheet.crop(27,22,4,6);
+
+        samCard = new BufferedImage[2];
+        samCard[0] = buttonSheet.crop(0,28,4,6);
+        samCard[1] = buttonSheet.crop(19,28,4,6);
+
+        tuxCard = new BufferedImage[2];
+        tuxCard[0] = buttonSheet.crop(4,28,4,6);
+        tuxCard[1] = buttonSheet.crop(23,28,4,6);
 
         stealCoins1 = new BufferedImage[2];
         stealCoins1[0] = sheet.crop(2,11,1,2);
@@ -344,7 +346,7 @@ public class Assets {
 
         backCard = new BufferedImage[2];
         backCard[0]= buttonSheet.crop(27,28,4,6);
-        backCard[0]= buttonSheet.crop(8,28,4,6);
+        backCard[1]= buttonSheet.crop(8,28,4,6);
 
         stealCoins2 = new BufferedImage[2];
         stealCoins2[0] = sheet.crop(3,11,1,2);
@@ -374,6 +376,10 @@ public class Assets {
         twoPlayerAnim = new BufferedImage[2];
         twoPlayerAnim[0] = sheet.crop(36,10,2,2);
         twoPlayerAnim[1] = sheet.crop(38,10,2,2);
+
+        checkButton = new BufferedImage[2];
+        checkButton[0] = buttonSheet.crop(14,18,3,3);
+        checkButton[1] = buttonSheet.crop(33,18,3,3);
 
         threePlayerAnim = new BufferedImage[3];
         threePlayerAnim[0] = sheet.crop(31,12,3,2);
