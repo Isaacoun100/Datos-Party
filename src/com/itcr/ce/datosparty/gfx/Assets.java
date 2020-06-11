@@ -8,7 +8,8 @@ public class Assets {
     public static BufferedImage blueBox,greenBox,yellowBox,redBox, player1Static, player2Static, player3Static,
                                 player4Static, starSeller, noCoinsMsg, enoughCoins, mapGuide, eventBackDrop,
                                 eventBackDropBad, getEventBackDropSpecial, secondPLaceImg, thirdPlaceImg,
-                                endGamePodium2, endGamePodium3, playerSelectionTitle, loginWallpaper;
+                                endGamePodium2, endGamePodium3, playerSelectionTitle, loginWallpaper, roundWallpaper,
+                                selectionWallpaper;
 
     public static BufferedImage[] settingsButton, playButton, creditsButton,backButton, titleImage,pressEnterImage,
                                   notOKComputer, notOKComputerIcon, nothingHereMessage, boton1, diceButton, upArrow,
@@ -292,7 +293,6 @@ public class Assets {
         stealStar[9] = sheet.crop(8,9,1,1);
 
         teleport = new BufferedImage[12];
-
         teleport[0] = sheet.crop(17,12,1,2);
         teleport[1] = sheet.crop(18,12,1,2);
         teleport[2] = sheet.crop(19,12,1,2);
@@ -307,7 +307,6 @@ public class Assets {
         teleport[11] = sheet.crop(28,12,1,2);
 
         swapPlace = new BufferedImage[6];
-
         swapPlace[0] = sheet.crop(17,10,2,2);
         swapPlace[1] = sheet.crop(19,10,2,2);
         swapPlace[2] = sheet.crop(21,10,2,2);
@@ -315,9 +314,37 @@ public class Assets {
         swapPlace[4] = sheet.crop(25,10,2,2);
         swapPlace[5] = sheet.crop(27,10,2,2);
 
+        titanCard = new BufferedImage[10];
+        titanCard[0] = buttonSheet.crop(0,22,4,6);
+        titanCard[1] = buttonSheet.crop(19,22,3,6);
+        titanCard[2] = buttonSheet.crop(22,22,2,6);
+        titanCard[3] = buttonSheet.crop(24,22,1,6);
+        titanCard[4] = buttonSheet.crop(25,22,1,6);
+        titanCard[5] = buttonSheet.crop(31,28,1,6);
+        titanCard[6] = buttonSheet.crop(32,28,1,6);
+        titanCard[7] = buttonSheet.crop(33,28,2,6);
+        titanCard[8] = buttonSheet.crop(35,28,3,6);
+        titanCard[9] = buttonSheet.crop(27,28,4,6);
+
+        ghostCard = new BufferedImage[10];
+        ghostCard[0] = buttonSheet.crop(4,22,4,6);
+        ghostCard[1] = buttonSheet.crop(26,9,3,6);
+        ghostCard[2] = buttonSheet.crop(29,9,2,6);
+        ghostCard[3] = buttonSheet.crop(31,9,1,6);
+        ghostCard[4] = buttonSheet.crop(32,9,1,6);
+        ghostCard[5] = buttonSheet.crop(31,28,1,6);
+        ghostCard[6] = buttonSheet.crop(32,28,1,6);
+        ghostCard[7] = buttonSheet.crop(33,28,2,6);
+        ghostCard[8] = buttonSheet.crop(35,28,3,6);
+        ghostCard[9] = buttonSheet.crop(27,28,4,6);
+
         stealCoins1 = new BufferedImage[2];
         stealCoins1[0] = sheet.crop(2,11,1,2);
         stealCoins1[1] = sheet.crop(4,11,1,2);
+
+        backCard = new BufferedImage[2];
+        backCard[0]= buttonSheet.crop(27,28,4,6);
+        backCard[0]= buttonSheet.crop(8,28,4,6);
 
         stealCoins2 = new BufferedImage[2];
         stealCoins2[0] = sheet.crop(3,11,1,2);
@@ -363,6 +390,8 @@ public class Assets {
         endGamePodium3 = sheet.crop(34,16,6,3);
 
         loginWallpaper= ImageLoader.loadImage("/textures/LoginWallpaper.png");
+        roundWallpaper= ImageLoader.loadImage("/textures/RoundWallpaper.png");
+        selectionWallpaper= ImageLoader.loadImage("/textures/SelectionWallpaper.png");
 
         congratulationsTitle = new BufferedImage[4];
         congratulationsTitle[0] = sheet.crop(0,17,17,2);
