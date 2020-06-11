@@ -1,30 +1,36 @@
 package com.itcr.ce.datosparty.gfx;
 
+import com.itcr.ce.datosparty.dataStructures.lists.CircularList;
+import com.itcr.ce.datosparty.dataStructures.lists.DoublyList;
+import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
+import com.itcr.ce.datosparty.dataStructures.nodes.Node;
+
 import java.awt.image.BufferedImage;
 
-public class Animation {
+public class ReverseAnimation {
     private final int speed;
     private int index;
     private long lastTime, timer;
     BufferedImage[] frames;
 
-    public Animation(int speed, BufferedImage[] frames){
+    public ReverseAnimation(int speed, BufferedImage[] frames){
         this.speed = speed;
         this.frames = frames;
-        index = 0;
+        index = frames.length-1;
         timer = 0;
         lastTime = System.currentTimeMillis();
     }
 
     public void tick(){
+
         timer += System.currentTimeMillis() - lastTime;
         lastTime = System.currentTimeMillis();
 
         if(timer > speed){
-            index++;
+            index--;
             timer = 0;
-            if(index >= frames.length){
-                index = 0;
+            if(index == 0){
+                index = frames.length-1;
             }
         }
     }
@@ -32,4 +38,6 @@ public class Animation {
     public BufferedImage getCurrentFrame(){
         return frames[index];
     }
+
 }
+

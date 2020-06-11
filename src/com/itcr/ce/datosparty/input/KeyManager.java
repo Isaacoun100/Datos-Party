@@ -5,8 +5,7 @@ import java.awt.event.KeyListener;
 
 public class KeyManager implements KeyListener {
 
-    // remember to change to Gabo's data structures
-    private boolean[] keys;
+    private final boolean[] keys;
     public boolean enter, esc, space;
 
     public KeyManager(){

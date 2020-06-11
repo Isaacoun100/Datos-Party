@@ -11,6 +11,7 @@ import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.entities.boxes.Box;
 import com.itcr.ce.datosparty.gfx.Animation;
 import com.itcr.ce.datosparty.gfx.Assets;
+import com.itcr.ce.datosparty.gfx.ReverseAnimation;
 import com.itcr.ce.datosparty.logic.*;
 import com.itcr.ce.datosparty.logic.Event;
 import com.itcr.ce.datosparty.music.SoundEffect;
@@ -66,7 +67,7 @@ public class GameState extends State{
         }
         currentPlayerNode = playerList.getHead();
 
-        Animation star = new Animation(200, Assets.star);
+        ReverseAnimation star = new ReverseAnimation(200, Assets.star);
         Animation coin = new Animation(200, Assets.coin);
         Animation duel = new Animation(200,Assets.duel);
         Animation stealCoins = new Animation(200,Assets.stealCoins);

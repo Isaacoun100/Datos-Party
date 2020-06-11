@@ -1,7 +1,6 @@
 package com.itcr.ce.datosparty.minigames.states;
 
 import com.itcr.ce.datosparty.logic.Game;
-import com.itcr.ce.datosparty.minigames.ui.EighthMinigameUI;
 import com.itcr.ce.datosparty.userInterface.ClickListener;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
@@ -12,59 +11,193 @@ import com.itcr.ce.datosparty.Handler;
 import java.awt.*;
 
 public class EighthMinigameState extends State {
-    private UIManager uiManager;
+
+    private UIManager MemoryUI;
+    private String done = "";
+    private boolean active=true;
 
     public EighthMinigameState(Handler handler, int numPlayers, Game game) {
         super(handler);
-        uiManager = new EighthMinigameUI(handler);
+        MemoryUI = new UIManager(handler);
 
-        if(numPlayers <= 1){
-            uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player1Button,"player1Btn", new ClickListener() {
-                @Override
-                public void onClick() {
-                    System.out.println("1");
+        MemoryUI.addObject(new UIImageButton(6, 10, 4*4, 6*4, Assets.backCard,"ghostCard1", new ClickListener() {
+            @Override
+            public void onClick() {
+                if(done.length()>0){
+                    if(done.charAt(0)!='g' && active){
+                        done+="g";
+                    }
                 }
-            }));
-        }
+                else{
+                    done+="g";
+                }
+            }}));
 
-        if(numPlayers<=2){
-            uiManager.addObject(new UIImageButton(30, 1, 7*2, 2*2, Assets.player2Button,"player2Btn", new ClickListener() {
-                @Override
-                public void onClick() {
-                    System.out.println("2");
+        MemoryUI.addObject(new UIImageButton(6, 39, 4*4, 6*4, Assets.backCard,"ghostCard2", new ClickListener() {
+            @Override
+            public void onClick() {
+                if(done.length()>0){
+                    if(done.charAt(0)!='G' && active){
+                        done+="G";
+                    }
                 }
-            }));
-        }
+                else{
+                    done+="G";
+                }
+            }}));
 
-        if(numPlayers<=3){
-            uiManager.addObject(new UIImageButton(1, 30, 7*2, 2*2, Assets.player3Button,"player3Btn", new ClickListener() {
-                @Override
-                public void onClick() {
-                    System.out.println("3");
+        MemoryUI.addObject(new UIImageButton(24, 10, 4*4, 6*4, Assets.backCard,"titanCard1", new ClickListener() {
+            @Override
+            public void onClick() {
+                if(done.length()>0){
+                    if(done.charAt(0)!='t' && active){
+                        done+="t";
+                    }
                 }
-            }));
-        }
+                else{
+                    done+="t";
+                }
+            }}));
 
-        if(numPlayers<=4){
-            uiManager.addObject(new UIImageButton(30, 30, 7*2, 2*2, Assets.player4Button,"player4Btn", new ClickListener() {
-                @Override
-                public void onClick() {
-                    System.out.println("4");
+        MemoryUI.addObject(new UIImageButton(24, 39, 4*4, 6*4, Assets.backCard,"titanCard2", new ClickListener() {
+            @Override
+            public void onClick() {
+                if(done.length()>0){
+                    if(done.charAt(0)!='T' && active){
+                        done+="T";
+                    }
                 }
-            }));
-        }
+                else{
+                    done+="T";
+                }
+            }}));
+
+        MemoryUI.addObject(new UIImageButton(42, 10, 4*4, 6*4, Assets.backCard,"koichiCard1", new ClickListener() {
+            @Override
+            public void onClick() {
+                if(done.length()>0){
+                    if(done.charAt(0)!='k' && active){
+                        done+="k";
+                    }
+                }
+                else{
+                    done+="k";
+                }
+            }}));
+
+        MemoryUI.addObject(new UIImageButton(42, 39, 4*4, 6*4, Assets.backCard,"koichiCard2", new ClickListener() {
+            @Override
+            public void onClick() {
+                if(done.length()>0){
+                    if(done.charAt(0)!='K' && active){
+                        done+="K";
+                    }
+                }
+                else{
+                    done+="K";
+                }
+            }}));
+
+        MemoryUI.addObject(new UIImageButton(60, 10, 4*4, 6*4, Assets.backCard,"samCard1", new ClickListener() {
+            @Override
+            public void onClick() {
+                if(done.length()>0){
+                    if(done.charAt(0)!='s' && active){
+                        done+="s";
+                    }
+                }
+                else{
+                    done+="s";
+                }
+            }}));
+
+        MemoryUI.addObject(new UIImageButton(60, 39, 4*4, 6*4, Assets.backCard,"samCard2", new ClickListener() {
+            @Override
+            public void onClick() {
+                if(done.length()>0){
+                    if(done.charAt(0)!='S' && active){
+                        done+="S";
+                    }
+                }
+                else{
+                    done+="S";
+                }
+            }}));
+
+        MemoryUI.addObject(new UIImageButton(78, 10, 4*4, 6*4, Assets.backCard,"tuxCard1", new ClickListener() {
+            @Override
+            public void onClick() {
+                if(done.length()>0){
+                    if(done.charAt(0)!='x' && active){
+                        done+="x";
+                    }
+                }
+                else{
+                    done+="x";
+                }
+            }}));
+
+        MemoryUI.addObject(new UIImageButton(78, 39, 4*4, 6*4, Assets.backCard,"tuxCard2", new ClickListener() {
+            @Override
+            public void onClick() {
+                if(done.length()>0){
+                    if(done.charAt(0)!='X' && active){
+                        done+="X";
+                    }
+                }
+                else{
+                    done+="X";
+                }
+            }}));
+
+        MemoryUI.addObject(new UIImageButton(1, 1, 3*3, 3*3, Assets.checkButton,"checkButton", new ClickListener() {
+            @Override
+            public void onClick() {
+                if(!active){
+                    done=done.toUpperCase();
+
+                    if(done.charAt(0)==done.charAt(1)){
+                        System.out.println("Nice job");
+                    }
+
+                    else{
+                        System.out.println("Ups try again");
+                    }
+
+                    System.out.println(done);
+                    active=true;
+                    done="";
+                }
+            }}));
 
     }
 
     @Override
     public void tick() {
-        handler.getMouseManager().setUiManager(uiManager);
-        uiManager.tick();
+        handler.getMouseManager().setUiManager(MemoryUI);
+        MemoryUI.tick();
     }
 
     @Override
     public void render(Graphics g) {
-        uiManager.renderAll(g);
+
+        if(done.length()==2){
+            MemoryUI.renderById(g,"checkButton");
+            active=false;
+        }
+        else{
+            MemoryUI.renderById(g,"ghostCard1");
+            MemoryUI.renderById(g,"ghostCard2");
+            MemoryUI.renderById(g,"titanCard1");
+            MemoryUI.renderById(g,"titanCard2");
+            MemoryUI.renderById(g,"koichiCard1");
+            MemoryUI.renderById(g,"koichiCard2");
+            MemoryUI.renderById(g,"samCard1");
+            MemoryUI.renderById(g,"samCard2");
+            MemoryUI.renderById(g,"tuxCard1");
+            MemoryUI.renderById(g,"tuxCard2");
+        }
+
     }
 
 }

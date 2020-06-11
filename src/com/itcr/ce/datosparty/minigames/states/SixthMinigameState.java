@@ -2,7 +2,6 @@ package com.itcr.ce.datosparty.minigames.states;
 
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.logic.Game;
-import com.itcr.ce.datosparty.minigames.ui.SixthMinigameUI;
 import com.itcr.ce.datosparty.userInterface.ClickListener;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
@@ -17,7 +16,7 @@ public class SixthMinigameState extends State {
 
     public SixthMinigameState(Handler handler, int numPlayers, Game game) {
         super(handler);
-        uiManager = new SixthMinigameUI(handler);
+        uiManager = new UIManager(handler);
 
 
         if(numPlayers>=1){

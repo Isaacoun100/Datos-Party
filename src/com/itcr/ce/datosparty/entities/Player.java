@@ -28,6 +28,15 @@ public class Player extends Entity {
     private Boolean currentTurn = false;
     private Boolean boxAction = false;
     private Boolean throwDice = false;
+    private int hp = 0;
+
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
 
     public Player(String name, float x, float y, BufferedImage image) {
         super(x, y, 80, 120);

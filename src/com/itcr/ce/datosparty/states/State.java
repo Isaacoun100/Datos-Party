@@ -29,7 +29,7 @@ public abstract class State {
     /**
      * Use this method for code that requires something to be checked each "tick"
      */
-    public abstract void tick();
+    public abstract void tick() throws InterruptedException;
 
     /**
      * Use this method to render any graphics in our state

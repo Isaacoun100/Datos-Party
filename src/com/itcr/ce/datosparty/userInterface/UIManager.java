@@ -91,7 +91,15 @@ public class UIManager {
         o.y = y;
     }
 
-    public void removeObject(UIObject o){
-        uiObjects.getIndexByData(o);
+    public void removeObject(String id){
+        int index = retrieveIndexByID(id);
+        uiObjects.remove(index);
+    }
+
+    public void makeTop(String id){
+        int index = retrieveIndexByID(id);
+        Node<UIObject> top = uiObjects.getHead();
+        Node<UIObject> newTop = uiObjects.get(index);
+        uiObjects.swap(top,newTop);
     }
 }

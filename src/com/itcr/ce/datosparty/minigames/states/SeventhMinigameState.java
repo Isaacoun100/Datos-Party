@@ -1,7 +1,6 @@
 package com.itcr.ce.datosparty.minigames.states;
 
 import com.itcr.ce.datosparty.logic.Game;
-import com.itcr.ce.datosparty.minigames.ui.SeventhMinigameUI;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.ClickListener;
 import com.itcr.ce.datosparty.userInterface.UIManager;
@@ -12,12 +11,12 @@ import com.itcr.ce.datosparty.Handler;
 import java.awt.*;
 
 public class SeventhMinigameState extends State {
-    private UIManager uiManager;
+    private final UIManager uiManager;
     private int numPlayers;
 
     public SeventhMinigameState(Handler handler, int numPlayers, Game game) {
         super(handler);
-        uiManager = new SeventhMinigameUI(handler);
+        uiManager = new UIManager(handler);
 
         if(numPlayers>=1){
             uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player1Button,"player1Btn", new ClickListener() {

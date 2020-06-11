@@ -2,14 +2,13 @@ package com.itcr.ce.datosparty.minigames.states;
 
 import com.itcr.ce.datosparty.gfx.Animation;
 import com.itcr.ce.datosparty.input.KeyManager;
+import com.itcr.ce.datosparty.Handler;
+import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.logic.Game;
-import com.itcr.ce.datosparty.minigames.ui.ThirdMinigameUI;
+import com.itcr.ce.datosparty.states.State;
 import com.itcr.ce.datosparty.userInterface.UIAnimatedImage;
 import com.itcr.ce.datosparty.userInterface.UIImage;
 import com.itcr.ce.datosparty.userInterface.UIManager;
-import com.itcr.ce.datosparty.states.State;
-import com.itcr.ce.datosparty.gfx.Assets;
-import com.itcr.ce.datosparty.Handler;
 
 import java.awt.*;
 
@@ -28,7 +27,7 @@ public class ThirdMinigameState extends State {
 
         Animation startbomb =  new Animation(500, Assets.bomb1);
 
-        uiManager = new ThirdMinigameUI(handler);
+        uiManager = new UIManager(handler);
 
         uiManager.addObject(new UIImage(20, 20, 4, 4 * 2, Assets.player1Static,"player1Image"));
 
