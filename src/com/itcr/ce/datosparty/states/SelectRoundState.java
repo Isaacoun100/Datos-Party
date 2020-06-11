@@ -9,8 +9,7 @@ import java.awt.*;
 
 public class SelectRoundState extends State {
 
-    private final UIManager selectRoundUI
-            ;
+    private final UIManager selectRoundUI;
     public static int round;
 
     public static int getRound() {
@@ -22,11 +21,13 @@ public class SelectRoundState extends State {
 
         selectRoundUI = new UIManager(handler);
 
+        selectRoundUI.addObject(new UIBackground(Assets.roundWallpaper, "wp"));
+
         selectRoundUI.addObject(new SingleUIImage(29,5,12*4,6*4,Assets.roundTitle,"roundTitle"));
 
         selectRoundUI.addObject(new UIImageButton(4, 40, 7*4, 2*4, Assets.noviceButton,"noviceBtn", () -> {
 
-            round=1;
+            round=5;
             State.setState(GameLoop.selectPlayerState);
 
         }));
