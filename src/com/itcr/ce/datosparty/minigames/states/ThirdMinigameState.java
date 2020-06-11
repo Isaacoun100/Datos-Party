@@ -1,6 +1,7 @@
 package com.itcr.ce.datosparty.minigames.states;
 
 import com.itcr.ce.datosparty.gfx.Animation;
+import com.itcr.ce.datosparty.input.KeyManager;
 import com.itcr.ce.datosparty.logic.Game;
 import com.itcr.ce.datosparty.minigames.ui.ThirdMinigameUI;
 import com.itcr.ce.datosparty.userInterface.UIAnimatedImage;
@@ -18,9 +19,12 @@ public class ThirdMinigameState extends State {
     private int bombX = 24 * 16;
     private int bombY = 20 * 16;
     private boolean reverseX = true;
+    private KeyManager keys;
 
     public ThirdMinigameState(Handler handler, int numPlayers, Game game) {
         super(handler);
+
+        this.keys = handler.getKeyManager();
 
         Animation startbomb =  new Animation(500, Assets.bomb1);
 
@@ -47,11 +51,12 @@ public class ThirdMinigameState extends State {
     public void tick() {
         handler.getMouseManager().setUiManager(uiManager);
         uiManager.tick();
-        if (!reverseX) {
-            moveRight();
-        } else {
-            moveLeft();
+        if (keys.space && (bombX == 384 || bombX > 863)) {
+            System.out.println("test");
+            changeDirection();
         }
+        moveRight();
+        moveLeft();
     }
 
     @Override
@@ -61,19 +66,19 @@ public class ThirdMinigameState extends State {
     }
 
     public void moveRight() {
-        if (bombX < 990-(8*16) && !reverseX) {
+        if (bombX < 990-(8*16) && !reverseX) { //862
             bombX += 10;
-        } else {
-            reverseX = true;
         }
     }
 
     public void moveLeft() {
-        if (bombX > 24 * 16 && reverseX) {
+        if (bombX > 24 * 16 && reverseX) { //384
             bombX -= 10;
-        } else {
-            reverseX = false;
         }
+    }
+
+    public void changeDirection() {
+        reverseX = !reverseX;
     }
 
 }
