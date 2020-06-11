@@ -33,15 +33,17 @@ public class DefineOrder {
         while(playerCount>0){
 
             playerName = JOptionPane.showInputDialog(null, "Player "+ playerCount + " name");
+
             if(playerName==null || playerName.length() == 0){
 
                 playerName="Player "+playerCount;
 
             }
-
-            newPlayer = new TemporalPlayer(playerName, lockDice());
-            this.addNewTemporal(newPlayer);
-            playerCount--;
+            if(playerName.length()<=8){
+                newPlayer = new TemporalPlayer(playerName, lockDice());
+                this.addNewTemporal(newPlayer);
+                playerCount--;
+            }
         }
 
     }
