@@ -1,7 +1,9 @@
 package com.itcr.ce.datosparty.minigames.states;
 
+import com.itcr.ce.datosparty.gfx.Animation;
 import com.itcr.ce.datosparty.logic.Game;
 import com.itcr.ce.datosparty.userInterface.ClickListener;
+import com.itcr.ce.datosparty.userInterface.UIAnimatedImage;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
 import com.itcr.ce.datosparty.states.State;
@@ -14,6 +16,7 @@ public class EighthMinigameState extends State {
 
     private UIManager MemoryUI;
     private String done = "";
+    private Animation card;
     private boolean active=true;
 
     public EighthMinigameState(Handler handler, int numPlayers, Game game) {
@@ -170,6 +173,9 @@ public class EighthMinigameState extends State {
                 }
             }}));
 
+        card = new Animation(500, Assets.titanCard);
+        MemoryUI.addObject(new UIAnimatedImage((float)6,(float)10,4*4,6*4,card,"titanCard"));
+
     }
 
     @Override
@@ -186,6 +192,7 @@ public class EighthMinigameState extends State {
             active=false;
         }
         else{
+            MemoryUI.renderById(g,"titanCard");
             MemoryUI.renderById(g,"ghostCard1");
             MemoryUI.renderById(g,"ghostCard2");
             MemoryUI.renderById(g,"titanCard1");
