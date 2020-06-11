@@ -11,7 +11,7 @@ public class Assets {
                                 endGamePodium2, endGamePodium3, playerSelectionTitle, loginWallpaper, roundWallpaper,
                                 selectionWallpaper, redSelectorL, redSelectorR, blueSelectorL, blueSelectorR,
                                 yellowSelectorL,yellowSelectorR, greenSelectorL, paintgun4,paintgun3, paintgun2,
-                                   greenSelectorR;
+                                greenSelectorR, memoryWallpaper;
 
     public static BufferedImage[] settingsButton, playButton, creditsButton, backButton, titleImage, pressEnterImage,
                                   notOKComputer,  notOKComputerIcon,  nothingHereMessage,  boton1,  diceButton,
@@ -398,6 +398,7 @@ public class Assets {
         loginWallpaper= ImageLoader.loadImage("/textures/LoginWallpaper.png");
         roundWallpaper= ImageLoader.loadImage("/textures/RoundWallpaper.png");
         selectionWallpaper= ImageLoader.loadImage("/textures/SelectionWallpaper.png");
+        memoryWallpaper = ImageLoader.loadImage("/textures/MemoryWallpaper.png");
 
         congratulationsTitle = new BufferedImage[4];
         congratulationsTitle[0] = sheet.crop(0,17,17,2);
