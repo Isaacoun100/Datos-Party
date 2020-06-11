@@ -12,8 +12,16 @@ public class MemoryList {
         return coords.getHead();
     }
 
+    public static int[] getCoords(int node){
+        return coords.get(node).getData();
+    }
+
     public static void initCoords() {
         coords = new SinglyList<>();
+    }
+
+    public static void shuffle(){
+        coords.clear();
         int count;
         count=1;
 
@@ -23,10 +31,10 @@ public class MemoryList {
         }
 
         while (count<=9){
-            int randval = Dice.roll(1,10);
+            int randval = Dice.roll(0,9);
 
             while(randval==count){
-                randval = Dice.roll(1,10);
+                randval = Dice.roll(0,9);
             }
 
             coords.swap(coords.get(count),coords.get(randval));
