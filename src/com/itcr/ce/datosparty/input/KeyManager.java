@@ -7,7 +7,7 @@ public class KeyManager implements KeyListener {
 
     // remember to change to Gabo's data structures
     private boolean[] keys;
-    public boolean enter, esc;
+    public boolean enter, esc, space;
 
     public KeyManager(){
         keys = new boolean[256];
@@ -16,20 +16,21 @@ public class KeyManager implements KeyListener {
     public void tick(){
         enter = keys[KeyEvent.VK_ENTER];
         esc = keys[KeyEvent.VK_ESCAPE];
+        space = keys[KeyEvent.VK_SPACE];
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        keys[e.getKeyCode()] = true;
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        keys[e.getKeyCode()] = false;
+        keys[e.getKeyCode()] = true;
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        keys[e.getKeyCode()] = false;
     }
 }
