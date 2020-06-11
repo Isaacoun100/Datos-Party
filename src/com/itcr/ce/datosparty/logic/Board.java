@@ -47,11 +47,11 @@ public class Board {
 
     }
 
-    private void pickBox(int xPos, int yPos, LinkedList<Box> mainCircuit) {
+    private void pickBox(int xPos, int yPos, LinkedList<Box> phase) {
         switch (Dice.roll(1, 3)) {
-            case 1 -> mainCircuit.add(new BlueBox(xPos, yPos, 80, 80));
-            case 2 -> mainCircuit.add(new GreenBox(xPos, yPos, 80, 80));
-            case 3 -> mainCircuit.add(new RedBox(xPos, yPos, 80, 80));
+            case 1 -> phase.add(new BlueBox(xPos, yPos, 80, 80));
+            case 2 -> phase.add(new GreenBox(xPos, yPos, 80, 80));
+            case 3 -> phase.add(new RedBox(xPos, yPos, 80, 80));
             default -> System.out.println("Something went terribly wrong");
         }
     }
