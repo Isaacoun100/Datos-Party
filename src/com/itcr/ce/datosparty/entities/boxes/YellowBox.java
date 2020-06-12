@@ -37,7 +37,7 @@ public class YellowBox extends Box {
     public void boxAction(Player player, Game game) {
         game.setCurrentEvent(game.eventStack.pop());
         switch (game.getCurrentEvent()) {
-            case DUEL -> System.out.println("DUEL"); // WIP
+            case DUEL -> eventLogic.duel();
             case STEAL_COINS -> eventLogic.pauseEvent(game);
             case GIFT_COINS -> eventLogic.giftCoins(player, game);
             case LOSE_STAR -> eventLogic.loseStar(player, game);

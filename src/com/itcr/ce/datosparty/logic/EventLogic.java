@@ -29,6 +29,10 @@ public class EventLogic {
         return randomPlayer;
     }
 
+    public void duel(Player player, Game game) {
+        pauseEvent(game);
+    }
+
     public void stealCoins(Player thief, Player victim) {
         int randomCoins = Dice.roll(1, 10);
         if (victim.getCoins() < randomCoins) {
