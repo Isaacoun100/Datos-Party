@@ -73,9 +73,9 @@ public class Game extends Thread {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Minigame.playMinigame(5);
                 try {
                     pauseGame();
+                    Minigame.playMinigame(6);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

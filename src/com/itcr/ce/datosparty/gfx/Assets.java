@@ -12,7 +12,93 @@ public class Assets {
                                 selectionWallpaper, redSelectorL, redSelectorR, blueSelectorL, blueSelectorR,
                                 yellowSelectorL,yellowSelectorR, greenSelectorL, paintgun4,paintgun3, paintgun2,
                                 greenSelectorR, memoryWallpaper;
+                                eventBackDropBad, getEventBackDropSpecial, secondPLaceImg, thirdPlaceImg,
+                                endGamePodium2, endGamePodium3, playerSelectionTitle, loginWallpaper,
+                                paintgun1, paintgun2, paintgun3, paintgun4, stoneRubble, stoneStatue, paintBallLogo, stoneLogo, clickerBG, paintBallBG;
 
+
+    public static BufferedImage[] settingsButton;
+    public static BufferedImage[] playButton;
+    public static BufferedImage[] creditsButton;
+    public static BufferedImage[] backButton;
+    public static BufferedImage[] titleImage;
+    public static BufferedImage[] pressEnterImage;
+    public static BufferedImage[] notOKComputer;
+    public static BufferedImage[] notOKComputerIcon;
+    public static BufferedImage[] nothingHereMessage;
+    public static BufferedImage[] boton1;
+    public static BufferedImage[] diceButton;
+    public static BufferedImage[] upArrow;
+    public static BufferedImage[] downArrow;
+    public static BufferedImage[] leftArrow;
+    public static BufferedImage[] rightArrow;
+    public static BufferedImage[] player1Button;
+    public static BufferedImage[] player2Button;
+    public static BufferedImage[] duel;
+    public static BufferedImage[] stealCoins;
+    public static BufferedImage[] giveCoins;
+    public static BufferedImage[] loseStar;
+    public static BufferedImage[] win2Stars;
+    public static BufferedImage[] win5Stars;
+    public static BufferedImage[] stealStar;
+    public static BufferedImage[] teleport;
+    public static BufferedImage[] swapPlace;
+    public static BufferedImage[] player3Button;
+    public static BufferedImage[] player4Button;
+    public static BufferedImage[] returnButton;
+    public static BufferedImage[] creditsButtonMenu;
+    public static BufferedImage[] volumeUp;
+    public static BufferedImage[] volumeDown;
+    public static BufferedImage[] gameMusic;
+    public static BufferedImage[] soundEffects;
+    public static BufferedImage[] starPurchaseBackDrop;
+    public static BufferedImage[] yesBtn;
+    public static BufferedImage[] noBtn;
+    public static BufferedImage[] purchaseMsg;
+    public static BufferedImage[] buyMsg;
+    public static BufferedImage[] endTurnBtn;
+    public static BufferedImage[] coin;
+    public static BufferedImage[] star;
+    public static BufferedImage[] noviceButton;
+    public static BufferedImage[] proButton;
+    public static BufferedImage[] eliteButton;
+    public static BufferedImage[] roundTitle;
+    public static BufferedImage[] okBtn;
+    public static BufferedImage[] stealCoins1;
+    public static BufferedImage[] stealCoins2;
+    public static BufferedImage[] stealCoins3;
+    public static BufferedImage[] stealCoins4;
+    public static BufferedImage[] titanCard;
+    public static BufferedImage[] ghostCard;
+    public static BufferedImage[] koichiCard;
+    public static BufferedImage[] samCard;
+    public static BufferedImage[] tuxCard;
+    public static BufferedImage[] backCard;
+    public static BufferedImage[] checkButton;
+    public static BufferedImage[] congratulationsTitle;
+    public static BufferedImage[] twoPlayerAnim;
+    public static BufferedImage[] threePlayerAnim;
+    public static BufferedImage[] fourPlayerAnim;
+    public static BufferedImage[] firstPlaceAnim;
+    public static BufferedImage[] lastPlaceAnim;
+    public static BufferedImage[] damageRedR;
+    public static BufferedImage[] damageRedL;
+    public static BufferedImage[] damageBlueR;
+    public static BufferedImage[] damageBlueL;
+    public static BufferedImage[] damageYellowR;
+    public static BufferedImage[] damageYellowL;
+    public static BufferedImage[] damageGreenR;
+    public static BufferedImage[] damageGreenL;
+    public static BufferedImage[] stoneButton;
+    public static BufferedImage[] dustAnimation;
+    public static BufferedImage redSelectorR;
+    public static BufferedImage blueSelectorR;
+    public static BufferedImage greenSelectorR;
+    public static BufferedImage yellowSelectorR;
+    public static BufferedImage redSelectorL;
+    public static BufferedImage blueSelectorL;
+    public static BufferedImage greenSelectorL;
+    public static BufferedImage yellowSelectorL;
     public static BufferedImage[] settingsButton, playButton, creditsButton, backButton, titleImage, pressEnterImage,
                                   notOKComputer,  notOKComputerIcon,  nothingHereMessage,  boton1,  diceButton,
                                   upArrow, downArrow, leftArrow, rightArrow,  player1Button, player2Button, duel,
@@ -24,7 +110,7 @@ public class Assets {
                                   samCard, tuxCard, backCard, checkButton, congratulationsTitle, twoPlayerAnim,
                                   threePlayerAnim, fourPlayerAnim, firstPlaceAnim, lastPlaceAnim;
 
-    public static Font bitArtFont, retroComputer, threeDventure, upHeavett, pixelInversions;
+    public static Font bitArtFont, retroComputer, threeDventure, upHeavett, pixelInversions, astalemtim, fourB30;
 
 
 
@@ -399,6 +485,8 @@ public class Assets {
         roundWallpaper= ImageLoader.loadImage("/textures/RoundWallpaper.png");
         selectionWallpaper= ImageLoader.loadImage("/textures/SelectionWallpaper.png");
         memoryWallpaper = ImageLoader.loadImage("/textures/MemoryWallpaper.png");
+        clickerBG = ImageLoader.loadImage("/textures/clickerBG.png");
+        paintBallBG = ImageLoader.loadImage("/textures/paintballBG.png");
 
         congratulationsTitle = new BufferedImage[4];
         congratulationsTitle[0] = sheet.crop(0,17,17,2);
@@ -408,29 +496,113 @@ public class Assets {
 
         playerSelectionTitle = sheet.crop(6,13,10,2);
 
-        redSelectorL = sheet.crop(20,24,1,2);
-        redSelectorR = sheet.crop(21,24,1,2);
+        redSelectorR = sheet.crop(20,24,1,2);
+        redSelectorL = sheet.crop(21,24,1,2);
 
-        blueSelectorL =  sheet.crop(22,24,1,2);
-        blueSelectorR = sheet.crop(23,24,1,2);
+        blueSelectorR =  sheet.crop(22,24,1,2);
+        blueSelectorL = sheet.crop(23,24,1,2);
 
-        yellowSelectorL = sheet.crop(24,24,1,2);
-        yellowSelectorR = sheet.crop(25,24,1,2);
+        yellowSelectorR = sheet.crop(24,24,1,2);
+        yellowSelectorL = sheet.crop(25,24,1,2);
 
-        greenSelectorL = sheet.crop(26,24,1,2);
-        greenSelectorR = sheet.crop(27,24,1,2);
+        greenSelectorR = sheet.crop(26,24,1,2);
+        greenSelectorL = sheet.crop(27,24,1,2);
 
         paintgun1 = sheet.crop(19,19,1,2);
         paintgun2 = sheet.crop(18,19,1,2);
         paintgun3 = sheet.crop(19,17,1,2);
         paintgun4 = sheet.crop(18,17,1,2);
 
+        damageRedL = new BufferedImage[6];
+        damageRedL[0] = sheet.crop(25,18,1,2);
+        damageRedL[1] = sheet.crop(24,18,1,2);
+        damageRedL[2] = sheet.crop(23,18,1,2);
+        damageRedL[3] = sheet.crop(22,18,1,2);
+        damageRedL[4] = sheet.crop(21,18,1,2);
+        damageRedL[5] = sheet.crop(20,18,1,2);
+
+        damageRedR = new BufferedImage[6];
+        damageRedR[0] = sheet.crop(20,16,1,2);
+        damageRedR[1] = sheet.crop(21,16,1,2);
+        damageRedR[2] = sheet.crop(22,16,1,2);
+        damageRedR[3] = sheet.crop(23,16,1,2);
+        damageRedR[4] = sheet.crop(24,16,1,2);
+        damageRedR[5] = sheet.crop(25,16,1,2);
+
+        damageBlueL = new BufferedImage[6];
+        damageBlueL[0] = sheet.crop(31,18,1,2);
+        damageBlueL[1] = sheet.crop(30,18,1,2);
+        damageBlueL[2] = sheet.crop(29,18,1,2);
+        damageBlueL[3] = sheet.crop(28,18,1,2);
+        damageBlueL[4] = sheet.crop(27,18,1,2);
+        damageBlueL[5] = sheet.crop(26,18,1,2);
+
+        damageBlueR = new BufferedImage[6];
+        damageBlueR[0] = sheet.crop(26,16,1,2);
+        damageBlueR[1] = sheet.crop(27,16,1,2);
+        damageBlueR[2] = sheet.crop(28,16,1,2);
+        damageBlueR[3] = sheet.crop(29,16,1,2);
+        damageBlueR[4] = sheet.crop(30,16,1,2);
+        damageBlueR[5] = sheet.crop(31,16,1,2);
+
+        damageYellowL = new BufferedImage[6];
+        damageYellowL[0] = sheet.crop(31,22,1,2);
+        damageYellowL[1] = sheet.crop(30,22,1,2);
+        damageYellowL[2] = sheet.crop(29,22,1,2);
+        damageYellowL[3] = sheet.crop(28,22,1,2);
+        damageYellowL[4] = sheet.crop(27,22,1,2);
+        damageYellowL[5] = sheet.crop(26,22,1,2);
+
+        damageYellowR = new BufferedImage[6];
+        damageYellowR[0] = sheet.crop(26,20,1,2);
+        damageYellowR[1] = sheet.crop(27,20,1,2);
+        damageYellowR[2] = sheet.crop(28,20,1,2);
+        damageYellowR[3] = sheet.crop(29,20,1,2);
+        damageYellowR[4] = sheet.crop(30,20,1,2);
+        damageYellowR[5] = sheet.crop(31,20,1,2);
+
+        damageGreenL = new BufferedImage[6];
+        damageGreenL[0] = sheet.crop(25,22,1,2);
+        damageGreenL[1] = sheet.crop(24,22,1,2);
+        damageGreenL[2] = sheet.crop(23,22,1,2);
+        damageGreenL[3] = sheet.crop(22,22,1,2);
+        damageGreenL[4] = sheet.crop(21,22,1,2);
+        damageGreenL[5] = sheet.crop(20,22,1,2);
+
+        damageGreenR = new BufferedImage[6];
+        damageGreenR[0] = sheet.crop(20,20,1,2);
+        damageGreenR[1] = sheet.crop(21,20,1,2);
+        damageGreenR[2] = sheet.crop(22,20,1,2);
+        damageGreenR[3] = sheet.crop(23,20,1,2);
+        damageGreenR[4] = sheet.crop(24,20,1,2);
+        damageGreenR[5] = sheet.crop(25,20,1,2);
+
+        stoneButton = new BufferedImage[2];
+        stoneButton[0] = sheet.crop(33,19,3,4);
+        stoneButton[1] = sheet.crop(36,19,3,4);
+
+        dustAnimation = new BufferedImage[6];
+        dustAnimation[0] = sheet.crop(31,27,3,4);
+        dustAnimation[1] = sheet.crop(34,27,3,4);
+        dustAnimation[2] = sheet.crop(37,27,3,4);
+        dustAnimation[3] = sheet.crop(34,27,3,4);
+        dustAnimation[4] = sheet.crop(31,27,3,4);
+        dustAnimation[5] = sheet.crop(37,27,3,4);
+
+        paintBallLogo = sheet.crop(0,23,9,2);
+        stoneLogo = sheet.crop(9,23,5,2);
+
+        stoneRubble = sheet.crop(33,23,3,4);
+        stoneStatue = sheet.crop(36,23,3,4);
 
         bitArtFont = FontLoader.loadFont("res/fonts/windows_command_prompt.ttf");
         retroComputer = FontLoader.loadFont("res/fonts/retro_computer_personal_use.ttf");
         threeDventure = FontLoader.loadFont("res/fonts/3Dventure.ttf");
         upHeavett = FontLoader.loadFont("res/fonts/upheavtt.ttf");
         pixelInversions = FontLoader.loadFont("res/fonts/pixel-inversions.ttf");
+        astalemtim = FontLoader.loadFont("res/fonts/Astalemtim.ttf");
+        fourB30 = FontLoader.loadFont("res/fonts/04B_30__.TTF");
+
 
     }
 }
