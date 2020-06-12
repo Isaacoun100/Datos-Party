@@ -81,8 +81,8 @@ public class GameState extends State{
 
         gameUI.addObject(new UIImageButton(1, height-20, 8, 8, Assets.diceButton, "dice",
                 () -> {
-                    if(currentPlayer.getThrowDice()) {
-                        currentPlayer.setThrowDice(false);
+                    if(!currentPlayer.getCurrentTurn()) {
+                        currentPlayer.setCurrentTurn(true);
                         int diceResult = Dice.roll(1, 6) + Dice.roll(1, 6);
                         currentPlayer.setMovement(diceResult);
                         SoundEffect.DiceRoll();
@@ -278,7 +278,7 @@ public class GameState extends State{
         }
 
         gameUI.addObject(new UIImageButton(9,height-20,4*2,4*2,Assets.endTurnBtn,"endTurnBtn",()->{
-            if (!currentPlayer.getThrowDice() && currentPlayer.getMovement()==0) {
+            if (currentPlayer.getCurrentTurn() && currentPlayer.getMovement()==0) {
                 currentPlayer.setCurrentTurn(false);
                 game.resumeGame();
             }
@@ -484,7 +484,7 @@ public class GameState extends State{
             }
         }
 
-        if (!currentPlayer.getThrowDice() && currentPlayer.getMovement()==0){
+        if (currentPlayer.getCurrentTurn() && currentPlayer.getMovement()==0){
             gameUI.renderById(g,"endTurnBtn");
         }
     }

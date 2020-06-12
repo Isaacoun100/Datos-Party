@@ -35,19 +35,20 @@ public class YellowBox extends Box {
      */
     @Override
     public void boxAction(Player player, Game game) {
-        game.setCurrentEvent(game.eventStack.pop());
-        switch (game.getCurrentEvent()) {
-            case DUEL -> eventLogic.duel();
-            case STEAL_COINS -> eventLogic.pauseEvent(game);
-            case GIFT_COINS -> eventLogic.giftCoins(player, game);
-            case LOSE_STAR -> eventLogic.loseStar(player, game);
-            case WIN_2_STARS -> eventLogic.winTwoStars(player, game);
-            case WIN_5_STARS -> eventLogic.winFiveStars(player, game);
-            case STEAL_STAR -> eventLogic.stealStar(player, game);
-            case TELEPORT -> eventLogic.teleport(player, game);
-            case SWAP_PLAYERS -> eventLogic.swapPlayers(player, game);
-            default -> System.out.println("Couldn't find event");
+        if(player.getCurrentTurn()){
+            game.setCurrentEvent(game.eventStack.pop());
+            switch (game.getCurrentEvent()) {
+                case DUEL -> eventLogic.duel();
+                case STEAL_COINS -> eventLogic.pauseEvent(game);
+                case GIFT_COINS -> eventLogic.giftCoins(player, game);
+                case LOSE_STAR -> eventLogic.loseStar(player, game);
+                case WIN_2_STARS -> eventLogic.winTwoStars(player, game);
+                case WIN_5_STARS -> eventLogic.winFiveStars(player, game);
+                case STEAL_STAR -> eventLogic.stealStar(player, game);
+                case TELEPORT -> eventLogic.teleport(player, game);
+                case SWAP_PLAYERS -> eventLogic.swapPlayers(player, game);
+                default -> System.out.println("Couldn't find event");
+            }
         }
-        player.setBoxAction(false);
     }
 }

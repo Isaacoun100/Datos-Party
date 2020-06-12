@@ -34,9 +34,9 @@ public class GreenBox extends Box {
      */
     @Override
     public void boxAction(Player player, Game game){
-        SoundEffect.PopSound();
-        player.addCoins(+3);
-        player.setBoxAction(false);
-
+        if(player.getCurrentTurn()) {
+            SoundEffect.PopSound();
+            player.addCoins(+3);
+        }
     }
 }

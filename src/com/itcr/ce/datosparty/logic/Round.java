@@ -79,7 +79,9 @@ public class Round {
         }
 
         Turn.setPlayersTurn(currentTurn);
+        game.pauseGame();
         Turn.playTurn(game, player1);
+
 
         currentTurn = (SinglyNode<Player>) currentTurn.getNext();
         Turn.setPlayersTurn(currentTurn);
