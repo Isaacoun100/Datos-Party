@@ -11,8 +11,6 @@ import com.itcr.ce.datosparty.entities.boxes.Box;
 
 public class EventLogic {
 
-    public void duel(){}
-
     public void pauseEvent(Game game) {
         try {
             game.pauseGame();
