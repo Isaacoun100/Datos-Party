@@ -4,6 +4,9 @@ import com.itcr.ce.datosparty.entities.Entity;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.logic.Game;
 
+/**
+ * Board tiles connected with various LinkedLists
+ */
 public abstract class Box extends Entity {
 
     private boolean starBox = false;
@@ -13,6 +16,13 @@ public abstract class Box extends Entity {
     public Box(float x, float y, int width, int height) {
         super(x, y, width, height);
     }
+
+    /**
+     * Action that each of the boxes wil perform
+     * @param player Current Player standing on box when its turn ends
+     * @param game Object with all the data contained on current game
+     */
+    public abstract void boxAction(Player player, Game game);
 
     public boolean isStarBox() {
         return starBox;
@@ -37,7 +47,5 @@ public abstract class Box extends Entity {
     public void setCrossRoads(boolean crossRoads) {
         this.crossRoads = crossRoads;
     }
-
-    public abstract void boxAction(Player player, Game game);
 
 }

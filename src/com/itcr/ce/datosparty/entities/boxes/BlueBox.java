@@ -6,6 +6,9 @@ import com.itcr.ce.datosparty.logic.Game;
 
 import java.awt.*;
 
+/**
+ * Type of box with no special event given
+ */
 public class BlueBox extends Box {
 
     public BlueBox(float x, float y, int width, int height) {
@@ -24,6 +27,11 @@ public class BlueBox extends Box {
         g.drawImage(Assets.blueBox,(int) x,(int) y, width, height, null);
     }
 
+    /**
+     * Only box that has no special event attached to it
+     * @param player Current Player standing on box when its turn ends
+     * @param game Object with all the data contained on current game
+     */
     @Override
     public void boxAction(Player player, Game game) {
     }

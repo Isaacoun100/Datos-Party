@@ -11,8 +11,6 @@ import com.itcr.ce.datosparty.entities.boxes.Box;
 
 public class EventLogic {
 
-    public void duel(){}
-
     public void pauseEvent(Game game) {
         try {
             game.pauseGame();
@@ -27,6 +25,10 @@ public class EventLogic {
             randomPlayer =Round.getPlayerOrder().get(Dice.roll(0, Round.getPlayerOrder().getLength() - 1)).getData();
         }
         return randomPlayer;
+    }
+
+    public void duel(Player player, Game game) {
+        pauseEvent(game);
     }
 
     public void stealCoins(Player thief, Player victim) {

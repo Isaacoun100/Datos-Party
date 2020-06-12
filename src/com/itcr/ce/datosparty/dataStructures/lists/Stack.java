@@ -1,14 +1,19 @@
 package com.itcr.ce.datosparty.dataStructures.lists;
 
-import com.itcr.ce.datosparty.dataStructures.nodes.Node;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 
-import java.util.EmptyStackException;
-
+/**
+ * SinglyList with simpler methods but harder access to nodes. Stacks Nodes on LIFO format.
+ * @param <T> Data type on Nodes
+ */
 public class Stack<T> extends LinearStructure{
 
     SinglyNode<T> top;
 
+    /**
+     * Adds Node to the tail of the list
+     * @param data Info on Node to be added on List
+     */
     public void push(T data) {
         SinglyNode<T> newNode = new SinglyNode<>(data);
         newNode.setNext(top);
@@ -16,6 +21,10 @@ public class Stack<T> extends LinearStructure{
         length++;
     }
 
+    /**
+     * Removes last Node of the list
+     * @return Data on last Node
+     */
     public T pop() {
         if(top == null){
             return null;
@@ -26,6 +35,10 @@ public class Stack<T> extends LinearStructure{
         return node.getData();
     }
 
+    /**
+     * Peeks last Node of list
+     * @return Data on last Node
+     */
     public T peek(){
         if(top == null){
             return null;

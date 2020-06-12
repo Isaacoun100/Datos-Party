@@ -7,6 +7,9 @@ import com.itcr.ce.datosparty.music.SoundEffect;
 
 import java.awt.*;
 
+/**
+ * Type of box that gives 3 coins to a player standing on it
+ */
 public class GreenBox extends Box {
 
     public GreenBox(float x, float y, int width, int height) {
@@ -24,6 +27,11 @@ public class GreenBox extends Box {
 
     }
 
+    /**
+     * Gives 3 coins to the player
+     * @param player Current Player standing on box when its turn ends
+     * @param game Object with all the data contained on current game
+     */
     @Override
     public void boxAction(Player player, Game game){
         if(player.getCurrentTurn()) {

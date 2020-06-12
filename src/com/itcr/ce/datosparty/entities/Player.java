@@ -11,6 +11,9 @@ import java.awt.image.BufferedImage;
 
 import static com.itcr.ce.datosparty.logic.Connector.*;
 
+/**
+ * Playable character that moves on board and stores coins and stars
+ */
 public class Player extends Entity {
 
     private final String name;
@@ -26,6 +29,14 @@ public class Player extends Entity {
     private Node<Box> position;
     private Boolean reversed = false;
     private Boolean currentTurn = false;
+
+    public Player(String name, float x, float y, BufferedImage image) {
+        super(x, y, 80, 120);
+        this.x = x;
+        this.y = y;
+        this.image = image;
+        this.name = name;
+    }
 
 
     public void setCurrentTurn(Boolean currentTurn) {
@@ -46,14 +57,6 @@ public class Player extends Entity {
 
         public void setDirection(Boolean changeDirection) {
         this.changeDirection = changeDirection;
-    }
-
-    public Player(String name, float x, float y, BufferedImage image) {
-        super(x, y, 80, 120);
-        this.x = x;
-        this.y = y;
-        this.image = image;
-        this.name = name;
     }
 
     public void move(Game game) throws InterruptedException {
@@ -95,29 +98,37 @@ public class Player extends Entity {
 
         switch (getConnector(getPosition(),handler, changeDirection)) {
 
-            case PHASE_A_FIRST -> {nextNode = phaseAFirst;
+            case PHASE_A_FIRST -> {
+                nextNode = phaseAFirst;
                 setDirection(false);
             }
-            case PHASE_A_LAST -> {nextNode = phaseAExit;
+            case PHASE_A_LAST -> {
+                nextNode = phaseAExit;
                 setDirection(false);
             }
-            case PHASE_B_FIRST -> {nextNode = phaseBFirst;
+            case PHASE_B_FIRST -> {
+                nextNode = phaseBFirst;
                 setDirection(false);
             }
-            case PHASE_B_LAST -> {nextNode = phaseBExit;
+            case PHASE_B_LAST -> {
+                nextNode = phaseBExit;
                 setDirection(false);
             }
-            case PHASE_C_FIRST -> {nextNode = phaseC1First;
+            case PHASE_C_FIRST -> {
+                nextNode = phaseC1First;
                 setDirection(false);
             }
-            case PHASE_C_LAST -> {nextNode = phaseC1Exit;
+            case PHASE_C_LAST -> {
+                nextNode = phaseC1Exit;
                 setDirection(false);
             }
-            case PHASE_C_FIRST_REVERSED -> {nextNode = phaseC2First;
+            case PHASE_C_FIRST_REVERSED -> {
+                nextNode = phaseC2First;
                 setDirection(false);
                 setReversed(true);
             }
-            case PHASE_C_LAST_REVERSED -> {nextNode = phaseC2Exit;
+            case PHASE_C_LAST_REVERSED -> {
+                nextNode = phaseC2Exit;
                 setDirection(false);
                 setReversed(false);
             }
@@ -237,7 +248,7 @@ public class Player extends Entity {
     }
     public void setRenderPos(float x, float y){
         this.x = x;
-        this.y = y-45;
+        this.y = y - 45;
     }
 
     public void update(Box currentBox, Game game) {

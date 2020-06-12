@@ -6,6 +6,9 @@ import com.itcr.ce.datosparty.logic.*;
 
 import java.awt.*;
 
+/**
+ * Type of box that activates and event to a player standing on it
+ */
 public class YellowBox extends Box {
 
     EventLogic eventLogic = new EventLogic();
@@ -25,12 +28,17 @@ public class YellowBox extends Box {
         g.drawImage(Assets.yellowBox,(int) x,(int) y, width, height, null);
     }
 
+    /**
+     * Chooses which event will the player experience.
+     * @param player Current Player standing on box when its turn ends
+     * @param game Object with all the data contained on current game
+     */
     @Override
     public void boxAction(Player player, Game game) {
         if(player.getCurrentTurn()){
             game.setCurrentEvent(game.eventStack.pop());
             switch (game.getCurrentEvent()) {
-                case DUEL -> System.out.println("DUEL"); // WIP
+                case DUEL -> eventLogic.duel(player, game);
                 case STEAL_COINS -> eventLogic.pauseEvent(game);
                 case GIFT_COINS -> eventLogic.giftCoins(player, game);
                 case LOSE_STAR -> eventLogic.loseStar(player, game);
