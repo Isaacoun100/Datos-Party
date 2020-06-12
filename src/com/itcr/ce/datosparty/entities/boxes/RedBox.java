@@ -7,6 +7,9 @@ import com.itcr.ce.datosparty.music.SoundEffect;
 
 import java.awt.*;
 
+/**
+ * Type of box that subtracts 3 coins to a player standing on it
+ */
 public class RedBox extends Box {
 
     public RedBox(float x, float y, int width, int height) {
@@ -24,6 +27,11 @@ public class RedBox extends Box {
 
     }
 
+    /**
+     * Takes 3 coins from player
+     * @param player that stands on the box at the end of its Turn
+     * @param game played currently
+     */
     @Override
     public void boxAction(Player player, Game game) {
         SoundEffect.PopSound();
