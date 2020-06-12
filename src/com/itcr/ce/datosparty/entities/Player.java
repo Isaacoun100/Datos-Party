@@ -11,6 +11,9 @@ import java.awt.image.BufferedImage;
 
 import static com.itcr.ce.datosparty.logic.Connector.*;
 
+/**
+ * Playable character that moves on board and stores coins and stars
+ */
 public class Player extends Entity {
 
     private final String name;
@@ -29,6 +32,14 @@ public class Player extends Entity {
     private Boolean boxAction = false;
     private Boolean throwDice = false;
     private int hp = 0;
+
+    public Player(String name, float x, float y, BufferedImage image) {
+        super(x, y, 80, 120);
+        this.x = x;
+        this.y = y;
+        this.image = image;
+        this.name = name;
+    }
 
     public int getHp() {
         return hp;
@@ -61,6 +72,7 @@ public class Player extends Entity {
     public boolean getBoxAction(){
         return boxAction;
     }
+
     public Boolean getReversed() {
         return reversed;
     }
@@ -71,14 +83,6 @@ public class Player extends Entity {
 
         public void setDirection(Boolean changeDirection) {
         this.changeDirection = changeDirection;
-    }
-
-    public Player(String name, float x, float y, BufferedImage image) {
-        super(x, y, 80, 120);
-        this.x = x;
-        this.y = y;
-        this.image = image;
-        this.name = name;
     }
 
     public void move(Game game) throws InterruptedException {
@@ -270,7 +274,7 @@ public class Player extends Entity {
     }
     public void setRenderPos(float x, float y){
         this.x = x;
-        this.y = y-45;
+        this.y = y - 45;
     }
 
     public void update(Box currentBox, Game game) {
