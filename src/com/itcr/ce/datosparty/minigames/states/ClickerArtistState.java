@@ -300,8 +300,10 @@ public class ClickerArtistState extends State {
     }
 
     private void winGame(Player player){
-        player.addCoins(10);
-        gameWon = true;
+        if(!gameWon) {
+            player.addCoins(10);
+            gameWon = true;
+        }
     }
 
     private void backToBoard(){

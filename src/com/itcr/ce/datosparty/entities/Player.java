@@ -26,25 +26,7 @@ public class Player extends Entity {
     private Node<Box> position;
     private Boolean reversed = false;
     private Boolean currentTurn = false;
-    private Boolean boxAction = false;
-    private Boolean throwDice = false;
-    private int hp = 0;
 
-    public int getHp() {
-        return hp;
-    }
-
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
-
-    public void setThrowDice(boolean throwDice){
-        this.throwDice = throwDice;
-    }
-
-    public Boolean getThrowDice() {
-        return throwDice;
-    }
 
     public void setCurrentTurn(Boolean currentTurn) {
         this.currentTurn = currentTurn;
@@ -54,13 +36,6 @@ public class Player extends Entity {
         return currentTurn;
     }
 
-    public void setBoxAction(Boolean boxAction) {
-        this.boxAction = boxAction;
-    }
-
-    public boolean getBoxAction(){
-        return boxAction;
-    }
     public Boolean getReversed() {
         return reversed;
     }
@@ -97,7 +72,7 @@ public class Player extends Entity {
             float  newX = position.getData().getX();
             float  newY = position.getData().getY();
             setRenderPos(newX,newY);
-            game.sleep(500);
+            Thread.sleep(500);
             // Checks if there is a star
             game.checkStar(this);
             // Subtracts from number given on dice

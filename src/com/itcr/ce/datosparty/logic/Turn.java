@@ -24,9 +24,6 @@ public class Turn {
     }
 
     public static void playTurn(Game game, Player currentPlayer) throws InterruptedException {
-        currentPlayer.setCurrentTurn(true);
-        currentPlayer.setBoxAction(true);
-        currentPlayer.setThrowDice(true);
         while (Turn.getPlayersTurn() != null) {
             boolean activeTurn = currentPlayer.getCurrentTurn();
             while (activeTurn) {
