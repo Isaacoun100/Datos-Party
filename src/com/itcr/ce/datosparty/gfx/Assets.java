@@ -9,7 +9,7 @@ public class Assets {
                                 player4Static, starSeller, noCoinsMsg, enoughCoins, mapGuide, eventBackDrop,
                                 eventBackDropBad, getEventBackDropSpecial, secondPLaceImg, thirdPlaceImg,
                                 endGamePodium2, endGamePodium3, playerSelectionTitle, loginWallpaper,
-                                paintgun1, paintgun2, paintgun3, paintgun4;
+                                paintgun1, paintgun2, paintgun3, paintgun4, stoneRubble, stoneStatue, paintBallLogo, stoneLogo, clickerBG;
 
 
     public static BufferedImage[] settingsButton;
@@ -84,6 +84,8 @@ public class Assets {
     public static BufferedImage[] damageYellowL;
     public static BufferedImage[] damageGreenR;
     public static BufferedImage[] damageGreenL;
+    public static BufferedImage[] stoneButton;
+    public static BufferedImage[] dustAnimation;
     public static BufferedImage redSelectorR;
     public static BufferedImage blueSelectorR;
     public static BufferedImage greenSelectorR;
@@ -93,7 +95,7 @@ public class Assets {
     public static BufferedImage greenSelectorL;
     public static BufferedImage yellowSelectorL;
 
-    public static Font bitArtFont, retroComputer, threeDventure, upHeavett, pixelInversions;
+    public static Font bitArtFont, retroComputer, threeDventure, upHeavett, pixelInversions, astalemtim, fourB30;
 
 
 
@@ -435,6 +437,7 @@ public class Assets {
         endGamePodium3 = sheet.crop(34,16,6,3);
 
         loginWallpaper= ImageLoader.loadImage("/textures/LoginWallpaper.png");
+        clickerBG = ImageLoader.loadImage("/textures/clickerBG.png");
 
         congratulationsTitle = new BufferedImage[4];
         congratulationsTitle[0] = sheet.crop(0,17,17,2);
@@ -525,12 +528,34 @@ public class Assets {
         damageGreenR[4] = sheet.crop(24,20,1,2);
         damageGreenR[5] = sheet.crop(25,20,1,2);
 
+        stoneButton = new BufferedImage[2];
+        stoneButton[0] = sheet.crop(33,19,3,4);
+        stoneButton[1] = sheet.crop(36,19,3,4);
+
+        dustAnimation = new BufferedImage[6];
+        dustAnimation[0] = sheet.crop(31,27,3,4);
+        dustAnimation[1] = sheet.crop(34,27,3,4);
+        dustAnimation[2] = sheet.crop(37,27,3,4);
+        dustAnimation[3] = sheet.crop(34,27,3,4);
+        dustAnimation[4] = sheet.crop(31,27,3,4);
+        dustAnimation[5] = sheet.crop(37,27,3,4);
+
+        paintBallLogo = sheet.crop(0,23,9,2);
+        stoneLogo = sheet.crop(9,23,5,2);
+
+        stoneRubble = sheet.crop(33,23,3,4);
+        stoneStatue = sheet.crop(36,23,3,4);
+
+
 
         bitArtFont = FontLoader.loadFont("res/fonts/windows_command_prompt.ttf");
         retroComputer = FontLoader.loadFont("res/fonts/retro_computer_personal_use.ttf");
         threeDventure = FontLoader.loadFont("res/fonts/3Dventure.ttf");
         upHeavett = FontLoader.loadFont("res/fonts/upheavtt.ttf");
         pixelInversions = FontLoader.loadFont("res/fonts/pixel-inversions.ttf");
+        astalemtim = FontLoader.loadFont("res/fonts/Astalemtim.ttf");
+        fourB30 = FontLoader.loadFont("res/fonts/04B_30__.TTF");
+
 
     }
 }
