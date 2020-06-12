@@ -11,94 +11,7 @@ public class Assets {
                                 endGamePodium2, endGamePodium3, playerSelectionTitle, loginWallpaper, roundWallpaper,
                                 selectionWallpaper, redSelectorL, redSelectorR, blueSelectorL, blueSelectorR,
                                 yellowSelectorL,yellowSelectorR, greenSelectorL, paintgun4,paintgun3, paintgun2,
-                                greenSelectorR, memoryWallpaper;
-                                eventBackDropBad, getEventBackDropSpecial, secondPLaceImg, thirdPlaceImg,
-                                endGamePodium2, endGamePodium3, playerSelectionTitle, loginWallpaper,
-                                paintgun1, paintgun2, paintgun3, paintgun4, stoneRubble, stoneStatue, paintBallLogo, stoneLogo, clickerBG, paintBallBG;
-
-
-    public static BufferedImage[] settingsButton;
-    public static BufferedImage[] playButton;
-    public static BufferedImage[] creditsButton;
-    public static BufferedImage[] backButton;
-    public static BufferedImage[] titleImage;
-    public static BufferedImage[] pressEnterImage;
-    public static BufferedImage[] notOKComputer;
-    public static BufferedImage[] notOKComputerIcon;
-    public static BufferedImage[] nothingHereMessage;
-    public static BufferedImage[] boton1;
-    public static BufferedImage[] diceButton;
-    public static BufferedImage[] upArrow;
-    public static BufferedImage[] downArrow;
-    public static BufferedImage[] leftArrow;
-    public static BufferedImage[] rightArrow;
-    public static BufferedImage[] player1Button;
-    public static BufferedImage[] player2Button;
-    public static BufferedImage[] duel;
-    public static BufferedImage[] stealCoins;
-    public static BufferedImage[] giveCoins;
-    public static BufferedImage[] loseStar;
-    public static BufferedImage[] win2Stars;
-    public static BufferedImage[] win5Stars;
-    public static BufferedImage[] stealStar;
-    public static BufferedImage[] teleport;
-    public static BufferedImage[] swapPlace;
-    public static BufferedImage[] player3Button;
-    public static BufferedImage[] player4Button;
-    public static BufferedImage[] returnButton;
-    public static BufferedImage[] creditsButtonMenu;
-    public static BufferedImage[] volumeUp;
-    public static BufferedImage[] volumeDown;
-    public static BufferedImage[] gameMusic;
-    public static BufferedImage[] soundEffects;
-    public static BufferedImage[] starPurchaseBackDrop;
-    public static BufferedImage[] yesBtn;
-    public static BufferedImage[] noBtn;
-    public static BufferedImage[] purchaseMsg;
-    public static BufferedImage[] buyMsg;
-    public static BufferedImage[] endTurnBtn;
-    public static BufferedImage[] coin;
-    public static BufferedImage[] star;
-    public static BufferedImage[] noviceButton;
-    public static BufferedImage[] proButton;
-    public static BufferedImage[] eliteButton;
-    public static BufferedImage[] roundTitle;
-    public static BufferedImage[] okBtn;
-    public static BufferedImage[] stealCoins1;
-    public static BufferedImage[] stealCoins2;
-    public static BufferedImage[] stealCoins3;
-    public static BufferedImage[] stealCoins4;
-    public static BufferedImage[] titanCard;
-    public static BufferedImage[] ghostCard;
-    public static BufferedImage[] koichiCard;
-    public static BufferedImage[] samCard;
-    public static BufferedImage[] tuxCard;
-    public static BufferedImage[] backCard;
-    public static BufferedImage[] checkButton;
-    public static BufferedImage[] congratulationsTitle;
-    public static BufferedImage[] twoPlayerAnim;
-    public static BufferedImage[] threePlayerAnim;
-    public static BufferedImage[] fourPlayerAnim;
-    public static BufferedImage[] firstPlaceAnim;
-    public static BufferedImage[] lastPlaceAnim;
-    public static BufferedImage[] damageRedR;
-    public static BufferedImage[] damageRedL;
-    public static BufferedImage[] damageBlueR;
-    public static BufferedImage[] damageBlueL;
-    public static BufferedImage[] damageYellowR;
-    public static BufferedImage[] damageYellowL;
-    public static BufferedImage[] damageGreenR;
-    public static BufferedImage[] damageGreenL;
-    public static BufferedImage[] stoneButton;
-    public static BufferedImage[] dustAnimation;
-    public static BufferedImage redSelectorR;
-    public static BufferedImage blueSelectorR;
-    public static BufferedImage greenSelectorR;
-    public static BufferedImage yellowSelectorR;
-    public static BufferedImage redSelectorL;
-    public static BufferedImage blueSelectorL;
-    public static BufferedImage greenSelectorL;
-    public static BufferedImage yellowSelectorL;
+                                greenSelectorR, memoryWallpaper, stoneRubble, stoneStatue, paintBallLogo, stoneLogo, clickerBG, paintBallBG;
     public static BufferedImage[] settingsButton, playButton, creditsButton, backButton, titleImage, pressEnterImage,
                                   notOKComputer,  notOKComputerIcon,  nothingHereMessage,  boton1,  diceButton,
                                   upArrow, downArrow, leftArrow, rightArrow,  player1Button, player2Button, duel,
@@ -108,7 +21,8 @@ public class Assets {
                                   endTurnBtn, coin, star, noviceButton, proButton, eliteButton, roundTitle, okBtn,
                                   stealCoins1, stealCoins2, stealCoins3, stealCoins4, titanCard, ghostCard, koichiCard,
                                   samCard, tuxCard, backCard, checkButton, congratulationsTitle, twoPlayerAnim,
-                                  threePlayerAnim, fourPlayerAnim, firstPlaceAnim, lastPlaceAnim;
+                                  threePlayerAnim, fourPlayerAnim, firstPlaceAnim, lastPlaceAnim, damageRedR, damageRedL,
+                                  damageBlueR, damageBlueL, damageYellowR, damageYellowL,damageGreenR, damageGreenL, stoneButton, dustAnimation;
 
     public static Font bitArtFont, retroComputer, threeDventure, upHeavett, pixelInversions, astalemtim, fourB30;
 
