@@ -36,7 +36,7 @@ public class SinglyList<T> extends LinkedList<T> {
 
     /**
      * Returns index where the data is located
-     * @param data stored on list
+     * @param data info stored on list
      * @return index where data is located
      */
     public int getIndexByData(T data) {
@@ -107,7 +107,7 @@ public class SinglyList<T> extends LinkedList<T> {
         if (index >= getLength()) {
             System.out.println("Index out of range");
         } else if (index == 0) {
-            this.head = ((SinglyNode<T>)this.head).getNext();
+            this.head = (this.head).getNext();
             length--;
         } else if (get(index).getNext() == null) {
             get(--index).setNext(null);

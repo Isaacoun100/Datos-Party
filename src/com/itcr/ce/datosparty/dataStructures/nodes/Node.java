@@ -2,7 +2,7 @@ package com.itcr.ce.datosparty.dataStructures.nodes;
 
 /**
  * Superclass of all Nodes. Stores data on lists.
- * @param <T> Data type of the data stored on each Node
+ * @param <T> Data type of the info stored on each Node
  */
 public  abstract class Node<T> {
 

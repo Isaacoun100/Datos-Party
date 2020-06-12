@@ -12,7 +12,7 @@ public class Stack<T> extends LinearStructure{
 
     /**
      * Adds Node to the tail of the list
-     * @param data on Node to be added on List
+     * @param data Info on Node to be added on List
      */
     public void push(T data) {
         SinglyNode<T> newNode = new SinglyNode<>(data);
@@ -37,7 +37,7 @@ public class Stack<T> extends LinearStructure{
 
     /**
      * Peeks last Node of list
-     * @return last Node
+     * @return Data on last Node
      */
     public T peek(){
         if(top == null){

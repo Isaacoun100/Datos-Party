@@ -97,6 +97,11 @@ public class DoublyList<T> extends LinkedList<T> {
         }
         length--;
     }
+
+    /**
+     * Removes indexed Node when the node to remove is not the first nor last one ont the list
+     * @param nodeIndex Node to be removed
+     */
     protected void removeReferences(DoublyNode<T> nodeIndex) {
         DoublyNode<T> nodePrevious = (DoublyNode<T>) nodeIndex.getPrevious();
         DoublyNode<T> nodeNext = (DoublyNode<T>) nodeIndex.getNext();

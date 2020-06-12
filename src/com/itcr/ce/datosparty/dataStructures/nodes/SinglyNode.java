@@ -2,7 +2,7 @@ package com.itcr.ce.datosparty.dataStructures.nodes;
 
 /**
  * Nodes with a reference of the Node that follows it
- * @param <T> Data type of the data stored on each Node
+ * @param <T> Data type of the info stored on each Node
  */
 public  class SinglyNode<T> extends Node<T> {
 

@@ -29,27 +29,27 @@ public abstract class LinkedList<T> extends LinearStructure {
 
     /**
      * Returns Node on given position at index
-     * @param index of node
+     * @param index where Node is located
      * @return Node indexed
      */
     public abstract Node<T> get(int index);
 
     /**
      * Adds a Node to the List
-     * @param data on Node to be added on List
+     * @param data info to be added on List
      */
     public abstract void add(T data);
 
     /**
      * Adds a Node to list on given index
-     * @param data on Node to be added on List
+     * @param data info to be added on List
      * @param index where the Node will be added
      */
     public abstract void add(T data, int index);
 
     /**
      * Remove a Node on the List on given index
-     * @param index of the Node to be removed
+     * @param index where Node to be removed is located
      */
     public abstract void remove(int index);
 
