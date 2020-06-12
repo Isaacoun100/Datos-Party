@@ -19,8 +19,8 @@ public abstract class Box extends Entity {
 
     /**
      * Action that each of the boxes wil perform
-     * @param player that stands on the box at the end of its Turn
-     * @param game played currently
+     * @param player Current Player standing on box when its turn ends
+     * @param game Object with all the data contained on current game
      */
     public abstract void boxAction(Player player, Game game);
 

@@ -29,8 +29,8 @@ public class GreenBox extends Box {
 
     /**
      * Gives 3 coins to the player
-     * @param player that stands on the box ont the end of its Turn
-     * @param game played currently
+     * @param player Current Player standing on box when its turn ends
+     * @param game Object with all the data contained on current game
      */
     @Override
     public void boxAction(Player player, Game game){
