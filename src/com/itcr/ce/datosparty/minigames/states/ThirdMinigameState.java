@@ -3,6 +3,7 @@ package com.itcr.ce.datosparty.minigames.states;
 import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.Handler;
 import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
+import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.gfx.Animation;
 import com.itcr.ce.datosparty.gfx.Assets;
@@ -19,18 +20,25 @@ import java.awt.*;
 import static com.itcr.ce.datosparty.minigames.miniGameLogic.BombDirections.*;
 
 public class ThirdMinigameState extends State {
+    private final int player1bombX = 33 * 16;
+    private final int player2bombX = 62 * 16;
+    private final int player3bombY = 44 * 16;
+    private final int player1bombY = 20 * 16;
+    private final int frameData = 32;
     private UIManager uiManager;
     private int numPlayers;
     private long ticks;
-    private int bombX = 24 * 16;
-    private int bombY = 20 * 16;
-    private boolean moveX = true;
+    private int bombX = player1bombX;
+    private int bombY = player1bombY;
     private KeyManager keys;
     private Game game;
     private Player player1, player2, player3, player4;
     private SinglyList<Player> players = new SinglyList<>();
-    private boolean reverseX = true;
+    private boolean reverseX = false;
     private BombDirections whereTo;
+    private SinglyList<Integer> moveTo2 = new SinglyList<>();
+    private SinglyList<Integer> moveTo3 = new SinglyList<>();
+    private SinglyList<Integer> moveTo1 = new SinglyList<>();
 
     public ThirdMinigameState(Handler handler, int numPlayers, Game game) {
         super(handler);
@@ -44,6 +52,7 @@ public class ThirdMinigameState extends State {
         uiManager = new UIManager(handler);
 
         this.numPlayers = numPlayers;
+        createFrames();
 
         this.player1 = game.getPlayerList().get(0).getData();
         players.add(player1);
@@ -69,29 +78,53 @@ public class ThirdMinigameState extends State {
         uiManager.addObject(new UIAnimatedImage(bombX, bombY, 8, 8, startbomb, "startbomb"));
 
     }
+    private void createFrames() {
+        moveTo2.add(player1bombX);
+        moveTo2.add(player1bombX + frameData);
+        moveTo2.add(player1bombX + frameData * 2);
+        moveTo2.add(player1bombX + frameData * 3);
+        moveTo2.add(player1bombX + frameData * 4);
+        moveTo2.add(player1bombX + frameData * 5);
+        moveTo2.add(player1bombX + frameData * 6);
+        moveTo2.add(player1bombX + frameData * 7);
+        moveTo2.add(player1bombX + frameData * 8);
+        moveTo2.add(player1bombX + frameData * 9);
+        moveTo2.add(player1bombX + frameData * 10);
+        moveTo2.add(player1bombX + frameData * 11);
+        moveTo2.add(player1bombX + frameData * 12);
+        moveTo2.add(player1bombX + frameData * 13);
+        moveTo2.add(player1bombX + frameData * 14);
+    }
 
     @Override
     public void tick() {
         handler.getMouseManager().setUiManager(uiManager);
         uiManager.tick();
         if (players.getLength() == 2) {
-            if (keys.space && (bombX == 384 || bombX == 864)) {
+            if (keys.space) { //  && (bombX == player2bombX || bombX == player1bombX)
                 System.out.println(ticks);
-                changeDirection();
-                moveX = true;
+                test();
+//                changeDirection();
             }
             moveBomb();
         }
         if (players.getLength() == 3) {
-            if (keys.space && (bombX == 384 || bombX == 864) || bombX == 624) {
+            if (keys.space && (bombX >= player2bombX || bombX == player1bombX) || bombY >= 668) {
                 System.out.println(ticks);
                 changeDirection();
-                moveX = true;
             }
             moveBomb();
         }
         ticks += 1;
         setNextRound();
+    }
+
+    private void test() {
+        SinglyNode<Integer> current = moveTo2.getHead();
+        while (current != null) {
+           bombX = current.getData();
+           current = (SinglyNode<Integer>) current.getNext();
+        }
     }
 
     @Override
@@ -114,7 +147,7 @@ public class ThirdMinigameState extends State {
     public void setNextRound() {
         if (players.getLength() == 2) {
             if (ticks >= 500) {
-                if (bombX < 623) {
+                if (bombX < 624) {
                     winGame(player1);
                 } else {
                     winGame(player2);
@@ -128,10 +161,20 @@ public class ThirdMinigameState extends State {
 
     public void moveBomb() {
         if (players.getLength() == 2) {
-            if (bombX < 990-(8*16) && !reverseX) { //862
+            if (bombX <= player2bombX && reverseX) {
                 bombX += 10;
-            } else if (bombX > 24 * 16 && reverseX) { //384
-                bombX -= 10;
+            } else if (bombX >= player1bombX && !reverseX) {
+            bombX -= 10;
+            }
+        } else if (players.getLength() == 3) {
+            if (bombX < player2bombX && whereTo == TO_PLAYER_2) {
+                bombX += 10;
+            } else if (bombY <= player3bombY && whereTo == TO_PLAYER_3) {
+                bombX -= 4;
+                bombY += 8;
+            } else if (bombY >= player1bombY && bombX <= 802 && whereTo == TO_PLAYER_1) {
+                bombX -= 5;
+                bombY -= 8;
             }
         }
     }
@@ -140,12 +183,12 @@ public class ThirdMinigameState extends State {
         if (players.getLength() == 2) {
             reverseX = !reverseX;
         } else if (players.getLength() == 3) {
-            if (bombY != 320) {
-                whereTo = TO_PLAYER_1;
-            } else if (bombX == 384) {
+            if (bombX == player1bombX) {
                 whereTo = TO_PLAYER_2;
-            } else if (bombX == 864) {
+            } else if (bombX >= player2bombX) {
                 whereTo = TO_PLAYER_3;
+            } else if (bombY <= player3bombY && bombX <= 804) {
+            whereTo = TO_PLAYER_1;
             }
         }
     }
