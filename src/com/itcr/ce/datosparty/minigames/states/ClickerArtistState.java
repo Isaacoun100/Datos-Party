@@ -12,8 +12,8 @@ import com.itcr.ce.datosparty.userInterface.*;
 
 import java.awt.*;
 
-public class SixthMinigameState extends State {
-    private final UIManager uiManger;
+public class ClickerArtistState extends State {
+    private final UIManager clickerArtistUI;
     private final Player player1;
     private final Player player2;
     private Player player3;
@@ -29,14 +29,17 @@ public class SixthMinigameState extends State {
     private final Font font;
     private boolean setup = false, gameWon = false;
     private String winner, loser1, loser2, loser3;
+    private Color springGreen;
 
-    public SixthMinigameState(Handler handler, int numPlayers, Game game) {
+    public ClickerArtistState(Handler handler, int numPlayers, Game game) {
         super(handler);
-        uiManger = new UIManager(handler);
+        clickerArtistUI = new UIManager(handler);
         this.game = game;
         this.numPlayers = numPlayers;
 
-        font = Assets.astalemtim.deriveFont(Font.PLAIN,50);
+        springGreen = new Color(33,250,144);
+
+        font = Assets.astalemtim.deriveFont(Font.BOLD,50);
 
         player1 = game.getPlayerList().get(0).getData();
         player2 = game.getPlayerList().get(1).getData();
@@ -45,28 +48,26 @@ public class SixthMinigameState extends State {
 
         Animation dustAnimation = new Animation(200,Assets.dustAnimation);
 
-        uiManger.addObject(new UIBackground(Assets.clickerBG,"backGround"));
+        clickerArtistUI.addObject(new UIBackground(Assets.clickerBG,"backGround"));
         int width = GameLauncher.width / 16;
         int height = GameLauncher.height / 16;
-        uiManger.addObject(new UIImage((float) width /2-20,(float) height /2-15,4*10,2*10,Assets.starPurchaseBackDrop[0],"backDrop"));
-        uiManger.addObject(new UIImageButton(46,50,8,8,Assets.okBtn, "okBtn",()->{
-            gameStart = true;
-        }));
+        clickerArtistUI.addObject(new UIImage((float) width /2-20,(float) height /2-15,4*10,2*10,Assets.starPurchaseBackDrop[0],"backDrop"));
+        clickerArtistUI.addObject(new UIImageButton(46,50,8,8,Assets.okBtn, "okBtn",()-> gameStart = true));
 
-        uiManger.addObject(new UIImageButton(46,50,8,8,Assets.okBtn,"continueOkBtn", () ->{
+        clickerArtistUI.addObject(new UIImageButton(46,50,8,8,Assets.okBtn,"continueOkBtn", () ->{
             if(timeLeft ==0&&gameStart) {
                 timeLeft = 10;
                 currentPlayer+=1;
             }
         }));
 
-        uiManger.addObject(new UIImageButton(46,50,8,8,Assets.okBtn,"endGameOkBtn", () ->{
+        clickerArtistUI.addObject(new UIImageButton(46,50,8,8,Assets.okBtn,"endGameOkBtn", () ->{
             if(gameWon) {
                 backToBoard();
             }
         }));
-        uiManger.addObject(new UIAnimatedImage((float) width /2-12,(float) height /2-16,3*8,4*8,dustAnimation,"dustAnimation"));
-        uiManger.addObject(new UIImageButton((float) width /2-12,(float) height /2-16,3*8,4*8,Assets.stoneButton,"rockBtn",()->{
+        clickerArtistUI.addObject(new UIAnimatedImage((float) width /2-12,(float) height /2-16,3*8,4*8,dustAnimation,"dustAnimation"));
+        clickerArtistUI.addObject(new UIImageButton((float) width /2-12,(float) height /2-16,3*8,4*8,Assets.stoneButton,"rockBtn",()->{
             if(timeLeft !=0){
                 if(currentPlayer==1) {
                     score1 += 1;
@@ -82,11 +83,11 @@ public class SixthMinigameState extends State {
                 }
             }
         }));
-        uiManger.addObject(new UIImage((float) width /2-48,(float) height /2-32,5*8,2*8,Assets.stoneLogo,"gameTitle"));
-        uiManger.addObject(new UIImage((float) width /2-12,(float) height /2-16,3*8,4*8,Assets.stoneStatue,"stoneStatue"));
-        uiManger.addObject(new UIImage((float) width /2-36,(float) height /2-16,3*8,4*8,Assets.stoneRubble,"rubble1"));
-        uiManger.addObject(new UIImage((float) width /2+12,(float) height /2-16,3*8,4*8,Assets.stoneRubble,"rubble2"));
-        uiManger.addObject(new UIImage((float) width /2-12,(float) height /2-44,3*8,4*8,Assets.stoneRubble,"rubble3"));
+        clickerArtistUI.addObject(new UIImage((float) width /2-48,(float) height /2-32,5*8,2*8,Assets.stoneLogo,"gameTitle"));
+        clickerArtistUI.addObject(new UIImage((float) width /2-12,(float) height /2-16,3*8,4*8,Assets.stoneStatue,"stoneStatue"));
+        clickerArtistUI.addObject(new UIImage((float) width /2-36,(float) height /2-16,3*8,4*8,Assets.stoneRubble,"rubble1"));
+        clickerArtistUI.addObject(new UIImage((float) width /2+12,(float) height /2-16,3*8,4*8,Assets.stoneRubble,"rubble2"));
+        clickerArtistUI.addObject(new UIImage((float) width /2-12,(float) height /2-44,3*8,4*8,Assets.stoneRubble,"rubble3"));
 
 
         if(numPlayers>=3){
@@ -104,8 +105,8 @@ public class SixthMinigameState extends State {
     @Override
     public void tick() {
         gameSetup();
-        handler.getMouseManager().setUiManager(uiManger);
-        uiManger.tick();
+        handler.getMouseManager().setUiManager(clickerArtistUI);
+        clickerArtistUI.tick();
         timer += System.currentTimeMillis() - lastTime;
         lastTime = System.currentTimeMillis();
         if(timer > speed) {
@@ -129,22 +130,22 @@ public class SixthMinigameState extends State {
 
     @Override
     public void render(Graphics g) {
-        uiManger.renderById(g,"backGround");
+        clickerArtistUI.renderById(g,"backGround");
         g.setFont(font);
         g.setColor(Color.white);
-        uiManger.renderById(g,"gameTitle");
+        clickerArtistUI.renderById(g,"gameTitle");
         if(!gameStart){
-            uiManger.renderById(g,"backDrop");
+            clickerArtistUI.renderById(g,"backDrop");
             g.drawString("click on the rock",600,500);
             g.drawString("as fast as you can",600,550);
             g.drawString("you have 10 seconds!",600,600);
-            uiManger.renderById(g,"okBtn");
+            clickerArtistUI.renderById(g,"okBtn");
             g.drawString(player1.getName()+" goes first!",600, 300);
         }
 
         if(timeLeft !=0&&gameStart&&!gameWon){
-            uiManger.renderById(g,"rockBtn");
-            uiManger.renderById(g,"dustAnimation");
+            clickerArtistUI.renderById(g,"rockBtn");
+            clickerArtistUI.renderById(g,"dustAnimation");
             g.setColor(Color.red);
             g.drawString("time left: "+ timeLeft,60,900);
             g.setColor(Color.white);
@@ -153,7 +154,7 @@ public class SixthMinigameState extends State {
         }
 
         if(timeLeft ==0){
-            uiManger.renderById(g,"continueOkBtn");
+            clickerArtistUI.renderById(g,"continueOkBtn");
         }
 
         if(gameStart&& timeLeft ==0){
@@ -190,21 +191,21 @@ public class SixthMinigameState extends State {
             }
         }
         if(gameWon){
-            g.setColor(Color.blue);
-            uiManger.renderById(g,"stoneStatue");
+            g.setColor(springGreen);
+            clickerArtistUI.renderById(g,"stoneStatue");
             g.drawString("Congratulations",600,500);
             g.drawString(winner,600,600);
             g.drawString("you win!",600,700);
-            uiManger.renderById(g,"endGameOkBtn");
-            uiManger.renderById(g,"rubble1");
+            clickerArtistUI.renderById(g,"endGameOkBtn");
+            clickerArtistUI.renderById(g,"rubble1");
             g.drawString(loser1,300,800);
 
             if(numPlayers >= 3){
-                uiManger.renderById(g,"rubble2");
+                clickerArtistUI.renderById(g,"rubble2");
                 g.drawString(loser2,1100,800);
             }
             if(numPlayers ==4){
-                uiManger.renderById(g,"rubble3");
+                clickerArtistUI.renderById(g,"rubble3");
                 g.drawString(loser3,700,300);
             }
         }

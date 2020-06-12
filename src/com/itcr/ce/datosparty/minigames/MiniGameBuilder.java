@@ -14,8 +14,8 @@ public class MiniGameBuilder {
         gameList.add(new SecondMinigameState(handler, playerNumber, game));
         gameList.add(new ThirdMinigameState(handler, playerNumber, game));
         gameList.add(new FourthMinigameState(handler, playerNumber, game));
-        gameList.add(new FifthMinigameState(handler, playerNumber, game));
-        gameList.add(new SixthMinigameState(handler, playerNumber, game));
+        gameList.add(new BustedPaintballState(handler, playerNumber, game));
+        gameList.add(new ClickerArtistState(handler, playerNumber, game));
         gameList.add(new SeventhMinigameState(handler, playerNumber, game));
         gameList.add(new EighthMinigameState(handler, playerNumber, game));
 

@@ -9,7 +9,7 @@ public class Assets {
                                 player4Static, starSeller, noCoinsMsg, enoughCoins, mapGuide, eventBackDrop,
                                 eventBackDropBad, getEventBackDropSpecial, secondPLaceImg, thirdPlaceImg,
                                 endGamePodium2, endGamePodium3, playerSelectionTitle, loginWallpaper,
-                                paintgun1, paintgun2, paintgun3, paintgun4, stoneRubble, stoneStatue, paintBallLogo, stoneLogo, clickerBG;
+                                paintgun1, paintgun2, paintgun3, paintgun4, stoneRubble, stoneStatue, paintBallLogo, stoneLogo, clickerBG, paintBallBG;
 
 
     public static BufferedImage[] settingsButton;
@@ -438,6 +438,7 @@ public class Assets {
 
         loginWallpaper= ImageLoader.loadImage("/textures/LoginWallpaper.png");
         clickerBG = ImageLoader.loadImage("/textures/clickerBG.png");
+        paintBallBG = ImageLoader.loadImage("/textures/paintballBG.png");
 
         congratulationsTitle = new BufferedImage[4];
         congratulationsTitle[0] = sheet.crop(0,17,17,2);
@@ -545,8 +546,6 @@ public class Assets {
 
         stoneRubble = sheet.crop(33,23,3,4);
         stoneStatue = sheet.crop(36,23,3,4);
-
-
 
         bitArtFont = FontLoader.loadFont("res/fonts/windows_command_prompt.ttf");
         retroComputer = FontLoader.loadFont("res/fonts/retro_computer_personal_use.ttf");

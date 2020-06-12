@@ -68,8 +68,6 @@ public class Game extends Thread {
     public void run() {
         while (active){
             while(currentRound != Round.getMaxRound()){
-                Minigame.playMinigame(6);
-
                 try {
                     Round.playRound(this);
                 } catch (InterruptedException e) {
@@ -77,6 +75,7 @@ public class Game extends Thread {
                 }
                 try {
                     pauseGame();
+                    Minigame.playMinigame(6);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
