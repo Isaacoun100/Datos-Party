@@ -3,8 +3,8 @@ package com.itcr.ce.datosparty.dataStructures.lists;
 import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
 
 /**
- *
- * @param <T>
+ * LinkedList where each Node contains a reference to the next and previous Node
+ * @param <T> Data type on Nodes
  */
 public class DoublyList<T> extends LinkedList<T> {
 

@@ -4,8 +4,8 @@ import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.dataStructures.nodes.Node;
 
 /**
- *
- * @param <T>
+ * LinkedList where each Node contains a reference to the next
+ * @param <T> Data type on Nodes
  */
 public class SinglyList<T> extends LinkedList<T> {
 
@@ -36,7 +36,7 @@ public class SinglyList<T> extends LinkedList<T> {
 
     /**
      * Returns index where the data is located
-     * @param data first node on list that contains it
+     * @param data stored on list
      * @return index where data is located
      */
     public int getIndexByData(T data) {

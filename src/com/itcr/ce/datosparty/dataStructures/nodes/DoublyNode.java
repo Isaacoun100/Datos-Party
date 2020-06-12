@@ -1,8 +1,9 @@
 package com.itcr.ce.datosparty.dataStructures.nodes;
 
-import com.itcr.ce.datosparty.dataStructures.nodes.Node;
-import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
-
+/**
+ * Nodes with a reference of the Node previous and next to it
+ * @param <T> Data type of the data stored on each Node
+ */
 public  class DoublyNode<T> extends SinglyNode<T> {
 
     protected Node<T> previous;

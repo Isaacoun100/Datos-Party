@@ -4,11 +4,12 @@ import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 
 /**
- *
- * @param <T>
+ * LinkedList where each Node contains a reference to the next, and the last Node references the first
+ * @param <T> Data type on Nodes
  */
 public class CircularList<T> extends SinglyList<T> {
 
+    @Override
     public SinglyNode<T> getLast() {
         SinglyNode<T> lastNode = (SinglyNode<T>) this.head.getNext();
         while (lastNode.getNext() != this.head) {
