@@ -284,8 +284,6 @@ public class BustedPaintballState extends State {
         g.drawString(player2.getName(),1200,700);
         bustedPaintBallUI.renderById(g, "player2");
 
-
-
         if (numPlayers >= 3) {
             g.drawString("HP left: "+player3HP,400,850);
             g.drawString(player3.getName(),200,950);
@@ -313,8 +311,12 @@ public class BustedPaintballState extends State {
         }
         renderDamage(g,player1HP,"player1");
         renderDamage(g,player2HP, "player2");
-        renderDamage(g,player3HP,"player3");
-        renderDamage(g,player4HP,"player4");
+        if(numPlayers>=3) {
+            renderDamage(g, player3HP, "player3");
+        }
+        if(numPlayers==4) {
+            renderDamage(g, player4HP, "player4");
+        }
 
         if(gameWon){
             g.drawString("Congratulations!",600,400);

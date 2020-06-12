@@ -67,13 +67,13 @@ public class Game extends Thread {
     @Override
     public void run() {
         while (active){
-            while(currentRound != Round.getMaxRound()){
+            while(currentRound != Round.getMaxRound()+1){
                 try {
                     Round.playRound(this);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Minigame.playMinigame(6);
+                Minigame.playMinigame(5);
                 try {
                     pauseGame();
                 } catch (InterruptedException e) {
