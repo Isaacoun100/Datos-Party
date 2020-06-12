@@ -5,67 +5,71 @@ import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.logic.Game;
 import com.itcr.ce.datosparty.states.State;
 import com.itcr.ce.datosparty.userInterface.ClickListener;
+import com.itcr.ce.datosparty.userInterface.UIImage;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
 
 import java.awt.*;
 
 public class SecondMinigameState extends State {
-    private UIManager uiManager;
+    private UIManager SpaceRunUI;
+    private int x,count;
+    private boolean first=true;
+    private boolean move=false;
+    private boolean keypressed=true;
+
 
     public SecondMinigameState(Handler handler, int numPlayers, Game game) {
         super(handler);
+        SpaceRunUI = new UIManager(handler);
+        count=0;
+        x=5;
 
-        uiManager = new UIManager(handler);
+        initPositions();
+    }
 
-        if(numPlayers>=1){
-            uiManager.addObject(new UIImageButton(1, 1, 7*2, 2*2, Assets.player1Button,"player1Btn", new ClickListener() {
-                @Override
-                public void onClick() {
-                    System.out.println("1");
-                }
-            }));
-        }
+    public void initPositions(){
+        SpaceRunUI.addObject(new UIImageButton(1, 1, 7 * 2, 2 * 2, Assets.player1Button, "player1Btn", new ClickListener() {
+            public void onClick() {
+                move=true;
+            }
 
-        if(numPlayers>=2){
-            uiManager.addObject(new UIImageButton(30, 1, 7*2, 2*2, Assets.player2Button,"player2Btn", new ClickListener() {
-                @Override
-                public void onClick() {
-                    System.out.println("2");
-                }
-            }));
-        }
+        }));
 
-        if(numPlayers>=3){
-            uiManager.addObject(new UIImageButton(1, 30, 7*2, 2*2, Assets.player3Button,"player3Btn", new ClickListener() {
-                @Override
-                public void onClick() {
-                    System.out.println("3");
-                }
-            }));
-        }
-
-        if(numPlayers>=4){
-            uiManager.addObject(new UIImageButton(30, 30, 7*2, 2*2, Assets.player4Button,"player4Btn", new ClickListener() {
-                @Override
-                public void onClick() {
-                    System.out.println("4");
-                }
-            }));
-        }
+        SpaceRunUI.addObject(new UIImage((float)x,(float)x, 1,2,Assets.player1Static,"MovingPlayer"));
 
     }
 
+
     @Override
     public void tick() {
-        handler.getMouseManager().setUiManager(uiManager);
-        uiManager.tick();
+        handler.getMouseManager().setUiManager(SpaceRunUI);
+        SpaceRunUI.tick();
     }
 
     @Override
     public void render(Graphics g) {
-        uiManager.renderAll(g);
+
+        if(handler.getKeyManager().key_Q && keypressed){
+            move=true;
+            keypressed=false;
+        }
+
+        if(!handler.getKeyManager().key_Q){
+          keypressed=true;
+        }
+
+        SpaceRunUI.renderById(g,"player1Btn");
+        if(move){
+            x+=2;
+            SpaceRunUI.addObject(new UIImage((float)x,(float)x, 1,2,Assets.player1Static,"MovingPlayer"));
+            SpaceRunUI.removeObject("MovingPlayer");
+            move=false;
+        }
+
+        SpaceRunUI.renderById(g,"MovingPlayer");
     }
+
 
 }
 
