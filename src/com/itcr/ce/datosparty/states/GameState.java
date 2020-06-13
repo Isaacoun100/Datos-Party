@@ -287,13 +287,13 @@ public class GameState extends State{
         gameUI.addObject((new UIImage((float)width/2-8, (float)height/2-24, 2*8,3*8,Assets.eventBackDrop,"eventBackDrop")));
 
         gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*2,4*2,stealCoins,"stealCoins"));
-        gameUI.addObject(new UIAnimatedImage((float)width/2-8, (float)height/2-18, 4*3,2*3,duel,"duel"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-6, (float)height/2-18, 4*3,2*3,duel,"duel"));
         gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*2,4*2,giveCoins,"giveCoins"));
         gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*2,4*2,loseStar,"loseStar"));
         gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*2,4*2,win2Stars,"win2Stars"));
         gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*2,4*2,win5Stars,"win5Stars"));
         gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 4*2,4*2,stealStar,"stealStar"));
-        gameUI.addObject(new UIAnimatedImage((float)width/2-2, (float)height/2-18, 4,2*4,teleport,"teleport"));
+        gameUI.addObject(new UIAnimatedImage((float)width/2-3, (float)height/2-18, 4,2*4,teleport,"teleport"));
         gameUI.addObject(new UIAnimatedImage((float)width/2-4, (float)height/2-18, 2*4,2*4,swapPlace,"swapPlace"));
 
         gameUI.addObject(new UIImageButton((float)width/2-4,(float)height/2-2,8,8,Assets.okBtn,"okBtnEvents",
@@ -330,7 +330,7 @@ public class GameState extends State{
 
 
         g.setFont(font);
-        g.drawString("it´s "+currentPlayer.getName()+" turn!",550,1020);
+        g.drawString("it´s "+currentPlayer.getName()+"'s turn!",550,1020);
         g.drawString("Round: "+game.getCurrentRound(),1300,90);
 
         g.drawString(player1.getName(), 10, 40);
