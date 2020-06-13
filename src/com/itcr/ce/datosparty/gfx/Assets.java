@@ -11,22 +11,21 @@ public class Assets {
                                 endGamePodium2, endGamePodium3, playerSelectionTitle, loginWallpaper, roundWallpaper,
                                 selectionWallpaper, redSelectorL, redSelectorR, blueSelectorL, blueSelectorR,
                                 yellowSelectorL,yellowSelectorR, greenSelectorL, paintgun4,paintgun3, paintgun2,
-                                greenSelectorR, memoryWallpaper, stoneRubble, stoneStatue, paintBallLogo, stoneLogo, clickerBG, paintBallBG;
-                                greenSelectorR, memoryWallpaper, spaceWallpaper, firstShip, secondShip, thirdShip,
-                                fourthShip;
+                                greenSelectorR, memoryWallpaper, stoneRubble, stoneStatue, paintBallLogo, stoneLogo,
+                                clickerBG, paintBallBG, spaceWallpaper, firstShip, secondShip, thirdShip,fourthShip;
 
     public static BufferedImage[] settingsButton, playButton, creditsButton, backButton, titleImage, pressEnterImage,
                                   notOKComputer,  notOKComputerIcon,  nothingHereMessage,  boton1,  diceButton,
                                   upArrow, downArrow, leftArrow, rightArrow,  player1Button, player2Button, duel,
                                   stealCoins, giveCoins, loseStar, win2Stars, win5Stars, stealStar, teleport, swapPlace,
-                                  player3Button, player4Button, returnButton, creditsButtonMenu, volumeUp, volumeDown,
-                                  gameMusic, soundEffects, starPurchaseBackDrop, yesBtn, noBtn, purchaseMsg, buyMsg,
-                                  endTurnBtn, coin, star, noviceButton, proButton, eliteButton, roundTitle, okBtn,
-                                  stealCoins1, stealCoins2, stealCoins3, stealCoins4, titanCard, ghostCard, koichiCard,
-                                  samCard, tuxCard, backCard, checkButton, congratulationsTitle, twoPlayerAnim,
-                                  threePlayerAnim, fourPlayerAnim, firstPlaceAnim, lastPlaceAnim, damageRedR, damageRedL,
-                                  damageBlueR, damageBlueL, damageYellowR, damageYellowL,damageGreenR, damageGreenL, stoneButton, dustAnimation;
-                                  threePlayerAnim, fourPlayerAnim, firstPlaceAnim, lastPlaceAnim, bornStar;
+                                  player3Button, player4Button, creditsButtonMenu, volumeUp, volumeDown, gameMusic,
+                                  soundEffects, starPurchaseBackDrop, yesBtn, noBtn, purchaseMsg, buyMsg, endTurnBtn,
+                                  coin, star, noviceButton, proButton, eliteButton, roundTitle, okBtn, stealCoins1,
+                                  stealCoins2, stealCoins3, stealCoins4, titanCard, ghostCard, koichiCard, samCard,
+                                  tuxCard, backCard, checkButton, congratulationsTitle, twoPlayerAnim, threePlayerAnim,
+                                  fourPlayerAnim, firstPlaceAnim, lastPlaceAnim, damageRedR, damageRedL, damageBlueR,
+                                  damageBlueL, damageYellowR, damageYellowL,damageGreenR, damageGreenL, stoneButton,
+                                  dustAnimation, bornStar;
 
     public static Font bitArtFont, retroComputer, threeDventure, upHeavett, pixelInversions, astalemtim, fourB30;
 
