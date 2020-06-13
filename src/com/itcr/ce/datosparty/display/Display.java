@@ -10,8 +10,9 @@ public class Display {
      */
     private JFrame frame;
     private Canvas canvas;
-    private String title;
-    private int width, height;
+    private final String title;
+    private final int width;
+    private final int height;
 
     /**
      * Here we define the parameters needed in order to render a window
@@ -28,7 +29,8 @@ public class Display {
     }
 
     /**
-     * This method creates the display using the swing logic
+     * This method creates the display using the swing logic we create a frame and a canvas, the frame corresponds
+     * to the window and its limits, the canvas is what its contained in the window
      */
     private void createDisplay(){
 
@@ -49,10 +51,6 @@ public class Display {
         frame.pack();
     }
 
-    /**
-     * canvas getter
-     * @return returns canvas so it can be accessed by other classes
-     */
     public Canvas getCanvas(){
         return canvas;
     }

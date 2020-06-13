@@ -67,7 +67,7 @@ public class Game extends Thread {
     @Override
     public void run() {
         while (active){
-            while(currentRound != Round.getMaxRound()){
+            while(currentRound != Round.getMaxRound()+1){
                 try {
                     Round.playRound(this);
                 } catch (InterruptedException e) {

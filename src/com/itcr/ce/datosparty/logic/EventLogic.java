@@ -11,8 +11,6 @@ import com.itcr.ce.datosparty.entities.boxes.Box;
 
 public class EventLogic {
 
-    public void duel(){}
-
     public void pauseEvent(Game game) {
         try {
             game.pauseGame();
@@ -29,6 +27,10 @@ public class EventLogic {
         return randomPlayer;
     }
 
+    public void duel(Player player, Game game) {
+        pauseEvent(game);
+    }
+
     public void stealCoins(Player thief, Player victim) {
         int randomCoins = Dice.roll(1, 10);
         if (victim.getCoins() < randomCoins) {
@@ -40,7 +42,6 @@ public class EventLogic {
     }
 
     public void giftCoins(Player player, Game game) {
-        pauseEvent(game);
         SinglyNode<Player> playerToAdd = Round.getPlayerOrder().getHead();
         int playersToGift = Round.getPlayerOrder().getLength() - 1;
         int randomCoins = Dice.roll(1, 10);
@@ -59,40 +60,39 @@ public class EventLogic {
             playerToAdd = (SinglyNode<Player>) playerToAdd.getNext();
         }
         System.out.println("Gifted " + randomCoins + " coins.");
+        pauseEvent(game);
     }
 
     public void loseStar(Player player, Game game) {
-        pauseEvent(game);
         if (player.getStars() >= 1)  {
             player.addStars(-1);
             Player randomPlayer = returnRandomPlayer(player);
             randomPlayer.addStars(1);
             System.out.println("Stolen star from " + randomPlayer.getName());
         }
+        pauseEvent(game);
     }
 
     public void winTwoStars(Player player, Game game) {
-        pauseEvent(game);
         player.addStars(2);
+        pauseEvent(game);
     }
 
     public void winFiveStars(Player player, Game game) {
-        pauseEvent(game);
         player.addStars(5);
+        pauseEvent(game);
     }
 
     public void stealStar(Player player, Game game) {
-        pauseEvent(game);
         Player randomPlayer = returnRandomPlayer(player);
-        randomPlayer.addStars(-1);
         if (randomPlayer.getStars() >= 1) {
+            randomPlayer.addStars(-1);
             player.addStars(1);
         }
-        System.out.println("Stolen from " + randomPlayer.getName());
+        pauseEvent(game);
     }
 
     public void teleport(Player player, Game game) {
-        pauseEvent(game);
         int numRandom;
         CircularList<Box> mainCircuit =  game.getMainCircuit();
         SinglyList<Box> phaseA = game.getPhaseA();
@@ -103,56 +103,54 @@ public class EventLogic {
             case 1 -> {
                 numRandom = Dice.roll(0, mainCircuit.getLength() - 1);
                 Node<Box> newPosition = mainCircuit.get(numRandom);
-                player.setX(newPosition.getData().getX());
-                player.setY(newPosition.getData().getY());
+                player.setRenderPos(newPosition.getData().getX(),newPosition.getData().getY());
                 player.setPosition(newPosition);
             }
             case 2 -> {
                 numRandom = Dice.roll(0, phaseA.getLength() - 1);
                 Node<Box> newPosition = phaseA.get(numRandom);
-                player.setX(newPosition.getData().getX());
-                player.setY(newPosition.getData().getY());
+                player.setRenderPos(newPosition.getData().getX(),newPosition.getData().getY());
                 player.setPosition(phaseA.get(numRandom));
 
             }
             case 3 -> {
                 numRandom = Dice.roll(0, phaseB.getLength() - 1);
                 Node<Box> newPosition = phaseB.get(numRandom);
-                player.setX(newPosition.getData().getX());
-                player.setY(newPosition.getData().getY());
+                player.setRenderPos(newPosition.getData().getX(),newPosition.getData().getY());
                 player.setPosition(phaseB.get(numRandom));
 
             }
             case 4 -> {
                 numRandom = Dice.roll(0, phaseC.getLength() - 1);
                 Node<Box> newPosition = phaseC.get(numRandom);
-                player.setX(newPosition.getData().getX());
-                player.setY(newPosition.getData().getY());
+                player.setRenderPos(newPosition.getData().getX(),newPosition.getData().getY());
                 player.setPosition(phaseC.get(numRandom));
             }
             case 5 -> {
                 numRandom = Dice.roll(0, phaseD.getLength() - 1);
                 Node<Box> newPosition = phaseD.get(numRandom);
-                player.setX(newPosition.getData().getX());
-                player.setY(newPosition.getData().getY());
+                player.setRenderPos(newPosition.getData().getX(),newPosition.getData().getY());
                 player.setPosition(phaseD.get(numRandom));
             }
         }
+        pauseEvent(game);
     }
 
 
     public void swapPlayers(Player player, Game game) {
-        pauseEvent(game);
-        int numRandom = Dice.roll(0, Round.getPlayerOrder().getLength() - 1);
+        int numRandom = Dice.roll(0, game.getNumberOfPlayers() - 1);
         Player randomPlayer =  Round.getPlayerOrder().get(numRandom).getData();
+        while(player == randomPlayer){
+            numRandom = Dice.roll(0, game.getNumberOfPlayers() - 1);
+            randomPlayer =  Round.getPlayerOrder().get(numRandom).getData();
+        }
         Node<Box> randomPosition = randomPlayer.getPosition();
         Node<Box> playerPosition = player.getPosition();
-        randomPlayer.setX(playerPosition.getData().getX());
-        randomPlayer.setY(playerPosition.getData().getY());
-        player.setX(randomPosition.getData().getX());
-        player.setY(randomPosition.getData().getY());
+        player.setRenderPos(randomPosition.getData().getX(),randomPosition.getData().getY());
         randomPlayer.setPosition(playerPosition);
+        randomPlayer.setRenderPos(playerPosition.getData().getX(),playerPosition.getData().getY());
         player.setPosition(randomPosition);
+        pauseEvent(game);
 
     }
 }

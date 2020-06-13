@@ -107,7 +107,6 @@ public class GameLoop implements Runnable {
     }
 
     private void tick() throws InterruptedException {
-
         keyManager.tick();
         if (State.getState() != null)
             State.getState().tick();
@@ -147,12 +146,10 @@ public class GameLoop implements Runnable {
         int ticks = 0;
 
         while (running) {
-
             now = System.nanoTime();
             delta += (now - lastTime) / timePerTick;
             timer += now - lastTime;
             lastTime = now;
-
             if (delta >= 1) {
                 try {
                     tick();

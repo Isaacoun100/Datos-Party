@@ -3,8 +3,8 @@ package com.itcr.ce.datosparty.dataStructures.lists;
 import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
 
 /**
- *
- * @param <T>
+ * LinkedList where each Node contains a reference to the next and previous Node
+ * @param <T> Data type on Nodes
  */
 public class DoublyList<T> extends LinkedList<T> {
 
@@ -97,6 +97,11 @@ public class DoublyList<T> extends LinkedList<T> {
         }
         length--;
     }
+
+    /**
+     * Removes indexed Node when the node to remove is not the first nor last one ont the list
+     * @param nodeIndex Node to be removed
+     */
     protected void removeReferences(DoublyNode<T> nodeIndex) {
         DoublyNode<T> nodePrevious = (DoublyNode<T>) nodeIndex.getPrevious();
         DoublyNode<T> nodeNext = (DoublyNode<T>) nodeIndex.getNext();

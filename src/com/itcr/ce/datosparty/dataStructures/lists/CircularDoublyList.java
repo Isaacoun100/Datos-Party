@@ -3,11 +3,12 @@ package com.itcr.ce.datosparty.dataStructures.lists;
 import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
 
 /**
- *
- * @param <T>
+ * LinkedList where each Node contains a reference to the next and previous Node, and the last Node references the first
+ * @param <T> Data type on Nodes
  */
 public class CircularDoublyList<T> extends DoublyList<T> {
 
+    @Override
     public DoublyNode<T> getLast() {
         DoublyNode<T> lastNode = (DoublyNode<T>) this.head.getNext();
         while (lastNode.getNext() != this.head) {
