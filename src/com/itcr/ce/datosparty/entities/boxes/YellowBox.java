@@ -13,16 +13,22 @@ public class YellowBox extends Box {
 
     EventLogic eventLogic = new EventLogic();
 
+    /**
+     *
+     * This box triggers events, you can see the abstract class for a more detailed explanation of each parameter
+     * @param x position
+     * @param y position
+     * @param width size
+     * @param height size
+     */
     public YellowBox(float x, float y, int width, int height) {
         super(x, y, width, height);
     }
 
-
-    @Override
-    public void tick() {
-
-    }
-
+    /**
+     * render method for boxes, where we provide the asset associated with it.
+     * @param g java.awt graphics object.
+     */
     @Override
     public void render(Graphics g) {
         g.drawImage(Assets.yellowBox,(int) x,(int) y, width, height, null);

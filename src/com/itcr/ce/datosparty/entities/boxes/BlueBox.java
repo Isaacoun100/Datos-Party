@@ -11,17 +11,21 @@ import java.awt.*;
  */
 public class BlueBox extends Box {
 
+    /**
+     * Constructor for the box
+     * @param x an int of the position where it would be rendered
+     * @param y an int of the position where it would be rendered
+     * @param width an int of the width of the object
+     * @param height and int of the height of the object
+     */
     public BlueBox(float x, float y, int width, int height) {
         super(x, y, width, height);
     }
 
-
-
-    @Override
-    public void tick() {
-    }
-
-
+    /**
+     * render method for boxes, where we provide the asset associated with it.
+     * @param g java.awt graphics object.
+     */
     @Override
     public void render(Graphics g) {
         g.drawImage(Assets.blueBox,(int) x,(int) y, width, height, null);

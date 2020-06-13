@@ -47,8 +47,8 @@ public class EndGameState extends State {
                     setState(GameLoop.creditsState); }));
 
         //General UI objects
-        endGameUI.addObject(new UIImage((float)width/2-18,(float)height/2-2,4*6,3*6,Assets.endGamePodium2,"podium2"));
-        endGameUI.addObject(new UIImage((float)width/2-18,(float)height/2-2,6*6,3*6,Assets.endGamePodium3,"podium3"));
+        endGameUI.addObject(new UIImage((float)width/2-18,(float)height/2-6,4*6,4*6,Assets.endGamePodium2,"podium2"));
+        endGameUI.addObject(new UIImage((float)width/2-18,(float)height/2-6,6*6,4*6,Assets.endGamePodium3,"podium3"));
         endGameUI.addObject(new UIAnimatedImage((float)width/2-33,(float)height/2-30,17*4,2*4,congratsMsg,"congratsMsg"));
         //First Place
         endGameUI.addObject(new UIAnimatedImage((float)width/2-7,(float)height/2-15, 8*2,8*2,firstPlaceAnim,"firstPlace"));

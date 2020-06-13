@@ -11,11 +11,6 @@ public class StarSeller extends Entity{
     }
 
     @Override
-    public void tick() {
-
-    }
-
-    @Override
     public void render(Graphics g) {
         g.drawImage(Assets.starSeller,(int) x,(int) y, width, height, null);
 

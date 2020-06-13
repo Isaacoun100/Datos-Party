@@ -12,15 +12,21 @@ import java.awt.*;
  */
 public class RedBox extends Box {
 
+    /**
+     * This box subtract coins to the player, you can see the abstract class for a more detailed explanation of each parameter
+     * @param x position
+     * @param y position
+     * @param width size
+     * @param height size
+     */
     public RedBox(float x, float y, int width, int height) {
         super(x, y, width, height);
     }
 
-    @Override
-    public void tick() {
-
-    }
-
+    /**
+     * render method for boxes, where we provide the asset associated with it.
+     * @param g java.awt graphics object.
+     */
     @Override
     public void render(Graphics g) {
         g.drawImage(Assets.redBox,(int) x,(int) y, width, height, null);
