@@ -551,6 +551,7 @@ public class BustedPaintballState extends State {
         if(!setup){
             setup = true;
             gameWon = false;
+            gameStart = false;
             target = 0;
             speed = 25;
             knockOutP1 = false;
