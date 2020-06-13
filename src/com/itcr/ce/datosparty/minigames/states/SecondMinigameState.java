@@ -88,24 +88,278 @@ public class SecondMinigameState extends State {
     @Override
     public void render(Graphics g) {
 
-        if(handler.getKeyManager().key_Q && keypressed){
-            move=true;
-            keypressed=false;
+        StarUI.renderAll(g);
+
+        g.setFont(font);
+        Color color = new Color(255, 255, 255);
+        g.setColor(color);
+
+        if(count>100){
+
+            StarUI.removeObject("star1");
+            StarUI.removeObject("star2");
+            StarUI.removeObject("star3");
+            StarUI.removeObject("star4");
+            StarUI.removeObject("star5");
+            StarUI.removeObject("star6");
+            StarUI.removeObject("star7");
+            StarUI.removeObject("star8");
+
+            StarUI.addObject(new UIAnimatedImage((float) Dice.roll(1,98),(float)Dice.roll(1,70),2,2, star,"star1"));
+            StarUI.addObject(new UIAnimatedImage((float) Dice.roll(1,98),(float)Dice.roll(1,70),2,2, star,"star2"));
+            StarUI.addObject(new UIAnimatedImage((float) Dice.roll(1,98),(float)Dice.roll(1,70),2,2, star,"star3"));
+            StarUI.addObject(new UIAnimatedImage((float) Dice.roll(1,98),(float)Dice.roll(1,70),2,2, star,"star4"));
+            StarUI.addObject(new UIAnimatedImage((float) Dice.roll(1,98),(float)Dice.roll(1,70),2,2, star,"star5"));
+            StarUI.addObject(new UIAnimatedImage((float) Dice.roll(1,98),(float)Dice.roll(1,70),2,2, star,"star6"));
+            StarUI.addObject(new UIAnimatedImage((float) Dice.roll(1,98),(float)Dice.roll(1,70),2,2, star,"star7"));
+            StarUI.addObject(new UIAnimatedImage((float) Dice.roll(1,98),(float)Dice.roll(1,70),2,2, star,"star8"));
+            count=0;
         }
 
-        if(!handler.getKeyManager().key_Q){
-          keypressed=true;
+        if(numPlayers==2){
+            if(handler.getKeyManager().key_Q && isQpressed){
+                firstMove =true;
+                isQpressed =false;
+            }
+            if(handler.getKeyManager().key_P && isPpressed){
+                secondMove =true;
+                isPpressed =false;
+            }
+            if(!handler.getKeyManager().key_Q){
+                isQpressed =true;
+            }
+            if(!handler.getKeyManager().key_P){
+                isPpressed =true;
+            }
+            if(firstMove){
+                firsty-=1;
+                SpaceRunUI.addObject(new UIImage((float)15,(float)firsty, 2*3,3*3,Assets.firstShip,"FirstPlayer"));
+                SpaceRunUI.removeObject("FirstPlayer");
+                firstMove =false;
+            }
+            if(secondMove){
+                secondy-=1;
+                SpaceRunUI.addObject(new UIImage((float)40,(float)secondy, 2*3,3*3,Assets.secondShip,"SecondPlayer"));
+                SpaceRunUI.removeObject("SecondPlayer");
+                secondMove=false;
+            }
+
+            SpaceRunUI.renderById(g,"FirstPlayer");
+
+            if(firsty>10){
+                g.drawString(activePlayer.getData().getName(), 13*15, 3*15);
+                g.drawString("Spam Q!", 13*15, 7*15);
+            }
+
+            SpaceRunUI.renderById(g,"SecondPlayer");
+
+            if(secondy>10){
+                g.drawString(activePlayer.getNext().getData().getName(), 38*15, 3*15);
+                g.drawString("Spam P!", 38*15, 7*15);
+            }
+
+            if(firsty==-3){
+                winner.winGame(activePlayer.getData());
+                first=true;
+                State.setState(GameLoop.gameDependantStates.get(8).getData());
+            }
+            else if(secondy==-3){
+                winner.winGame(activePlayer.getNext().getData());
+                first=true;
+                State.setState(GameLoop.gameDependantStates.get(8).getData());
+            }
+
+        }
+        else if(numPlayers==3){
+            if(handler.getKeyManager().key_Q && isQpressed){
+                firstMove =true;
+                isQpressed =false;
+            }
+            if(handler.getKeyManager().key_P && isPpressed){
+                secondMove =true;
+                isPpressed =false;
+            }
+            if(handler.getKeyManager().key_Z && isZpressed){
+                thirdMove =true;
+                isZpressed =false;
+            }
+
+            if(!handler.getKeyManager().key_Q){
+                isQpressed =true;
+            }
+            if(!handler.getKeyManager().key_P){
+                isPpressed =true;
+            }
+            if(!handler.getKeyManager().key_Z){
+                isZpressed =true;
+            }
+
+            if(firstMove){
+                firsty-=1;
+                SpaceRunUI.addObject(new UIImage((float)15,(float)firsty, 2*3,3*3,Assets.firstShip,"FirstPlayer"));
+                SpaceRunUI.removeObject("FirstPlayer");
+                firstMove =false;
+            }
+            if(secondMove){
+                secondy-=1;
+                SpaceRunUI.addObject(new UIImage((float)40,(float)secondy, 2*3,3*3,Assets.secondShip,"SecondPlayer"));
+                SpaceRunUI.removeObject("SecondPlayer");
+                secondMove=false;
+            }
+            if(thirdMove){
+                thirdy-=1;
+                SpaceRunUI.addObject(new UIImage((float)65,(float)thirdy, 2*3,3*3,Assets.thirdShip,"ThirdPlayer"));
+                SpaceRunUI.removeObject("ThirdPlayer");
+                thirdMove=false;
+            }
+
+            SpaceRunUI.renderById(g,"FirstPlayer");
+
+            if(firsty>10){
+                g.drawString(activePlayer.getData().getName(), 13*15, 3*15);
+                g.drawString("Spam Q!", 13*15, 7*15);
+            }
+
+            SpaceRunUI.renderById(g,"SecondPlayer");
+
+            if(secondy>10){
+                g.drawString(activePlayer.getNext().getData().getName(), 38*15, 3*15);
+                g.drawString("Spam P!", 38*15, 7*15);
+            }
+
+            SpaceRunUI.renderById(g,"ThirdPlayer");
+
+            if(thirdy>10){
+                g.drawString(activePlayer.getNext().getNext().getData().getName(), 63*15, 3*15);
+                g.drawString("Spam Z!", 63*15, 7*15);
+            }
+
+            if(firsty==-3){
+                winner.winGame(activePlayer.getData());
+                first=true;
+                State.setState(GameLoop.gameDependantStates.get(8).getData());
+            }
+            else if(secondy==-3){
+                winner.winGame(activePlayer.getNext().getData());
+                first=true;
+                State.setState(GameLoop.gameDependantStates.get(8).getData());
+            }
+            else if(thirdy==-3){
+                winner.winGame(activePlayer.getNext().getNext().getData());
+                first=true;
+                State.setState(GameLoop.gameDependantStates.get(8).getData());
+            }
+
+        }
+        else if(numPlayers==4){
+            if(handler.getKeyManager().key_Q && isQpressed){
+                firstMove =true;
+                isQpressed =false;
+            }
+            if(handler.getKeyManager().key_P && isPpressed){
+                secondMove =true;
+                isPpressed =false;
+            }
+            if(handler.getKeyManager().key_Z && isZpressed){
+                thirdMove =true;
+                isZpressed =false;
+            }
+            if(handler.getKeyManager().key_M && isMpressed){
+                fourthMove =true;
+                isMpressed =false;
+            }
+
+            if(!handler.getKeyManager().key_Q){
+                isQpressed =true;
+            }
+            if(!handler.getKeyManager().key_P){
+                isPpressed =true;
+            }
+            if(!handler.getKeyManager().key_Z){
+                isZpressed =true;
+            }
+            if(!handler.getKeyManager().key_M){
+                isMpressed =true;
+            }
+
+
+            if(firstMove){
+                firsty-=1;
+                SpaceRunUI.addObject(new UIImage((float)15,(float)firsty, 2*3,3*3,Assets.firstShip,"FirstPlayer"));
+                SpaceRunUI.removeObject("FirstPlayer");
+                firstMove =false;
+            }
+            if(secondMove){
+                secondy-=1;
+                SpaceRunUI.addObject(new UIImage((float)40,(float)secondy, 2*3,3*3,Assets.secondShip,"SecondPlayer"));
+                SpaceRunUI.removeObject("SecondPlayer");
+                secondMove=false;
+            }
+            if(thirdMove){
+                thirdy-=1;
+                SpaceRunUI.addObject(new UIImage((float)65,(float)thirdy, 2*3,3*3,Assets.thirdShip,"ThirdPlayer"));
+                SpaceRunUI.removeObject("ThirdPlayer");
+                thirdMove=false;
+            }
+            if(fourthMove){
+                fourthy-=1;
+                SpaceRunUI.addObject(new UIImage((float)90,(float)fourthy, 2*3,3*3,Assets.fourthShip,"FourthPlayer"));
+                SpaceRunUI.removeObject("FourthPlayer");
+                fourthMove=false;
+            }
+
+            SpaceRunUI.renderById(g,"FirstPlayer");
+
+            if(firsty>10){
+                g.drawString(activePlayer.getData().getName(), 13*15, 3*15);
+                g.drawString("Spam Q!", 13*15, 7*15);
+            }
+
+            SpaceRunUI.renderById(g,"SecondPlayer");
+
+            if(secondy>10){
+                g.drawString(activePlayer.getNext().getData().getName(), 38*15, 3*15);
+                g.drawString("Spam P!", 38*15, 7*15);
+            }
+
+            SpaceRunUI.renderById(g,"ThirdPlayer");
+
+            if(thirdy>10){
+                g.drawString(activePlayer.getNext().getNext().getData().getName(), 63*15, 3*15);
+                g.drawString("Spam Z!", 63*15, 7*15);
+            }
+
+            SpaceRunUI.renderById(g,"FourthPlayer");
+
+            if(fourthy>10){
+                g.drawString(activePlayer.getNext().getNext().getNext().getData().getName(), 88*15, 3*15);
+                g.drawString("Spam M!", 88*15, 7*15);
+            }
+
+            if(firsty==-3){
+                winner.winGame(activePlayer.getData());
+                first=true;
+                State.setState(GameLoop.gameDependantStates.get(8).getData());
+            }
+            if(secondy==-3){
+                winner.winGame(activePlayer.getNext().getData());
+                first=true;
+                State.setState(GameLoop.gameDependantStates.get(8).getData());
+            }
+            if(thirdy==-3){
+                winner.winGame(activePlayer.getNext().getNext().getData());
+                first=true;
+                State.setState(GameLoop.gameDependantStates.get(8).getData());
+            }
+            if(fourthy==-3){
+                winner.winGame(activePlayer.getNext().getNext().getNext().getData());
+                first=true;
+                State.setState(GameLoop.gameDependantStates.get(8).getData());
+            }
+
         }
 
-        SpaceRunUI.renderById(g,"player1Btn");
-        if(move){
-            x+=2;
-            SpaceRunUI.addObject(new UIImage((float)x,(float)x, 1,2,Assets.player1Static,"MovingPlayer"));
-            SpaceRunUI.removeObject("MovingPlayer");
-            move=false;
-        }
-
-        SpaceRunUI.renderById(g,"MovingPlayer");
+        count++;
     }
 
 
