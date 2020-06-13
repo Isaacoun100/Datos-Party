@@ -44,7 +44,7 @@ public class YellowBox extends Box {
         if(player.getCurrentTurn()){
             game.setCurrentEvent(game.eventStack.pop());
             switch (game.getCurrentEvent()) {
-                case DUEL -> eventLogic.duel(player, game);
+                case DUEL -> eventLogic.randomDuel(player, game);
                 case STEAL_COINS -> eventLogic.pauseEvent(game);
                 case GIFT_COINS -> eventLogic.giftCoins(player, game);
                 case LOSE_STAR -> eventLogic.loseStar(player, game);

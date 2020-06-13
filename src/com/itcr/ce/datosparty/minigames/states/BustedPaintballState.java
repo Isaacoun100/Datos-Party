@@ -38,9 +38,9 @@ public class BustedPaintballState extends State {
     private final int numPlayers;
     private boolean setup = false;
     private boolean knockOutP1 = false, knockOutP2 = false, knockOutP3 = false, knockOutP4 = false;
-    private boolean gameStart = false, gameWon = false;
+    private boolean gameStart = false, gameWon = false, duel = false;
     private String winner;
-    private Font font;
+    private final Font font;
     SinglyList<String> shotColor = new SinglyList<>();
 
 
@@ -552,6 +552,7 @@ public class BustedPaintballState extends State {
             setup = true;
             gameWon = false;
             gameStart = false;
+            duel = false;
             target = 0;
             speed = 25;
             knockOutP1 = false;
@@ -569,5 +570,4 @@ public class BustedPaintballState extends State {
             }
         }
     }
-
 }
