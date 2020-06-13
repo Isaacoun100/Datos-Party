@@ -11,7 +11,8 @@ public class Assets {
                                 endGamePodium2, endGamePodium3, playerSelectionTitle, loginWallpaper, roundWallpaper,
                                 selectionWallpaper, redSelectorL, redSelectorR, blueSelectorL, blueSelectorR,
                                 yellowSelectorL,yellowSelectorR, greenSelectorL, paintgun4,paintgun3, paintgun2,
-                                greenSelectorR, memoryWallpaper;
+                                greenSelectorR, memoryWallpaper, spaceWallpaper, firstShip, secondShip, thirdShip,
+                                fourthShip;
 
     public static BufferedImage[] settingsButton, playButton, creditsButton, backButton, titleImage, pressEnterImage,
                                   notOKComputer,  notOKComputerIcon,  nothingHereMessage,  boton1,  diceButton,
@@ -22,7 +23,7 @@ public class Assets {
                                   endTurnBtn, coin, star, noviceButton, proButton, eliteButton, roundTitle, okBtn,
                                   stealCoins1, stealCoins2, stealCoins3, stealCoins4, titanCard, ghostCard, koichiCard,
                                   samCard, tuxCard, backCard, checkButton, congratulationsTitle, twoPlayerAnim,
-                                  threePlayerAnim, fourPlayerAnim, firstPlaceAnim, lastPlaceAnim;
+                                  threePlayerAnim, fourPlayerAnim, firstPlaceAnim, lastPlaceAnim, bornStar;
 
     public static Font bitArtFont, retroComputer, threeDventure, upHeavett, pixelInversions;
 
@@ -184,6 +185,11 @@ public class Assets {
         endTurnBtn = new BufferedImage[2];
         endTurnBtn[1] = sheet.crop(29,4,2,2);
         endTurnBtn[0] = sheet.crop(31,4,2,2);
+
+        firstShip = buttonSheet.crop(27,4,2,3);
+        secondShip = buttonSheet.crop(29,4,2,3);
+        thirdShip = buttonSheet.crop(31,4,2,3);
+        fourthShip = buttonSheet.crop(33,4,2,3);
 
         okBtn = new BufferedImage[2];
         okBtn[0] = sheet.crop(19,8,1,1);
@@ -360,6 +366,10 @@ public class Assets {
         stealCoins4[0] = sheet.crop(3,13,1,2);
         stealCoins4[1] = sheet.crop(5,13,1,2);
 
+        bornStar = new BufferedImage[2];
+        bornStar[0] = buttonSheet.crop(13,22,2,2);
+        bornStar[1] = buttonSheet.crop(32,22,2,2);
+
         firstPlaceAnim = new BufferedImage[3];
         firstPlaceAnim[0] = sheet.crop(29,8,2,2);
         firstPlaceAnim[1] = sheet.crop(31,8,2,2);
@@ -399,6 +409,7 @@ public class Assets {
         roundWallpaper= ImageLoader.loadImage("/textures/RoundWallpaper.png");
         selectionWallpaper= ImageLoader.loadImage("/textures/SelectionWallpaper.png");
         memoryWallpaper = ImageLoader.loadImage("/textures/MemoryWallpaper.png");
+        spaceWallpaper = ImageLoader.loadImage("/textures/Space.png");
 
         congratulationsTitle = new BufferedImage[4];
         congratulationsTitle[0] = sheet.crop(0,17,17,2);
