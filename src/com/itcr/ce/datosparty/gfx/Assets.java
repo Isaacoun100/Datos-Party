@@ -15,7 +15,7 @@ public class Assets {
                                 clickerBG, paintBallBG, spaceWallpaper, firstShip, secondShip, thirdShip,fourthShip,
                                 rock,paper,scissors,number1,number2,number3,rpcTitle, leftPlayer, rightPlayer,
                                 playerIndicator1, playerIndicator2, playerIndicator3, playerIndicator4, blackScope,
-                                redScope;
+                                redScope, shootingStarBG, clearSkyBG;
     public static BufferedImage[] settingsButton, playButton, creditsButton, backButton, titleImage, pressEnterImage,
                                   notOKComputer,  notOKComputerIcon,  nothingHereMessage,  boton1,  diceButton,
                                   upArrow, downArrow, leftArrow, rightArrow,  player1Button, player2Button, duel,
@@ -27,9 +27,10 @@ public class Assets {
                                   tuxCard, backCard, checkButton, congratulationsTitle, twoPlayerAnim, threePlayerAnim,
                                   fourPlayerAnim, firstPlaceAnim, lastPlaceAnim, damageRedR, damageRedL, damageBlueR,
                                   damageBlueL, damageYellowR, damageYellowL,damageGreenR, damageGreenL, stoneButton,
-                                  dustAnimation, bornStar;
+                                  dustAnimation, bornStar, shootingStar;
 
-    public static Font bitArtFont, retroComputer, threeDventure, upHeavett, pixelInversions, astalemtim, fourB30;
+    public static Font bitArtFont, retroComputer, threeDventure, upHeavett, pixelInversions, astalemtim, fourB30,
+                        acientModernTales;
 
 
 
@@ -40,6 +41,7 @@ public class Assets {
     public static void init(){
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/SpriteSheet-Sheet.png"));
         SpriteSheet buttonSheet = new SpriteSheet(ImageLoader.loadImage("/textures/ButtonSprite-Sheet.png"));
+        SpriteSheet shootingStarSheet = new SpriteSheet(ImageLoader.loadImage("/textures/shooting-star-nobg-Sheet.png"));
 
         titleImage = new BufferedImage[2];
         titleImage[0] = sheet.crop(0,0,20,3);
@@ -405,14 +407,15 @@ public class Assets {
         endGamePodium2 = sheet.crop(34,16,4,3);
         endGamePodium3 = sheet.crop(34,16,6,3);
 
-        loginWallpaper= ImageLoader.loadImage("/textures/LoginWallpaper.png");
-        roundWallpaper= ImageLoader.loadImage("/textures/RoundWallpaper.png");
+        loginWallpaper = ImageLoader.loadImage("/textures/LoginWallpaper.png");
+        roundWallpaper = ImageLoader.loadImage("/textures/RoundWallpaper.png");
         selectionWallpaper= ImageLoader.loadImage("/textures/SelectionWallpaper.png");
         memoryWallpaper = ImageLoader.loadImage("/textures/MemoryWallpaper.png");
         clickerBG = ImageLoader.loadImage("/textures/clickerBG.png");
         paintBallBG = ImageLoader.loadImage("/textures/paintballBG.png");
         spaceWallpaper = ImageLoader.loadImage("/textures/Space.png");
-        mapGuide=ImageLoader.loadImage("/textures/MapLayout.png");
+        mapGuide = ImageLoader.loadImage("/textures/MapLayout.png");
+        clearSkyBG = ImageLoader.loadImage("/textures/clear-sky.png");
 
         congratulationsTitle = new BufferedImage[4];
         congratulationsTitle[0] = sheet.crop(0,17,17,2);
@@ -518,6 +521,27 @@ public class Assets {
         dustAnimation[4] = sheet.crop(31,27,3,4);
         dustAnimation[5] = sheet.crop(37,27,3,4);
 
+        shootingStar = new BufferedImage[19];
+        shootingStar[0] = shootingStarSheet.crop(0,0,2,2);
+        shootingStar[1] = shootingStarSheet.crop(2,0,2,2);
+        shootingStar[2] = shootingStarSheet.crop(4,0,2,2);
+        shootingStar[3] = shootingStarSheet.crop(6,0,2,2);
+        shootingStar[4] = shootingStarSheet.crop(8,0,2,2);
+        shootingStar[5] = shootingStarSheet.crop(10,0,2,2);
+        shootingStar[6] = shootingStarSheet.crop(12,0,2,2);
+        shootingStar[7] = shootingStarSheet.crop(14,0,2,2);
+        shootingStar[8] = shootingStarSheet.crop(16,0,2,2);
+        shootingStar[9] = shootingStarSheet.crop(18,0,2,2);
+        shootingStar[10] = shootingStarSheet.crop(20,0,2,2);
+        shootingStar[11] = shootingStarSheet.crop(22,0,2,2);
+        shootingStar[12] = shootingStarSheet.crop(24,0,2,2);
+        shootingStar[13] = shootingStarSheet.crop(26,0,2,2);
+        shootingStar[14] = shootingStarSheet.crop(28,0,2,2);
+        shootingStar[15] = shootingStarSheet.crop(30,0,2,2);
+        shootingStar[16] = shootingStarSheet.crop(32,0,2,2);
+        shootingStar[17] = shootingStarSheet.crop(34,0,2,2);
+        shootingStar[18] = shootingStarSheet.crop(36,0,2,2);
+
         paintBallLogo = sheet.crop(0,23,9,2);
         stoneLogo = sheet.crop(9,23,5,2);
 
@@ -549,6 +573,7 @@ public class Assets {
         pixelInversions = FontLoader.loadFont("res/fonts/pixel-inversions.ttf");
         astalemtim = FontLoader.loadFont("res/fonts/Astalemtim.ttf");
         fourB30 = FontLoader.loadFont("res/fonts/04B_30__.TTF");
+        acientModernTales = FontLoader.loadFont("res/fonts/AncientModernTales-a7Po.ttf");
 
 
     }
