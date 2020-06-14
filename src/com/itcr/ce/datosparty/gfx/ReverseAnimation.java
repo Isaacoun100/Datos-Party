@@ -13,6 +13,12 @@ public class ReverseAnimation {
     private long lastTime, timer;
     BufferedImage[] frames;
 
+    /**
+     * Constructor for animation, an animation is an object that goes through a series of images,
+     * called frames from highest index to its lowest index
+     * @param speed int value of millisecond intervals between frames
+     * @param frames a buffered array of images of the same size
+     */
     public ReverseAnimation(int speed, BufferedImage[] frames){
         this.speed = speed;
         this.frames = frames;
@@ -21,6 +27,9 @@ public class ReverseAnimation {
         lastTime = System.currentTimeMillis();
     }
 
+    /**
+     * When called in another tick method it will run the reverse animation to the speed specified in its constructor
+     */
     public void tick(){
 
         timer += System.currentTimeMillis() - lastTime;
@@ -35,6 +44,10 @@ public class ReverseAnimation {
         }
     }
 
+    /**
+     * Getter for the current frame
+     * @return the current frame that is being rendered by the reverse animation
+     */
     public BufferedImage getCurrentFrame(){
         return frames[index];
     }

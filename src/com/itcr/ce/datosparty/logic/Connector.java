@@ -1,5 +1,8 @@
 package com.itcr.ce.datosparty.logic;
 
+/**
+ * Enum for phase connectors
+ */
 public enum Connector {
     PHASE_A_FIRST,
     PHASE_A_LAST,

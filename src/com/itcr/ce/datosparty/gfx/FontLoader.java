@@ -5,6 +5,11 @@ import java.io.*;
 
 public class FontLoader {
 
+    /**
+     * Font loader, it simply needs to be provided a file path, and it will return a Font object
+     * @param path String of a file's current location
+     * @return Font Obj
+     */
     public static Font loadFont(String path){
         try {
             Font font = Font.createFont(Font.TRUETYPE_FONT,new File(path)).deriveFont(30f);

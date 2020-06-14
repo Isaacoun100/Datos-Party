@@ -51,10 +51,18 @@ public class Display {
         frame.pack();
     }
 
+    /**
+     * getter for the display class
+     * @return canvas obj
+     */
     public Canvas getCanvas(){
         return canvas;
     }
 
+    /**
+     * getter for the display class
+     * @return frame obj
+     */
     public JFrame getFrame(){
         return frame;
     }

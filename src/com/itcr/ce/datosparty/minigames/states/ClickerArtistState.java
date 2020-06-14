@@ -29,8 +29,14 @@ public class ClickerArtistState extends State {
     private final Font font;
     private boolean setup = false, gameWon = false;
     private String winner, loser1, loser2, loser3;
-    private Color springGreen;
+    private final Color springGreen;
 
+    /**
+     * Constructor for the clicker artist state
+     * @param handler handler obj, that is used to retrieve key listener
+     * @param numPlayers number of players used as a conditional in case its less than 4 players
+     * @param game the game obj in order to have access to all variables and methods from the game
+     */
     public ClickerArtistState(Handler handler, int numPlayers, Game game) {
         super(handler);
         clickerArtistUI = new UIManager(handler);
@@ -102,6 +108,9 @@ public class ClickerArtistState extends State {
 
     }
 
+    /**
+     * mini game tick method, this runs the logic of the game
+     */
     @Override
     public void tick() {
         gameSetup();
@@ -128,6 +137,10 @@ public class ClickerArtistState extends State {
         }
     }
 
+    /**
+     * Mini game render method, this renders the mini game's graphics
+     * @param g graphics parameter passed to game loop
+     */
     @Override
     public void render(Graphics g) {
         clickerArtistUI.renderById(g,"backGround");
@@ -211,6 +224,13 @@ public class ClickerArtistState extends State {
         }
     }
 
+    /**
+     * This method compares scores for 4 players and declares the highest as winner
+     * @param score1 int value of the first player's score
+     * @param score2 int value of the second player's score
+     * @param score3 int value of the first player's score
+     * @param score4 int value of the first player's score
+     */
     private void checkWinner(int score1, int score2, int score3, int score4){
         switch (checkHighest(score1, score2, score3, score4)) {
             case 1 -> {winGame(player1);
@@ -237,6 +257,12 @@ public class ClickerArtistState extends State {
         }
     }
 
+    /**
+     * This method compares scores for 4 players and declares the highest as winner
+     * @param score1 int value of the first player's score
+     * @param score2 int value of the second player's score
+     * @param score3 int value of the first player's score
+     */
     private void checkWinner(int score1, int score2, int score3){
         switch (checkHighest(score1, score2, score3)) {
             case 1 -> {winGame(player1);
@@ -254,6 +280,11 @@ public class ClickerArtistState extends State {
         }
     }
 
+    /**
+     * This method compares scores for 4 players and declares the highest as winner
+     * @param score1 int value of the first player's score
+     * @param score2 int value of the second player's score
+     */
     private void checkWinner(int score1, int score2){
         switch (checkHighest(score1, score2)) {
             case 1 -> {winGame(player1);
@@ -265,6 +296,14 @@ public class ClickerArtistState extends State {
         }
     }
 
+    /**
+     * This method compares 4 numbers and returns the highest
+     * @param a first int value
+     * @param b second int value
+     * @param c third int value
+     * @param d fourth int value
+     * @return a number corresponding to which was higher
+     */
     private int checkHighest(int a, int b, int c, int d){
          int max = Math.max(Math.max(a,b),Math.max(c,d));
         if(max == a){
@@ -278,6 +317,13 @@ public class ClickerArtistState extends State {
         }
     }
 
+    /**
+     * This method compares 3 numbers and returns the highest
+     * @param a first int value
+     * @param b second int value
+     * @param c third int value
+     * @return a number corresponding to which was higher
+     */
     private int checkHighest(int a, int b, int c){
         int tempMax = Math.max(Math.max(a,b),Math.max(a,c));
         int max = Math.max(Math.max(b,c),tempMax);
@@ -290,6 +336,12 @@ public class ClickerArtistState extends State {
         }
     }
 
+    /**
+     * This method compares 2 numbers and returns the highest
+     * @param a first int value
+     * @param b second int value
+     * @return a number corresponding to which was higher
+     */
     private int checkHighest(int a, int b){
         int max = Math.max(a,b);
         if(max == a){
@@ -299,6 +351,10 @@ public class ClickerArtistState extends State {
         }
     }
 
+    /**
+     * sets a player as a winner and gives a prize
+     * @param player player obj of the player who won
+     */
     private void winGame(Player player){
         if(!gameWon) {
             player.addCoins(10);
@@ -306,12 +362,19 @@ public class ClickerArtistState extends State {
         }
     }
 
+    /**
+     * method that returns the game from the board
+     */
     private void backToBoard(){
         setup = false;
         game.resumeGame();
         State.setState(GameLoop.gameDependantStates.get(8).getData());
     }
 
+    /**
+     * this method is run a single time when the mini game is called, it prepares all variables to their default state
+     * like resetting players hp, and change all knockouts to false
+     */
     private void gameSetup(){
         if(!setup){
             gameWon = false;

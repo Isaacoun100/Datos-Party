@@ -8,53 +8,49 @@ import java.awt.event.MouseMotionListener;
 
 public class MouseManager implements MouseListener, MouseMotionListener {
 
-    private boolean leftPressed, rightPressed;
-    private int mouseX, mouseY;
     private UIManager uiManager;
 
     public MouseManager(){
-
     }
 
+    /**
+     * This method defines which UI will have access to the mouse manager, when set, objects on that UI can be interacted with
+     * @param uiManager UI manager obj
+     */
     public void setUiManager(UIManager uiManager){
         this.uiManager = uiManager;
     }
 
-    public boolean isLeftPressed(){
-        return leftPressed;
-    }
-
-    public boolean isRightPressed(){
-        return rightPressed;
-    }
-
-    public int getMouseX(){
-        return mouseX;
-    }
-
-    public int getMouseY(){
-        return mouseY;
-    }
-
+    /**
+     * Unused method extended from Mouse Listener
+     * @param e Mouse event
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
-
     }
 
+    /**
+     * This method returns a true if a mouse button is pressed, BUTTON1 refers to the left click, BUTTON3 refers to the right click
+     * @param e Mouse event
+     */
     @Override
     public void mousePressed(MouseEvent e) {
         if(e.getButton() == MouseEvent.BUTTON1)
-            leftPressed = true;
+            ;
         else if(e.getButton() == MouseEvent.BUTTON3)
-            rightPressed = true;
+            ;
     }
 
+    /**
+     * This method returns a false when the mouse button is released, BUTTON1 refers to the left click, BUTTON3 refers to the right click
+     * @param e Mouse event
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         if(e.getButton() == MouseEvent.BUTTON1)
-            leftPressed = false;
+            ;
         else if(e.getButton() == MouseEvent.BUTTON3)
-            rightPressed = false;
+            ;
         if(uiManager != null) {
             try {
                 uiManager.onMouseRelease(e);
@@ -64,25 +60,38 @@ public class MouseManager implements MouseListener, MouseMotionListener {
         }
     }
 
+    /**
+     * Unused method extended from Mouse Listener
+     * @param e Mouse event
+     */
     @Override
     public void mouseEntered(MouseEvent e) {
-
     }
 
+    /**
+     * Unused method extended from Mouse Listener
+     * @param e Mouse event
+     */
     @Override
     public void mouseExited(MouseEvent e) {
-
     }
 
+    /**
+     * Unused method extended from Mouse Listener
+     * @param e Mouse event
+     */
     @Override
     public void mouseDragged(MouseEvent e) {
-
     }
 
+    /**
+     * Unused method extended from Mouse Listener
+     * @param e Mouse event
+     */
     @Override
     public void mouseMoved(MouseEvent e) {
-        mouseX = e.getX();
-        mouseY = e.getY();
+        int mouseX = e.getX();
+        int mouseY = e.getY();
 
         if(uiManager != null)
             uiManager.onMouseMove(e);

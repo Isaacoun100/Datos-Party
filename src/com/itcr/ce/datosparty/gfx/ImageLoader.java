@@ -6,6 +6,11 @@ import java.io.IOException;
 
 public class ImageLoader {
 
+    /**
+     * This constructor will accept a String value of a file path, and return a Buffered image
+     * @param path String value of files location
+     * @return Buffered image
+     */
     public static BufferedImage loadImage(String path){
         try {
             return ImageIO.read(ImageLoader.class.getResource(path));

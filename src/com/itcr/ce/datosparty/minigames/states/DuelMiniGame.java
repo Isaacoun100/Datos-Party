@@ -24,6 +24,12 @@ public class DuelMiniGame extends State {
     private long lastTime, timer;
     private final int coolDown;
 
+    /**
+     * Constructor for the clicker artist state
+     * @param handler handler obj, that is used to retrieve key listener
+     * @param numPlayers number of players used as a conditional in case its less than 4 players
+     * @param game the game obj in order to have access to all variables and methods from the game
+     */
     public DuelMiniGame(Handler handler, int numPlayers, Game game) {
 
         super(handler);
@@ -86,6 +92,9 @@ public class DuelMiniGame extends State {
             }}));
     }
 
+    /**
+     * mini game tick method, this runs the logic of the game
+     */
     @Override
     public void tick() {
         handler.getMouseManager().setUiManager(duelUI);
@@ -133,6 +142,10 @@ public class DuelMiniGame extends State {
 
     }
 
+    /**
+     * Mini game render method, this renders the mini game's graphics
+     * @param g graphics parameter passed to game loop
+     */
     @Override
     public void render(Graphics g) {
         g.setFont(font);
@@ -182,11 +195,18 @@ public class DuelMiniGame extends State {
 
     }
 
+    /**
+     * this pulls the data from the game, of who are the players that are playing a duel
+     */
     private void updateDuelPlayers(){
-        leftPlayer = game.getDuelist1();
-        rightPlayer = game.getDuelist2();
+        leftPlayer = game.getDuelPlayer1();
+        rightPlayer = game.getDuelPlayer2();
     }
 
+    /**
+     * this renders the player indicator, corresponding to the players turn
+     * @param g graphics parameter passed to game loop
+     */
     private void renderIndicator(Graphics g){
         if(leftPlayer==game.getPlayerList().get(0).getData()){
             duelUI.renderById(g, "playerIndicator1L");
@@ -215,6 +235,10 @@ public class DuelMiniGame extends State {
         }
     }
 
+    /**
+     * this method is run a single time when the mini game is called, it prepares all variables to their default state
+     * like resetting players hp, and change all knockouts to false
+     */
     private void setupGame(){
         gameSetup = true;
         gameStart = false;
@@ -224,6 +248,11 @@ public class DuelMiniGame extends State {
         currentPlayer = 1;
     }
 
+    /**
+     * sets a player as a winner and gives a prize
+     * @param winner player obj of the winner of the game
+     * @param loser player obj of the loser of the game
+     */
     private void winGame(Player winner, Player loser){
         this.winner = winner.getName();
         if(!gameWon) {
@@ -234,12 +263,18 @@ public class DuelMiniGame extends State {
         }
     }
 
+    /**
+     * method that returns the game from the board
+     */
     private void backToBoard(){
         gameSetup = false;
         game.resumeGame();
         State.setState(GameLoop.gameDependantStates.get(8).getData());
     }
 
+    /**
+     * this compares the answers of each player, and determines who won, or if its a tie
+     */
     private void compareAnswers(){
         if(leftPlayerAnswer.equals(rightPlayerAnswer)){
             tie = true;

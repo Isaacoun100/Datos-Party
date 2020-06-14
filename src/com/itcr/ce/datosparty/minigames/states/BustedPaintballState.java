@@ -42,7 +42,12 @@ public class BustedPaintballState extends State {
     private final Font font;
     SinglyList<String> shotColor = new SinglyList<>();
 
-
+    /**
+     * Constructor for the buster paintball mini game
+     * @param handler handler obj, that is used to retrieve key listener
+     * @param numPlayers number of players used as a conditional in case its less than 4 players
+     * @param game the game obj in order to have access to all variables and methods from the game
+     */
     public BustedPaintballState(Handler handler, int numPlayers, Game game) {
         super(handler);
 
@@ -225,6 +230,9 @@ public class BustedPaintballState extends State {
 
     }
 
+    /**
+     * mini game tick method, this runs the logic of the game
+     */
     @Override
     public void tick() {
         gameSetup();
@@ -266,6 +274,10 @@ public class BustedPaintballState extends State {
         }
     }
 
+    /**
+     * Mini game render method, this renders the mini game's graphics
+     * @param g graphics parameter passed to game loop
+     */
     @Override
     public void render(Graphics g) {
         bustedPaintBallUI.renderById(g,"backGround");
@@ -324,6 +336,13 @@ public class BustedPaintballState extends State {
         }
     }
 
+    /**
+     * This is a method that renders how much damage a player has taken in the form of paint painting its character
+     * it assembles a string to determine which asset to use
+     * @param g graphics parameter passed to game loop
+     * @param playerHP int value corresponding to each players hp, this is to render damage to each specific player
+     * @param target String value corresponding to the target was shot
+     */
     private void renderDamage(Graphics g, int playerHP, String target){
 
         if(playerHP <= 5){
@@ -346,10 +365,21 @@ public class BustedPaintballState extends State {
         }
     }
 
+    /**
+     * Method used by render damage, it renders each specific shot
+     * @param g graphics parameter passed to game loop
+     * @param playerHP int value corresponding to each players hp, this is to render damage to each specific player
+     * @param target String value corresponding to the target was shot
+     * @param shooter String value corresponding to the shooter who shot the last paint ball
+     */
     private void renderShot(Graphics g,int playerHP,String target, String shooter){
         renderDamageColor(g,target,playerHP,shooter);
     }
 
+    /**
+     * checks the current player variable and returns a string corresponding on who the last shooter was
+     * @return String value to assemble the render id
+     */
     private String checkShooter(){
         switch (currentPlayer) {
             case 1 -> {
@@ -367,6 +397,10 @@ public class BustedPaintballState extends State {
         }
     }
 
+    /**
+     * this parameter returns the damage color based on the current player
+     * @param g graphics parameter passed to game loop
+     */
     private void renderTargetColor(Graphics g){
         switch (currentPlayer){
             case 1 -> renderTarget(g,"Red");
@@ -376,6 +410,11 @@ public class BustedPaintballState extends State {
         }
     }
 
+    /**
+     *This is a method used to render the target of the player who is currently shooting, it assembles a string based on substrings
+     * @param g graphics parameter passed to game loop
+     * @param color String parameter passed by another method
+     */
     private void renderTarget(Graphics g, String color){
         switch (target){
             case 1 -> bustedPaintBallUI.renderById(g,"player1Btn"+color);
@@ -385,10 +424,22 @@ public class BustedPaintballState extends State {
         }
     }
 
+    /**
+     * @param g graphics parameter passed to game loop
+     * @param target String value of who is getting the damage
+     * @param hp int value on the number of shot
+     * @param shooter String value of who fired the shot
+     */
     private void renderDamageColor(Graphics g, String target, int hp, String shooter) {
         renderDamageStage(g, target +shooter, hp);
     }
 
+    /**
+     * This class is the one that finally assembles the entire string and renders the color
+     * @param g graphics parameter passed to game loop
+     * @param targetAndColor assembled string from previous method
+     * @param hp int value on the number of shot
+     */
     private void renderDamageStage(Graphics g, String targetAndColor,int hp){
         if (hp==5){
             bustedPaintBallUI.renderById(g, targetAndColor + "Damage1");
@@ -410,6 +461,9 @@ public class BustedPaintballState extends State {
         }
     }
 
+    /**
+     * this method picks a random target every 25 ticks
+     */
     private void randomSelector(){
         if(ticks%speed==0) {
             if (numPlayers == 4) {
@@ -424,6 +478,9 @@ public class BustedPaintballState extends State {
         }
     }
 
+    /**
+     * this method sets the players to knockOut if their hp reaches 0
+     */
     private void checkKnockouts(){
         if(player1HP == 0){
             knockOutP1 = true;
@@ -439,6 +496,10 @@ public class BustedPaintballState extends State {
         }
     }
 
+    /**
+     * this method cycles between players, it also increased the speed of the target
+     * selector every time someone is shot by using another method
+     */
     private void nextPlayer(){
         if(numPlayers==2){
             if (currentPlayer != 2) {
@@ -469,12 +530,18 @@ public class BustedPaintballState extends State {
         }
     }
 
+    /**
+     * this method simply increases the speed
+     */
     private void increaseSpeed(){
         if(speed>10){
             speed-=5;
         }
     }
 
+    /**
+     * this method recognises who was shot, and reduces their remaining hp
+     */
     private void dealDamage() {
         if (target==1) {
             player1HP = loseHP(player1HP);
@@ -490,6 +557,11 @@ public class BustedPaintballState extends State {
         }
     }
 
+    /**
+     * this method is in charge of reducing hp in general, but never bellow 0
+     * @param playerHP of the player who is shot
+     * @return a number 1 less than the number that get it, but never bellow 0
+     */
     private int loseHP(int playerHP){
         if(playerHP!=0){
             playerHP--;
@@ -497,6 +569,13 @@ public class BustedPaintballState extends State {
         return playerHP;
     }
 
+    /**
+     * This method checks if only 1 remaining player is not knockout, this is the method for a 4 player game
+     * @param knockOutP1 boolean of the first player
+     * @param knockOutP2 boolean of the second player
+     * @param knockOutP3 boolean of the third player
+     * @param knockOutP4 boolean of the fourth player
+     */
     private void chooseWinner(boolean knockOutP1, boolean knockOutP2, boolean knockOutP3, boolean knockOutP4){
         if(knockOutP1&&knockOutP2&&knockOutP3&&!knockOutP4){
             winGame(player4);
@@ -512,6 +591,13 @@ public class BustedPaintballState extends State {
             winner = player1.getName();
         }
     }
+
+    /**
+     * This method checks if only 1 remaining player is not knockout, this is the method for a 3 player game
+     * @param knockOutP1 boolean of the first player
+     * @param knockOutP2 boolean of the second player
+     * @param knockOutP3 boolean of the third player
+     */
     private void chooseWinner(boolean knockOutP1, boolean knockOutP2, boolean knockOutP3){
         if(knockOutP1&&knockOutP2&&!knockOutP3){
             winGame(player3);
@@ -524,6 +610,12 @@ public class BustedPaintballState extends State {
             winner = player1.getName();
         }
     }
+
+    /**
+     * This method checks if only 1 remaining player is not knockout, this is the method for a 3 player game
+     * @param knockOutP1 boolean of the first player
+     * @param knockOutP2 boolean of the second player
+     */
     private void chooseWinner(boolean knockOutP1, boolean knockOutP2){
         if(knockOutP1&&!knockOutP2){
             winGame(player2);
@@ -534,17 +626,30 @@ public class BustedPaintballState extends State {
         }
     }
 
+    /**
+     * this method declares a winner, and adds coins to the corresponding winner
+     * @param player the player who won the game
+     */
     private void winGame(Player player) {
-        player.addCoins(10);
-        gameWon = true;
+        if(!gameWon) {
+            player.addCoins(10);
+            gameWon = true;
+        }
     }
 
+    /**
+     * this method returns to the main board game
+     */
     private void backToBoard() {
         setup = false;
         game.resumeGame();
         State.setState(GameLoop.gameDependantStates.get(8).getData());
     }
 
+    /**
+     * this method is run a single time when the mini game is called, it prepares all variables to their default state
+     * like resetting players hp, and change all knockouts to false
+     */
     private void gameSetup(){
         if(!setup){
             setup = true;
