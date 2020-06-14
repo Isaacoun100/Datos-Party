@@ -38,7 +38,6 @@ public class Assets {
     public static void init(){
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/SpriteSheet-Sheet.png"));
         SpriteSheet buttonSheet = new SpriteSheet(ImageLoader.loadImage("/textures/ButtonSprite-Sheet.png"));
-        SpriteSheet mapSheet = new SpriteSheet(ImageLoader.loadImage("/textures/MapLayout.png"));
 
         titleImage = new BufferedImage[2];
         titleImage[0] = sheet.crop(0,0,20,3);
@@ -197,7 +196,6 @@ public class Assets {
         okBtn[0] = sheet.crop(19,8,1,1);
         okBtn[1] = sheet.crop(18,8,1,1);
 
-        mapGuide = mapSheet.crop(0,0,100,76);
         eventBackDrop = sheet.crop(0,8,2,3);
         eventBackDropBad = sheet.crop(0,11,2,3);
         getEventBackDropSpecial = sheet.crop(6,11,2,3);
@@ -414,6 +412,7 @@ public class Assets {
         clickerBG = ImageLoader.loadImage("/textures/clickerBG.png");
         paintBallBG = ImageLoader.loadImage("/textures/paintballBG.png");
         spaceWallpaper = ImageLoader.loadImage("/textures/Space.png");
+        mapGuide=ImageLoader.loadImage("/textures/MapLayout.png");
 
         congratulationsTitle = new BufferedImage[4];
         congratulationsTitle[0] = sheet.crop(0,17,17,2);
