@@ -13,8 +13,9 @@ public class Assets {
                                 yellowSelectorL,yellowSelectorR, greenSelectorL, paintgun4,paintgun3, paintgun2,
                                 greenSelectorR, memoryWallpaper, stoneRubble, stoneStatue, paintBallLogo, stoneLogo,
                                 clickerBG, paintBallBG, spaceWallpaper, firstShip, secondShip, thirdShip,fourthShip,
-                                rock,paper,scissors,number1,number2,number3,rpcTitle,
-                                leftPlayer, rightPlayer, playerIndicator1, playerIndicator2, playerIndicator3, playerIndicator4;
+                                rock,paper,scissors,number1,number2,number3,rpcTitle, leftPlayer, rightPlayer,
+                                playerIndicator1, playerIndicator2, playerIndicator3, playerIndicator4, blackScope,
+                                redScope;
     public static BufferedImage[] settingsButton, playButton, creditsButton, backButton, titleImage, pressEnterImage,
                                   notOKComputer,  notOKComputerIcon,  nothingHereMessage,  boton1,  diceButton,
                                   upArrow, downArrow, leftArrow, rightArrow,  player1Button, player2Button, duel,
@@ -438,6 +439,9 @@ public class Assets {
         paintgun2 = sheet.crop(18,19,1,2);
         paintgun3 = sheet.crop(19,17,1,2);
         paintgun4 = sheet.crop(18,17,1,2);
+
+        blackScope = sheet.crop(20, 27, 1, 1);
+        redScope = sheet.crop(21, 27, 1, 1);
 
         damageRedL = new BufferedImage[6];
         damageRedL[0] = sheet.crop(25,18,1,2);
