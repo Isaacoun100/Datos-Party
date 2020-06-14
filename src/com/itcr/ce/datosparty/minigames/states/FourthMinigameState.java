@@ -5,10 +5,13 @@ import com.itcr.ce.datosparty.Handler;
 import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
+import com.itcr.ce.datosparty.gfx.Animation;
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.logic.Dice;
 import com.itcr.ce.datosparty.logic.Game;
 import com.itcr.ce.datosparty.states.State;
+import com.itcr.ce.datosparty.userInterface.UIAnimatedImage;
+import com.itcr.ce.datosparty.userInterface.UIBackground;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
 
@@ -17,6 +20,7 @@ import java.awt.*;
 public class FourthMinigameState extends State {
     private Handler handler;
     private UIManager uiManager;
+    private final Font normalFont, titleFont;
     private int numPlayers;
     private int starTimer;
     private SinglyList<Player> players;
@@ -28,6 +32,7 @@ public class FourthMinigameState extends State {
     private int  bestScore = Integer.MAX_VALUE;
     private boolean tie, playing = false;
     private Game game;
+    private SinglyList<String> doneMessage;
 
     public FourthMinigameState(Handler handler, int numPlayers, Game game) {
         super(handler);
@@ -40,27 +45,41 @@ public class FourthMinigameState extends State {
         scores = new SinglyList<>();
         turns = new SinglyList<>();
         tiedPlayers = new SinglyList<>();
+        doneMessage = new SinglyList<>();
 
-        uiManager.addObject(new UIImageButton(30, 30, 7*2, 2*2, Assets.player4Button,"endButton",
+        normalFont = Assets.acientModernTales.deriveFont(Font.PLAIN, 50);
+        titleFont = Assets.acientModernTales.deriveFont(Font.PLAIN, 200);
+        Animation starAnimation = new Animation(100, Assets.shootingStar);
+
+        uiManager.addObject(new UIBackground(Assets.clearSkyBG,"background"));
+        uiManager.addObject(new UIAnimatedImage(55, 5, 8,8,
+                starAnimation,"shootingStar"));
+
+
+        uiManager.addObject(new UIImageButton(45, 50, 8, 8, Assets.okBtn,"endButton",
                 this::winGame));
 
-        uiManager.addObject(new UIImageButton(30, 50, 7*2, 2*2, Assets.player3Button,"startButton",
+        uiManager.addObject(new UIImageButton(45, 50, 8, 8, Assets.okBtn,"startButton",
                 this::startGame));
 
         scores.add(-1);
         turns.add(false);
+        doneMessage.add("");
 
         scores.add(-1);
         turns.add(false);
+        doneMessage.add("");
 
         if(numPlayers>=3){
             scores.add(-1);
             turns.add(false);
+            doneMessage.add("");
         }
 
         if(numPlayers>=4){
             scores.add(-1);
             turns.add(false);
+            doneMessage.add("");
         }
 
     }
@@ -76,21 +95,41 @@ public class FourthMinigameState extends State {
         if (handler.getKeyManager().key_Q && !turns.get(0).getData()) {
             scores.get(0).setData(starTimer);
             turns.get(0).setData(true);
+            if (scores.get(0).getData() < 0) {
+                doneMessage.get(0).setData("Too soon!");
+            } else {
+                doneMessage.get(0).setData("Ready!");
+            }
             end++;
         }
         if (handler.getKeyManager().key_P && !turns.get(1).getData()) {
             scores.get(1).setData(starTimer);
             turns.get(1).setData(true);
+            if (scores.get(1).getData() < 0) {
+                doneMessage.get(1).setData("Too soon!");
+            } else {
+                doneMessage.get(1).setData("Ready!");
+            }
             end++;
         }
-        if (numPlayers >= 3 && handler.getKeyManager().key_Z && !turns.get(2).getData()) {
+        if (numPlayers >= 3 && handler.getKeyManager().key_C && !turns.get(2).getData()) {
             scores.get(2).setData(starTimer);
             turns.get(2).setData(true);
+            if (scores.get(2).getData() < 0) {
+                doneMessage.get(2).setData("Too soon!");
+            } else {
+                doneMessage.get(2).setData("Ready!");
+            }
             end++;
         }
         if (numPlayers == 4 && handler.getKeyManager().key_M && !turns.get(3).getData()) {
             scores.get(3).setData(starTimer);
             turns.get(3).setData(true);
+            if (scores.get(3).getData() < 0) {
+                doneMessage.get(3).setData("Too soon!");
+            } else {
+                doneMessage.get(3).setData("Ready!");
+            }
             end++;
         }
     }
@@ -190,19 +229,37 @@ public class FourthMinigameState extends State {
 
     @Override
     public void render(Graphics g) {
+        uiManager.renderById(g, "background");
+        g.setColor(Color.white);
         if (playing) {
-            g.drawString("Timer: " + starTimer, 50, 100);
-            g.drawString(players.get(0).getData().getName() + ": " + scores.get(0).getData(), 150, 100);
-            g.drawString(players.get(1).getData().getName() + ": " + scores.get(1).getData(), 150, 150);
+            g.setFont(normalFont);
+            if (starTimer >= 0) {
+                uiManager.renderById(g, "shootingStar");
+            }
+            g.drawString(doneMessage.get(0).getData(), 50, 900);
+            g.drawString(doneMessage.get(1).getData(), 350, 900);
 
             if (numPlayers >= 3) {
-                g.drawString(players.get(2).getData().getName() + ": " + scores.get(2).getData(), 150, 200);
+                g.drawString(doneMessage.get(2).getData(), 1050, 900);
             }
             if (numPlayers == 4) {
-                g.drawString(players.get(3).getData().getName() + ": " + scores.get(3).getData(), 150, 250);
+                g.drawString(doneMessage.get(3).getData(), 1350, 900);
             }
             displayEndButton(g);
         } else {
+            g.setFont(titleFont);
+            g.drawString("Spot the", 250, 200);
+            g.drawString("Shooting star!", 550, 350);
+            g.setFont(normalFont);
+            g.drawString("When you see it...", 50, 450);
+            g.drawString(players.get(0).getData().getName() + ": press Q", 50, 900);
+            g.drawString(players.get(1).getData().getName() + ": press P", 400, 900);
+            if (numPlayers >= 3) {
+                g.drawString(players.get(2).getData().getName() + ": press C", 900, 900);
+            }
+            if (numPlayers >= 4) {
+                g.drawString(players.get(3).getData().getName() + ": press M", 1250, 900);
+            }
             uiManager.renderById(g, "startButton");
         }
     }
