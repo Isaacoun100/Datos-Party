@@ -44,7 +44,7 @@ public class Leaderboard {
 
     /**
      * This method receives the players and then sort them according to their stars, if there's a draw the deciding
-     * factor
+     * factor will be the coins.
      */
     private static void setLeaderboard(){
         SinglyNode<Player> temporal, search;
@@ -67,22 +67,6 @@ public class Leaderboard {
             temporal = (SinglyNode<Player>) temporal.getNext();
         }
 
-    }
-
-    private static boolean isEmpty(SinglyList<Player> unsortedList){
-        SinglyNode<Player> temporal;
-        temporal = unsortedList.getHead();
-
-        while(temporal!=null){
-            if (temporal.getData().getStars()!=0){
-                return false;
-            }
-            else if(temporal.getData().getCoins()!=0){
-                return false;
-            }
-            temporal=(SinglyNode<Player>) temporal.getNext();
-        }
-        return true;
     }
 
 }
