@@ -34,7 +34,7 @@ public class GameState extends State{
     private boolean clicked = false;
 
     private Box currentBox;
-    private final Font font;
+    private final Font font, smallerFont;
     private final Game game;
     private Event currentEvent;
     private final Player player1;
@@ -50,7 +50,8 @@ public class GameState extends State{
         this.game = game;
         this.maxRound = game.getMaxRound();
         CircularList<Player> playerList = new CircularList<>();
-        font = Assets.bitArtFont.deriveFont(Font.PLAIN, 50); //new Font("Windows Command Prompt", Font.PLAIN,50);
+        font = Assets.bitArtFont.deriveFont(Font.PLAIN, 50);
+        smallerFont = Assets.bitArtFont.deriveFont(Font.PLAIN, 25);
         gameUI = new UIManager(handler);
 
         this.player1 = game.getPlayerList().get(0).getData();
@@ -347,23 +348,29 @@ public class GameState extends State{
         g.drawImage(Assets.mapGuide, -10, 0, null);
 
         g.setFont(font);
-        g.drawString("it´s "+currentPlayer.getName()+"'s turn!",550,1020);
+        g.drawString("It´s "+currentPlayer.getName()+"'s turn!",550,1020);
         g.drawString("Round: "+game.getCurrentRound(),1300,90);
 
+        g.setFont(smallerFont);
         g.drawString(player1.getName(), 10, 40);
+        g.setFont(font);
         g.drawString("X" + player1.getStars(), 60, 100);
         g.drawString("X" + player1.getCoins(), 60, 140);
         gameUI.renderById(g, "star1");
         gameUI.renderById(g, "coin1");
 
+        g.setFont(smallerFont);
         g.drawString(player2.getName(), 191, 40);
+        g.setFont(font);
         g.drawString("X" + player2.getStars(), 60 + 181, 100);
         g.drawString("X" + player2.getCoins(), 60 + 181, 140);
         gameUI.renderById(g, "star2");
         gameUI.renderById(g, "coin2");
 
         if (game.getNumberOfPlayers() >= 3) {
+            g.setFont(smallerFont);
             g.drawString(player3.getName(), 10, 235);
+            g.setFont(font);
             g.drawString("X" + player3.getStars(), 60, 100+195);
             g.drawString("X" + player3.getCoins(), 60, 140+195);
             gameUI.renderById(g, "star3");
@@ -371,7 +378,9 @@ public class GameState extends State{
         }
 
         if (game.getNumberOfPlayers() >= 4) {
+            g.setFont(smallerFont);
             g.drawString(player4.getName(), 191, 235);
+            g.setFont(font);
             g.drawString("X" + player4.getStars(), 60 + 181, 100 + 195);
             g.drawString("X" + player4.getCoins(), 60 + 181, 140 + 195);
             gameUI.renderById(g, "star4");
