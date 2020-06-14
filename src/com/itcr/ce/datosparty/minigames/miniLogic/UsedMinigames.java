@@ -28,7 +28,7 @@ public class UsedMinigames {
                 System.out.println("Playing minigame #"+dice);
             }
             this.addGame(dice);
-            Minigame.playMinigame(dice);
+            Minigame.playMiniGame(dice);
         }
 
         else{

@@ -34,8 +34,10 @@ public class Game extends Thread {
     private final DoublyList<Box> phaseC;
     private final CircularDoublyList<Box> phaseD;
 
+    private Player duelist1, duelist2;
 
     public Game(Handler handler, int numRound) {
+
         this.active = true;
         this.handler = handler;
         this.maxRound = numRound;
@@ -73,7 +75,7 @@ public class Game extends Thread {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Minigame.playMinigame(5);
+                Minigame.playMiniGame(5);
                 try {
                     pauseGame();
                 } catch (InterruptedException e) {
@@ -235,4 +237,18 @@ public class Game extends Thread {
     public CircularDoublyList<Box> getPhaseD() {
         return phaseD;
     }
+
+    public void updateDuelPlayers(Player player1, Player player2){
+        this.duelist1 = player1;
+        this.duelist2 = player2;
+    }
+
+    public Player getDuelist1() {
+        return duelist1;
+    }
+
+    public Player getDuelist2() {
+        return duelist2;
+    }
+
 }

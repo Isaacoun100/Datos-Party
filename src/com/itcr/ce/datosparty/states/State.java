@@ -36,6 +36,7 @@ public abstract class State {
      * @param g graphics parameter passed to gameloop
      */
     public abstract void render(Graphics g);
+
 }
 
 

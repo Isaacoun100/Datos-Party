@@ -14,6 +14,9 @@ public class Assets {
                                 greenSelectorR, memoryWallpaper, stoneRubble, stoneStatue, paintBallLogo, stoneLogo,
                                 clickerBG, paintBallBG, spaceWallpaper, firstShip, secondShip, thirdShip,fourthShip;
 
+                                greenSelectorR, memoryWallpaper, stoneRubble, stoneStatue, paintBallLogo, stoneLogo,
+                                clickerBG, paintBallBG,rock,paper,scissors,number1,number2,number3,rpcTitle,
+                                leftPlayer, rightPlayer, playerIndicator1, playerIndicator2, playerIndicator3, playerIndicator4;
     public static BufferedImage[] settingsButton, playButton, creditsButton, backButton, titleImage, pressEnterImage,
                                   notOKComputer,  notOKComputerIcon,  nothingHereMessage,  boton1,  diceButton,
                                   upArrow, downArrow, leftArrow, rightArrow,  player1Button, player2Button, duel,
@@ -199,8 +202,6 @@ public class Assets {
 
         mapGuide = mapSheet.crop(0,0,100,76);
         eventBackDrop = sheet.crop(0,8,2,3);
-        eventBackDropBad = sheet.crop(0,11,2,3);
-        getEventBackDropSpecial = sheet.crop(6,11,2,3);
 
 
         coin = new BufferedImage[7];
@@ -521,6 +522,24 @@ public class Assets {
 
         stoneRubble = sheet.crop(33,23,3,4);
         stoneStatue = sheet.crop(36,23,3,4);
+
+        rock = sheet.crop(21,14,1,2);
+        paper = sheet.crop(22,14,1,2);
+        scissors = sheet.crop(23,14,1,2);
+
+        number1 = sheet.crop(18,14,1,1);
+        number2 = sheet.crop(19,14,1,1);
+        number3 = sheet.crop(20,14,1,1);
+
+        rpcTitle = sheet.crop(0,25,5,3);
+
+        leftPlayer = sheet.crop(1,11,1,2);
+        rightPlayer = sheet.crop(0,11,1,2);
+
+        playerIndicator1 = sheet.crop(0,13,1,1);
+        playerIndicator2 = sheet.crop(1,13,1,1);
+        playerIndicator3 = sheet.crop(0,14,1,1);
+        playerIndicator4 = sheet.crop(1,14,1,1);
 
         bitArtFont = FontLoader.loadFont("res/fonts/windows_command_prompt.ttf");
         retroComputer = FontLoader.loadFont("res/fonts/retro_computer_personal_use.ttf");

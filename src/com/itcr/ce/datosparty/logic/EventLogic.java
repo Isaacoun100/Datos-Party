@@ -1,5 +1,6 @@
 package com.itcr.ce.datosparty.logic;
 
+import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.dataStructures.lists.CircularDoublyList;
 import com.itcr.ce.datosparty.dataStructures.lists.CircularList;
 import com.itcr.ce.datosparty.dataStructures.lists.DoublyList;
@@ -8,6 +9,8 @@ import com.itcr.ce.datosparty.dataStructures.nodes.Node;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.entities.boxes.Box;
+import com.itcr.ce.datosparty.minigames.states.DuelMiniGame;
+import com.itcr.ce.datosparty.states.State;
 
 public class EventLogic {
 
@@ -19,16 +22,16 @@ public class EventLogic {
         }
     }
 
-    private Player returnRandomPlayer(Player currentPlayer) {
-        Player randomPlayer = currentPlayer;
-        while (randomPlayer == currentPlayer) {
-            randomPlayer =Round.getPlayerOrder().get(Dice.roll(0, Round.getPlayerOrder().getLength() - 1)).getData();
-        }
-        return randomPlayer;
+    public void randomDuel(Player player, Game game) {
+        Player target = randomTarget(player, game);
+        duel(player,target,game);
     }
 
-    public void duel(Player player, Game game) {
+    public void duel(Player player1, Player player2, Game game){
+        game.updateDuelPlayers(player1,player2);
+        GameLoop.setState(GameLoop.gameDependantStates.get(0).getData());
         pauseEvent(game);
+        player1.setCurrentTurn(false);
     }
 
     public void stealCoins(Player thief, Player victim) {
@@ -66,9 +69,9 @@ public class EventLogic {
     public void loseStar(Player player, Game game) {
         if (player.getStars() >= 1)  {
             player.addStars(-1);
-            Player randomPlayer = returnRandomPlayer(player);
-            randomPlayer.addStars(1);
-            System.out.println("Stolen star from " + randomPlayer.getName());
+            Player targetPlayer = randomTarget(player,game);
+            targetPlayer.addStars(1);
+            System.out.println("Stolen star from " + targetPlayer.getName());
         }
         pauseEvent(game);
     }
@@ -84,7 +87,7 @@ public class EventLogic {
     }
 
     public void stealStar(Player player, Game game) {
-        Player randomPlayer = returnRandomPlayer(player);
+        Player randomPlayer = randomTarget(player, game);
         if (randomPlayer.getStars() >= 1) {
             randomPlayer.addStars(-1);
             player.addStars(1);
@@ -138,19 +141,35 @@ public class EventLogic {
 
 
     public void swapPlayers(Player player, Game game) {
-        int numRandom = Dice.roll(0, game.getNumberOfPlayers() - 1);
-        Player randomPlayer =  Round.getPlayerOrder().get(numRandom).getData();
-        while(player == randomPlayer){
-            numRandom = Dice.roll(0, game.getNumberOfPlayers() - 1);
-            randomPlayer =  Round.getPlayerOrder().get(numRandom).getData();
-        }
-        Node<Box> randomPosition = randomPlayer.getPosition();
+        Player targetPlayer = randomTarget(player, game);
+        Node<Box> targetPosition = targetPlayer.getPosition();
         Node<Box> playerPosition = player.getPosition();
-        player.setRenderPos(randomPosition.getData().getX(),randomPosition.getData().getY());
-        randomPlayer.setPosition(playerPosition);
-        randomPlayer.setRenderPos(playerPosition.getData().getX(),playerPosition.getData().getY());
-        player.setPosition(randomPosition);
+        player.setRenderPos(targetPosition.getData().getX(),targetPosition.getData().getY());
+        targetPlayer.setPosition(playerPosition);
+        targetPlayer.setRenderPos(playerPosition.getData().getX(),playerPosition.getData().getY());
+        player.setPosition(targetPosition);
         pauseEvent(game);
 
     }
+
+    private Player randomTarget(Player player, Game game){
+        if(game.getNumberOfPlayers()==2){
+            if(player == game.getPlayerList().get(0).getData()){
+                return game.getPlayerList().get(1).getData();
+            }
+            else{
+                return game.getPlayerList().get(0).getData();
+            }
+        }
+        else {
+            int numRandom = Dice.roll(0, game.getNumberOfPlayers() - 1);
+            Player randomPlayer =  Round.getPlayerOrder().get(numRandom).getData();
+            while(player == randomPlayer){
+                numRandom = Dice.roll(0, game.getNumberOfPlayers() - 1);
+                randomPlayer =  Round.getPlayerOrder().get(numRandom).getData();
+            }
+            return randomPlayer;
+        }
+    }
+
 }

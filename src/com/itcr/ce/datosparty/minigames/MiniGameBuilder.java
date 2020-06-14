@@ -10,7 +10,7 @@ public class MiniGameBuilder {
 
     public static void build(LinkedList<State> gameList, int playerNumber, Handler handler, Game game){
 
-        gameList.add(new FirstMinigameState(handler, playerNumber, game));
+        gameList.add(new DuelMiniGame(handler, playerNumber, game));
         gameList.add(new SecondMinigameState(handler, playerNumber, game));
         gameList.add(new ThirdMinigameState(handler, playerNumber, game));
         gameList.add(new FourthMinigameState(handler, playerNumber, game));
