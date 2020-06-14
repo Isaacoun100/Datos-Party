@@ -77,7 +77,7 @@ public class Board {
 
     public void buildMainCircuit(){
         SinglyList<SinglyList<Integer>> coordinateList = MapCoordinates.getMainCircuitCoordinates();
-        buildPath(coordinateList, mainCircuit, false);
+        buildPath(coordinateList, mainCircuit, true);
     }
 
     public void buildPhaseA() {

@@ -23,6 +23,7 @@ public class EventLogic {
     }
 
     public void randomDuel(Player player, Game game) {
+        pauseEvent(game);
         Player target = randomTarget(player, game);
         duel(player,target,game);
     }
@@ -31,7 +32,6 @@ public class EventLogic {
         game.updateDuelPlayers(player1,player2);
         GameLoop.setState(GameLoop.gameDependantStates.get(0).getData());
         pauseEvent(game);
-        player1.setCurrentTurn(false);
     }
 
     public void stealCoins(Player thief, Player victim) {
