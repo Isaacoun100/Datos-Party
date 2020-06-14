@@ -10,6 +10,7 @@ import com.itcr.ce.datosparty.logic.Game;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Objects;
 
 import static com.itcr.ce.datosparty.logic.Connector.*;
 
@@ -383,29 +384,48 @@ public class Player extends Entity {
     private void checkForPlayers(Player player, Node nextNode, Game game) throws InterruptedException {
         Player player1 = game.getPlayerList().get(0).getData();
         Player player2 = game.getPlayerList().get(1).getData();
-        Player player3 = game.getPlayerList().get(2).getData();
-        Player player4 = game.getPlayerList().get(3).getData();
+        Player player3 = null, player4 = null;
+        if(game.getNumberOfPlayers()>=3) {
+            player3 = game.getPlayerList().get(2).getData();
+        }
+        if(game.getNumberOfPlayers()==4) {
+            player4 = game.getPlayerList().get(3).getData();
+        }
+
         switch (identifyPlayer(player,game)){
             case 1-> {
                 if(nextNode == player2.getPosition()){
                     boxDuel(player, player2, game);
                 }
-                else if(game.getNumberOfPlayers()>=3 && nextNode == player3.getPosition()){
-                    boxDuel(player, player3, game);
+                else if(game.getNumberOfPlayers()>=3){
+                    assert player3 != null;
+                    if(nextNode == player3.getPosition()) {
+                        boxDuel(player, player3, game);
+                    }
                 }
-                else if(game.getNumberOfPlayers() == 4 && nextNode == player4.getPosition()){
-                    boxDuel(player,player4,game);
+                else {
+                    if(game.getNumberOfPlayers() == 4) {
+                        assert player4 != null;
+                        if (nextNode == player4.getPosition()) {
+                            boxDuel(player, player4, game);
+                        }
+                    }
                 }
             }
             case 2-> {
                 if(nextNode == player1.getPosition()){
                     boxDuel(player, player1, game);
                 }
-                else if(game.getNumberOfPlayers()>=3 && nextNode == player3.getPosition()){
+                else if(game.getNumberOfPlayers()>=3 && nextNode == Objects.requireNonNull(player3).getPosition()){
                     boxDuel(player, player3, game);
                 }
-                else if(game.getNumberOfPlayers() == 4 && nextNode == player4.getPosition()){
-                    boxDuel(player,player4,game);
+                else {
+                    if(game.getNumberOfPlayers() == 4) {
+                        assert player4 != null;
+                        if (nextNode == player4.getPosition()) {
+                            boxDuel(player, player4, game);
+                        }
+                    }
                 }
             }
             case 3->{
@@ -415,8 +435,13 @@ public class Player extends Entity {
                 else if(nextNode == player2.getPosition()){
                     boxDuel(player, player2, game);
                 }
-                else if(game.getNumberOfPlayers() == 4 && nextNode == player4.getPosition()){
-                    boxDuel(player,player4,game);
+                else {
+                    if(game.getNumberOfPlayers() == 4) {
+                        assert player4 != null;
+                        if (nextNode == player4.getPosition()) {
+                            boxDuel(player, player4, game);
+                        }
+                    }
                 }
             }
             case 4->{
@@ -426,12 +451,16 @@ public class Player extends Entity {
                 else if(nextNode == player2.getPosition()){
                     boxDuel(player, player2, game);
                 }
-                else if(nextNode == player3.getPosition()){
-                    boxDuel(player,player3,game);
+                else {
+                    assert player3 != null;
+                    if(nextNode == player3.getPosition()){
+                        boxDuel(player,player3,game);
+                    }
                 }
             }
         }
     }
+
     public void boxDuel(Player movingPlayer, Player targetPlayer, Game game) throws InterruptedException {
         game.updateDuelPlayers(movingPlayer,targetPlayer);
         GameLoop.setState(GameLoop.gameDependantStates.get(0).getData());

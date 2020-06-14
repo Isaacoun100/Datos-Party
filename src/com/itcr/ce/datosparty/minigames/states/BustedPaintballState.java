@@ -34,11 +34,10 @@ public class BustedPaintballState extends State {
     private int ticks;
     private int currentPlayer = 1;
     private int target = 0;
-    private int colorIndex = -1;
     private final int numPlayers;
     private boolean setup = false;
     private boolean knockOutP1 = false, knockOutP2 = false, knockOutP3 = false, knockOutP4 = false;
-    private boolean gameStart = false, gameWon = false, duel = false;
+    private boolean gameStart = false, gameWon = false;
     private String winner;
     private final Font font;
     SinglyList<String> shotColor = new SinglyList<>();
@@ -122,7 +121,7 @@ public class BustedPaintballState extends State {
 
         if(numPlayers>=3){
 
-            bustedPaintBallUI.addObject(new UIImage(player1X, player1Y, playerWidth, playerHeight, Assets.yellowSelectorL,"player1BtnYellow"));
+            bustedPaintBallUI.addObject(new UIImage(player1X,player1Y,playerWidth,playerHeight, Assets.yellowSelectorL,"player1BtnYellow"));
             bustedPaintBallUI.addObject(new UIImage(player1X,player1Y,playerWidth,playerHeight,Assets.damageYellowL[0],"player1YellowDamage1"));
             bustedPaintBallUI.addObject(new UIImage(player1X,player1Y,playerWidth,playerHeight,Assets.damageYellowL[1],"player1YellowDamage2"));
             bustedPaintBallUI.addObject(new UIImage(player1X,player1Y,playerWidth,playerHeight,Assets.damageYellowL[2],"player1YellowDamage3"));
@@ -130,7 +129,7 @@ public class BustedPaintballState extends State {
             bustedPaintBallUI.addObject(new UIImage(player1X,player1Y,playerWidth,playerHeight,Assets.damageYellowL[4],"player1YellowDamage5"));
             bustedPaintBallUI.addObject(new UIImage(player1X,player1Y,playerWidth,playerHeight,Assets.damageYellowL[5],"player1YellowDamage6"));
 
-            bustedPaintBallUI.addObject(new UIImage(player2X, player2Y, playerWidth, playerHeight, Assets.yellowSelectorR,"player2BtnYellow"));
+            bustedPaintBallUI.addObject(new UIImage(player2X,player2Y,playerWidth,playerHeight, Assets.yellowSelectorR,"player2BtnYellow"));
             bustedPaintBallUI.addObject(new UIImage(player2X,player2Y,playerWidth,playerHeight,Assets.damageYellowR[0],"player2YellowDamage1"));
             bustedPaintBallUI.addObject(new UIImage(player2X,player2Y,playerWidth,playerHeight,Assets.damageYellowR[1],"player2YellowDamage2"));
             bustedPaintBallUI.addObject(new UIImage(player2X,player2Y,playerWidth,playerHeight,Assets.damageYellowR[2],"player2YellowDamage3"));
@@ -138,10 +137,10 @@ public class BustedPaintballState extends State {
             bustedPaintBallUI.addObject(new UIImage(player2X,player2Y,playerWidth,playerHeight,Assets.damageYellowR[4],"player2YellowDamage5"));
             bustedPaintBallUI.addObject(new UIImage(player2X,player2Y,playerWidth,playerHeight,Assets.damageYellowR[5],"player2YellowDamage6"));
 
-            bustedPaintBallUI.addObject(new UIImage(player3X, player3Y, playerWidth, playerHeight, Assets.redSelectorL,"player3BtnRed"));
-            bustedPaintBallUI.addObject(new UIImage(player3X, player3Y, playerWidth, playerHeight, Assets.blueSelectorL,"player3BtnBlue"));
-            bustedPaintBallUI.addObject(new UIImage(player3X, player3Y, playerWidth, playerHeight, Assets.yellowSelectorL,"player3BtnYellow"));
-            bustedPaintBallUI.addObject(new UIImage(player3X, player3Y, playerWidth, playerHeight, Assets.paintgun3,"player3"));
+            bustedPaintBallUI.addObject(new UIImage(player3X,player3Y,playerWidth,playerHeight, Assets.redSelectorL,"player3BtnRed"));
+            bustedPaintBallUI.addObject(new UIImage(player3X,player3Y,playerWidth,playerHeight, Assets.blueSelectorL,"player3BtnBlue"));
+            bustedPaintBallUI.addObject(new UIImage(player3X,player3Y,playerWidth,playerHeight, Assets.yellowSelectorL,"player3BtnYellow"));
+            bustedPaintBallUI.addObject(new UIImage(player3X,player3Y,playerWidth,playerHeight, Assets.paintgun3,"player3"));
             bustedPaintBallUI.addObject(new UIImage(player3X,player3Y,playerWidth,playerHeight,Assets.damageRedL[0],"player3RedDamage1"));
             bustedPaintBallUI.addObject(new UIImage(player3X,player3Y,playerWidth,playerHeight,Assets.damageRedL[1],"player3RedDamage2"));
             bustedPaintBallUI.addObject(new UIImage(player3X,player3Y,playerWidth,playerHeight,Assets.damageRedL[2],"player3RedDamage3"));
@@ -167,7 +166,7 @@ public class BustedPaintballState extends State {
         }
 
         if(numPlayers == 4){
-            bustedPaintBallUI.addObject(new UIImage(player1X, player1Y, playerWidth, playerHeight, Assets.greenSelectorL,"player1BtnGreen"));
+            bustedPaintBallUI.addObject(new UIImage(player1X,player1Y,playerWidth,playerHeight, Assets.greenSelectorL,"player1BtnGreen"));
             bustedPaintBallUI.addObject(new UIImage(player1X,player1Y,playerWidth,playerHeight,Assets.damageGreenL[0],"player1GreenDamage1"));
             bustedPaintBallUI.addObject(new UIImage(player1X,player1Y,playerWidth,playerHeight,Assets.damageGreenL[1],"player1GreenDamage2"));
             bustedPaintBallUI.addObject(new UIImage(player1X,player1Y,playerWidth,playerHeight,Assets.damageGreenL[2],"player1GreenDamage3"));
@@ -175,7 +174,7 @@ public class BustedPaintballState extends State {
             bustedPaintBallUI.addObject(new UIImage(player1X,player1Y,playerWidth,playerHeight,Assets.damageGreenL[4],"player1GreenDamage5"));
             bustedPaintBallUI.addObject(new UIImage(player1X,player1Y,playerWidth,playerHeight,Assets.damageGreenL[5],"player1GreenDamage6"));
 
-            bustedPaintBallUI.addObject(new UIImage(player2X, player2Y, playerWidth, playerHeight, Assets.greenSelectorR,"player2BtnGreen"));
+            bustedPaintBallUI.addObject(new UIImage(player2X,player2Y,playerWidth,playerHeight, Assets.greenSelectorR,"player2BtnGreen"));
             bustedPaintBallUI.addObject(new UIImage(player2X,player2Y,playerWidth,playerHeight,Assets.damageGreenR[0],"player2GreenDamage1"));
             bustedPaintBallUI.addObject(new UIImage(player2X,player2Y,playerWidth,playerHeight,Assets.damageGreenR[1],"player2GreenDamage2"));
             bustedPaintBallUI.addObject(new UIImage(player2X,player2Y,playerWidth,playerHeight,Assets.damageGreenR[2],"player2GreenDamage3"));
@@ -183,7 +182,7 @@ public class BustedPaintballState extends State {
             bustedPaintBallUI.addObject(new UIImage(player2X,player2Y,playerWidth,playerHeight,Assets.damageGreenR[4],"player2GreenDamage5"));
             bustedPaintBallUI.addObject(new UIImage(player2X,player2Y,playerWidth,playerHeight,Assets.damageGreenR[5],"player2GreenDamage6"));
 
-            bustedPaintBallUI.addObject(new UIImage(player3X, player3Y, playerWidth, playerHeight, Assets.greenSelectorL,"player3BtnGreen"));
+            bustedPaintBallUI.addObject(new UIImage(player3X,player3Y,playerWidth,playerHeight, Assets.greenSelectorL,"player3BtnGreen"));
             bustedPaintBallUI.addObject(new UIImage(player3X,player3Y,playerWidth,playerHeight,Assets.damageGreenL[0],"player3GreenDamage1"));
             bustedPaintBallUI.addObject(new UIImage(player3X,player3Y,playerWidth,playerHeight,Assets.damageGreenL[1],"player3GreenDamage2"));
             bustedPaintBallUI.addObject(new UIImage(player3X,player3Y,playerWidth,playerHeight,Assets.damageGreenL[2],"player3GreenDamage3"));
@@ -191,11 +190,11 @@ public class BustedPaintballState extends State {
             bustedPaintBallUI.addObject(new UIImage(player3X,player3Y,playerWidth,playerHeight,Assets.damageGreenL[4],"player3GreenDamage5"));
             bustedPaintBallUI.addObject(new UIImage(player3X,player3Y,playerWidth,playerHeight,Assets.damageGreenL[5],"player3GreenDamage6"));
 
-            bustedPaintBallUI.addObject(new UIImage(player4X, player4Y, playerWidth, playerHeight, Assets.redSelectorR,"player4BtnRed"));
-            bustedPaintBallUI.addObject(new UIImage(player4X, player4Y, playerWidth, playerHeight, Assets.blueSelectorR,"player4BtnBlue"));
-            bustedPaintBallUI.addObject(new UIImage(player4X, player4Y, playerWidth, playerHeight, Assets.yellowSelectorR,"player4BtnYellow"));
-            bustedPaintBallUI.addObject(new UIImage(player4X, player4Y, playerWidth, playerHeight, Assets.greenSelectorR,"player4BtnGreen"));
-            bustedPaintBallUI.addObject(new UIImage(player4X, player4Y, playerWidth, playerHeight, Assets.paintgun4,"player4"));
+            bustedPaintBallUI.addObject(new UIImage(player4X,player4Y,playerWidth,playerHeight, Assets.redSelectorR,"player4BtnRed"));
+            bustedPaintBallUI.addObject(new UIImage(player4X,player4Y,playerWidth,playerHeight, Assets.blueSelectorR,"player4BtnBlue"));
+            bustedPaintBallUI.addObject(new UIImage(player4X,player4Y,playerWidth,playerHeight, Assets.yellowSelectorR,"player4BtnYellow"));
+            bustedPaintBallUI.addObject(new UIImage(player4X,player4Y,playerWidth,playerHeight, Assets.greenSelectorR,"player4BtnGreen"));
+            bustedPaintBallUI.addObject(new UIImage(player4X,player4Y,playerWidth,playerHeight, Assets.paintgun4,"player4"));
             bustedPaintBallUI.addObject(new UIImage(player4X,player4Y,playerWidth,playerHeight,Assets.damageRedR[0],"player4RedDamage1"));
             bustedPaintBallUI.addObject(new UIImage(player4X,player4Y,playerWidth,playerHeight,Assets.damageRedR[1],"player4RedDamage2"));
             bustedPaintBallUI.addObject(new UIImage(player4X,player4Y,playerWidth,playerHeight,Assets.damageRedR[2],"player4RedDamage3"));
@@ -242,7 +241,6 @@ public class BustedPaintballState extends State {
                 lastTime = System.currentTimeMillis();
                 if (timer > coolDown) {
                     shotColor.add(checkShooter());
-                    colorIndex++;
                     if (currentPlayer == 1) {
                         dealDamage();
                     } else if (currentPlayer == 2) {
@@ -552,7 +550,6 @@ public class BustedPaintballState extends State {
             setup = true;
             gameWon = false;
             gameStart = false;
-            duel = false;
             target = 0;
             speed = 25;
             knockOutP1 = false;
