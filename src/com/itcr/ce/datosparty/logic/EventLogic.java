@@ -9,8 +9,6 @@ import com.itcr.ce.datosparty.dataStructures.nodes.Node;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.entities.boxes.Box;
-import com.itcr.ce.datosparty.minigames.states.DuelMiniGame;
-import com.itcr.ce.datosparty.states.State;
 
 public class EventLogic {
 
@@ -96,6 +94,7 @@ public class EventLogic {
     }
 
     public void teleport(Player player, Game game) {
+        player.setReversed(false);
         int numRandom;
         CircularList<Box> mainCircuit =  game.getMainCircuit();
         SinglyList<Box> phaseA = game.getPhaseA();
@@ -141,6 +140,7 @@ public class EventLogic {
 
 
     public void swapPlayers(Player player, Game game) {
+        player.setReversed(false);
         Player targetPlayer = randomTarget(player, game);
         Node<Box> targetPosition = targetPlayer.getPosition();
         Node<Box> playerPosition = player.getPosition();
