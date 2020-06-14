@@ -162,11 +162,11 @@ public class Game extends Thread {
         eventCloner(tempList, STEAL_STAR, 3);
         eventCloner(tempList, TELEPORT, 10);
         eventCloner(tempList, SWAP_PLAYERS, 5);
-        if (this.eventStack.peek() != null) {
+        while (this.eventStack.peek() != null) {
             this.eventStack.pop();
         }
         while (tempList.getHead() != null) {
-            randomIndex = Dice.roll(0, tempList.getLength() - 1);
+            randomIndex = Dice.roll(0, tempList.getLength());
             randomNode = tempList.get(randomIndex);
             this.eventStack.push(randomNode.getData());
             tempList.remove(randomIndex);

@@ -1,8 +1,10 @@
 package com.itcr.ce.datosparty.entities.boxes;
 
-import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.entities.Player;
-import com.itcr.ce.datosparty.logic.*;
+import com.itcr.ce.datosparty.gfx.Assets;
+import com.itcr.ce.datosparty.logic.Event;
+import com.itcr.ce.datosparty.logic.EventLogic;
+import com.itcr.ce.datosparty.logic.Game;
 
 import java.awt.*;
 
@@ -42,8 +44,9 @@ public class YellowBox extends Box {
     @Override
     public void boxAction(Player player, Game game) {
         if(player.getCurrentTurn()){
-            game.setCurrentEvent(game.eventStack.pop());
-            switch (game.getCurrentEvent()) {
+            Event currentEvent = game.eventStack.pop();
+            game.setCurrentEvent(currentEvent);
+            switch (currentEvent) {
                 case DUEL -> eventLogic.randomDuel(player, game);
                 case STEAL_COINS -> eventLogic.pauseEvent(game);
                 case GIFT_COINS -> eventLogic.giftCoins(player, game);
