@@ -26,6 +26,7 @@ public class ThirdMinigameState extends State {
     private boolean tie = false;
     private boolean add = true;
     private int aim, turns;
+    private int bestScore = Integer.MAX_VALUE;
     private Player winner;
     private final int numPlayers;
     private final int targetX = 700;
@@ -85,23 +86,25 @@ public class ThirdMinigameState extends State {
     }
 
     private int compare(int score1, int score2, Player player1, Player player2){
-        if (Math.abs(score1) == Math.abs(score2)) {
+        if (Math.abs(score1) == Math.abs(score2) && Math.abs(score1) <= Math.abs(bestScore)) {
             tie = true;
             tiedPlayers.add(player1);
             tiedPlayers.add(player2);
             winner = player1;
+            bestScore = score2;
             return score1;
         } else if (Math.abs(score1) < Math.abs(score2)) {
             winner = player1;
+            bestScore = score1;
             return score1;
         } else {
             winner = player2;
+            bestScore = score2;
             return score2;
         }
     }
 
     private void searchWinner() {
-        int bestScore;
         Player player1 = players.getHead().getData();
         Player player2 = players.getHead().getNext().getData();
         bestScore = compare(scores.get(0).getData(), scores.get(1).getData(), player1, player2);
@@ -116,22 +119,20 @@ public class ThirdMinigameState extends State {
     }
 
     private void winGame(){
-        if(turns == numPlayers) {
-            if (tie) {
-                SinglyNode<Player> currentWinner = tiedPlayers.getHead();
-                while (currentWinner != null) {
-                    currentWinner.getData().addCoins(10);
-                    currentWinner = (SinglyNode<Player>) currentWinner.getNext();
-                }
-            } else {
-                winner.addCoins(10);
+        if (tie) {
+            SinglyNode<Player> currentWinner = tiedPlayers.getHead();
+            while (currentWinner != null) {
+                currentWinner.getData().addCoins(10);
+                currentWinner = (SinglyNode<Player>) currentWinner.getNext();
             }
-            turns = 0;
-            scores.clear();
-            tiedPlayers.clear();
-            game.resumeGame();
-            State.setState(GameLoop.gameDependantStates.get(8).getData());
+        } else {
+            winner.addCoins(10);
         }
+        turns = 0;
+        scores.clear();
+        tiedPlayers.clear();
+        game.resumeGame();
+        State.setState(GameLoop.gameDependantStates.get(8).getData());
     }
 
     @Override
