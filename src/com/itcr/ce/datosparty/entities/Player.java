@@ -183,10 +183,8 @@ public class Player extends Entity {
                 setDirection(false);
                 setReversed(false);
             }
-            case REVERSED -> {
-                nextNode = getPosition().getPrevious();
-                setDirection(false);
-            }
+            case REVERSED -> nextNode = getPosition().getPrevious();
+
             default -> {
                 nextNode = getPosition().getNext();
                 setDirection(false);
@@ -213,6 +211,7 @@ public class Player extends Entity {
         Node<Box> phaseCFirst = handler.getBoard().getPhaseC().getHead();
         Node<Box> phaseCLast = handler.getBoard().getPhaseC().getLast();
         Node<Box> phaseCConnectorReversed = handler.getBoard().getMainCircuit().get(33);
+        Node<Box> phaseDPivot = handler.getBoard().getPhaseD().get(1);
 
 
         if(current == phaseAConnector){
@@ -259,6 +258,16 @@ public class Player extends Entity {
         }
         else if(getReversed()){
            return REVERSED;
+        }
+        else if(current == phaseDPivot){
+            if(changeDirection){
+                setReversed(true);
+                return REVERSED;
+            }
+            else {
+                setReversed(false);
+                return NONE;
+            }
         }
         else return NONE;
     }
@@ -381,7 +390,7 @@ public class Player extends Entity {
         }
     }
 
-    private void checkForPlayers(Player player, Node nextNode, Game game) throws InterruptedException {
+    private void checkForPlayers(Player player, Node<Box> nextNode, Game game) throws InterruptedException {
         Player player1 = game.getPlayerList().get(0).getData();
         Player player2 = game.getPlayerList().get(1).getData();
         Player player3 = null, player4 = null;
