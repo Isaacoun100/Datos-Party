@@ -30,7 +30,7 @@ public class FourthMinigameState extends State {
     private Player winner;
     private int end;
     private int  bestScore = Integer.MAX_VALUE;
-    private boolean tie, playing = false;
+    private boolean tie, tieReward, playing = false;
     private Game game;
     private SinglyList<String> doneMessage;
 
@@ -54,7 +54,6 @@ public class FourthMinigameState extends State {
         uiManager.addObject(new UIBackground(Assets.clearSkyBG,"background"));
         uiManager.addObject(new UIAnimatedImage(55, 5, 8,8,
                 starAnimation,"shootingStar"));
-
 
         uiManager.addObject(new UIImageButton(45, 50, 8, 8, Assets.okBtn,"endButton",
                 this::winGame));
@@ -180,11 +179,26 @@ public class FourthMinigameState extends State {
     private void displayEndButton(Graphics g) {
         if (end == numPlayers || starTimer > 150) {
             searchWinner();
-            if (0 <= bestScore) {
-                g.drawString("Winner: " + winner.getName(), 150, 300);
+            if (tie) {
+                int yDistance = 300;
+                g.drawString("Tie!", 150, yDistance);
+                yDistance += 50;
+                g.drawString("Winners: ", 150, yDistance);
+                SinglyNode<Player> currentWinner = tiedPlayers.getHead();
+                while (currentWinner != null) {
+                    yDistance += 50;
+                    g.drawString(currentWinner.getData().getName(), 150, yDistance);
+                    currentWinner = (SinglyNode<Player>) currentWinner.getNext();
+                    tie = false;
+                    tieReward = true;
+                }
             } else {
-                winner = null;
-                g.drawString("No one spot it! Bummer...", 150, 300);
+                if (0 <= bestScore) {
+                    g.drawString("Winner: " + winner.getName(), 150, 300);
+                } else {
+                    winner = null;
+                    g.drawString("No one spot it!", 150, 300);
+                }
             }
             uiManager.renderById(g, "endButton");
         }
@@ -192,26 +206,29 @@ public class FourthMinigameState extends State {
 
     private void winGame(){
         if (playing) {
-            if (winner != null) {
-                winner.addCoins(10);
-                winner = null;
-                State.setState(GameLoop.gameDependantStates.get(8).getData());
-            } else if (tie) {
+            playing = false;
+            if (tieReward) {
                 SinglyNode<Player> currentWinner = tiedPlayers.getHead();
                 while (currentWinner != null) {
                     currentWinner.getData().addCoins(10);
                     currentWinner = (SinglyNode<Player>) currentWinner.getNext();
                 }
+                tieReward = false;
+            } else if (winner != null) {
+                winner.addCoins(10);
+                winner = null;
+                State.setState(GameLoop.gameDependantStates.get(8).getData());
             }
             turns.clear();
             scores.clear();
+            doneMessage.clear();
             for (int i = 0; i < numPlayers; i++) {
                 turns.add(false);
                 scores.add(-1);
+                doneMessage.add("");
             }
             tiedPlayers.clear();
             end = 0;
-            playing = false;
             game.resumeGame();
             State.setState(GameLoop.gameDependantStates.get(8).getData());
         }
@@ -231,22 +248,7 @@ public class FourthMinigameState extends State {
     public void render(Graphics g) {
         uiManager.renderById(g, "background");
         g.setColor(Color.white);
-        if (playing) {
-            g.setFont(normalFont);
-            if (starTimer >= 0) {
-                uiManager.renderById(g, "shootingStar");
-            }
-            g.drawString(doneMessage.get(0).getData(), 50, 900);
-            g.drawString(doneMessage.get(1).getData(), 350, 900);
-
-            if (numPlayers >= 3) {
-                g.drawString(doneMessage.get(2).getData(), 1050, 900);
-            }
-            if (numPlayers == 4) {
-                g.drawString(doneMessage.get(3).getData(), 1350, 900);
-            }
-            displayEndButton(g);
-        } else {
+        if (!playing) {
             g.setFont(titleFont);
             g.drawString("Spot the", 250, 200);
             g.drawString("Shooting star!", 550, 350);
@@ -261,6 +263,21 @@ public class FourthMinigameState extends State {
                 g.drawString(players.get(3).getData().getName() + ": press M", 1250, 900);
             }
             uiManager.renderById(g, "startButton");
+        } else {
+            g.setFont(normalFont);
+            if (starTimer >= 0) {
+                uiManager.renderById(g, "shootingStar");
+            }
+            g.drawString(doneMessage.get(0).getData(), 50, 900);
+            g.drawString(doneMessage.get(1).getData(), 350, 900);
+
+            if (numPlayers >= 3) {
+                g.drawString(doneMessage.get(2).getData(), 1050, 900);
+            }
+            if (numPlayers == 4) {
+                g.drawString(doneMessage.get(3).getData(), 1350, 900);
+            }
+            displayEndButton(g);
         }
     }
 }
