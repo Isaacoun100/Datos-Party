@@ -1,19 +1,18 @@
 package com.itcr.ce.datosparty.logic;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Dice {
 
     public static int roll(int min, int max){
-        Random tileNumber;
-        int randomNumber;
-        if (max != min) {
-            tileNumber = new Random();
-
-            randomNumber = tileNumber.nextInt(max)+min;
-
-        } else {
+        int randomNumber = 0;
+        if (min < max) {
+            randomNumber = ThreadLocalRandom.current().nextInt(min, max + 1);
+        } else if (min == max){
             randomNumber = max;
+        } else {
+            System.out.println("Wrong order. Reallocating...");
+            roll(max, min);
         }
         return randomNumber;
     }
