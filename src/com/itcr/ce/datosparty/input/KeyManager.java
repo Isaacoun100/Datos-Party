@@ -6,7 +6,8 @@ import java.awt.event.KeyListener;
 public class KeyManager implements KeyListener {
 
     private final boolean[] keys;
-    public boolean enter, esc, space,key_Q,key_Z,key_P,key_M;
+    public boolean enter, esc, space,key_Q,key_Z,key_P,key_M,
+            numPad1, numPad2, numPad3, num1, num2, num3;
 
     public KeyManager(){
         keys = new boolean[256];
@@ -20,6 +21,12 @@ public class KeyManager implements KeyListener {
         key_Z = keys[KeyEvent.VK_Z];
         key_P = keys[KeyEvent.VK_P];
         key_M = keys[KeyEvent.VK_M];
+        numPad1 = keys[KeyEvent.VK_NUMPAD1];
+        numPad2 = keys[KeyEvent.VK_NUMPAD2];
+        numPad3 = keys[KeyEvent.VK_NUMPAD3];
+        num1 = keys[KeyEvent.VK_1];
+        num2 = keys[KeyEvent.VK_2];
+        num3 = keys[KeyEvent.VK_3];
     }
 
     @Override

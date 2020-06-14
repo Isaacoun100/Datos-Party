@@ -1,13 +1,16 @@
 package com.itcr.ce.datosparty.entities;
 
+import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.Handler;
 import com.itcr.ce.datosparty.dataStructures.nodes.Node;
 import com.itcr.ce.datosparty.entities.boxes.Box;
 import com.itcr.ce.datosparty.logic.Connector;
+import com.itcr.ce.datosparty.logic.EventLogic;
 import com.itcr.ce.datosparty.logic.Game;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Objects;
 
 import static com.itcr.ce.datosparty.logic.Connector.*;
 
@@ -29,6 +32,16 @@ public class Player extends Entity {
     private Node<Box> position;
     private Boolean reversed = false;
     private Boolean currentTurn = false;
+
+    public void setWonDuel(Boolean wonDuel) {
+        this.wonDuel = wonDuel;
+    }
+
+    public Boolean getWonDuel() {
+        return wonDuel;
+    }
+
+    private Boolean wonDuel = false;
 
     /**
      *
@@ -101,6 +114,9 @@ public class Player extends Entity {
             }
             Node<Box> nextNode = pickPath(game);
           //  Node<Box> nextNode = getPosition().getNext();
+            if(boxesLeft==1){
+                checkForPlayers(this,nextNode,game);
+            }
             setPosition(nextNode);
             float  newX = position.getData().getX();
             float  newY = position.getData().getY();
@@ -167,10 +183,8 @@ public class Player extends Entity {
                 setDirection(false);
                 setReversed(false);
             }
-            case REVERSED -> {
-                nextNode = getPosition().getPrevious();
-                setDirection(false);
-            }
+            case REVERSED -> nextNode = getPosition().getPrevious();
+
             default -> {
                 nextNode = getPosition().getNext();
                 setDirection(false);
@@ -197,6 +211,7 @@ public class Player extends Entity {
         Node<Box> phaseCFirst = handler.getBoard().getPhaseC().getHead();
         Node<Box> phaseCLast = handler.getBoard().getPhaseC().getLast();
         Node<Box> phaseCConnectorReversed = handler.getBoard().getMainCircuit().get(33);
+        Node<Box> phaseDPivot = handler.getBoard().getPhaseD().get(1);
 
 
         if(current == phaseAConnector){
@@ -244,6 +259,16 @@ public class Player extends Entity {
         else if(getReversed()){
            return REVERSED;
         }
+        else if(current == phaseDPivot){
+            if(changeDirection){
+                setReversed(true);
+                return REVERSED;
+            }
+            else {
+                setReversed(false);
+                return NONE;
+            }
+        }
         else return NONE;
     }
 
@@ -265,6 +290,7 @@ public class Player extends Entity {
      * @param movement sets the current movement of the player, its mainly used by the dice, and also the conectors, for the player to resume movement
      */
     public void setMovement(int movement) {
+        wonDuel = false;
         this.movement = movement;
     }
 
@@ -343,5 +369,130 @@ public class Player extends Entity {
     @Override
     public void render(Graphics g) {
         g.drawImage(image,(int) x,(int) y, width, height, null);
+    }
+
+    private int identifyPlayer(Player player, Game game){
+        if(game.getNumberOfPlayers()==4){
+            if(player== game.getPlayerList().get(3).getData()){
+                return 4;
+            }
+        }
+        if(game.getNumberOfPlayers()>=3) {
+            if (player == game.getPlayerList().get(2).getData()) {
+                return 3;
+            }
+        }
+        if(player== game.getPlayerList().get(1).getData()){
+            return 2;
+        }
+        else {
+            return 1;
+        }
+    }
+
+    private void checkForPlayers(Player player, Node<Box> nextNode, Game game) throws InterruptedException {
+        Player player1 = game.getPlayerList().get(0).getData();
+        Player player2 = game.getPlayerList().get(1).getData();
+        Player player3 = null, player4 = null;
+        if(game.getNumberOfPlayers()>=3) {
+            player3 = game.getPlayerList().get(2).getData();
+        }
+        if(game.getNumberOfPlayers()==4) {
+            player4 = game.getPlayerList().get(3).getData();
+        }
+
+        switch (identifyPlayer(player,game)){
+            case 1-> {
+                if(nextNode == player2.getPosition()){
+                    boxDuel(player, player2, game);
+                }
+                else if(game.getNumberOfPlayers()>=3){
+                    assert player3 != null;
+                    if(nextNode == player3.getPosition()) {
+                        boxDuel(player, player3, game);
+                    }
+                }
+                else {
+                    if(game.getNumberOfPlayers() == 4) {
+                        assert player4 != null;
+                        if (nextNode == player4.getPosition()) {
+                            boxDuel(player, player4, game);
+                        }
+                    }
+                }
+            }
+            case 2-> {
+                if(nextNode == player1.getPosition()){
+                    boxDuel(player, player1, game);
+                }
+                else if(game.getNumberOfPlayers()>=3 && nextNode == Objects.requireNonNull(player3).getPosition()){
+                    boxDuel(player, player3, game);
+                }
+                else {
+                    if(game.getNumberOfPlayers() == 4) {
+                        assert player4 != null;
+                        if (nextNode == player4.getPosition()) {
+                            boxDuel(player, player4, game);
+                        }
+                    }
+                }
+            }
+            case 3->{
+                if(nextNode == player1.getPosition()){
+                    boxDuel(player, player1, game);
+                }
+                else if(nextNode == player2.getPosition()){
+                    boxDuel(player, player2, game);
+                }
+                else {
+                    if(game.getNumberOfPlayers() == 4) {
+                        assert player4 != null;
+                        if (nextNode == player4.getPosition()) {
+                            boxDuel(player, player4, game);
+                        }
+                    }
+                }
+            }
+            case 4->{
+                if(nextNode == player1.getPosition()){
+                    boxDuel(player, player1, game);
+                }
+                else if(nextNode == player2.getPosition()){
+                    boxDuel(player, player2, game);
+                }
+                else {
+                    assert player3 != null;
+                    if(nextNode == player3.getPosition()){
+                        boxDuel(player,player3,game);
+                    }
+                }
+            }
+        }
+    }
+
+    public void boxDuel(Player movingPlayer, Player targetPlayer, Game game) throws InterruptedException {
+        game.updateDuelPlayers(movingPlayer,targetPlayer);
+        GameLoop.setState(GameLoop.gameDependantStates.get(0).getData());
+        game.pauseGame();
+        checkWinner(movingPlayer,targetPlayer);
+    }
+
+    public void checkWinner(Player movingPlayer, Player targetPlayer){
+        if(wonDuel) {
+            this.wonDuel = false;
+            swapPlayers(movingPlayer,targetPlayer);
+        }else {
+            swapPlayers(targetPlayer, movingPlayer);
+        }
+        movingPlayer.setMovement(0);
+    }
+
+    private void swapPlayers(Player movingPlayer, Player targetPlayer) {
+        Node<Box> targetPosition = targetPlayer.getPosition();
+        Node<Box> playerPosition = movingPlayer.getPosition();
+        movingPlayer.setRenderPos(targetPosition.getData().getX(),targetPosition.getData().getY());
+        targetPlayer.setPosition(playerPosition);
+        targetPlayer.setRenderPos(playerPosition.getData().getX(),playerPosition.getData().getY());
+        movingPlayer.setPosition(targetPosition);
     }
 }
