@@ -166,7 +166,7 @@ public class Game extends Thread {
             this.eventStack.pop();
         }
         while (tempList.getHead() != null) {
-            randomIndex = Dice.roll(0, tempList.getLength());
+            randomIndex = Dice.roll(0, tempList.getLength() - 1);
             randomNode = tempList.get(randomIndex);
             this.eventStack.push(randomNode.getData());
             tempList.remove(randomIndex);
