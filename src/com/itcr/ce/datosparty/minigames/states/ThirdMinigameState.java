@@ -8,7 +8,6 @@ import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.logic.Game;
 import com.itcr.ce.datosparty.states.State;
-import com.itcr.ce.datosparty.userInterface.ClickListener;
 import com.itcr.ce.datosparty.userInterface.UIImage;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
@@ -43,19 +42,11 @@ public class ThirdMinigameState extends State {
         scores = new SinglyList<>();
         players = game.getPlayerList();
 
-        uiManager.addObject(new UIImageButton(43, 40, 7*2, 2*2, Assets.player1Button,"shootButton", new ClickListener() {
-            @Override
-            public void onClick() {
-                shoot();
-            }
-        }));
+        uiManager.addObject(new UIImageButton(43, 40, 7*2, 2*2, Assets.player1Button,
+                "shootButton", this::shoot));
 
-        uiManager.addObject(new UIImageButton(43, 45, 7*2, 2*2, Assets.player1Button,"winButton", new ClickListener() {
-            @Override
-            public void onClick() {
-                winGame();
-            }
-        }));
+        uiManager.addObject(new UIImageButton(43, 45, 7*2, 2*2, Assets.player1Button,"winButton",
+                this::winGame));
 
         uiManager.addObject( new UIImage(0, 0, 16, 16, Assets.blackScope, "blackScope"));
         uiManager.addObject( new UIImage(0, 0, 16, 16, Assets.redScope, "redScope"));
