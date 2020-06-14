@@ -170,6 +170,24 @@ public class GameState extends State{
                         game.resumeGame();
                     }
                 }));
+        gameUI.addObject(new UIImageButton(30,11,4,4,Assets.leftArrow,"lArrowPhaseD",
+                ()->{
+                    if (currentBox.getBoxID().equals("phaseD")) {
+                        currentPlayer.setDirection(true);
+                        int movementLeft = currentPlayer.getMovement();
+                        currentPlayer.setMovement(movementLeft);
+                        game.resumeGame();
+                    }
+                }));
+        gameUI.addObject(new UIImageButton(35,11,4,4,Assets.rightArrow,"rArrowPhaseD",
+                ()->{
+                    if (currentBox.getBoxID().equals("phaseD")) {
+                        currentPlayer.setDirection(false);
+                        int movementLeft = currentPlayer.getMovement();
+                        currentPlayer.setMovement(movementLeft);
+                        game.resumeGame();
+                    }
+                }));
 
         gameUI.addObject((new UIImage((float)width/2-16, (float)height/2-16, 4*8,2*8,Assets.starPurchaseBackDrop[0],"starPBackDrop")));
 
@@ -408,6 +426,10 @@ public class GameState extends State{
                 case "phaseC2" -> {
                     gameUI.renderById(g, "lArrowPhaseC2");
                     gameUI.renderById(g, "dArrowPhaseC2");
+                }
+                case "phaseD" -> {
+                    gameUI.renderById(g, "lArrowPhaseD");
+                    gameUI.renderById(g, "rArrowPhaseD");
                 }
             }
         }
