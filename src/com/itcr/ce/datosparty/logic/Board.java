@@ -44,6 +44,8 @@ public class Board {
         mainCircuit.get(12).getData().setCrossRoads(true);
         mainCircuit.get(33).getData().setBoxID("phaseC2");
         mainCircuit.get(33).getData().setCrossRoads(true);
+        phaseD.get(1).getData().setBoxID("phaseD");
+        phaseD.get(1).getData().setCrossRoads(true);
 
     }
 
