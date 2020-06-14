@@ -6,8 +6,8 @@ import java.awt.event.KeyListener;
 public class KeyManager implements KeyListener {
 
     private final boolean[] keys;
-    public boolean enter, esc, space,key_Q,key_Z,key_P,key_M;
-    public boolean enter, esc, space, numPad1, numPad2, numPad3, num1, num2, num3;
+    public boolean enter, esc, space,key_Q,key_Z,key_P,key_M,
+            numPad1, numPad2, numPad3, num1, num2, num3;
 
     public KeyManager(){
         keys = new boolean[256];

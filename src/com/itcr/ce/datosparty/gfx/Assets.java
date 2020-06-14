@@ -12,10 +12,8 @@ public class Assets {
                                 selectionWallpaper, redSelectorL, redSelectorR, blueSelectorL, blueSelectorR,
                                 yellowSelectorL,yellowSelectorR, greenSelectorL, paintgun4,paintgun3, paintgun2,
                                 greenSelectorR, memoryWallpaper, stoneRubble, stoneStatue, paintBallLogo, stoneLogo,
-                                clickerBG, paintBallBG, spaceWallpaper, firstShip, secondShip, thirdShip,fourthShip;
-
-                                greenSelectorR, memoryWallpaper, stoneRubble, stoneStatue, paintBallLogo, stoneLogo,
-                                clickerBG, paintBallBG,rock,paper,scissors,number1,number2,number3,rpcTitle,
+                                clickerBG, paintBallBG, spaceWallpaper, firstShip, secondShip, thirdShip,fourthShip,
+                                rock,paper,scissors,number1,number2,number3,rpcTitle,
                                 leftPlayer, rightPlayer, playerIndicator1, playerIndicator2, playerIndicator3, playerIndicator4;
     public static BufferedImage[] settingsButton, playButton, creditsButton, backButton, titleImage, pressEnterImage,
                                   notOKComputer,  notOKComputerIcon,  nothingHereMessage,  boton1,  diceButton,
