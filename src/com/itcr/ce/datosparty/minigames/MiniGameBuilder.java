@@ -8,6 +8,13 @@ import com.itcr.ce.datosparty.states.State;
 
 public class MiniGameBuilder {
 
+    /**
+     * This method initiates the mini game states, and adds them to the list of the main loop
+     * @param gameList list where the mini games will be added
+     * @param playerNumber number of players
+     * @param handler handler obj
+     * @param game main game obj
+     */
     public static void build(LinkedList<State> gameList, int playerNumber, Handler handler, Game game){
 
         gameList.add(new DuelMiniGame(handler, playerNumber, game));

@@ -8,6 +8,12 @@ public class Animation {
     private long lastTime, timer;
     BufferedImage[] frames;
 
+    /**
+     * Constructor for animation, an animation is an object that goes through a series of images,
+     * called frames from lowest index to its higher index
+     * @param speed int value of millisecond intervals between frames
+     * @param frames a buffered array of images of the same size
+     */
     public Animation(int speed, BufferedImage[] frames){
         this.speed = speed;
         this.frames = frames;
@@ -16,6 +22,9 @@ public class Animation {
         lastTime = System.currentTimeMillis();
     }
 
+    /**
+     * When called in another tick method it will run the animation to the speed specified in its constructor
+     */
     public void tick(){
         timer += System.currentTimeMillis() - lastTime;
         lastTime = System.currentTimeMillis();
@@ -29,6 +38,10 @@ public class Animation {
         }
     }
 
+    /**
+     * Getter for the current frame
+     * @return the current frame that is being rendered by the animation
+     */
     public BufferedImage getCurrentFrame(){
         return frames[index];
     }

@@ -9,10 +9,17 @@ public class KeyManager implements KeyListener {
     public boolean enter, esc, space,key_Q,key_Z,key_P,key_M,
             numPad1, numPad2, numPad3, num1, num2, num3;
 
+    /**
+     * KeyManager constructor, simply creates an array of keys, that corresponds to the average number of keys on a keyboard
+     * its an extended class from KeyListener
+     */
     public KeyManager(){
         keys = new boolean[256];
     }
 
+    /**
+     * tick method for keyManager, it constantly checks if one of the specified keys has been pressed
+     */
     public void tick(){
         enter = keys[KeyEvent.VK_ENTER];
         esc = keys[KeyEvent.VK_ESCAPE];
@@ -29,15 +36,27 @@ public class KeyManager implements KeyListener {
         num3 = keys[KeyEvent.VK_3];
     }
 
+    /**
+     * Unused method extended from parent class
+     * @param e key event
+     */
     @Override
     public void keyTyped(KeyEvent e) {
     }
 
+    /**
+     * This method checks if a key determined above is pressed, by returning a true boolean value
+     * @param e key event
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         keys[e.getKeyCode()] = true;
     }
 
+    /**
+     * This method changes the value of a key to false, if the key is not being pressed
+     * @param e key event
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         keys[e.getKeyCode()] = false;

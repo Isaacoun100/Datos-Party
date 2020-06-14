@@ -32,16 +32,16 @@ public class Player extends Entity {
     private Node<Box> position;
     private Boolean reversed = false;
     private Boolean currentTurn = false;
+    private Boolean wonDuel = false;
 
+
+    /**
+     * Sets the variable won duel, to either true or false
+     * @param wonDuel boolean that determines if a player should be swaped or not
+     */
     public void setWonDuel(Boolean wonDuel) {
         this.wonDuel = wonDuel;
     }
-
-    public Boolean getWonDuel() {
-        return wonDuel;
-    }
-
-    private Boolean wonDuel = false;
 
     /**
      *
@@ -117,7 +117,9 @@ public class Player extends Entity {
             if(boxesLeft==1){
                 checkForPlayers(this,nextNode,game);
             }
-            setPosition(nextNode);
+            if(getMovement()!=0) {
+                setPosition(nextNode);
+            }
             float  newX = position.getData().getX();
             float  newY = position.getData().getY();
             setRenderPos(newX,newY);
@@ -273,6 +275,7 @@ public class Player extends Entity {
     }
 
     /**
+     * getter for the players name
      * @return a String corresponding to the name of the player
      */
     public String getName() {
@@ -280,6 +283,7 @@ public class Player extends Entity {
     }
 
     /**
+     * getter for the players remaining movement
      * @return an int corresponding to the movement of the player
      */
     public int getMovement() {
@@ -287,7 +291,8 @@ public class Player extends Entity {
     }
 
     /**
-     * @param movement sets the current movement of the player, its mainly used by the dice, and also the conectors, for the player to resume movement
+     * sets the current movement of the player, its mainly used by the dice, and also the connectors, for the player to resume movement
+     * @param movement int value of how many spaces the player will move
      */
     public void setMovement(int movement) {
         wonDuel = false;
@@ -295,6 +300,7 @@ public class Player extends Entity {
     }
 
     /**
+     * getter for the players current coins
      * @return an int value corresponding to this players current coins
      */
     public int getCoins() {
@@ -302,6 +308,7 @@ public class Player extends Entity {
     }
 
     /**
+     * a method that adds coins to a player
      * @param coins an int value that is added to the player's current coin value
      */
     public void addCoins(int coins) {
@@ -312,6 +319,7 @@ public class Player extends Entity {
     }
 
     /**
+     * getter for the players current stars
      * @return an int value corresponding to the player's stars
      */
     public int getStars() {
@@ -319,6 +327,7 @@ public class Player extends Entity {
     }
 
     /**
+     * a method that adds stars to a player
      * @param stars an int value that is added to the player's current stars
      */
     public void addStars(int stars) {
@@ -329,6 +338,7 @@ public class Player extends Entity {
     }
 
     /**
+     * getter for the players position
      * @return a node of the box that the player is currently storing as its position
      */
     public Node<Box> getPosition() {
@@ -336,6 +346,7 @@ public class Player extends Entity {
     }
 
     /**
+     * Changes the player's position to a new one
      * @param position a node, that will replace the players current position
      */
     public void setPosition(Node<Box> position) {
@@ -353,6 +364,7 @@ public class Player extends Entity {
     }
 
     /**
+     * a method that executes the action of the boxes
      * @param currentBox this checks the box the player is currently in and triggers the box action, either add coins,
      *                   subtract coins, or trigger an event
      * @param game the current game the player is in, is passed to the box, so it can have access to variables and objects in the game
@@ -371,6 +383,12 @@ public class Player extends Entity {
         g.drawImage(image,(int) x,(int) y, width, height, null);
     }
 
+    /**
+     * This method identifies which player the player is, by comparing to other player objs
+     * @param player the current player
+     * @param game the current game
+     * @return an int related to the player order
+     */
     private int identifyPlayer(Player player, Game game){
         if(game.getNumberOfPlayers()==4){
             if(player== game.getPlayerList().get(3).getData()){
@@ -390,6 +408,14 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * This method checks other players, and checks if they have that position associated with it
+     * it uses a switch depending on which player is playing, to check the spaces the character will move next to.
+     * @param player the current player
+     * @param nextNode the players next node, this method is called when the player has 1 movement left
+     * @param game the current game
+     * @throws InterruptedException this is in order to wait the game thread before and after triggering the mini game
+     */
     private void checkForPlayers(Player player, Node<Box> nextNode, Game game) throws InterruptedException {
         Player player1 = game.getPlayerList().get(0).getData();
         Player player2 = game.getPlayerList().get(1).getData();
@@ -470,23 +496,39 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * This method throws  duel, this is triggered by check for players, if they find a match
+     * @param movingPlayer the player who threw the dice, and is currently moving
+     * @param targetPlayer the player in the box were the player might land
+     * @param game the current game
+     * @throws InterruptedException exception to wait the game until the game is finished
+     */
     public void boxDuel(Player movingPlayer, Player targetPlayer, Game game) throws InterruptedException {
+        movingPlayer.setMovement(0);
         game.updateDuelPlayers(movingPlayer,targetPlayer);
         GameLoop.setState(GameLoop.gameDependantStates.get(0).getData());
         game.pauseGame();
         checkWinner(movingPlayer,targetPlayer);
     }
 
+    /**
+     * This is a method that is run after the duel, if the duel was won it will swap the players positions
+     * @param movingPlayer the player that is currently playing its turn
+     * @param targetPlayer the player that is occupying the box
+     */
     public void checkWinner(Player movingPlayer, Player targetPlayer){
         if(wonDuel) {
             this.wonDuel = false;
             swapPlayers(movingPlayer,targetPlayer);
-        }else {
-            swapPlayers(targetPlayer, movingPlayer);
         }
         movingPlayer.setMovement(0);
     }
 
+    /**
+     * This method is similar to the one the events, it swaps players, except it takes two arguments, since its two specific players
+     * @param movingPlayer the player that is currently playing its turn
+     * @param targetPlayer the player that is occupying the box
+     */
     private void swapPlayers(Player movingPlayer, Player targetPlayer) {
         Node<Box> targetPosition = targetPlayer.getPosition();
         Node<Box> playerPosition = movingPlayer.getPosition();
