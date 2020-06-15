@@ -154,7 +154,9 @@ public class EventLogic {
         SinglyList<Box> phaseB = game.getPhaseB();
         DoublyList<Box> phaseC = game.getPhaseC();
         CircularDoublyList<Box> phaseD = game.getPhaseD();
-        switch (Dice.roll(1, 5)) {
+        int phase = Dice.roll(1, 7);
+        System.out.println(phase);
+        switch (phase) {
             case 1 -> {
                 numRandom = Dice.roll(0, mainCircuit.getLength() - 1);
                 Node<Box> newPosition = mainCircuit.get(numRandom);
@@ -165,27 +167,27 @@ public class EventLogic {
                 numRandom = Dice.roll(0, phaseA.getLength() - 1);
                 Node<Box> newPosition = phaseA.get(numRandom);
                 player.setRenderPos(newPosition.getData().getX(),newPosition.getData().getY());
-                player.setPosition(phaseA.get(numRandom));
+                player.setPosition(newPosition);
 
             }
             case 3 -> {
                 numRandom = Dice.roll(0, phaseB.getLength() - 1);
                 Node<Box> newPosition = phaseB.get(numRandom);
                 player.setRenderPos(newPosition.getData().getX(),newPosition.getData().getY());
-                player.setPosition(phaseB.get(numRandom));
+                player.setPosition(newPosition);
 
             }
             case 4 -> {
                 numRandom = Dice.roll(0, phaseC.getLength() - 1);
                 Node<Box> newPosition = phaseC.get(numRandom);
                 player.setRenderPos(newPosition.getData().getX(),newPosition.getData().getY());
-                player.setPosition(phaseC.get(numRandom));
+                player.setPosition(newPosition);
             }
-            case 5 -> {
+            default -> {
                 numRandom = Dice.roll(0, phaseD.getLength() - 1);
                 Node<Box> newPosition = phaseD.get(numRandom);
                 player.setRenderPos(newPosition.getData().getX(),newPosition.getData().getY());
-                player.setPosition(phaseD.get(numRandom));
+                player.setPosition(newPosition);
             }
         }
         pauseEvent(game);
