@@ -44,6 +44,10 @@ public class YellowBox extends Box {
     @Override
     public void boxAction(Player player, Game game) {
         if(player.getCurrentTurn()){
+            if (game.eventStack.peek() == null) {
+                System.out.println("Shuffling...");
+                game.resetEvents();
+            }
             Event currentEvent = game.eventStack.pop();
             game.setCurrentEvent(currentEvent);
             switch (currentEvent) {
