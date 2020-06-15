@@ -7,6 +7,10 @@ public abstract class LinearStructure {
 
     protected int length;
 
+    /**
+     * Returns the length of the structure. Used on every structure.
+     * @return
+     */
     public int getLength() {
         return length;
     }

@@ -9,17 +9,29 @@ import com.itcr.ce.datosparty.dataStructures.nodes.Node;
  */
 public class SinglyList<T> extends LinkedList<T> {
 
+    /**
+     * Deletes all the contents of the list by setting its head to null
+     */
     @Override
     public void clear() {
         this.head = null;
         length = 0;
     }
 
+    /**
+     * Gets the first element of the list
+     * @return first element of the list
+     */
     @Override
     public SinglyNode<T> getHead() {
         return (SinglyNode<T>) head;
     }
 
+    /**
+     * Gets the node on the index position. Used on CircularList
+     * @param index where Node is located
+     * @return node on index
+     */
     @Override
     public SinglyNode<T> get(int index) {
         if (index >= getLength() || index < 0) {
@@ -57,6 +69,10 @@ public class SinglyList<T> extends LinkedList<T> {
         return index;
     }
 
+    /**
+     * Return the node which has the next reference that points to null
+     * @return Last node on list
+     */
     @Override
     public SinglyNode<T> getLast() {
         SinglyNode<T> lastNode = (SinglyNode<T>) this.head;
@@ -66,6 +82,10 @@ public class SinglyList<T> extends LinkedList<T> {
         return lastNode;
     }
 
+    /**
+     * Adds a node to the end of the list using getLast() method
+     * @param data info to be added on List
+     */
     @Override
     public void add(T data) {
         // Create a new node with given data
@@ -81,6 +101,12 @@ public class SinglyList<T> extends LinkedList<T> {
         length++;
     }
 
+    /**
+     * Adds the node wherever the index says it has to be added by setting the next references of the previous an next
+     * nodes that will be surrounding it
+     * @param data info to be added on List
+     * @param index where the Node will be added
+     */
     @Override
     public void add(T data, int index) {
         SinglyNode<T> newNode = new SinglyNode<>(data);
@@ -102,6 +128,10 @@ public class SinglyList<T> extends LinkedList<T> {
         length++;
     }
 
+    /**
+     * Removes the node on index, connecting the next reference of the previous to its next
+     * @param index where Node to be removed is located
+     */
     @Override
     public void remove(int index) {
         if (index >= getLength()) {
@@ -118,26 +148,20 @@ public class SinglyList<T> extends LinkedList<T> {
             nodePrevious.setNext(nodeIndex.getNext());
             length--;
         }
-
     }
 
+    /**
+     * Prints the data inside every node on the list in its order
+     */
     @Override
     public void print() {
         SinglyNode<T> currentNode = (SinglyNode<T>) this.head;
-
         System.out.print("\n[");
-
-        // Traverse through the LinkedList
         while (currentNode != null) {
-
-            // Print the data at current node
             System.out.print(currentNode.getData());
-
             if (currentNode.getNext() != null) {
                 System.out.print(", ");
             }
-
-            // Go to next node
             currentNode = (SinglyNode<T>) currentNode.getNext();
         }
         System.out.println("]\n");

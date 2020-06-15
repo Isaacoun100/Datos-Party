@@ -23,16 +23,16 @@ public class FourthMinigameState extends State {
     private final Font normalFont, titleFont;
     private int numPlayers;
     private int starTimer;
-    private SinglyList<Player> players;
-    private SinglyList<Integer> scores;
-    private SinglyList<Boolean> turns;
-    private SinglyList<Player> tiedPlayers;
+    private final SinglyList<Player> players;
+    private final SinglyList<Integer> scores;
+    private final SinglyList<Boolean> turns;
+    private final SinglyList<Player> tiedPlayers;
     private Player winner;
     private int end;
     private int  bestScore = Integer.MAX_VALUE;
     private boolean tie;
     private boolean playing = false;
-    private Game game;
+    private final Game game;
     private SinglyList<String> doneMessage;
 
     public FourthMinigameState(Handler handler, int numPlayers, Game game) {

@@ -9,6 +9,10 @@ import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
  */
 public class CircularList<T> extends SinglyList<T> {
 
+    /**
+     * Gets last node of list, stopping when the node that it's checking has a next that points to head
+     * @return last node of list
+     */
     @Override
     public SinglyNode<T> getLast() {
         SinglyNode<T> lastNode = (SinglyNode<T>) this.head.getNext();
@@ -18,6 +22,10 @@ public class CircularList<T> extends SinglyList<T> {
         return lastNode;
     }
 
+    /**
+     * Adds a node to the end of the list, with it's next reference pointing to null
+     * @param data
+     */
     @Override
     public void add(T data) {
         SinglyNode<T> newNode = new SinglyNode<>(data);
@@ -35,7 +43,12 @@ public class CircularList<T> extends SinglyList<T> {
         length++;
     }
 
-    //WIP
+    /**
+     * Adds a node with data using an index as guide, where it's previous node will point to it and it's next node will point
+     * to the next
+     * @param data data data on the node that will be added to list
+     * @param index where the node will be added
+     */
     @Override
     public void add(T data, int index) {
         SinglyNode<T> newNode = new SinglyNode<>(data);
@@ -56,7 +69,10 @@ public class CircularList<T> extends SinglyList<T> {
         length++;
     }
 
-    //WIP
+    /**
+     * Removes a node at the index it's given by setting the next reference of it's previous node to it's next
+     * @param index where the node to remove is located
+     */
     @Override
     public void remove(int index) {
         if (index >= getLength()) {
@@ -77,26 +93,22 @@ public class CircularList<T> extends SinglyList<T> {
         length--;
     }
 
+    /**
+     * Prints the data inside every node on the list in its order
+     */
     public void print() {
         SinglyNode<T> currentNode = (SinglyNode<T>) this.head;
-
         System.out.print("\n]]");
         System.out.print(currentNode.getData());
         if (currentNode.getNext() != head) {
             System.out.print(", ");
         }
         currentNode = (DoublyNode<T>) currentNode.getNext();
-        // Traverse through the LinkedList
         while (currentNode != this.head) {
-
-            // Print the data at current node
             System.out.print(currentNode.getData());
-
             if (currentNode.getNext() != this.head) {
                 System.out.print(", ");
             }
-
-            // Go to next node
             currentNode = (DoublyNode<T>) currentNode.getNext();
         }
         System.out.println("[[\n");

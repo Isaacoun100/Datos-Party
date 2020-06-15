@@ -10,16 +10,28 @@ public class DoublyList<T> extends LinkedList<T> {
 
     protected DoublyNode<T> head;
 
+    /**
+     * Deletes all the contents of the list by setting its head to null
+     */
     @Override
     public void clear() {
         this.head = null;
         length = 0;
     }
 
+    /**
+     * Gets the first element of the list
+     * @return first element of the list
+     */
     public DoublyNode<T> getHead() {
         return head;
     }
 
+    /**
+     * Gets the node on the index position. Used on CircularDoublyList
+     * @param index where Node is located
+     * @return node on index
+     */
     @Override
     public DoublyNode<T> get(int index) {
         if (index >= getLength() || index < 0) {
@@ -34,6 +46,10 @@ public class DoublyList<T> extends LinkedList<T> {
         }
     }
 
+    /**
+     * Gets last node of list, the one which has its next pointing to null
+     * @return
+     */
     public DoublyNode<T> getLast() {
         DoublyNode<T> lastNode = this.head;
         while (lastNode.getNext() != null) {
@@ -42,6 +58,10 @@ public class DoublyList<T> extends LinkedList<T> {
         return lastNode;
     }
 
+    /**
+     * Adds node to the end of the list, making the last node's next point to it, then its next pointing to null
+     * @param data info to be added on List
+     */
     @Override
     public void add(T data) {
         // Create a new node with given data
@@ -58,6 +78,11 @@ public class DoublyList<T> extends LinkedList<T> {
         length++;
     }
 
+    /**
+     * Adds a node where on the index location by setting its previous and next references accordingly
+     * @param data info to be added on List
+     * @param index where the Node will be added
+     */
     @Override
     public void add(T data, int index) {
         DoublyNode<T> newNode = new DoublyNode<>(data);
@@ -81,6 +106,10 @@ public class DoublyList<T> extends LinkedList<T> {
         length++;
     }
 
+    /**
+     * Removes the node located on index, pointing the previous and next references of the nodes around it accordingly
+     * @param index where Node to be removed is located
+     */
     @Override
     public void remove(int index) {
         if (index >= getLength()) {
@@ -110,23 +139,18 @@ public class DoublyList<T> extends LinkedList<T> {
 
     }
 
+    /**
+     * Prints the data inside every node on the list in its order
+     */
     @Override
     public void print() {
         DoublyNode<T> currentNode = this.head;
-
         System.out.print("\n[[");
-
-        // Traverse through the LinkedList
         while (currentNode != null) {
-
-            // Print the data at current node
             System.out.print(currentNode.getData());
-
             if (currentNode.getNext() != null) {
                 System.out.print(", ");
             }
-
-            // Go to next node
             currentNode = (DoublyNode<T>) currentNode.getNext();
         }
         System.out.println("]]\n");

@@ -14,8 +14,12 @@ import com.itcr.ce.datosparty.states.GameState;
 
 import java.util.Random;
 import static com.itcr.ce.datosparty.logic.Event.*;
-public class Game extends Thread {
 
+/**
+ * Where the logic of the game happens in its respective order. It handles rounds, turns, players, events and
+ * minigames. Acts as a facade.
+ */
+public class Game extends Thread {
 
     Handler handler;
     int currentRound = 1;
@@ -72,7 +76,7 @@ public class Game extends Thread {
     }
 
     /**
-     * run method for the game, when called it will execute the different parts of the game in a logical order
+     * Run method for the game, when called it will execute the different parts of the game in a logical order
      */
     @Override
     public void run() {
@@ -179,6 +183,10 @@ public class Game extends Thread {
         }
     }
 
+    /**
+     * It has a list with the events in order to get each one of the randomly and push the to a stack. Technically, it
+     * builds and resets a stack of events.
+     */
     public void resetEvents() {
         SinglyList<Event> tempList = new SinglyList<>();
         SinglyNode<Event> randomNode;
