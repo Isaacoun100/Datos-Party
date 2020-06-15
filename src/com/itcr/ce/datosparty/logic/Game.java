@@ -190,8 +190,8 @@ public class Game extends Thread {
         eventCloner(tempList, DUEL, 10);
         eventCloner(tempList, STEAL_COINS, 10);
         tempList.add(STEAL_COINS);
-        tempList.add(GIFT_COINS);
-        tempList.add(LOSE_STAR);
+        eventCloner(tempList, GIFT_COINS, 3);
+        eventCloner(tempList, LOSE_STAR, 3);
         eventCloner(tempList, WIN_2_STARS, 3);
         tempList.add(WIN_5_STARS);
         eventCloner(tempList, STEAL_STAR, 3);
