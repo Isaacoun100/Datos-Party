@@ -69,9 +69,9 @@ public class ThirdMinigameState extends State {
 
     private void move() {
         if (add) {
-            aim++;
+            aim += 3;
         } else {
-            aim--;
+            aim -= 3;
         }
     }
 
