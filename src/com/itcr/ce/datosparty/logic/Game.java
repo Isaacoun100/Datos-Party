@@ -82,11 +82,7 @@ public class Game extends Thread {
     public void run() {
         while (active){
             while(currentRound != Round.getMaxRound()+1){
-                try {
-                    Round.playRound(this);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                Round.playRound(this);
                 Minigame.newMinigame();
                 try {
                     pauseGame();
