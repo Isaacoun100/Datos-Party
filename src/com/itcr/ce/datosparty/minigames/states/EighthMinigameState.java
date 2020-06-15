@@ -1,6 +1,6 @@
 package com.itcr.ce.datosparty.minigames.states;
 
-import com.itcr.ce.datosparty.minigames.miniLogic.FirstMiniGameLogic;
+import com.itcr.ce.datosparty.minigames.miniLogic.WinnerLogic;
 import com.itcr.ce.datosparty.minigames.miniGameLogic.MemoryList;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.userInterface.*;
@@ -15,11 +15,14 @@ import com.itcr.ce.datosparty.Handler;
 
 import java.awt.*;
 
+/**
+ * This class is the Memory mini game, it runs once per cycle of mini games
+ */
 public class EighthMinigameState extends State {
 
     private SinglyNode<Player> activePlayer = Round.getPlayerOrder().getHead();
     private Animation titanAn, samAn, tuxAn, koichiAn,ghostAn;
-    FirstMiniGameLogic gameLogic;
+    WinnerLogic gameLogic;
     private boolean active=false;
     private boolean first=true;
     private UIManager MemoryUI;
@@ -27,13 +30,24 @@ public class EighthMinigameState extends State {
     public Game game;
     int timer=0;
 
+    /**
+     * This is the constructor for the  EightMinigame, this will initialize the positions, but not the graphics, this
+     * approach doesn't just runs faster with lower cpu usage, but makes the logic much more simpler
+     * @param handler
+     * @param numPlayers to know how many players are going to be playing the game
+     * @param game
+     */
     public EighthMinigameState(Handler handler, int numPlayers, Game game) {
         super(handler);
          this.game= game;
          initPositions();
-        gameLogic = new FirstMiniGameLogic(this.game);
+        gameLogic = new WinnerLogic(this.game);
     }
 
+    /**
+     * This class initalizes the positions of the sprites and buttons in the game when called, this will run once, when
+     * the game is called
+     */
     public void initPositions(){
         newPositions();
         MemoryUI = new UIManager(handler);
@@ -224,6 +238,10 @@ public class EighthMinigameState extends State {
             }}));
     }
 
+    /**
+     * This tick is going to run the graphics at the beginning, then it will stop render them, this way every time the
+     * mini game is called the cards are going to be different from the last time.
+     */
     @Override
     public void tick() {
         handler.getMouseManager().setUiManager(MemoryUI);
@@ -234,11 +252,19 @@ public class EighthMinigameState extends State {
         MemoryUI.tick();
     }
 
+    /**
+     * This method clears all the positions from the last time it was played, also initializes a new list
+     */
     public void newPositions(){
         MemoryList.initCoords();
         MemoryList.shuffle();
     }
 
+    /**
+     *  Renders the wallpaper constantly, the animation sprites will run only for 3 seconds, then it will flip the cards
+     *  to receive the user input by clicking the cards. A button will be rendered to check the results.
+     * @param g graphics parameter passed to gameloop
+     */
     @Override
     public void render(Graphics g) {
 

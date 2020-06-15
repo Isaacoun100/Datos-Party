@@ -1,6 +1,6 @@
 package com.itcr.ce.datosparty.minigames.states;
 
-import com.itcr.ce.datosparty.minigames.miniLogic.FirstMiniGameLogic;
+import com.itcr.ce.datosparty.minigames.miniLogic.WinnerLogic;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.userInterface.UIAnimatedImage;
 import com.itcr.ce.datosparty.userInterface.UIBackground;
@@ -17,6 +17,9 @@ import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.Handler;
 import java.awt.*;
 
+/**
+ * This class is the Space Run mini game, it runs once per cycle of mini games
+ */
 public class SecondMinigameState extends State {
     private SinglyNode<Player> activePlayer = Round.getPlayerOrder().getHead();
     private boolean firstMove, secondMove, thirdMove, fourthMove;
@@ -24,7 +27,7 @@ public class SecondMinigameState extends State {
     private int numPlayers=Round.getPlayerOrder().getLength();
     private int firsty,secondy,thirdy,fourthy,count;
     private UIManager SpaceRunUI,StarUI;
-    private FirstMiniGameLogic winner;
+    private WinnerLogic winner;
     private final Font font;
     private boolean first=true;
     private Animation star;
@@ -36,7 +39,7 @@ public class SecondMinigameState extends State {
         super(handler);
         this.game=game;
         font = Assets.upHeavett.deriveFont(Font.BOLD, 32);
-        winner = new FirstMiniGameLogic(this.game);
+        winner = new WinnerLogic(this.game);
         SpaceRunUI = new UIManager(handler);
         StarUI = new UIManager(handler);
     }

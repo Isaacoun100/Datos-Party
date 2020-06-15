@@ -12,7 +12,9 @@ import com.itcr.ce.datosparty.logic.DefineOrder;
 
 import java.awt.*;
 
-
+/**
+ * This class is the state in which the players select how many players want to play
+ */
 public class PlayerSelectionState extends State {
 
     private static Game game;
@@ -21,10 +23,19 @@ public class PlayerSelectionState extends State {
     private int width = GameLauncher.width/16;
     private int height = GameLauncher.height/16;
 
+    /**
+     * This method returns the game if it is needed for modifications.
+     * @return game
+     */
     public static Game getGame() {
         return game;
     }
 
+    /**
+     * Bringa to the user 3 buttons, depending on how many players they want to play with, and ask them for the name
+     * each player has to identify them in the board
+     * @param handler
+     */
     public PlayerSelectionState(Handler handler) {
         super(handler);
 
@@ -73,12 +84,21 @@ public class PlayerSelectionState extends State {
 
     }
 
+    /**
+     * The tick initializes once the state is called, the main difference with the constructor is that the constructor
+     * runs when the program itself starts but the tick each time the state is called
+     */
     @Override
     public void tick() {
         handler.getMouseManager().setUiManager(PlayerSelectionUI);
         PlayerSelectionUI.tick();
     }
 
+    /**
+     * Render method runs constantly in a loop once the game is started and finishes the moment the game also finishes,
+     * this method also is the method in charge of rendering the graphics
+     * @param g graphics parameter passed to GameLoop
+     */
     @Override
     public void render(Graphics g) {
         PlayerSelectionUI.renderAll(g);
