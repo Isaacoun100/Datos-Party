@@ -2,10 +2,16 @@ package com.itcr.ce.datosparty.music;
 
 import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
 
+/**
+ * This queue contains all of the songs that are going to be played during the gameplay
+ */
 public class Queue {
 
     static SinglyList<String> queue = new SinglyList<>();
 
+    /**
+     * This class adds all of the songs directories to the Queue so that can be easily accessed in the future
+     */
     public static void songList(){
 
         queue.add("res/audio/background/Last Train Home.wav");
