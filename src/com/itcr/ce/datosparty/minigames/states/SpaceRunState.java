@@ -20,7 +20,7 @@ import java.awt.*;
 /**
  * This class is the Space Run mini game, it runs once per cycle of mini games
  */
-public class SecondMinigameState extends State {
+public class SpaceRunState extends State {
     private SinglyNode<Player> activePlayer = Round.getPlayerOrder().getHead();
     private boolean firstMove, secondMove, thirdMove, fourthMove;
     private boolean isZpressed,isQpressed,isPpressed,isMpressed;
@@ -34,8 +34,13 @@ public class SecondMinigameState extends State {
     private Game game;
 
 
-
-    public SecondMinigameState(Handler handler, int numPlayers, Game game) {
+    /**
+     * Constructor for the SpaceRunState
+     * @param handler
+     * @param numPlayers
+     * @param game
+     */
+    public SpaceRunState(Handler handler, int numPlayers, Game game) {
         super(handler);
         this.game=game;
         font = Assets.upHeavett.deriveFont(Font.BOLD, 32);
@@ -44,6 +49,9 @@ public class SecondMinigameState extends State {
         StarUI = new UIManager(handler);
     }
 
+    /**
+     * This method initializes the positions  for the game to be on set every time it's executed
+     */
     public void initPositions(){
         first=false;
         isQpressed=isZpressed=isPpressed=isMpressed=true;
@@ -53,6 +61,9 @@ public class SecondMinigameState extends State {
         count=0;
     }
 
+    /**
+     * This method intializes the visuals, graphics, images and animations.
+     */
     public void initGraphics(){
 
         SpaceRunUI.addObject(new UIImage((float)15,(float)firsty, 2*3,3*3,Assets.firstShip,"FirstPlayer"));
@@ -80,7 +91,10 @@ public class SecondMinigameState extends State {
 
     }
 
-
+    /**
+     * The tick initializes once the state is called, the main difference with the constructor is that the constructor
+     * runs when the program itself starts but the tick each time the state is called
+     */
     @Override
     public void tick() {
         handler.getMouseManager().setUiManager(SpaceRunUI);
@@ -88,6 +102,11 @@ public class SecondMinigameState extends State {
         SpaceRunUI.tick();
     }
 
+    /**
+     * Render method runs constantly in a loop once the game is started and finishes the moment the game also finishes,
+     * this method also is the method in charge of rendering the graphics
+     * @param g graphics parameter passed to GameLoop
+     */
     @Override
     public void render(Graphics g) {
 
