@@ -6,9 +6,8 @@ import com.itcr.ce.datosparty.logic.Dice;
 public class Minigame {
 
     public static void newMinigame(){
-        UsedMinigames UMG = new UsedMinigames();
-        UMG.initDuplicates();
-        UMG.check(Dice.roll(1, 6));
+        UsedMinigames usedMinigames = new UsedMinigames();
+        usedMinigames.check(Dice.roll(1, 6));
     }
 
     public static void playMiniGame(int gameID){
