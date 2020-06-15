@@ -6,31 +6,22 @@ import com.itcr.ce.datosparty.logic.Dice;
 
 public class UsedMinigames {
 
-    private static SinglyList<Integer> Duplicates;
+    private static SinglyList<Integer> Duplicates = new SinglyList<>();;
 
     public void addGame(int  gameID) {
         Duplicates.add(gameID);
     }
 
-    public void initDuplicates(){
-        Duplicates = new SinglyList<>();
-    }
-
     public void check(int dice) {
 
+        if (Duplicates.getLength() >= 6) {
+            Duplicates.clear();
+        }
+
         if (search(dice)){
-            if (Duplicates.getLength() >= 6) {
-                Duplicates.clear();
-
-            }
-
-            else{
-                System.out.println("Playing minigame #"+dice);
-            }
             this.addGame(dice);
             Minigame.playMiniGame(dice);
         }
-
         else{
             this.check(Dice.roll(1, 6));
         }
