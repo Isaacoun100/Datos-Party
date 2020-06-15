@@ -30,7 +30,8 @@ public class FourthMinigameState extends State {
     private Player winner;
     private int end;
     private int  bestScore = Integer.MAX_VALUE;
-    private boolean tie, tieReward, playing = false;
+    private boolean tie;
+    private boolean playing = false;
     private Game game;
     private SinglyList<String> doneMessage;
 
@@ -187,10 +188,10 @@ public class FourthMinigameState extends State {
                 SinglyNode<Player> currentWinner = tiedPlayers.getHead();
                 while (currentWinner != null) {
                     yDistance += 50;
-                    g.drawString(currentWinner.getData().getName(), 150, yDistance);
+                    String stringWinner = currentWinner.getData().getName();
+                    g.drawString(stringWinner, 150, yDistance);
                     currentWinner = (SinglyNode<Player>) currentWinner.getNext();
                     tie = false;
-                    tieReward = true;
                 }
             } else {
                 if (0 <= bestScore) {
@@ -207,13 +208,13 @@ public class FourthMinigameState extends State {
     private void winGame(){
         if (playing) {
             playing = false;
-            if (tieReward) {
+            if (tie) {
                 SinglyNode<Player> currentWinner = tiedPlayers.getHead();
                 while (currentWinner != null) {
                     currentWinner.getData().addCoins(10);
                     currentWinner = (SinglyNode<Player>) currentWinner.getNext();
                 }
-                tieReward = false;
+                tie = false;
             } else if (winner != null) {
                 winner.addCoins(10);
                 winner = null;
