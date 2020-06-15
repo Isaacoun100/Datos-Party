@@ -9,18 +9,18 @@ public class UsedMinigames {
     private static SinglyList<Integer> Duplicates;
 
     public void addGame(int  gameID) {
-        this.Duplicates.add(gameID);
+        Duplicates.add(gameID);
     }
 
     public void initDuplicates(){
-        Duplicates = new SinglyList<Integer>();
+        Duplicates = new SinglyList<>();
     }
 
     public void check(int dice) {
 
         if (search(dice)){
-            if (Duplicates.getLength() >= 8) {
-                this.Duplicates.clear();
+            if (Duplicates.getLength() >= 6) {
+                Duplicates.clear();
 
             }
 
@@ -32,7 +32,7 @@ public class UsedMinigames {
         }
 
         else{
-            this.check(Dice.roll(1, 8));
+            this.check(Dice.roll(1, 6));
         }
     }
 
