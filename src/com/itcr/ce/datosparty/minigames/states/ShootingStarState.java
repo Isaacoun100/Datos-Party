@@ -17,7 +17,10 @@ import com.itcr.ce.datosparty.userInterface.UIManager;
 
 import java.awt.*;
 
-public class FourthMinigameState extends State {
+/**
+ * Minigame state where each player has to spot a shooting star. Whichever spots it first, wins.
+ */
+public class ShootingStarState extends State {
     private Handler handler;
     private UIManager uiManager;
     private final Font normalFont, titleFont;
@@ -35,7 +38,14 @@ public class FourthMinigameState extends State {
     private final Game game;
     private SinglyList<String> doneMessage;
 
-    public FourthMinigameState(Handler handler, int numPlayers, Game game) {
+    /**
+     * Sets up the contents that the minigame needs to work
+     * @param handler contains the UIManager to draw and animate images and buttons onscreen. It also contains the keys
+     *                of the keyboard that are needed.
+     * @param numPlayers number of players in Game
+     * @param game contains elements of the game currently played, like the players
+     */
+    public ShootingStarState(Handler handler, int numPlayers, Game game) {
         super(handler);
         this.handler = handler;
         this.numPlayers = numPlayers;
@@ -84,6 +94,9 @@ public class FourthMinigameState extends State {
 
     }
 
+    /**
+     * Sets up a random timer for the shooting star to appear
+     */
     private void startGame() {
         if (!playing) {
             starTimer = Dice.roll(-1000, -100);
@@ -91,6 +104,10 @@ public class FourthMinigameState extends State {
         }
     }
 
+    /**
+     * Checks when a player presses its corresponding key yo check star. If the player presses it when the star hasn't
+     * appeared yet, it loses automatically
+     */
     private void getScore() {
         if (handler.getKeyManager().key_Q && !turns.get(0).getData()) {
             scores.get(0).setData(starTimer);
@@ -134,6 +151,14 @@ public class FourthMinigameState extends State {
         }
     }
 
+    /**
+     * compares the scores to see who won by seeing which is lesser than the other
+     * @param score1 first score, in some cases it is the score that is currently winning
+     * @param score2 second score
+     * @param player1 player which made score1, perhaps the one currently wining
+     * @param player2 player which made score2
+     * @return score that is currently winning th minigame
+     */
     private int compare(int score1, int score2, Player player1, Player player2){
         if (0 < score1 && 0 < score2) {
             if (score1 == score2 && score1 <= bestScore) {
@@ -163,6 +188,9 @@ public class FourthMinigameState extends State {
         }
     }
 
+    /**
+     * Compares scores and players untill it finds the winner
+     */
     private void searchWinner() {
         Player player1 = players.getHead().getData();
         Player player2 = players.getHead().getNext().getData();
@@ -177,6 +205,11 @@ public class FourthMinigameState extends State {
         }
     }
 
+    /**
+     * It displays a button when the minigame ends to resume the board game. It also checks if the player used its turn
+     * or not
+     * @param g "Brush" used to render onscreen
+     */
     private void displayEndButton(Graphics g) {
         if (end == numPlayers || starTimer > 150) {
             searchWinner();
@@ -205,6 +238,10 @@ public class FourthMinigameState extends State {
         }
     }
 
+    /**
+     * Adds coins to the winner and resumes game. If there is a tie, it give coins to both players. if no one won,
+     * nobody will win coins
+     */
     private void winGame(){
         if (playing) {
             playing = false;
@@ -235,6 +272,9 @@ public class FourthMinigameState extends State {
         }
     }
 
+    /**
+     * Checks events over and over
+     */
     @Override
     public void tick() {
         handler.getMouseManager().setUiManager(uiManager);
@@ -245,6 +285,10 @@ public class FourthMinigameState extends State {
         getScore();
     }
 
+    /**
+     * Draws images onscreen
+     * @param g graphics parameter passed to gameloop
+     */
     @Override
     public void render(Graphics g) {
         uiManager.renderById(g, "background");
