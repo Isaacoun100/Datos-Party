@@ -1,5 +1,8 @@
 package com.itcr.ce.datosparty.logic;
 
+/**
+ * Contains the different types of events used on the game.
+ */
 public enum Event {
     DUEL,
     STEAL_COINS,

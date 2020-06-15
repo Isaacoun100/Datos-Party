@@ -5,6 +5,10 @@ import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.boxes.*;
 import com.itcr.ce.datosparty.utilities.MapCoordinates;
 
+/**
+ * Contains various lists of boxes and grants them different properties. It grants the road where the players will walk
+ * on the main game
+ */
 public class Board {
 
     public final CircularList<Box> mainCircuit = new CircularList<>();
@@ -13,22 +17,50 @@ public class Board {
     public final DoublyList<Box> phaseC = new DoublyList<>();
     public final CircularDoublyList<Box> phaseD = new CircularDoublyList<>();
 
+    /**
+     * Gets the main path of the game.
+     * @return circular list of random boxes
+     */
     public CircularList<Box> getMainCircuit() {
         return mainCircuit;
     }
+
+    /**
+     * Serves as a detour from the main circuit.
+     * @return Singly lsit of random boxes
+     */
     public SinglyList<Box> getPhaseA() {
         return phaseA;
     }
+
+    /**
+     * Detour from the main circuit full of yellow boxes
+     * @return Singly list of yellow boxes
+     */
     public SinglyList<Box> getPhaseB() {
         return phaseB;
     }
+
+    /**
+     * Path in the main circuit that can be traveled on both ways
+     * @return Doubly list of random boxes
+     */
     public DoublyList<Box> getPhaseC() {
         return phaseC;
     }
+
+    /**
+     * Path isolated from the main circuit that can only be reached with a teleport event. It is full yellow boxes and
+     * can be traveled on both ways
+     * @return Circular doubly list of yellow boxes
+     */
     public CircularDoublyList<Box> getPhaseD() {
         return phaseD;
     }
 
+    /**
+     * Builds the main circuit and its phases. It also determines the crossroads to reach this phases.
+     */
     public Board() {
         buildMainCircuit();
         buildPhaseA();

@@ -3,6 +3,9 @@ package com.itcr.ce.datosparty.input;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * Grants the ability to use inputs of the keyboard on our program
+ */
 public class KeyManager implements KeyListener {
 
     private final boolean[] keys;

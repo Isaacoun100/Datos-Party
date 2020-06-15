@@ -4,6 +4,9 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * Loads images and provides the ability to display them onscreen
+ */
 public class ImageLoader {
 
     /**

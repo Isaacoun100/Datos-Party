@@ -2,6 +2,9 @@ package com.itcr.ce.datosparty.gfx;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * Provides the ability to crop an image and use only the cropped part
+ */
 public class SpriteSheet {
 
     private BufferedImage sheet;

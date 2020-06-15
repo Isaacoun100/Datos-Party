@@ -2,6 +2,9 @@ package com.itcr.ce.datosparty.gfx;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * Stores every frame of animation on an array and plays it in a desired speed
+ */
 public class Animation {
     private final int speed;
     private int index;

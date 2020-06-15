@@ -3,6 +3,9 @@ package com.itcr.ce.datosparty.gfx;
 import java.awt.*;
 import java.io.*;
 
+/**
+ * Loads fonts to customize strings displayed onscreen
+ */
 public class FontLoader {
 
     /**
