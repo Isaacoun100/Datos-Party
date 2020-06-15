@@ -236,7 +236,7 @@ public class GameState extends State{
 
         gameUI.addObject(new UIImageButton((float)width/2-8,(float)height/2-10,8,8,Assets.yesBtn,"yesBtn",
                 ()->{
-                    if(currentBox.isStarBox()&&!clicked) {
+                    if(currentBox.isStarBox()&&!clicked&&currentPlayer.getCurrentTurn()) {
                         int coins = currentPlayer.getCoins();
                         if(coins>=10) {
                             this.enoughCoins = 1;
@@ -247,7 +247,7 @@ public class GameState extends State{
                     }
                 }));
         gameUI.addObject(new UIImageButton((float)width/2+2,(float)height/2-10,8,8,Assets.noBtn,"noBtn",()->{
-            if(!clicked) {
+            if(!clicked&&currentPlayer.getCurrentTurn()) {
                 int movementLeft = currentPlayer.getMovement();
                 currentPlayer.setMovement(movementLeft);
                 game.resumeGame();
@@ -458,7 +458,7 @@ public class GameState extends State{
             }
         }
 
-        if (currentBox.isStarBox() && !clicked) {
+        if (currentBox.isStarBox() && !clicked && currentPlayer.getCurrentTurn()) {
             gameUI.renderById(g, "starPBackDrop");
             gameUI.renderById(g, "buyMsg");
             gameUI.renderById(g, "yesBtn");

@@ -40,7 +40,7 @@ public class UIImage extends UIObject{
     }
 
     /**
-     * unused imported method from parent class
+     * unusedz| imported method from parent class
      */
     @Override
     public void onClick() {
