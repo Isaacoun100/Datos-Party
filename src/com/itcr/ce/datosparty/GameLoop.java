@@ -98,7 +98,6 @@ public class GameLoop implements Runnable {
         mainMenuState = new MainMenuState(handler);
         creditsState = new CreditsState(handler);
         optionsState = new OptionsState(handler);
-        winnerState = new WinnerState(handler);
         selectRoundState = new SelectRoundState(handler);
         selectPlayerState = new PlayerSelectionState(handler);
 
