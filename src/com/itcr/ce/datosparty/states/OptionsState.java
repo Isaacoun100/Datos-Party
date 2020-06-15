@@ -14,7 +14,7 @@ public class OptionsState extends State{
     public OptionsState(Handler handler){
         super(handler);
 
-        uiManager = new OptionsUI(handler);
+        uiManager = new UIManager(handler);
 
         uiManager.addObject(new UIImageButton(44, 3, 3, 3, Assets.volumeUp,"volumeUpMusic", new ClickListener() {
             @Override
@@ -30,7 +30,7 @@ public class OptionsState extends State{
                 MusicPlayer.musicVolumeDown();
             }}));
 
-        uiManager.addObject(new SingleUIImage(18, 3, 7*2, 2*2, Assets.gameMusic,"gameMusic"));
+        uiManager.addObject(new UIImage(18, 3, 7*2, 2*2, Assets.gameMusic[0],"gameMusic"));
 
         uiManager.addObject(new UIImageButton(44, 11, 3, 3, Assets.volumeUp,"volumeUpEffect", new ClickListener() {
             @Override
@@ -46,7 +46,7 @@ public class OptionsState extends State{
                 MusicPlayer.clipVolumeDown();
             }}));
 
-        uiManager.addObject(new SingleUIImage(18, 11, 7*2, 2*2, Assets.soundEffects, "soundFMessage"));
+        uiManager.addObject(new UIImage(18, 11, 7*2, 2*2, Assets.soundEffects[0], "soundFMessage"));
 
         uiManager.addObject(new UIImageButton(20, 30, 3*3, 3, Assets.backButton, "bckBtn",
                 () -> setState(handler.getGameLoop().mainMenuState)));

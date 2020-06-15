@@ -14,7 +14,7 @@ import java.awt.image.BufferStrategy;
 
 
 /**
- *
+ * Main loop of the program, it continues running unless the program is closed
  */
 public class GameLoop implements Runnable {
 
@@ -32,7 +32,7 @@ public class GameLoop implements Runnable {
      * State Initialization
      */
     public static State mainMenuState, creditsState, optionsState,
-                        winnerState, selectPlayerState, selectRoundState;
+                        selectPlayerState, selectRoundState;
     public static SinglyList<State> gameDependantStates = new SinglyList<>();
 
     /**
@@ -66,16 +66,24 @@ public class GameLoop implements Runnable {
         mouseManager = new MouseManager();
     }
 
+    /**
+     * This state is used by all classes to set a specific state as active
+     * @param state obj that will be rendered and executed
+     */
     public static void setState(State state){
         State.setState(state);
     }
 
+    /**
+     * Getter for the board and its phases
+     * @return the board object, and all its phases
+     */
     public Board getBoard() {
         return board;
     }
 
     /**
-     * Initialization method, this runs variables that are used in the game
+     * Initialization method, sets up the main variables used throughout the program
      */
     private void init(){
 
@@ -98,7 +106,6 @@ public class GameLoop implements Runnable {
         mainMenuState = new MainMenuState(handler);
         creditsState = new CreditsState(handler);
         optionsState = new OptionsState(handler);
-        winnerState = new WinnerState(handler);
         selectRoundState = new SelectRoundState(handler);
         selectPlayerState = new PlayerSelectionState(handler);
 
@@ -106,12 +113,19 @@ public class GameLoop implements Runnable {
 
     }
 
+    /**
+     * Main tick method, it runs the tick manager, and pulls the data from each state to execute here
+     * @throws InterruptedException
+     */
     private void tick() throws InterruptedException {
         keyManager.tick();
         if (State.getState() != null)
             State.getState().tick();
     }
 
+    /**
+     * Main render method, it pulls the render information from each state, and renders it on the screen
+     */
     private void render() {
 
         bs = display.getCanvas().getBufferStrategy();
@@ -132,6 +146,10 @@ public class GameLoop implements Runnable {
         g.dispose();
     }
 
+    /**
+     * Main run method for the gameLoop, and the program itself,
+     * it defines the tick and render, and the speed the execute in
+     */
     @Override
     public void run() {
 
@@ -171,15 +189,25 @@ public class GameLoop implements Runnable {
         stop();
     }
 
+    /**
+     * getter for the key manager, is only used by the handler
+     * @return returns the key manager
+     */
     public KeyManager getKeyManager() {
         return keyManager;
     }
 
+    /**
+     * getter for the mouse manager, its only used by the handler
+     * @return returns the mouse manager
+     */
     public MouseManager getMouseManager() {
         return mouseManager;
     }
 
-
+    /**
+     * Thread start method, its synchronized to avoid sync issues
+     */
     public synchronized void start(){
         if(running)
             return;
@@ -188,6 +216,9 @@ public class GameLoop implements Runnable {
         thread.start();
     }
 
+    /**
+     * Thread stop method, its synchronized to avoid sync issues
+     */
     public synchronized void stop(){
         if(!running)
             return;

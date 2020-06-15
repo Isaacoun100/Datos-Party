@@ -12,7 +12,6 @@ import java.awt.*;
 public class CreditsState extends State{
     private final UIManager uiManager;
 
-
     public CreditsState(Handler handler){
         super(handler);
         uiManager = new UIManager(handler);

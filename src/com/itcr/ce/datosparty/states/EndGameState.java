@@ -24,7 +24,11 @@ public class EndGameState extends State {
     private final int height = GameLauncher.height/16;
     private final Game game;
 
-
+    /**
+     *  State for the credits class
+     * @param handler
+     * @param game
+     */
     public EndGameState(Handler handler, Game game) {
         super(handler);
         this.game = game;

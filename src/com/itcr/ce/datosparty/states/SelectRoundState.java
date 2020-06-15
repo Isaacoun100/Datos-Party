@@ -23,7 +23,7 @@ public class SelectRoundState extends State {
 
         selectRoundUI.addObject(new UIBackground(Assets.roundWallpaper, "wp"));
 
-        selectRoundUI.addObject(new SingleUIImage(29,5,12*4,6*4,Assets.roundTitle,"roundTitle"));
+        selectRoundUI.addObject(new UIImage(29,5,12*4,6*4,Assets.roundTitle[0],"roundTitle"));
 
         selectRoundUI.addObject(new UIImageButton(4, 40, 7*4, 2*4, Assets.noviceButton,"noviceBtn", () -> {
 

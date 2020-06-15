@@ -171,7 +171,7 @@ public class GameState extends State{
                         game.resumeGame();
                     }
                 }));
-        gameUI.addObject(new UIImageButton(30,11,4,4,Assets.leftArrow,"lArrowPhaseD",
+        gameUI.addObject(new UIImageButton(30,13,4,4,Assets.leftArrow,"lArrowPhaseD",
                 ()->{
                     if (currentBox.getBoxID().equals("phaseD")) {
                         currentPlayer.setDirection(true);
@@ -180,7 +180,7 @@ public class GameState extends State{
                         game.resumeGame();
                     }
                 }));
-        gameUI.addObject(new UIImageButton(35,11,4,4,Assets.rightArrow,"rArrowPhaseD",
+        gameUI.addObject(new UIImageButton(35,13,4,4,Assets.rightArrow,"rArrowPhaseD",
                 ()->{
                     if (currentBox.getBoxID().equals("phaseD")) {
                         currentPlayer.setDirection(false);

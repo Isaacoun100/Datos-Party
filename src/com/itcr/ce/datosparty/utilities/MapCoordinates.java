@@ -4,6 +4,10 @@ import com.itcr.ce.datosparty.GameLauncher;
 import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 
+/**
+ * This class holds coordinate data, for the different phases of the maps
+ * it stores them in a matrix
+ */
 public class MapCoordinates {
 
     private static final int width = GameLauncher.width;
@@ -11,6 +15,10 @@ public class MapCoordinates {
     private static final int firstBoxX = (width/(800/56))+50;
     private static final int firstBoxY = (height/(608/299))-20;
 
+    /**
+     * getter the main circuit coordinates
+     * @return the main circuit coordinate matrix
+     */
     public static SinglyList<SinglyList<Integer>> getMainCircuitCoordinates() {
         SinglyList<SinglyList<Integer>> MainCircuitCoordinates = new SinglyList<>();
         //Index 0
@@ -282,6 +290,10 @@ public class MapCoordinates {
         return MainCircuitCoordinates;
     }
 
+    /**
+     * getter for the phase A coordinates
+     * @return the phase A coordinate matrix
+     */
     public static SinglyList<SinglyList<Integer>> getPhaseACoordinates() {
         SinglyList<SinglyList<Integer>> phaseACoordinates = new SinglyList<>();
         //Index 0
@@ -298,6 +310,10 @@ public class MapCoordinates {
         return phaseACoordinates;
     }
 
+    /**
+     * getter for the phase B coordinates
+     * @return the phase B coordinate matrix
+     */
     public static SinglyList<SinglyList<Integer>> getPhaseBCoordinates() {
         SinglyList<SinglyList<Integer>> phaseBCoordinates = new SinglyList<>();
         //Index 0
@@ -329,6 +345,10 @@ public class MapCoordinates {
         return phaseBCoordinates;
     }
 
+    /**
+     * getter for the phase C coordinates
+     * @return the phase C coordinate matrix
+     */
     public static SinglyList<SinglyList<Integer>> getPhaseCCoordinates() {
         SinglyList<SinglyList<Integer>> phaseCCoordinates = new SinglyList<>();
         //Index 0
@@ -375,6 +395,10 @@ public class MapCoordinates {
         return phaseCCoordinates;
     }
 
+    /**
+     * getter for the phase D coordinates
+     * @return the phase D coordinate matrix
+     */
     public static SinglyList<SinglyList<Integer>> getPhaseDCoordinates() {
         SinglyList<SinglyList<Integer>> phaseDCoordinates = new SinglyList<>();
         //Index 0

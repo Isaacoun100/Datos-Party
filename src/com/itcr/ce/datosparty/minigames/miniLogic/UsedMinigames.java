@@ -19,7 +19,7 @@ public class UsedMinigames {
     public void check(int dice) {
 
         if (search(dice)){
-            if (Duplicates.getLength() >= 8) {
+            if (Duplicates.getLength() >= 6) {
                 this.Duplicates.clear();
 
             }
@@ -32,7 +32,7 @@ public class UsedMinigames {
         }
 
         else{
-            this.check(Dice.roll(1, 8));
+            this.check(Dice.roll(1, 6));
         }
     }
 
