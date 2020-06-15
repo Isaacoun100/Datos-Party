@@ -15,7 +15,7 @@ public class Assets {
                                 clickerBG, paintBallBG, spaceWallpaper, firstShip, secondShip, thirdShip,fourthShip,
                                 rock,paper,scissors,number1,number2,number3,rpcTitle, leftPlayer, rightPlayer,
                                 playerIndicator1, playerIndicator2, playerIndicator3, playerIndicator4, blackScope,
-                                redScope, shootingStarBG, clearSkyBG;
+                                target, openFieldBG, clearSkyBG;
     public static BufferedImage[] settingsButton, playButton, creditsButton, backButton, titleImage, pressEnterImage,
                                   notOKComputer,  notOKComputerIcon,  nothingHereMessage,  boton1,  diceButton,
                                   upArrow, downArrow, leftArrow, rightArrow,  player1Button, player2Button, duel,
@@ -27,10 +27,10 @@ public class Assets {
                                   tuxCard, backCard, checkButton, congratulationsTitle, twoPlayerAnim, threePlayerAnim,
                                   fourPlayerAnim, firstPlaceAnim, lastPlaceAnim, damageRedR, damageRedL, damageBlueR,
                                   damageBlueL, damageYellowR, damageYellowL,damageGreenR, damageGreenL, stoneButton,
-                                  dustAnimation, bornStar, shootingStar;
+                                  dustAnimation, bornStar, shootingStar, redScope;
 
     public static Font bitArtFont, retroComputer, threeDventure, upHeavett, pixelInversions, astalemtim, fourB30,
-                        acientModernTales;
+                        acientModernTales, swyrtd;
 
 
 
@@ -416,6 +416,7 @@ public class Assets {
         spaceWallpaper = ImageLoader.loadImage("/textures/Space.png");
         mapGuide = ImageLoader.loadImage("/textures/MapLayout.png");
         clearSkyBG = ImageLoader.loadImage("/textures/clear-sky.png");
+        openFieldBG = ImageLoader.loadImage("/textures/OpenField.png");
 
         congratulationsTitle = new BufferedImage[4];
         congratulationsTitle[0] = sheet.crop(0,17,17,2);
@@ -443,7 +444,11 @@ public class Assets {
         paintgun4 = sheet.crop(18,17,1,2);
 
         blackScope = sheet.crop(20, 27, 1, 1);
-        redScope = sheet.crop(21, 27, 1, 1);
+        target = sheet.crop(22, 26, 3, 3);
+
+        redScope = new BufferedImage[2];
+        redScope[0] = sheet.crop(21, 27, 1, 1);
+        redScope[1] = sheet.crop(21, 28, 1, 1);
 
         damageRedL = new BufferedImage[6];
         damageRedL[0] = sheet.crop(25,18,1,2);
@@ -574,6 +579,7 @@ public class Assets {
         astalemtim = FontLoader.loadFont("res/fonts/Astalemtim.ttf");
         fourB30 = FontLoader.loadFont("res/fonts/04B_30__.TTF");
         acientModernTales = FontLoader.loadFont("res/fonts/AncientModernTales-a7Po.ttf");
+        swyrtd = FontLoader.loadFont("res/fonts/ScreamWhenYoureReadyToDieRegular-6AjD.ttf");
 
 
     }

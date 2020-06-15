@@ -8,6 +8,7 @@ import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.gfx.Assets;
 import com.itcr.ce.datosparty.logic.Game;
 import com.itcr.ce.datosparty.states.State;
+import com.itcr.ce.datosparty.userInterface.UIBackground;
 import com.itcr.ce.datosparty.userInterface.UIImage;
 import com.itcr.ce.datosparty.userInterface.UIImageButton;
 import com.itcr.ce.datosparty.userInterface.UIManager;
@@ -19,6 +20,7 @@ public class ThirdMinigameState extends State {
     private final UIManager uiManager;
     private final Handler handler;
     private final Game game;
+    private final Font titleFont, normalFont;
     private SinglyList<Integer> scores;
     private SinglyList<Player> tiedPlayers;
     private SinglyList<Player> players;
@@ -28,7 +30,7 @@ public class ThirdMinigameState extends State {
     private int bestScore = Integer.MAX_VALUE;
     private Player winner;
     private final int numPlayers;
-    private final int targetX = 700;
+    private final int targetX = 725;
     private final int targetY = 350;
 
     public ThirdMinigameState(Handler handler, int numPlayers, Game game) {
@@ -42,14 +44,18 @@ public class ThirdMinigameState extends State {
         scores = new SinglyList<>();
         players = game.getPlayerList();
 
-        uiManager.addObject(new UIImageButton(43, 40, 7*2, 2*2, Assets.player1Button,
+        uiManager.addObject(new UIBackground(Assets.openFieldBG,"background"));
+        titleFont = Assets.swyrtd.deriveFont(Font.PLAIN, 100);
+        normalFont = Assets.swyrtd.deriveFont(Font.PLAIN, 25);
+
+        uiManager.addObject(new UIImageButton(46, 38, 8, 8, Assets.redScope,
                 "shootButton", this::shoot));
 
-        uiManager.addObject(new UIImageButton(43, 45, 7*2, 2*2, Assets.player1Button,"winButton",
+        uiManager.addObject(new UIImageButton(45, 45, 8, 8, Assets.okBtn,"winButton",
                 this::winGame));
 
-        uiManager.addObject( new UIImage(0, 0, 16, 16, Assets.blackScope, "blackScope"));
-        uiManager.addObject( new UIImage(0, 0, 16, 16, Assets.redScope, "redScope"));
+        uiManager.addObject(new UIImage(0, 0, 24, 24, Assets.target, "target"));
+        uiManager.addObject( new UIImage(0, 0, 8, 8, Assets.blackScope, "blackScope"));
 
     }
 
@@ -136,27 +142,30 @@ public class ThirdMinigameState extends State {
 
     @Override
     public void render(Graphics g) {
-        g.drawString("aim: " + aim, 100, 100);
+        uiManager.renderById(g, "background");
+        g.setFont(titleFont);
+        g.drawString("Bullseye!", 300, 1000);
+        g.setFont(normalFont);
         if (scores.getLength() >= 1) {
-            g.drawString(players.get(0).getData().getName() + ": " + scores.get(0).getData(), 150, 100);
+            g.drawString(players.get(0).getData().getName() + "'s turn is done", 950, 400);
         }
         if (scores.getLength() >= 2) {
-            g.drawString(players.get(1).getData().getName() + ": " + scores.get(1).getData(), 150, 150);
+            g.drawString(players.get(1).getData().getName() + "'s turn is done", 950, 450);
         }
         if (numPlayers >= 3 && scores.getLength() >= 3) {
-            g.drawString(players.get(2).getData().getName() + ": " + scores.get(2).getData(), 150, 200);
+            g.drawString(players.get(2).getData().getName() + "'s turn is done", 950, 500);
         }
         if (numPlayers == 4 && scores.getLength() >= 4) {
-            g.drawString(players.get(3).getData().getName() + ": " + scores.get(3).getData(), 150, 250);
+            g.drawString(players.get(3).getData().getName() + "'s turn is done", 950, 550);
         }
         if (turns == numPlayers) {
             if (tie) {
                 SinglyNode<Player> currentWinner = tiedPlayers.getHead();
-                int playerPosition = 325;
-                g.drawString("It's a tie!", 150, 300);
+                int playerPosition = 450;
+                g.drawString("It's a tie!", 150, 400);
                 g.drawString("The winners are:", 175, playerPosition);
                 while (currentWinner != null) {
-                    playerPosition += 25;
+                    playerPosition += 50;
                     String stringWinner = currentWinner.getData().getName();
                     g.drawString(stringWinner, 175, playerPosition);
                     currentWinner = (SinglyNode<Player>) currentWinner.getNext();
@@ -164,14 +173,14 @@ public class ThirdMinigameState extends State {
             } else {
                 searchWinner();
                 String stringWinner = winner.getName();
-                g.drawString("Winner: " + stringWinner, 150, 300);
+                g.drawString("Winner: " + stringWinner, 150, 400);
             }
             uiManager.renderById(g, "winButton");
         }
+        uiManager.renderById(g, "target");
+        uiManager.changeObjectPos("target", targetX - 120 - 8, targetY - 120 - 8);
         uiManager.changeObjectPos("blackScope", aim * 5 + targetX, targetY);
-        uiManager.changeObjectPos("redScope", targetX, targetY);
         uiManager.renderById(g, "shootButton");
         uiManager.renderById(g, "blackScope");
-        uiManager.renderById(g, "redScope");
     }
 }
