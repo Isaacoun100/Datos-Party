@@ -4,18 +4,34 @@ import com.itcr.ce.datosparty.dataStructures.lists.SinglyList;
 import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.logic.Dice;
 
+/**
+ * This is the class that manages the mini games that have been used and the ones that haven't
+ */
 public class UsedMinigames {
 
     private static SinglyList<Integer> Duplicates;
 
+    /**
+     * This method adds a new mini game to the mini games list
+     * @param gameID
+     */
     public void addGame(int  gameID) {
         this.Duplicates.add(gameID);
     }
 
+    /**
+     * This method initializes LeaderBoard as a new SinglyList, this fixes some nullPointerException errors
+     * because the list is initialized when is needed
+     */
     public void initDuplicates(){
         Duplicates = new SinglyList<Integer>();
     }
 
+    /**
+     * This method recieves and integer that correspond to the value we want to check if it has been on the game
+     * before, if it has, then it runs the same method but with another value untill it reaches the unused mini game
+     * @param dice
+     */
     public void check(int dice) {
 
         if (search(dice)){
@@ -36,6 +52,11 @@ public class UsedMinigames {
         }
     }
 
+    /**
+     * This method checks if the given int is already on the list
+     * @param dice the mini game id we want to search
+     * @return a boolean true if it already exists on the list, false if not
+     */
     public boolean search(int dice){
 
         SinglyNode<Integer> temporal = Duplicates.getHead();
