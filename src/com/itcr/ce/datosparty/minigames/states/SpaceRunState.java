@@ -47,6 +47,7 @@ public class SpaceRunState extends State {
         winner = new WinnerLogic(this.game);
         SpaceRunUI = new UIManager(handler);
         StarUI = new UIManager(handler);
+        initPositions();
     }
 
     /**
