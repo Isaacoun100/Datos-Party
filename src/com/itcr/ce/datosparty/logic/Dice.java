@@ -3,16 +3,15 @@ package com.itcr.ce.datosparty.logic;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * This class works as our randomizer for all that we need to randomize in the game, the minigames, the dices, the moves
- * the players, and much more!.
+ * Used when a random number on a determined range is needed.
  */
 public class Dice {
 
     /**
-     * This class recieves the minimum and maximum value that is going to be randomized
-     * @param min minimum value to choose from
-     * @param max maximum value to choose from
-     * @return the random value
+     * Gives a random number inside the range provided
+     * @param min minimum value on range
+     * @param max maximum value on range
+     * @return random number contained on range
      */
     public static int roll(int min, int max){
         int randomNumber = 0;

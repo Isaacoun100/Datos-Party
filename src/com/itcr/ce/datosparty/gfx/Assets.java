@@ -8,17 +8,20 @@ import java.awt.image.BufferedImage;
  */
 public class Assets {
 
+    /**
+     * Loads all images, animations and fonts to be managed easily on code
+     */
     public static BufferedImage blueBox,greenBox,yellowBox,redBox, player1Static, player2Static, player3Static,
                                 player4Static, starSeller, noCoinsMsg, enoughCoins, mapGuide, eventBackDrop,
-                                eventBackDropBad, getEventBackDropSpecial, secondPLaceImg, thirdPlaceImg,paintgun1,
-                                endGamePodium2, endGamePodium3, playerSelectionTitle, loginWallpaper, roundWallpaper,
-                                selectionWallpaper, redSelectorL, redSelectorR, blueSelectorL, blueSelectorR,
-                                yellowSelectorL,yellowSelectorR, greenSelectorL, paintgun4,paintgun3, paintgun2,
-                                greenSelectorR, memoryWallpaper, stoneRubble, stoneStatue, paintBallLogo, stoneLogo,
-                                clickerBG, paintBallBG, spaceWallpaper, firstShip, secondShip, thirdShip,fourthShip,
-                                rock,paper,scissors,number1,number2,number3,rpcTitle, leftPlayer, rightPlayer,
-                                playerIndicator1, playerIndicator2, playerIndicator3, playerIndicator4, blackScope,
-                                target, openFieldBG, clearSkyBG;
+                                secondPLaceImg, thirdPlaceImg,paintgun1, endGamePodium2, endGamePodium3,
+                                playerSelectionTitle, loginWallpaper, roundWallpaper, selectionWallpaper, redSelectorL,
+                                redSelectorR, blueSelectorL, blueSelectorR, yellowSelectorL,yellowSelectorR,
+                                greenSelectorL, paintgun4,paintgun3, paintgun2, greenSelectorR, memoryWallpaper,
+                                stoneRubble, stoneStatue, paintBallLogo, stoneLogo, clickerBG, paintBallBG,
+                                spaceWallpaper, firstShip, secondShip, thirdShip,fourthShip, rock, paper, scissors,
+                                number1,number2,number3,rpcTitle, leftPlayer, rightPlayer, playerIndicator1,
+                                playerIndicator2, playerIndicator3, playerIndicator4, blackScope, target, openFieldBG,
+                                clearSkyBG;
     public static BufferedImage[] settingsButton, playButton, creditsButton, backButton, titleImage, pressEnterImage,
                                   notOKComputer,  notOKComputerIcon,  nothingHereMessage,  boton1,  diceButton,
                                   upArrow, downArrow, leftArrow, rightArrow,  player1Button, player2Button, duel,

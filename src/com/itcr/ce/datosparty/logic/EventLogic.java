@@ -10,8 +10,15 @@ import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.Player;
 import com.itcr.ce.datosparty.entities.boxes.Box;
 
+/**
+ * Contains the logic of the events contained in the yellow boxes
+ */
 public class EventLogic {
 
+    /**
+     * Pauses game so that the event can activate
+     * @param game current game to pause
+     */
     public void pauseEvent(Game game) {
         try {
             game.pauseGame();
@@ -20,18 +27,34 @@ public class EventLogic {
         }
     }
 
+    /**
+     * Chooses a player to fight on duel
+     * @param player Player that activated the duel
+     * @param game current game to pause
+     */
     public void randomDuel(Player player, Game game) {
         pauseEvent(game);
         Player target = randomTarget(player, game);
         duel(player,target,game);
     }
 
+    /**
+     * Plays a special minigame of rock paper scissors on the given players
+     * @param player1 player that activated the event
+     * @param player2 random player
+     * @param game current game to pause
+     */
     public void duel(Player player1, Player player2, Game game){
         game.updateDuelPlayers(player1,player2);
         GameLoop.setState(GameLoop.gameDependantStates.get(0).getData());
         pauseEvent(game);
     }
 
+    /**
+     * Gives the player an option to steal a random sum of coins to the player he chooses
+     * @param thief Player that activated the event
+     * @param victim Player chosen by the thief
+     */
     public void stealCoins(Player thief, Player victim) {
         int randomCoins = Dice.roll(1, 10);
         if (victim.getCoins() < randomCoins) {
@@ -42,6 +65,11 @@ public class EventLogic {
         System.out.println("Stolen " + randomCoins + " coins");
     }
 
+    /**
+     * Subtracts a random sum of coins to the player, then divides them an shares them with the other players
+     * @param player Player that activated the event
+     * @param game current game to pause
+     */
     public void giftCoins(Player player, Game game) {
         SinglyNode<Player> playerToAdd = Round.getPlayerOrder().getHead();
         int playersToGift = Round.getPlayerOrder().getLength() - 1;
@@ -64,6 +92,11 @@ public class EventLogic {
         pauseEvent(game);
     }
 
+    /**
+     * Takes a star from the player and gives it to another random player
+     * @param player Player that activated the event
+     * @param game current game to pause
+     */
     public void loseStar(Player player, Game game) {
         if (player.getStars() >= 1)  {
             player.addStars(-1);
@@ -74,16 +107,31 @@ public class EventLogic {
         pauseEvent(game);
     }
 
+    /**
+     * Player wins 2 stars
+     * @param player Player that activated the event
+     * @param game current game to pause
+     */
     public void winTwoStars(Player player, Game game) {
         player.addStars(2);
         pauseEvent(game);
     }
 
+    /**
+     * Player wins 5 stars
+     * @param player Player that activated the event
+     * @param game current game to pause
+     */
     public void winFiveStars(Player player, Game game) {
         player.addStars(5);
         pauseEvent(game);
     }
 
+    /**
+     * Player has the ability to steal a star from a random player
+     * @param player Player that activated the event
+     * @param game current game to pause
+     */
     public void stealStar(Player player, Game game) {
         Player randomPlayer = randomTarget(player, game);
         if (randomPlayer.getStars() >= 1) {
@@ -93,6 +141,11 @@ public class EventLogic {
         pauseEvent(game);
     }
 
+    /**
+     * Changes the player's position to a random one on board. Only way to read phase D.
+     * @param player Player that activated the event
+     * @param game current game to pause
+     */
     public void teleport(Player player, Game game) {
         player.setReversed(false);
         int numRandom;
@@ -138,7 +191,11 @@ public class EventLogic {
         pauseEvent(game);
     }
 
-
+    /**
+     * Swaps the player's position with a random player on board
+     * @param player Player that activated the event
+     * @param game current game to pause
+     */
     public void swapPlayers(Player player, Game game) {
         player.setReversed(false);
         Player targetPlayer = randomTarget(player, game);
@@ -152,8 +209,15 @@ public class EventLogic {
 
     }
 
+    /**
+     * Gives a random player on game, excluding the player that activated the event. Not an event, but used in various
+     * events
+     * @param player Player to exclude
+     * @param game where all the players on game are found.
+     * @return random player (except the player excluded)
+     */
     private Player randomTarget(Player player, Game game){
-        if(game.getNumberOfPlayers()==2){
+        if(game.getNumberOfPlayers() == 2){
             if(player == game.getPlayerList().get(0).getData()){
                 return game.getPlayerList().get(1).getData();
             }

@@ -213,26 +213,11 @@ public class ShootingStarState extends State {
     private void displayEndButton(Graphics g) {
         if (end == numPlayers || starTimer > 150) {
             searchWinner();
-            if (tie) {
-                int yDistance = 300;
-                g.drawString("Tie!", 150, yDistance);
-                yDistance += 50;
-                g.drawString("Winners: ", 150, yDistance);
-                SinglyNode<Player> currentWinner = tiedPlayers.getHead();
-                while (currentWinner != null) {
-                    yDistance += 50;
-                    String stringWinner = currentWinner.getData().getName();
-                    g.drawString(stringWinner, 150, yDistance);
-                    currentWinner = (SinglyNode<Player>) currentWinner.getNext();
-                    tie = false;
-                }
+            if (0 <= bestScore) {
+                g.drawString("Winner: " + winner.getName(), 150, 300);
             } else {
-                if (0 <= bestScore) {
-                    g.drawString("Winner: " + winner.getName(), 150, 300);
-                } else {
-                    winner = null;
-                    g.drawString("No one spot it!", 150, 300);
-                }
+                winner = null;
+                g.drawString("No one spot it!", 150, 300);
             }
             uiManager.renderById(g, "endButton");
         }
