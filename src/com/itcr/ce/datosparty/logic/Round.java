@@ -8,15 +8,25 @@ import com.itcr.ce.datosparty.gfx.Assets;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * Contains a list with players ordered according to their turns
+ */
 public class Round {
 
     private static SinglyList<Player> playerOrder;
     private static int maxRound;
 
+    /**
+     * Initializes the playerOrder list
+     */
     public static void initRound() {
         playerOrder = new SinglyList<>();
     }
 
+    /**
+     * Grabs a list of primitive players and gives the a name and an order
+     * @param sortedList list of players without names or order
+     */
     public static void translate(SinglyList<TemporalPlayer> sortedList){
         SinglyNode<TemporalPlayer> temp = sortedList.getHead();
         SinglyList<BufferedImage> imageList = new SinglyList<>();
@@ -35,39 +45,49 @@ public class Round {
             x -=40;
             currentImage = currentImage.getNext();
         }
-
-        showList();
-
     }
 
-    public static void showList(){
-
-        SinglyNode<Player> showPlayer = playerOrder.getHead();
-
-        while (showPlayer!=null){
-            System.out.println(showPlayer.getData().getName());
-            showPlayer = (SinglyNode<Player>) showPlayer.getNext();
-        }
-
-    }
-
+    /**
+     * Adds a player to the list in its respective order
+     * @param name player's name
+     * @param x x parameter of player
+     * @param y y parameter of player
+     * @param image image assigned to player
+     */
     public static void addPlayer(String name, float x, float y, BufferedImage image){
         playerOrder.add(new Player(name,x,y,image));
     }
 
+    /**
+     * return the list with players ordered correctly
+     * @return list of players
+     */
     public static SinglyList<Player> getPlayerOrder() {
         return playerOrder;
     }
 
+    /**
+     * Return the maximum quantity of rounds that will be played on the game
+     * @return max rounds on game
+     */
     public static int getMaxRound() {
         return maxRound;
     }
 
+    /**
+     * Sets the maximum quantity of rounds that will be played on the game
+     * @param maxRound max rounds on game
+     */
     public static void setMaxRound(int maxRound) {
         Round.maxRound = maxRound;
     }
 
-    public static void playRound(Game game) throws InterruptedException {
+    /**
+     * Plays the entire round, checking which player turn is next when the other ends. It also sets a star seller on
+     * round 2
+     * @param game game played currently
+     */
+    public static void playRound(Game game) {
         SinglyNode<Player> currentTurn = Round.getPlayerOrder().getHead();
         Player player1 = game.getPlayerList().get(0).getData();
         Player player2 = game.getPlayerList().get(1).getData();
@@ -78,29 +98,33 @@ public class Round {
             game.setStar();
         }
 
-        Turn.setPlayersTurn(currentTurn);
-        game.pauseGame();
-        Turn.playTurn(game, player1);
+        try {
+            Turn.setPlayersTurn(currentTurn);
+            game.pauseGame();
+            Turn.playTurn(game, player1);
 
 
-        currentTurn = (SinglyNode<Player>) currentTurn.getNext();
-        Turn.setPlayersTurn(currentTurn);
-        game.pauseGame();
-        Turn.playTurn(game, player2);
-
-        if(numberOfPlayers >= 3){
-            Player player3 = game.getPlayerList().get(2).getData();
             currentTurn = (SinglyNode<Player>) currentTurn.getNext();
             Turn.setPlayersTurn(currentTurn);
             game.pauseGame();
-            Turn.playTurn(game, player3);
+            Turn.playTurn(game, player2);
+
+            if(numberOfPlayers >= 3){
+                Player player3 = game.getPlayerList().get(2).getData();
+                currentTurn = (SinglyNode<Player>) currentTurn.getNext();
+                Turn.setPlayersTurn(currentTurn);
+                game.pauseGame();
+                Turn.playTurn(game, player3);
+            }
+            if(numberOfPlayers == 4){
+                Player player4 = game.getPlayerList().get(3).getData();
+                currentTurn = (SinglyNode<Player>) currentTurn.getNext();
+                Turn.setPlayersTurn(currentTurn);
+                game.pauseGame();
+                Turn.playTurn(game, player4);
         }
-        if(numberOfPlayers == 4){
-            Player player4 = game.getPlayerList().get(3).getData();
-            currentTurn = (SinglyNode<Player>) currentTurn.getNext();
-            Turn.setPlayersTurn(currentTurn);
-            game.pauseGame();
-            Turn.playTurn(game, player4);
+        } catch (InterruptedException e) {
+            System.out.println(e);
         }
     }
 }
