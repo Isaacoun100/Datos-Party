@@ -18,7 +18,7 @@ import java.awt.*;
 /**
  * This class is the Memory mini game, it runs once per cycle of mini games
  */
-public class EighthMinigameState extends State {
+public class MemoryState extends State {
 
     private SinglyNode<Player> activePlayer = Round.getPlayerOrder().getHead();
     private Animation titanAn, samAn, tuxAn, koichiAn,ghostAn;
@@ -37,7 +37,7 @@ public class EighthMinigameState extends State {
      * @param numPlayers to know how many players are going to be playing the game
      * @param game
      */
-    public EighthMinigameState(Handler handler, int numPlayers, Game game) {
+    public MemoryState(Handler handler, int numPlayers, Game game) {
         super(handler);
          this.game= game;
          initPositions();
