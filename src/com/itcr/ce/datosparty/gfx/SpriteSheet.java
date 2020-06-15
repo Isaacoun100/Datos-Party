@@ -3,7 +3,7 @@ package com.itcr.ce.datosparty.gfx;
 import java.awt.image.BufferedImage;
 
 /**
- * this class divides images into sub images
+ * Provides the ability to crop an image and use only the cropped part
  */
 public class SpriteSheet {
 

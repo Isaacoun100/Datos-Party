@@ -3,13 +3,26 @@ package com.itcr.ce.datosparty.minigames.miniLogic;
 import com.itcr.ce.datosparty.GameLoop;
 import com.itcr.ce.datosparty.logic.Dice;
 
+/**
+ * This class handles the order in which the mini games appears to the user so that in just 6 rounds the player
+ * can see all mini games.
+ */
 public class Minigame {
 
+    /**
+     * This method is called in the moment you need a mini game, it will initialize the UsedMiniGames to check what
+     * mini games are available, then randomize between them and start the unseen state
+     */
     public static void newMinigame(){
         UsedMinigames usedMinigames = new UsedMinigames();
         usedMinigames.check(Dice.roll(1, 6));
     }
 
+    /**
+     * Given a value from 1 to 6 it will call the state that was assigned to that number, if the number is not in the
+     * list it will display a print message
+     * @param gameID
+     */
     public static void playMiniGame(int gameID){
 
         switch (gameID) {

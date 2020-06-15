@@ -1,14 +1,9 @@
 package com.itcr.ce.datosparty.gfx;
 
-import com.itcr.ce.datosparty.dataStructures.lists.CircularList;
-import com.itcr.ce.datosparty.dataStructures.lists.DoublyList;
-import com.itcr.ce.datosparty.dataStructures.nodes.DoublyNode;
-import com.itcr.ce.datosparty.dataStructures.nodes.Node;
-
 import java.awt.image.BufferedImage;
 
 /**
- * this class creates an aimation that plays its frames in reverse
+ * Grants the ability to play an animation's frames on reverse
  */
 public class ReverseAnimation {
     private final int speed;

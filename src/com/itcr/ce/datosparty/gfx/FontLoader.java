@@ -4,7 +4,7 @@ import java.awt.*;
 import java.io.*;
 
 /**
- * this class loads font objects from external files
+ * Loads font objects from external files to customize strings displayed onscreen
  */
 public class FontLoader {
 

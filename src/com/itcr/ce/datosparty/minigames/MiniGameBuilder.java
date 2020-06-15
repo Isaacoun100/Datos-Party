@@ -18,13 +18,13 @@ public class MiniGameBuilder {
     public static void build(LinkedList<State> gameList, int playerNumber, Handler handler, Game game){
 
         gameList.add(new DuelMiniGame(handler, playerNumber, game));
-        gameList.add(new SecondMinigameState(handler, playerNumber, game));
+        gameList.add(new SpaceRunState(handler, playerNumber, game));
         gameList.add(new BullseyeState(handler, playerNumber, game));
         gameList.add(new ShootingStarState(handler, playerNumber, game));
         gameList.add(new BustedPaintballState(handler, playerNumber, game));
         gameList.add(new ClickerArtistState(handler, playerNumber, game));
         gameList.add(new SeventhMinigameState(handler, playerNumber, game));
-        gameList.add(new EighthMinigameState(handler, playerNumber, game));
+        gameList.add(new MemoryState(handler, playerNumber, game));
 
     }
 }
