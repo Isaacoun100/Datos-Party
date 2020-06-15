@@ -15,7 +15,10 @@ import com.itcr.ce.datosparty.userInterface.UIManager;
 
 import java.awt.*;
 
-public class ThirdMinigameState extends State {
+/**
+ * Minigame state where each player has to shoot a target. The one who es closest to the target wins
+ */
+public class BullseyeState extends State {
 
     private final UIManager uiManager;
     private final Handler handler;
@@ -33,7 +36,13 @@ public class ThirdMinigameState extends State {
     private final int targetX = 725;
     private final int targetY = 350;
 
-    public ThirdMinigameState(Handler handler, int numPlayers, Game game) {
+    /**
+     * Sets up the contents that the minigame needs to work
+     * @param handler contains the UIManager to draw and animate images and buttons onscreen
+     * @param numPlayers number of players in Game
+     * @param game contains elements of the game currently played, like the players
+     */
+    public BullseyeState(Handler handler, int numPlayers, Game game) {
         super(handler);
         uiManager = new UIManager(handler);
         this.handler = handler;
@@ -59,6 +68,9 @@ public class ThirdMinigameState extends State {
 
     }
 
+    /**
+     * Determines if the scope goes left or right
+     */
     private void changeDirection() {
         if (aim >= 50) {
             add = false;
@@ -67,6 +79,9 @@ public class ThirdMinigameState extends State {
         }
     }
 
+    /**
+     * Sets the speed of the scope
+     */
     private void move() {
         if (add) {
             aim += 3;
@@ -75,6 +90,9 @@ public class ThirdMinigameState extends State {
         }
     }
 
+    /**
+     * Sets the points that the player gets when it shoots
+     */
     private void shoot() {
         if (turns != numPlayers) {
             scores.add(aim);
@@ -82,6 +100,14 @@ public class ThirdMinigameState extends State {
         }
     }
 
+    /**
+     * compares the scores to see who won by setting them both on Math.abs() and seeing which is lesser than the other
+     * @param score1 first score, in some cases it is the score that is currently winning
+     * @param score2 second score
+     * @param player1 player which made score1, perhaps the one currently wining
+     * @param player2 player which made score2
+     * @return score that is currently winning th minigame
+     */
     private int compare(int score1, int score2, Player player1, Player player2){
         if (Math.abs(score1) == Math.abs(score2) && Math.abs(score1) <= Math.abs(bestScore)) {
             tie = true;
@@ -101,6 +127,9 @@ public class ThirdMinigameState extends State {
         }
     }
 
+    /**
+     * Compares scores and players untill it finds the winner
+     */
     private void searchWinner() {
         Player player1 = players.getHead().getData();
         Player player2 = players.getHead().getNext().getData();
@@ -115,6 +144,9 @@ public class ThirdMinigameState extends State {
         }
     }
 
+    /**
+     * Adds coins to the winner and resumes game. If there is a tie, it give coins to both players
+     */
     private void winGame(){
         if (tie) {
             SinglyNode<Player> currentWinner = tiedPlayers.getHead();
@@ -132,6 +164,9 @@ public class ThirdMinigameState extends State {
         State.setState(GameLoop.gameDependantStates.get(8).getData());
     }
 
+    /**
+     * Checks events over and over
+     */
     @Override
     public void tick() {
         handler.getMouseManager().setUiManager(uiManager);
@@ -140,6 +175,10 @@ public class ThirdMinigameState extends State {
         move();
     }
 
+    /**
+     * Draws images onscreen
+     * @param g graphics parameter passed to gameloop
+     */
     @Override
     public void render(Graphics g) {
         uiManager.renderById(g, "background");
