@@ -16,6 +16,9 @@ import com.itcr.ce.datosparty.userInterface.UIManager;
 
 import java.awt.*;
 
+/**
+ * this class is the state that shows when a game ends, it renders the winners, and it can go back to the main menu
+ */
 public class EndGameState extends State {
 
     private final UIManager endGameUI;
@@ -25,9 +28,9 @@ public class EndGameState extends State {
     private final Game game;
 
     /**
-     *  State for the credits class
-     * @param handler
-     * @param game
+     *  constructor for the credits class
+     * @param handler handler obj in order to change states and access variables
+     * @param game game obj to pull the data for the players, and render the winners correctly
      */
     public EndGameState(Handler handler, Game game) {
         super(handler);
@@ -76,12 +79,19 @@ public class EndGameState extends State {
         }
     }
 
+    /**
+     * tick object for the end game class, it ticks the current UI
+     */
     @Override
     public void tick() {
         handler.getMouseManager().setUiManager(endGameUI);
         endGameUI.tick();
     }
 
+    /**
+     * render method for the end game class, it renders the leaderboard in a podium
+     * @param g graphics parameter passed to gameloop
+     */
     @Override
     public void render(Graphics g) {
 

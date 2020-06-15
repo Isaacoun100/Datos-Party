@@ -3,6 +3,9 @@ package com.itcr.ce.datosparty.gfx;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * This class is in charge of storing all graphical assets for the game
+ */
 public class Assets {
 
     public static BufferedImage blueBox,greenBox,yellowBox,redBox, player1Static, player2Static, player3Static,

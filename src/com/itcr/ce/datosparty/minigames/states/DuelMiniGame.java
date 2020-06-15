@@ -13,6 +13,9 @@ import com.itcr.ce.datosparty.userInterface.UIManager;
 
 import java.awt.*;
 
+/**
+ * this class is the mini game used when two players face each other in a duel
+ */
 public class DuelMiniGame extends State {
     private final UIManager duelUI;
     public static Player leftPlayer, rightPlayer;

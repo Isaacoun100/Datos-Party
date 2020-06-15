@@ -2,6 +2,9 @@ package com.itcr.ce.datosparty.gfx;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * this class divides images into sub images
+ */
 public class SpriteSheet {
 
     private BufferedImage sheet;

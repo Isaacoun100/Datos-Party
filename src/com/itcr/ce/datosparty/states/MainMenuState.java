@@ -9,6 +9,9 @@ import com.itcr.ce.datosparty.gfx.Assets;
 
 import java.awt.*;
 
+/**
+ * state for the main menu, from here you can start a new game, change settings or check the credits
+ */
 public class MainMenuState extends State{
 
     private final UIManager uiManager;
@@ -16,10 +19,14 @@ public class MainMenuState extends State{
     private int width = GameLauncher.width/16;
     private int height = GameLauncher.height/16;
     private Animation titleAnimation;
+
+    /**
+     * Constructor for the main state, it only takes in the handler
+     * @param handler handler in order to switch the state to this, and for accessing variables
+     */
     public MainMenuState(Handler handler){
 
         super(handler);
-
 
         uiManager = new UIManager(handler);
 
@@ -40,6 +47,9 @@ public class MainMenuState extends State{
 
     }
 
+    /**
+     * tick method for the main menu, it simply switches the UI to the one for the main menu
+     */
     @Override
     public void tick() {
         //titleAnimation.tick();
@@ -47,6 +57,10 @@ public class MainMenuState extends State{
         uiManager.tick();
         }
 
+    /**
+     * render method for the main menu, it simply renders all items
+     * @param g graphics parameter passed to game loop
+     */
     @Override
     public void render(Graphics g) {
             uiManager.renderAll(g);

@@ -4,6 +4,9 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * this class loads images using only a path
+ */
 public class ImageLoader {
 
     /**

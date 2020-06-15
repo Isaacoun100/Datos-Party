@@ -5,6 +5,9 @@ import com.itcr.ce.datosparty.dataStructures.nodes.SinglyNode;
 import com.itcr.ce.datosparty.entities.boxes.*;
 import com.itcr.ce.datosparty.utilities.MapCoordinates;
 
+/**
+ * this class is the board where the game is played, it has 5 different lists, with different parameters each
+ */
 public class Board {
 
     public final CircularList<Box> mainCircuit = new CircularList<>();

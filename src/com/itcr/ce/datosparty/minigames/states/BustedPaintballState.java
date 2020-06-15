@@ -16,6 +16,9 @@ import com.itcr.ce.datosparty.userInterface.UIManager;
 
 import java.awt.*;
 
+/**
+ * this class is the busted paitball mini game that plays during regular gameplay
+ */
 public class BustedPaintballState extends State {
 
     UIManager bustedPaintBallUI;

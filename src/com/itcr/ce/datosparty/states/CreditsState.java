@@ -9,6 +9,9 @@ import com.itcr.ce.datosparty.gfx.Assets;
 
 import java.awt.*;
 
+/**
+ * this class is meant to show the credits of the game,
+ */
 public class CreditsState extends State{
     private final UIManager uiManager;
 
@@ -25,12 +28,19 @@ public class CreditsState extends State{
 
     }
 
+    /**
+     * tick method, it changes the UI and then it ticks its objects so they can be interacted with
+     */
     @Override
     public void tick() {
         handler.getMouseManager().setUiManager(uiManager);
         uiManager.tick();
     }
 
+    /**
+     * render method for the class, currently renders all objects
+     * @param g graphics parameter passed to gameloop
+     */
     @Override
     public void render(Graphics g) {
         uiManager.renderAll(g);

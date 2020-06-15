@@ -4,6 +4,9 @@ import com.itcr.ce.datosparty.gfx.Assets;
 
 import java.awt.*;
 
+/**
+ * the entity class for the star seller
+ */
 public class StarSeller extends Entity{
 
     /**

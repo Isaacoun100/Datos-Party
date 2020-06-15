@@ -12,6 +12,9 @@ import com.itcr.ce.datosparty.userInterface.*;
 
 import java.awt.*;
 
+/**
+ * this class is the clicker artist mini game, that plays during regular gameplay
+ */
 public class ClickerArtistState extends State {
     private final UIManager clickerArtistUI;
     private final Player player1;

@@ -3,6 +3,9 @@ package com.itcr.ce.datosparty.gfx;
 import java.awt.*;
 import java.io.*;
 
+/**
+ * this class loads font objects from external files
+ */
 public class FontLoader {
 
     /**

@@ -17,7 +17,7 @@ import static com.itcr.ce.datosparty.logic.Event.*;
 
 /**
  * Where the logic of the game happens in its respective order. It handles rounds, turns, players, events and
- * minigames. Acts as a facade.
+ * mini games. Acts as a facade.
  */
 public class Game extends Thread {
 

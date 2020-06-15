@@ -5,6 +5,10 @@ package com.itcr.ce.datosparty.userInterface;
  */
 public interface ClickListener {
 
+    /**
+     * this method is defined when its called
+     * @throws InterruptedException
+     */
     void onClick() throws InterruptedException;
 
 }

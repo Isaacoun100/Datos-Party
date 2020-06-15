@@ -22,6 +22,9 @@ import com.itcr.ce.datosparty.userInterface.UIManager;
 
 import java.awt.*;
 
+/**
+ * this class is the game state, this is were the main board game is visualised
+ */
 public class GameState extends State{
 
     private final UIManager gameUI;
@@ -44,6 +47,11 @@ public class GameState extends State{
     private final EventLogic stealCoinsLogic = new EventLogic();
     private Node<Player> currentPlayerNode;
 
+    /**
+     * Constructor for the game state, this is were buttons and other UI objects are declared, aside from other important variables
+     * @param handler handler obj, needed to switch states and access variables
+     * @param game game obj, needed to have information on the players, the turns remaining and other methods
+     */
     public GameState(Handler handler, Game game){
 
         super(handler);
@@ -326,6 +334,9 @@ public class GameState extends State{
 
     }
 
+    /**
+     * tick method for the game, its used to update data constantly, specially the current player
+     */
     @Override
     public void tick() {
         if(game.getCurrentRound() < maxRound){
@@ -343,6 +354,10 @@ public class GameState extends State{
         gameUI.tick();
     }
 
+    /**
+     * render method for the game state, it renders the board and the players, as well as the star seller and the event cards
+     * @param g graphics parameter passed to game loop
+     */
     @Override
     public void render(Graphics g) {
         g.drawImage(Assets.mapGuide, -10, 0, null);
@@ -521,6 +536,13 @@ public class GameState extends State{
             gameUI.renderById(g,"endTurnBtn");
         }
     }
+
+    /**
+     * a method created to render the board more efficiently
+     * @param currentBox the current box object being rendered
+     * @param length int value of the length of the list that is currently rendering
+     * @param g java.awt Graphics object
+     */
     private void renderBoard(SinglyNode<Box> currentBox, int length, Graphics g) {
         for (int i = 0; i < length; i++) {
             currentBox.getData().render(g);

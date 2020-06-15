@@ -7,6 +7,9 @@ import com.itcr.ce.datosparty.dataStructures.nodes.Node;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * this class creates an aimation that plays its frames in reverse
+ */
 public class ReverseAnimation {
     private final int speed;
     private int index;

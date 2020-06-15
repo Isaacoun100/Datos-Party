@@ -3,6 +3,9 @@ package com.itcr.ce.datosparty.display;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * this class is the one in charge of managing the display of all states
+ */
 public class Display {
 
     /**

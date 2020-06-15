@@ -6,6 +6,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+/**
+ * this class allows the mouse to be used for user input
+ */
 public class MouseManager implements MouseListener, MouseMotionListener {
 
     private UIManager uiManager;

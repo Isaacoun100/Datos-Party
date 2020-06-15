@@ -2,6 +2,9 @@ package com.itcr.ce.datosparty.gfx;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * this class creates animated images from buffered image arrays
+ */
 public class Animation {
     private final int speed;
     private int index;
